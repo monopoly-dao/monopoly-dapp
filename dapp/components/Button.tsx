@@ -1,6 +1,8 @@
 import Button, {ButtonProps} from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import { amber } from '@mui/material/colors';
+import { Wallet } from '../near/near-wallet';
+import { useEffect } from 'react';
+import { StaticImageData } from 'next/image';
 
 const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: 'black',
@@ -15,13 +17,35 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     fontSize: '15px',
     textTransform: 'none',
     fontWeight: 'bold',
+    marginBlock: '10px'
 
   }));
 
-export default function MUIButton({type, children}:
+
+export default function MUIButton({type, children, handleClick, icon}:
     {type: 'text' | 'contained' | 'outlined',
-        children: string})
-    { return (
-        <ColorButton variant={type}>{children}</ColorButton>
+        children: string,
+        handleClick?: () => void,
+        icon?: any
+    })
+    {   const CONTRACT_ADDRESS = "godbrand.testnet";
+        const wallet = new Wallet({
+            createAccessKeyFor: CONTRACT_ADDRESS
+        })
+
+        useEffect(() => {
+            if (window) {
+                window.onload = async () => {
+                    let isSignedIn = await wallet.startUp();
+                    console.log(isSignedIn, 'meep');
+            }
+        }
+        window.onload = async () => {
+            let isSignedIn = await wallet.startUp();
+            console.log(isSignedIn, 'meep');
+    }
+        }, [])
+        return (
+        <ColorButton color="secondary" variant={type} onClick={handleClick} endIcon={icon}>{children}</ColorButton>
     );
 }

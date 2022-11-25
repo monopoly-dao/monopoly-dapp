@@ -1,24 +1,11 @@
-import styles from './Header.module.css'
-import Logo from '../Logo';
-import Image from 'next/image';
-import Button from '../../components/Button';
+import styles from '../Header/Header.module.css';
 import hand from 'public/assets/hand.png';
-import house from 'public/assets/house.png';
+import house from 'public/assets/House.png';
+import Button from '../Button';
+import Image from 'next/image';
 
-export default function Header() {
-  return (
-    <div>
-        <div className={styles.header}>
-            <div className={styles.left}>
-                <Logo />
-                <p>What is MonopolyDAO?</p>
-                <p>How it works</p>
-            </div>
-            <div className={styles.right}>
-                <p>Log in</p>
-                <Button type="contained">connect wallet</Button>
-            </div>
-        </div>
+export default function Jumbotron() {
+    return (
         <div className={styles.main}>
             <div className={styles.herotext}>
                 <h1>Own property.<br/> Pay in fractions.</h1>
@@ -38,6 +25,5 @@ export default function Header() {
                 </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
