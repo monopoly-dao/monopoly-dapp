@@ -3,8 +3,15 @@ import Logo from '../Logo';
 import Image from 'next/image';
 import Button from '../Button';
 import icon from 'public/assets/wallet.png';
+import { useRouter } from 'next/router';
 
 export default function Header() {
+    const router = useRouter();
+    
+    const gotoLogin = (e: any) => {
+        e.preventDefault();
+        router.push('/signup');
+    }
 
     const Icon = () => 
         <>
@@ -21,7 +28,11 @@ export default function Header() {
             </div>
             <div className={styles.right}>
                 <p>Log in</p>
-                <Button type="contained" icon={Icon}>connect wallet</Button>
+                <Button
+                    type="contained"
+                    icon={Icon}
+                    handleClick={gotoLogin}
+                    >Sign in</Button>
             </div>
         </div>
     </div>
