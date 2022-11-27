@@ -1,22 +1,18 @@
-
-import firebase from 'firebase/compat/app';
-import { useEffect } from 'react';
-import { firebaseConfig } from '../config/firebase';
+import "firebaseui/dist/firebaseui.css";
+import styles from '../styles/Signup.module.css';
 
 export default function Signup() {
-
-    const fetchUI = async () => {
-        firebase.initializeApp(firebaseConfig);
-        const firebaseui = await import('firebaseui')
-        const signOnUI = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
-        console.log('Signon', signOnUI);
-    }
-    useEffect(()=> {
-        if (typeof window !== 'undefined') {
-            fetchUI();
-        }
-    }, [])
     return (
-        <div>Hooha</div>
+        <div className={styles.signup}>
+        <div className={styles.left}>
+            <div className={styles.color}>
+                <h1>Making real estate<br/>ownership accessible</h1>
+            </div>
+        </div>
+        <div className={styles.right}>
+            <h2>Get started with MonopolyDAO</h2>
+            <p>Create your account and start purchasing<br/>properties in minutes</p>
+        </div>
+        </div>
     )
 }
