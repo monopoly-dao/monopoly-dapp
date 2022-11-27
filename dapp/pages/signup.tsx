@@ -1,4 +1,3 @@
-import "firebaseui/dist/firebaseui.css";
 import styles from '../styles/Signup.module.css';
 import Box from '@mui/material/Box';
 import Input from '../components/Input';
@@ -13,11 +12,15 @@ import Divider from '@mui/material/Divider';
 import signup from 'public/assets/woman.jpg';
 import Image from 'next/image';
 import google from 'public/assets/google.png';
+import {auth} from '../config/firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import Snackbar from '@mui/material/Snackbar';
 
 export default function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         e.target.name == 'email' ? setEmail(e.target.value) : setPassword(e.target.value);
@@ -29,6 +32,29 @@ export default function Signup() {
 
     const handleMouseDownPassword = () => {
         setShowPassword(!showPassword);
+    }
+
+    const handleClose = (e: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+    }
+
+    const handleSubmit = () => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(newUserCredential => {
+                const user = newUserCredential.user;
+            })
+            .catch(error => {
+                const errorCode = error.code;
+                switch (errorCode) {
+                    case 'auth/email-already-in-use':
+                        setError("You already registered with this email address. Try logging in instead.")
+                        break;
+                    default:
+                        setError(errorCode)
+                }
+            })
     }
     return (
         <Box
@@ -72,12 +98,30 @@ export default function Signup() {
                         </IconButton>
                       </InputAdornment>}}
                 />
-                <Button type="contained">Sign up</Button>
+                <Button
+                    type="contained"
+                    handleClick={handleSubmit}
+                >
+                    Sign up
+                </Button>
                 <p>Already have an account? Log in</p>
                 <div style={{width: 'inherit'}}>
                     <Divider>OR</Divider>
                 </div>
-                <GoogleButton type="contained"><Image src={google} alt="google icon"width={35} height={35} /> &nbsp; &nbsp; Connect with Google</GoogleButton>
+                <GoogleButton
+                    type="contained"
+                >
+                    <Image src={google} alt="google icon"width={35} height={35} />
+                    &nbsp; &nbsp; Connect with Google
+                </GoogleButton>
+
+                <Snackbar
+                    open={!!error}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    message={error}
+                    // action={action}
+/>
             </div>
             </div>
         </Box>

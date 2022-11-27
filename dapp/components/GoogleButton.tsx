@@ -24,7 +24,7 @@ const ColorButton = styled(Button)<ButtonProps>(() => ({
 
 export default function GoogleButton({type, children, handleClick, icon}:
     {type: 'text' | 'contained' | 'outlined',
-        children: string,
+        children: any,
         handleClick?: () => void,
         icon?: any
     }){
