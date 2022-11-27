@@ -7,6 +7,11 @@ body {
   /* color: #c9ff63; */
 }
 
+@font-face {
+  font-family: "Apfel Grotesk";
+  src: url('../public/fonts/ApfelGrotezk-Regular.otf');
+}
+
 html {
   background: white;
 }
@@ -16,7 +21,7 @@ body {
 }
 
 p {
-  color: gray;
+  color: #141414;
 }
 
 a {
@@ -26,16 +31,20 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: "Apfel Grotesk", sans-serif;
 }
 
 h1 {
-  font-size: 70px;
-  color: black;
+  font-size: 50px;
+  color: #175366;
   margin-block: 0px;
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 40px;
+  color: #175366;
+  margin-block: 0px;
+
 }
 
 @media (prefers-color-scheme: dark) {
