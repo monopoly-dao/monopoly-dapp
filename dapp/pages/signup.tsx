@@ -70,42 +70,46 @@ export default function Signup() {
             <Image src={signup} alt="signup splash" fill/>
             </div>
             <div className={styles.right}>
-                <h1>Get started<br/>with MonopolyDAO</h1>
-                <p>Create your account and start purchasing properties in minutes</p>
-                <Input
-                    required={true}
-                    label="Email address"
-                    value={email}
-                    name="email"
-                    handleChange={handleChange}
-                />
-                <Input
-                    required={true}
-                    label="Password"
-                    value={password}
-                    name="password"
-                    handleChange={handleChange}
-                    type={showPassword ? "text" : "password"}
-                    inputProps={{
-                        endAdornment: <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>}}
-                />
-                <Button
-                    type="contained"
-                    handleClick={handleSubmit}
-                >
-                    Sign up
-                </Button>
-                <p>Already have an account? Log in</p>
-                <div style={{width: 'inherit'}}>
+                <div className={styles.title}>
+                    <h1>Get started<br/>with MonopolyDAO</h1>
+                    <p>Create your account and start purchasing properties in minutes</p>
+                </div>
+                <div className={styles.form}>
+                    <Input
+                        required={true}
+                        label="Email address"
+                        value={email}
+                        name="email"
+                        handleChange={handleChange}
+                    />
+                    <Input
+                        required={true}
+                        label="Password"
+                        value={password}
+                        name="password"
+                        handleChange={handleChange}
+                        type={showPassword ? "text" : "password"}
+                        inputProps={{
+                            endAdornment: <InputAdornment position="end">
+                            <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                            >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>}}
+                    />
+                    <Button
+                        type="contained"
+                        handleClick={handleSubmit}
+                    >
+                        Sign up
+                    </Button>
+                    <p>Already have an account? Log in</p>
+                </div>
+                <div className={styles.divider}>
                     <Divider>OR</Divider>
                 </div>
                 <GoogleButton

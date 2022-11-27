@@ -4,6 +4,13 @@
     box-sizing: border-box;
 }
 
+.title, .form, .divider {
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
 .left {
     width: 40%;
     position: relative;
