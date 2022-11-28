@@ -24,7 +24,7 @@ const ColorButton = styled(Button)<ButtonProps>(() => ({
 export default function MUIButton({type, children, handleClick, icon}:
     {type: 'text' | 'contained' | 'outlined',
         children: string,
-        handleClick?: () => void,
+        handleClick?: (e: any) => void,
         icon?: any
     }){
         return (

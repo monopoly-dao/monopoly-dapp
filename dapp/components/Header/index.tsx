@@ -13,11 +13,6 @@ export default function Header() {
         router.push('/signup');
     }
 
-    const Icon = () => 
-        <>
-            <Image src={icon} alt="wallet icon" />
-        </>
-
   return (
     <div>
         <div className={styles.header}>
@@ -30,7 +25,6 @@ export default function Header() {
                 <p>Log in</p>
                 <Button
                     type="contained"
-                    icon={Icon}
                     handleClick={gotoLogin}
                     >Sign in</Button>
             </div>

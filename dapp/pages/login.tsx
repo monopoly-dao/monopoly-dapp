@@ -9,15 +9,15 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Button from '../components/Button';
 import GoogleButton from '../components/GoogleButton';
 import Divider from '@mui/material/Divider';
-import signup from 'public/assets/woman.jpg';
+import signup from 'public/assets/red.jpg';
 import Image from 'next/image';
 import google from 'public/assets/google.png';
 import {auth} from '../config/firebase/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import Snackbar from '@mui/material/Snackbar';
 import { useRouter } from 'next/router';
 
-export default function Signup() {
+export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -42,22 +42,22 @@ export default function Signup() {
         }
     }
 
-    const gotoLogin = () => {
-        router.push('/login');
+    const gotoSignup = () => {
+        router.push('/signup');
     }
 
     const handleSubmit = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(newUserCredential => {
-                const user = newUserCredential.user;
+        signInWithEmailAndPassword(auth, email, password)
+            .then(userCredential => {
+                const user = userCredential.user;
                 console.log(user);
                 router.push("/dashboard");
             })
             .catch(error => {
                 const errorCode = error.code;
                 switch (errorCode) {
-                    case 'auth/email-already-in-use':
-                        setError("You already registered with this email address. Try logging in instead.")
+                    case 'auth/user-not-found':
+                        setError("Username or password incorrect. Check your credentials, or sign up instead.")
                         break;
                     default:
                         setError(errorCode)
@@ -79,8 +79,8 @@ export default function Signup() {
             </div>
             <div className={styles.right}>
                 <div className={styles.title}>
-                    <h1>Get started<br/>with MonopolyDAO</h1>
-                    <p>Create your account and start purchasing properties in minutes</p>
+                    <h1>Welcome back!</h1>
+                    <p>Log in to your account to manage your assets</p>
                 </div>
                 <div className={styles.form}>
                     <Input
@@ -113,9 +113,9 @@ export default function Signup() {
                         type="contained"
                         handleClick={handleSubmit}
                     >
-                        Sign up
+                        Log in
                     </Button>
-                    <h4 className={styles.h5} onClick={gotoLogin}>Already have an account? Log in</h4>
+                    <h4 className={styles.h5} onClick={gotoSignup}>Don&apos;t have an account? Sign up</h4>
                 </div>
                 <div className={styles.divider}>
                     <Divider>OR</Divider>
@@ -124,7 +124,7 @@ export default function Signup() {
                     type="contained"
                 >
                     <Image src={google} alt="google icon"width={35} height={35} />
-                    &nbsp; &nbsp; Sign up with Google
+                    &nbsp; &nbsp; Continue with Google
                 </GoogleButton>
 
                 <Snackbar
