@@ -143,8 +143,8 @@ function ResponsiveAppBar() {
             <Toolbar />
             <Box sx={{ overflow: 'auto' }}>
               <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                  <ListItem key={text} disablePadding>
+                {['Available properties', 'My holdings', 'Account', 'Profile'].map((text, index) => (
+                  <ListItem key={text} disablePadding sx={{ fontFamily: 'Apfel Grotesk'}}>
                     <ListItemButton>
                       <ListItemIcon>
                         {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -155,18 +155,6 @@ function ResponsiveAppBar() {
                 ))}
               </List>
               <Divider />
-              <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                  <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
             </Box>
           </Drawer>
         </Box>

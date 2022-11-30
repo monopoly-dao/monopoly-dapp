@@ -13,7 +13,7 @@ import signup from 'public/assets/woman.jpg';
 import Image from 'next/image';
 import google from 'public/assets/google.png';
 import {auth} from '../config/firebase/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import Snackbar from '@mui/material/Snackbar';
 import { useRouter } from 'next/router';
 
@@ -24,7 +24,7 @@ export default function Signup() {
     const [error, setError] = useState('');
     const router = useRouter();
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         e.target.name == 'email' ? setEmail(e.target.value) : setPassword(e.target.value);
     }
 
@@ -50,14 +50,43 @@ export default function Signup() {
         createUserWithEmailAndPassword(auth, email, password)
             .then(newUserCredential => {
                 const user = newUserCredential.user;
-                console.log(user);
-                router.push("/dashboard");
+                router.push("/complete-profile");
             })
             .catch(error => {
                 const errorCode = error.code;
                 switch (errorCode) {
                     case 'auth/email-already-in-use':
                         setError("You already registered with this email address. Try logging in instead.")
+                        break;
+                    default:
+                        setError(errorCode)
+                }
+            })
+    }
+
+    const handleGoogleSignUp = () => {
+        const googleProvider = new GoogleAuthProvider();
+
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential?.accessToken;
+                if (result.user) {
+                    router.push("/complete-profile");
+                }
+
+            })
+            .catch(error => {
+                const errorCode = error.code;
+                switch (errorCode) {
+                    case 'auth/email-already-in-use':
+                        setError("You already registered with this email address. Try logging in instead.")
+                        break;
+                    case 'auth/cancelled-popup-request':
+                        setError("Looks like you canceled your Google signup. Try again?")
+                        break;
+                    case 'auth/popup-closed-by-user':
+                        setError("Looks like you canceled your Google signup. Try again?")
                         break;
                     default:
                         setError(errorCode)
@@ -75,7 +104,7 @@ export default function Signup() {
         >
             <div className={styles.signup}>
             <div className={styles.left}>
-            <Image src={signup} alt="signup splash" fill/>
+            <Image src={signup} alt="signup splash" fill priority/>
             </div>
             <div className={styles.right}>
                 <div className={styles.title}>
@@ -122,6 +151,7 @@ export default function Signup() {
                 </div>
                 <GoogleButton
                     type="contained"
+                    handleClick={handleGoogleSignUp}
                 >
                     <Image src={google} alt="google icon"width={35} height={35} />
                     &nbsp; &nbsp; Sign up with Google

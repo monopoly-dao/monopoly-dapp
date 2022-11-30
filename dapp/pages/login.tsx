@@ -24,7 +24,7 @@ export default function Login() {
     const [error, setError] = useState('');
     const router = useRouter();
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         e.target.name == 'email' ? setEmail(e.target.value) : setPassword(e.target.value);
     }
 
@@ -75,7 +75,7 @@ export default function Login() {
         >
             <div className={styles.signup}>
             <div className={styles.left}>
-            <Image src={signup} alt="signup splash" fill/>
+            <Image src={signup} alt="signup splash" fill priority/>
             </div>
             <div className={styles.right}>
                 <div className={styles.title}>

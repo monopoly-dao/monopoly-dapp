@@ -17,7 +17,7 @@ export default function Header() {
     <div>
         <div className={styles.header}>
             <div className={styles.left}>
-                <Logo />
+                <Logo color="black"/>
                 <p>What is MonopolyDAO?</p>
                 <p>How it works</p>
             </div>
