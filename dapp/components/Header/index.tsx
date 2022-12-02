@@ -1,8 +1,6 @@
 import styles from './Header.module.css'
 import Logo from '../Logo';
-import Image from 'next/image';
 import Button from '../Button';
-import icon from 'public/assets/wallet.png';
 import { useRouter } from 'next/router';
 
 export default function Header() {
@@ -18,15 +16,14 @@ export default function Header() {
         <div className={styles.header}>
             <div className={styles.left}>
                 <Logo color="black"/>
-                <p>What is MonopolyDAO?</p>
-                <p>How it works</p>
             </div>
             <div className={styles.right}>
-                <p>Log in</p>
+                <p>What is MonopolyDAO?</p>
+                <p>How it works</p>
                 <Button
                     type="contained"
                     handleClick={gotoLogin}
-                    >Sign in</Button>
+                    >Connect Wallet</Button>
             </div>
         </div>
     </div>

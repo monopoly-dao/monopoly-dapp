@@ -1,9 +1,11 @@
 .marquee {
-    margin: 50px auto;
     padding: 40px;
     max-width: 1200px;
     display: flex;
-    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 30px;
+    flex-direction: row-reverse;
+    align-items: center;
 
 }
 
@@ -22,4 +24,38 @@
     position: relative;
     overflow: hidden;
 
+}
+
+.attribution {
+    display: flex;
+}
+
+.card {
+    width: 40%;
+    padding-top: 10px;
+}
+
+.listings {
+    margin-top: 70px;
+}
+
+.listings > h2 {
+    padding: 20px;
+    padding-left: 80px;
+    color: gray;
+    font-size: 25px;
+}
+
+.parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.curated {
+    height: 450px;
+    width: 320px;
+    margin: 15px;
+    border-radius: 20px;
+    background: black;
 }

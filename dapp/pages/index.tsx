@@ -1,11 +1,12 @@
 import WithFirebaseAuth from '../utils/initAuth';
-import AppBar from '../components/AppBar';
 import Marquee from '../components/Marquee'
+import Header from '../components/Header/'
 
 
 function Dashboard(){
   return (
     <div>
+      <Header />
       <Marquee />
     </div>
   )

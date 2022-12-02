@@ -23,7 +23,7 @@ export default function Input({
     type?: string,
     inputProps?: Object,
     autofocus?: boolean,
-    error: boolean
+    error?: boolean
 }){
     return (
         <TextField
