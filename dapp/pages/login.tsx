@@ -22,10 +22,20 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
+    const [emailError, setEmailError] = useState(false);
     const router = useRouter();
 
     const handleChange = (e: any) => {
-        e.target.name == 'email' ? setEmail(e.target.value) : setPassword(e.target.value);
+        const validateEmail = (email: string): void => {
+            setEmail(email)
+            const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+            if (regex.test(email)) setEmailError(false);
+            else {
+                setEmailError(true);
+            }
+
+        }
+        e.target.name == 'email' ? validateEmail(e.target.value) : setPassword(e.target.value);
     }
 
     const handleClickShowPassword = () => {
@@ -85,6 +95,7 @@ export default function Login() {
                 <div className={styles.form}>
                     <Input
                         required={true}
+                        error={emailError}
                         label="Email address"
                         value={email}
                         name="email"

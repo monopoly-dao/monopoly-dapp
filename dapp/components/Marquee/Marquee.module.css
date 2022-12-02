@@ -1,0 +1,25 @@
+.marquee {
+    margin: 50px auto;
+    padding: 40px;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.left > h1 {
+    color: black;
+}
+
+.right {
+    width: 50%;
+}
+
+.left {
+    width: 50%;
+}
+.image {
+    position: relative;
+    overflow: hidden;
+
+}

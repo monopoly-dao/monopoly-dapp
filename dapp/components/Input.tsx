@@ -10,7 +10,8 @@ export default function Input({
     handleChange,
     type,
     inputProps,
-    autofocus=false
+    autofocus=false,
+    error,
 }: {
     required: boolean,
     id?: string,
@@ -21,13 +22,15 @@ export default function Input({
     handleChange: (e: any) => void,
     type?: string,
     inputProps?: Object,
-    autofocus?: boolean
+    autofocus?: boolean,
+    error: boolean
 }){
     return (
         <TextField
             required={required}
             autoFocus={autofocus}
             id={id}
+            error={error}
             label={label}
             defaultValue={defaultValue}
             value={value}
