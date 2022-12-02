@@ -6,28 +6,32 @@ import LoadingComponent from '../components/Loading'
 
 type AuthState = {
     isLoading: boolean,
-    uid: string,
+    info: {
+        uid?: string,
+    },
 }
 // eslint-disable-next-line react/display-name
-const withFirebaseAuth = (Component: any) => (props: JSX.IntrinsicAttributes) => {
+const withFirebaseAuth = (Component: React.ComponentType) => (props: JSX.IntrinsicAttributes) => {
     const [userData, setUserData] = useState<AuthState>({
         isLoading: true,
-        uid: ''
+        info: {}
     });
     const auth = getAuth(app);
 
+    const newProps = {...userData.info, ...props}
+
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            setUserData({isLoading: false, uid: user.uid});
+            setUserData({isLoading: false, info: user});
         } else {
-            setUserData({isLoading: false, uid: ''})
+            setUserData({isLoading: false, info: {}})
         }
     })
     return(
         userData.isLoading 
             ? <LoadingComponent />
-            : userData.uid
-                ? <Component />
+            : userData.info?.uid
+                ? <Component {...newProps}/>
                 : <Login />
     )
 }
