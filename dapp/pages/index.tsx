@@ -1,12 +1,21 @@
-import styles from '../styles/Home.module.css'
-import Header from '../components/Header';
-import Jumbotron from '../components/Jumbotron'
+import AppBar from '@mui/material/AppBar';
+import styles from '../styles/Dashboard.module.css'
+import WithFirebaseAuth from '../utils/initAuth';
 
-export default function Home() {
+function Dashboard(){
   return (
-    <div className={styles.container}>
-      <Header />
-      <Jumbotron />
+    <div>
+    <AppBar
+      sx={{
+        background: 'none',
+        padding: '40px',
+        fontFamily: 'Apfel Grotesk',
+      }}
+      ></AppBar>
+    <div className={styles.dashboard}>
+    </div>
     </div>
   )
 }
+
+export default WithFirebaseAuth(Dashboard);

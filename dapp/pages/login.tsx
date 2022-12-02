@@ -51,7 +51,7 @@ export default function Login() {
             .then(userCredential => {
                 const user = userCredential.user;
                 console.log(user);
-                router.push("/dashboard");
+                router.push("/");
             })
             .catch(error => {
                 const errorCode = error.code;

@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { getFirestore, collection, setDoc, getDoc, doc } from "firebase/firestore";
 import { getAuth } from 'firebase/auth';
 import { app } from '../config/firebase/auth';
+import { useEffect } from 'react';
 
 type UserInfo = {
     firstName: string,
@@ -29,6 +30,13 @@ export default function Login() {
 
     const db = getFirestore(app);
     const auth =  getAuth(app);
+    const userId = auth.currentUser?.uid;
+
+    useEffect(()=> {
+        if (!userId) {
+            router.push('/login')
+        }
+    }, [])
 
     const handleChange = (e: any) => {
         setUserInfo({...userInfo, [e.target.name]: e.target.value})
@@ -40,17 +48,16 @@ export default function Login() {
             router.push("/signup");
         }
         try {
-            const userId = auth.currentUser?.uid;
             const usersRef = collection(db, "users");
             await setDoc(doc(usersRef, userId), userInfo);
-            router.push('/dashboard');
+            router.push('/');
         } catch (error) {
             console.log("Error adding doc: ", error);
         }
     }
 
     return (
-        <Box
+        userId && <Box
             component="form"
             sx={{
             maxWidth: '600px',
