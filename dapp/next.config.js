@@ -2,19 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'pixura.imgix.net',
-        port: '',
-        pathname: '/*'
-      }
-    ]
+    domains: ['images.pexels.com']
   },
   swcMinify: true,
-  future: {
-    webpack5: true,
-  },
   webpack: (config) => {
       config.resolve.fallback = {
         ...config.resolve.fallback,

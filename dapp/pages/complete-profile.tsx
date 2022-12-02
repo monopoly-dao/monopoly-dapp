@@ -1,15 +1,13 @@
 import styles from '../styles/Profile.module.css';
 import Box from '@mui/material/Box';
 import Input from '../components/Input';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Button from '../components/Button';
 import { useRouter } from 'next/router';
 import { getFirestore, collection, setDoc, doc } from "firebase/firestore";
 import { getAuth } from 'firebase/auth';
 import { app } from '../config/firebase/auth';
-import * as nearAPI from 'near-api-js';
 import WithFirebaseAuth from '../utils/initAuth'
-import { ConnectConfig } from 'near-api-js';
 
 type UserInfo = {
     firstName: string,
@@ -20,30 +18,7 @@ type UserInfo = {
 }
 
 function CompleteProfile() {
-    const [error, setError] = useState('');
     const router = useRouter();
-    const [connection, setConnection] = useState<any>(null);
-    const { keyStores, connect, WalletConnection } = nearAPI;
-    const myKeyStore = new keyStores.BrowserLocalStorageKeyStore();
-    const connectionConfig: ConnectConfig = {
-        networkId: "testnet",
-        keyStore: myKeyStore,
-        nodeUrl: "https://rpc.testnet.near.org",
-        walletUrl: "https://wallet.testnet.near.org",
-        helperUrl: "https://helper.testnet.near.org",
-        headers: {}
-};
-
-    const SignInToNear = async () => {
-        const nearConnection = await connect(connectionConfig);
-
-        const walletConnection = new WalletConnection(nearConnection, null);
-        walletConnection.requestSignIn(
-            "monopolydao.testnet",
-            "MonopolyDAO", // optional title
-          );
-
-    }
 
     const [userInfo, setUserInfo] = useState<UserInfo>({
         firstName: '',
@@ -59,14 +34,12 @@ function CompleteProfile() {
 
     const handleChange = (e: any) => {
         setUserInfo({...userInfo, [e.target.name]: e.target.value})
-        console.log(userInfo);
     };
 
     const completeSignup = async () => {
         try {
             const usersRef = collection(db, "users");
             await setDoc(doc(usersRef, userId), userInfo);
-            SignInToNear();
             router.push('/');
         } catch (error) {
             console.log("Error adding doc: ", error);
