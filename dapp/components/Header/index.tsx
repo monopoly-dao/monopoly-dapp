@@ -4,10 +4,9 @@ import Button from '../Button';
 import { useRouter } from 'next/router';
 import * as nearAPI from 'near-api-js';
 import { ConnectConfig } from 'near-api-js';
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 
-export default function Header() {
-    const router = useRouter();
+Header.getInitialProps = async () => {
     const { keyStores, connect, WalletConnection } = nearAPI;
     const myKeyStore = new keyStores.BrowserLocalStorageKeyStore();
     const connectionConfig: ConnectConfig = {
@@ -19,18 +18,28 @@ export default function Header() {
         headers: {}
 };
 
-useEffect(()=> {
+    const nearConnection = await connect(connectionConfig);
+    const walletConnection = new WalletConnection(nearConnection, null);
+    return { walletConnection: walletConnection };
 
-}, [])
+}
+
+export default function Header(walletConnection: any) {
+    const router = useRouter();
+    console.log('WHHHHHH', walletConnection)
+    const [connection, setConnection] = useState<any>(null);
+    
     const SignInToNear = async () => {
-        const nearConnection = await connect(connectionConfig);
-
-        const walletConnection = new WalletConnection(nearConnection, null);
         walletConnection.requestSignIn(
             "monopolydao.testnet",
             "MonopolyDAO"
           );
+    }
 
+    const isWalletSignedIn = () => { 
+
+        // let status = walletConnection?.isWalletSignedIn();
+        // console.log('sytatus', status);
     }
 
   return (
@@ -45,7 +54,7 @@ useEffect(()=> {
                 <Button
                     type="contained"
                     handleClick={SignInToNear}
-                    >Connect Wallet</Button>
+                    >{isWalletSignedIn()? "Signed in" : "Connect Wallet"}</Button>
             </div>
         </div>
     </div>
