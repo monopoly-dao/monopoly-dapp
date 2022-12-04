@@ -6,25 +6,7 @@ import * as nearAPI from 'near-api-js';
 import { ConnectConfig } from 'near-api-js';
 import {useEffect, useState} from 'react'
 
-Header.getInitialProps = async () => {
-    const { keyStores, connect, WalletConnection } = nearAPI;
-    const myKeyStore = new keyStores.BrowserLocalStorageKeyStore();
-    const connectionConfig: ConnectConfig = {
-        networkId: "testnet",
-        keyStore: myKeyStore,
-        nodeUrl: "https://rpc.testnet.near.org",
-        walletUrl: "https://wallet.testnet.near.org",
-        helperUrl: "https://helper.testnet.near.org",
-        headers: {}
-};
-
-    const nearConnection = await connect(connectionConfig);
-    const walletConnection = new WalletConnection(nearConnection, null);
-    return { walletConnection: walletConnection };
-
-}
-
-export default function Header(walletConnection: any) {
+export default function Header({walletConnection}) {
     const router = useRouter();
     console.log('WHHHHHH', walletConnection)
     const [connection, setConnection] = useState<any>(null);
@@ -54,9 +36,27 @@ export default function Header(walletConnection: any) {
                 <Button
                     type="contained"
                     handleClick={SignInToNear}
-                    >{isWalletSignedIn()? "Signed in" : "Connect Wallet"}</Button>
+                    >Connect Wallet</Button>
             </div>
         </div>
     </div>
   )
+}
+
+Header.getInitialProps = async (ctx) => {
+    const { keyStores, connect, WalletConnection } = nearAPI;
+    const myKeyStore = new keyStores.BrowserLocalStorageKeyStore();
+    const connectionConfig: ConnectConfig = {
+        networkId: "testnet",
+        keyStore: myKeyStore,
+        nodeUrl: "https://rpc.testnet.near.org",
+        walletUrl: "https://wallet.testnet.near.org",
+        helperUrl: "https://helper.testnet.near.org",
+        headers: {}
+};
+
+    const nearConnection = await connect(connectionConfig);
+    const walletConnection = new WalletConnection(nearConnection, null);
+    return { walletConnection };
+
 }
