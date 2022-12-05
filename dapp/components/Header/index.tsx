@@ -2,8 +2,6 @@ import styles from './Header.module.css'
 import Logo from '../Logo';
 import Button from '../Button';
 import { useRouter } from 'next/router';
-import * as nearAPI from 'near-api-js';
-import { ConnectConfig } from 'near-api-js';
 import {useEffect, useState} from 'react'
 
 export default function Header({walletConnection}) {
@@ -41,22 +39,4 @@ export default function Header({walletConnection}) {
         </div>
     </div>
   )
-}
-
-Header.getInitialProps = async (ctx) => {
-    const { keyStores, connect, WalletConnection } = nearAPI;
-    const myKeyStore = new keyStores.BrowserLocalStorageKeyStore();
-    const connectionConfig: ConnectConfig = {
-        networkId: "testnet",
-        keyStore: myKeyStore,
-        nodeUrl: "https://rpc.testnet.near.org",
-        walletUrl: "https://wallet.testnet.near.org",
-        helperUrl: "https://helper.testnet.near.org",
-        headers: {}
-};
-
-    const nearConnection = await connect(connectionConfig);
-    const walletConnection = new WalletConnection(nearConnection, null);
-    return { walletConnection };
-
 }
