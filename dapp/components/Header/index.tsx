@@ -58,7 +58,7 @@ export default function Header() {
                 <Button
                     type="contained"
                     handleClick={SignInToNear}
-                    >{is}</Button>
+                    >{isWalletSignedIn ? "Connected": "Connect to Wallet"}</Button>
             </div>
         </div>
     </div>
