@@ -6,9 +6,12 @@ import {useEffect, useState} from 'react'
 import * as nearAPI from 'near-api-js';
 import { ConnectConfig } from 'near-api-js';
 
-
-export default function Header() {
-    
+type signInDetails = {
+    name: string,
+    photo: string,
+}
+export default function Header({signInDetails}: {signInDetails: signInDetails}) {
+    const {  name, photo } = signInDetails;
     const { keyStores, connect, WalletConnection } = nearAPI;
     const myKeyStore = new keyStores.BrowserLocalStorageKeyStore();
     const connectionConfig: ConnectConfig = {
@@ -59,6 +62,7 @@ export default function Header() {
                     type="contained"
                     handleClick={SignInToNear}
                     >{isWalletSignedIn ? "Connected": "Connect to Wallet"}</Button>
+                <p>Welcome, {name}</p>
             </div>
         </div>
     </div>

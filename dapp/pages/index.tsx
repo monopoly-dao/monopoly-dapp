@@ -2,12 +2,20 @@ import WithFirebaseAuth from '../utils/initAuth';
 import Marquee from '../components/Marquee'
 import Header from '../components/Header/'
 
+type firebaseProps = {
+  displayName: string,
+  photoURL: string,
+}
 
-function Dashboard(props){
-  console.log('HOO', props)
+
+function Dashboard(props: firebaseProps){
+  const signInDetails = {
+    name: props.displayName,
+    photo: props.photoURL
+  }
   return (
     <div>
-      <Header walletConnection={props}/>
+      <Header signInDetails={signInDetails}/>
       <Marquee />
     </div>
   )
