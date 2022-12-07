@@ -1,16 +1,18 @@
 import styles from './Header.module.css'
 import Logo from '../Logo';
-import Button from '../Button';
+import WalletButton from '../WalletButton';
 import { useRouter } from 'next/router';
 import {useEffect, useState} from 'react'
 import * as nearAPI from 'near-api-js';
 import { ConnectConfig } from 'near-api-js';
+import Image from 'next/image'
 
 type signInDetails = {
     name: string,
     photo: string,
 }
 export default function Header({signInDetails}: {signInDetails: signInDetails}) {
+    const imageSize = 40;
     const {  name, photo } = signInDetails;
     const { keyStores, connect, WalletConnection } = nearAPI;
     const myKeyStore = new keyStores.BrowserLocalStorageKeyStore();
@@ -33,10 +35,15 @@ export default function Header({signInDetails}: {signInDetails: signInDetails}) 
     
     const SignInToNear = async () => {
         const conn = await nearWalletConnection()
+        if (!isWalletSignedIn) {
         conn.requestSignIn(
             "monopolydao.testnet",
             "MonopolyDAO"
           );
+          isWalletActive();
+        }
+        isWalletActive();
+        return conn.signOut();
     }
 
     const isWalletActive = async () => { 
@@ -56,13 +63,13 @@ export default function Header({signInDetails}: {signInDetails: signInDetails}) 
                 <Logo color="black"/>
             </div>
             <div className={styles.right}>
-                <p>What is MonopolyDAO?</p>
-                <p>How it works</p>
-                <Button
+                <WalletButton
                     type="contained"
                     handleClick={SignInToNear}
-                    >{isWalletSignedIn ? "Connected": "Connect to Wallet"}</Button>
-                <p>Welcome, {name}</p>
+                    >{isWalletSignedIn ? <><span className={styles.connected}></span>Wallet connected</> : <><span className={styles.disconnected}></span>Connect wallet</>}</WalletButton>
+                    <div className={styles.avatar}>
+                    <Image src={photo} width={imageSize} height={imageSize} alt="avatar"   style={{ objectFit: "contain" }}/>
+                </div>
             </div>
         </div>
     </div>

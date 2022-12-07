@@ -8,6 +8,31 @@
     margin: 0 auto;
 }
 
+.avatar {
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-left: 15px;
+    width: 40px;
+    height: 40px;
+}
+
+.connected, .disconnected {
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    border: 2px solid gray;
+    position: absolute;
+    z-index: 5;
+    right: 16px;
+    bottom: 15px;
+}
+
+.connected {
+    background: greenyellow;
+    border: 0px;
+}
+
 .right, .left {
     display: flex;
     align-items: center;
@@ -15,7 +40,7 @@
 }
 
 .right > p {
-    margin: 0 40px;
+    margin: 0 10px;
 }
 
 .left > p {

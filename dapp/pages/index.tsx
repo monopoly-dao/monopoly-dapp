@@ -2,13 +2,8 @@ import WithFirebaseAuth from '../utils/initAuth';
 import Marquee from '../components/Marquee'
 import Header from '../components/Header/'
 
-type firebaseProps = {
-  displayName: string,
-  photoURL: string,
-}
 
-
-function Dashboard(props: firebaseProps){
+function Dashboard(props: any){
   const signInDetails = {
     name: props.displayName,
     photo: props.photoURL
