@@ -6,6 +6,8 @@ import {useEffect, useState} from 'react'
 import * as nearAPI from 'near-api-js';
 import { ConnectConfig } from 'near-api-js';
 import Image from 'next/image'
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 type signInDetails = {
     name: string,
