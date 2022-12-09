@@ -1,5 +1,6 @@
 import Button, {ButtonProps} from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { useState } from 'react'
 
 const ColorButton = styled(Button)<ButtonProps>(() => ({
     color: 'white',
@@ -28,7 +29,12 @@ export default function MUIButton({type, children, handleClick, icon}:
         handleClick?: (e: any) => void,
         icon?: any
     }){
+        const [child, setChild] = useState(children);
+
+        const changeChild = () => {
+          setChild('Disconnecttttt')
+        }
         return (
-        <ColorButton color="secondary" variant={type} onClick={handleClick} endIcon={icon}>{children}</ColorButton>
+        <ColorButton color="secondary" variant={type} onClick={handleClick} endIcon={icon} onHover={changeChild}>{child}</ColorButton>
     );
 }
