@@ -15,6 +15,38 @@
     margin-left: 15px;
     width: 40px;
     height: 40px;
+    animation: scaleback 0.5s ease-out;
+    animation-fill-mode: forwards;
+}
+
+.avatar:hover {
+    cursor: pointer;
+    animation: scaling 0.5s ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes scaling {
+    0% { 
+        transform: scale(1);
+        border-radius: 50px;
+    }
+    100% { 
+        transform: scale(1.1);
+        border-radius: 10px;
+    }
+    
+}
+
+@keyframes scaleback {
+    0% { 
+        transform: scale(1.1);
+        border-radius: 10px;
+    }
+    100% { 
+        transform: scale(1);
+        border-radius: 50px;
+    }
+    
 }
 
 .connected, .disconnected {
