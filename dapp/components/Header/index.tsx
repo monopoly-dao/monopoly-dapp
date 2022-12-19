@@ -8,6 +8,7 @@ import { ConnectConfig } from 'near-api-js';
 import Image from 'next/image'
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import profile from 'public/assets/profile.png'
 
 type signInDetails = {
     name: string,
@@ -16,6 +17,7 @@ type signInDetails = {
 export default function Header({signInDetails}: {signInDetails: signInDetails}) {
     const imageSize = 40;
     const {  name, photo } = signInDetails;
+    console.log('PHOTO', photo);
     const { keyStores, connect, WalletConnection } = nearAPI;
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement >(null);
     const open = Boolean(anchorEl);
@@ -79,7 +81,7 @@ export default function Header({signInDetails}: {signInDetails: signInDetails}) 
                     handleClick={SignInToNear}
                     >{isWalletSignedIn ? <><span className={styles.connected}></span>Wallet connected</> : <><span className={styles.disconnected}></span>Connect wallet</>}</WalletButton>
                     <div className={styles.avatar} onMouseEnter={handleClick}>
-                        <Image src={photo} width={imageSize} height={imageSize} alt="avatar"   style={{ objectFit: "contain" }}/>
+                        <Image src={photo || profile} width={imageSize} height={imageSize} alt="avatar"   style={{ objectFit: "contain" }}/>
                     </div>
                     <Menu
                         anchorEl={anchorEl}
