@@ -1,0 +1,9 @@
+.carousel {
+  width: 90%;
+  margin: 2em auto;
+
+  button[aria-label="Previous"] svg,
+  button[aria-label="Next"] svg {
+    transform: scale(2.5);
+  }
+}
