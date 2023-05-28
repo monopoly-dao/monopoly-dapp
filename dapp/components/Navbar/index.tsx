@@ -21,13 +21,18 @@ const navLinks = [
 const Navbar = () => {
   return (
     <Stack
-      direction="row"
-      alignItems="center"
+      direction={{ xs: "column", sm: "row" }}
+      alignItems={{ xs: "flex-start", sm: "center" }}
       justifyContent="space-between"
-      px="10%"
+      px={{ xs: "5%", md: "10%" }}
       className={styles.navbar}
     >
-      <Stack direction="row" alignItems="center" gap="20px">
+      <Stack
+        direction="row"
+        alignItems="center"
+        gap="20px"
+        width={{ xs: "100%", sm: "60%" }}
+      >
         <p>
           Settley<span>.</span>
         </p>
@@ -38,7 +43,12 @@ const Navbar = () => {
         />
       </Stack>
 
-      <Stack direction="row" gap="60px">
+      <Stack
+        direction="row"
+        gap={{ xs: "0px", sm: "30px", md: "60px" }}
+        justifyContent="space-between"
+        width={{ xs: "100%", sm: "auto" }}
+      >
         {navLinks.map((link) => (
           <Link key={link.label} href={link.route}>
             {link.label}

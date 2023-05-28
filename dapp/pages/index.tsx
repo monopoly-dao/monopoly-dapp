@@ -29,7 +29,7 @@ function Dashboard(props: any) {
       {/* <Marquee /> */}
       <Navbar />
       <Stack
-        direction="row"
+        direction={{ xs: "column", sm: "row" }}
         alignItems="center"
         justifyContent="space-between"
         className={styles.banner}
@@ -120,14 +120,13 @@ function Dashboard(props: any) {
             alt={articleTwo}
             text="Buying your first property share — a beginner’s guide"
           />
-
-          <Stack direction="column" spacing="15px" alignItems="flex-start">
-            <h4>NEWSLETTER</h4>
-            <p>Get a summary of the Settley community action every week</p>
-            <input type="text" placeholder="Enter your email address" />
-            <button className="black-bg">Subscribe!</button>
-          </Stack>
         </div>
+        <Stack direction="column" spacing="15px" alignItems="flex-start">
+          <h4>NEWSLETTER</h4>
+          <p>Get a summary of the Settley community action every week</p>
+          <input type="text" placeholder="Enter your email address" />
+          <button className="black-bg">Subscribe!</button>
+        </Stack>
       </div>
     </div>
   );

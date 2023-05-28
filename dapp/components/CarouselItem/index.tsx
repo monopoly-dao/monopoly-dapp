@@ -7,16 +7,25 @@ import Image from "next/image";
 const CarouselItem = ({ bgColor }: { bgColor?: string }) => {
   return (
     <Stack
-      direction="row"
+      direction={{ xs: "column", md: "row" }}
       gap="60px"
       // bgcolor={bgColor || "#d9f3ea"}
       className={styles.carouselItem}
     >
       <Image src={carouselImage} alt="carousel image" loading="lazy" />
 
-      <Stack direction="column" width="55%" alignItems="flex-start">
-        <Stack direction="row" alignItems="center" gap="60px">
-          <Stack direction="row" alignItems="center">
+      <Stack
+        direction="column"
+        width={{ xs: "100%", md: "55%" }}
+        alignItems="flex-start"
+      >
+        <Stack
+          direction="row"
+          alignItems="center"
+          gap={{ xs: "0px", sm: "60px" }}
+          justifyContent="center"
+        >
+          <Stack direction="row" alignItems="center" justifyContent="center">
             <Image src={fireIcon} alt="fire" />
             <p>1,239 SHARES LEFT</p>
             <p>• 10,000 TOTAL</p>

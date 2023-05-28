@@ -13,10 +13,14 @@
   input {
     border: 1px solid #a0a0a0;
     border-radius: 15px;
-    width: 350px;
+    width: 100%;
     height: 45px;
     font-size: 16px;
     padding-left: 30px;
+
+    @media (max-width: 650px) {
+      padding-left: 10px;
+    }
 
     &::placeholder {
       font-weight: 400;
@@ -30,5 +34,9 @@
     font-weight: 300;
     font-size: 18px;
     font-family: "Craftwork Grotesk", sans-serif;
+
+    @media (max-width: 900px) {
+      font-size: 16px;
+    }
   }
 }

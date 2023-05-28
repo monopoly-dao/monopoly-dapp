@@ -22,4 +22,8 @@
     width: 90%;
     margin: auto;
   }
+
+  @media (max-width: 650px) {
+    height: 450px;
+  }
 }

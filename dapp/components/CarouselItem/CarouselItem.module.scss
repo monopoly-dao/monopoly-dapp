@@ -28,6 +28,12 @@
     & + p + p {
       color: #467483;
     }
+    @media (max-width: 650px) {
+      & + p,
+      & + p + p {
+        font-size: 14px;
+      }
+    }
   }
 
   h2 {
@@ -50,5 +56,25 @@
 
   button {
     padding-bottom: 14px;
+  }
+
+  @media (max-width: 900px) {
+    padding: 40px;
+
+    img[alt="carousel image"] {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 650px) {
+    padding: 40px 5%;
+
+    img[alt="carousel image"] {
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
   }
 }
