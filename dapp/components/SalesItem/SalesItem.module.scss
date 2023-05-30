@@ -1,0 +1,24 @@
+.salesItem {
+  width: 75%;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  p {
+    background: #ffffff;
+    border-radius: 10px;
+    font-family: "Aktiv Grotesk", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 23px;
+    color: #467483;
+    padding: 5px 10px;
+    position: absolute;
+    top: 14px;
+    left: 11px;
+  }
+}

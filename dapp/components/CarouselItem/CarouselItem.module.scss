@@ -1,0 +1,80 @@
+.carouselItem {
+  background-color: #d9f3ea;
+  padding: 80px;
+  border-radius: 15px;
+  width: 95%;
+  margin: 0 auto;
+
+  // &:nth-of-type(2n) {
+  //   background-color: red;
+  // }
+
+  p {
+    font-family: "Aktiv Grotesk", sans-serif;
+  }
+
+  img[alt="carousel image"] {
+    width: 40%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  img[alt="fire"] {
+    & + p {
+      font-weight: 600;
+      font-size: 15px;
+      margin-left: 5px;
+    }
+    & + p + p {
+      color: #467483;
+    }
+    @media (max-width: 650px) {
+      & + p,
+      & + p + p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 50px;
+    color: #000000;
+    font-family: "Craftwork Grotesk", sans-serif;
+
+    & + p {
+      font-weight: 400;
+      font-size: 20px;
+      color: #467483;
+    }
+
+    & + p + p {
+      font-weight: 400;
+      font-size: 20px;
+      color: #000000;
+    }
+  }
+
+  button {
+    padding-bottom: 14px;
+  }
+
+  @media (max-width: 900px) {
+    padding: 40px;
+
+    img[alt="carousel image"] {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 650px) {
+    padding: 40px 5%;
+
+    img[alt="carousel image"] {
+      width: 100%;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+  }
+}

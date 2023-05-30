@@ -1,0 +1,171 @@
+.dashboard {
+  height: 300px;
+  background: black;
+  width: 100vw;
+  position: absolute;
+  z-index: 0;
+}
+
+.banner {
+  min-height: 80px;
+  background: #56ccf2;
+  padding: 0 10%;
+
+  @media (max-width: 650px) {
+    text-align: center;
+    margin: 1em 0;
+    padding-bottom: 1em;
+  }
+}
+
+.activityHeading {
+  font-size: 36px;
+  line-height: 43px;
+  color: #000000;
+  font-family: "Craftwork Grotesk", sans-serif;
+  margin-bottom: 60px;
+  margin-top: 93px;
+  margin-left: 12.5%;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+  height: auto;
+  width: 75%;
+  margin: 0 auto;
+  column-gap: 10%;
+
+  > div:first-child {
+    grid-column: 1/4;
+    grid-row: 1/4;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    img[data-style="activity header image"] {
+      width: 100%;
+      height: auto;
+    }
+  }
+  > div:nth-child(2) {
+    grid-column: 4/6;
+    grid-row: 1/2;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    > div {
+      margin-left: auto;
+    }
+
+    h4 {
+      position: relative;
+      margin-left: 35%;
+      &::before {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background-color: #72ff5b;
+        border-radius: 50%;
+        left: -15%;
+        top: 25%;
+      }
+    }
+  }
+  > div:nth-child(3) {
+    grid-column: 4/6;
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 50px;
+
+    > div {
+      margin-left: auto;
+    }
+
+    h4 {
+      margin-top: 50px;
+    }
+  }
+
+  > div:last-child {
+    grid-column: 4/6;
+    grid-row: 3/4;
+    margin-left: 25%;
+    h4 {
+      margin-left: 0;
+    }
+    input {
+      border: 1px solid #a0a0a0;
+      border-radius: 15px;
+      width: 100%;
+      height: 45px;
+      font-size: 16px;
+      padding-left: 30px;
+
+      &::placeholder {
+        font-weight: 400;
+        font-size: 16px;
+        color: #a0a0a0;
+      }
+    }
+  }
+
+  p {
+    font-family: "Activ Grotesk", sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+
+  h4 {
+    font-family: "Craftwork Grotesk";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 34px;
+    margin: 0 0 0 25%;
+    color: #000000;
+  }
+
+  // Tabs
+  @media (max-width: 900px) {
+    width: 85%;
+  }
+
+  // Mobile
+  @media (max-width: 650px) {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
+    > div:last-child {
+      margin-left: 0;
+    }
+
+    > div:nth-child(2),
+    > div:nth-child(3) {
+      > div {
+        margin-right: auto;
+      }
+    }
+
+    > div:nth-child(2) h4 {
+      margin: 50px auto 0 auto;
+    }
+
+    h4 {
+      margin: 0 auto;
+    }
+  }
+}
+
+.loadMore {
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  color: #467483;
+}

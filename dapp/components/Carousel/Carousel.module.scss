@@ -1,0 +1,29 @@
+.carousel {
+  width: 90%;
+  margin: 2em auto;
+
+  button[aria-label="Previous"] svg,
+  button[aria-label="Next"] svg {
+    transform: scale(2.5);
+  }
+
+  @media (max-width: 650px) {
+    margin: 1em auto;
+    width: 95%;
+
+    button[aria-label="Previous"] svg,
+    button[aria-label="Next"] svg {
+      transform: scale(1.5);
+    }
+
+    button[aria-label="Previous"] {
+      left: -20px;
+      top: 40% !important;
+    }
+
+    button[aria-label="Next"] {
+      right: -20px;
+      top: 40% !important;
+    }
+  }
+}
