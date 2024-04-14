@@ -2,18 +2,22 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.pexels.com', 'lh3.googleusercontent.com', 'img.freepik.com']
+    domains: [
+      'images.pexels.com',
+      'lh3.googleusercontent.com',
+      'img.freepik.com',
+    ],
   },
   swcMinify: true,
   webpack: (config) => {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        path: false,
-      }
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      path: false,
+    };
 
     return config;
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

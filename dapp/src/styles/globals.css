@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* color: #c9ff63; */
+}
+
+@font-face {
+  font-family: 'Apfel Grotesk';
+  src: url('../../public/fonts/ApfelGrotezk-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Craftwork Grotesk';
+  src: url('../../public/fonts/CraftworkGrotesk-Regular.woff');
+}
+
+@font-face {
+  font-family: 'Aktiv Grotesk';
+  src: url('../../public/fonts/AktivGrotesk_Trial_Md.ttf');
+}
+
+html {
+  background: white;
+}
+
+body {
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+p {
+  color: #141414;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Apfel Grotesk', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #175366;
+}
+h1 {
+  font-size: 50px;
+  margin-block: 0px;
+}
+
+h2 {
+  font-size: 40px;
+  margin-block: 0px;
+}
+
+p {
+  font-family: 'Craftwork Grotesk', sans-serif;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Aktiv Grotesk', sans-serif;
+}
+
+button.black-bg {
+  background: #000000;
+  border-radius: 15px;
+  color: #ffffff;
+  padding: 13px 30px;
+}
+
+button.transparent-bg {
+  background: transparent;
+  border-radius: 15px;
+  color: #000000;
+  padding: 13px 30px;
+  border: 1.5px solid #000000;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+} */
