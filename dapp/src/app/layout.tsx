@@ -24,7 +24,7 @@ export default async function RootLayout({
       <body>
         <NextAuthProvider session={session}>
           <ReduxProvider>
-            {children}
+            <main>{children}</main>
             <Toaster position='top-right' />
           </ReduxProvider>
         </NextAuthProvider>

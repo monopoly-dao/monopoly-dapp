@@ -1,19 +1,15 @@
 'use client';
 
 import { Stack } from '@mui/material';
+import { PropsWithChildren } from 'react';
 
-import styles from '../styles/Dashboard.module.scss';
+import styles from '../../styles/Dashboard.module.scss';
 
-import SubscriptionForm from './_components/SubscriptionForm';
-import Carousel from '../components/Carousel';
-import Navbar from '../components/Navbar';
-import WithFirebaseAuth from '../utils/initAuth';
+import Navbar from '../../components/Navbar';
 
-function Dashboard() {
+export default function GroupedLayout({ children }: PropsWithChildren) {
   return (
     <div>
-      {/* <Header signInDetails={signInDetails} /> */}
-      {/* <Marquee /> */}
       <Navbar />
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
@@ -32,12 +28,7 @@ function Dashboard() {
           </button>
         </Stack>
       </Stack>
-
-      <Carousel />
-
-      <SubscriptionForm />
+      {children}
     </div>
   );
 }
-
-export default WithFirebaseAuth(Dashboard);

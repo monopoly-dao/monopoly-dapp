@@ -1,5 +1,7 @@
-import { createApi } from '@reduxjs/toolkit/query';
-import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
+'use client';
+
+// import { createApi } from '@reduxjs/toolkit/query';
+import { BaseQueryFn, createApi } from '@reduxjs/toolkit/query/react';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { signOut } from 'next-auth/react';
 import toast from 'react-hot-toast';
@@ -12,7 +14,7 @@ import {
 
 // TODO: convert hardcoded base urls to env;
 export const AUTH_BASE_URL = 'http://localhost:3006';
-export const BASE_URL = '';
+export const BASE_URL = 'http://localhost:8000';
 
 // initialize an empty api service that we'll inject endpoints into later as needed
 axios.defaults.timeout = AXIOS_TIMEOUT_TIME;
@@ -78,5 +80,5 @@ export const globalApi = createApi({
   }),
   reducerPath: GLOBAL_API_REDUCER_PATH,
   endpoints: () => ({}),
-  tagTypes: [],
+  tagTypes: ['Properties'],
 });

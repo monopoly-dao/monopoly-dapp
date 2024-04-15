@@ -1,9 +1,0 @@
-export const POT_TAG_TYPE = 'Pot' as const;
-export const POT_SUBMISSIONS_TAG_TYPE = 'PotSubmissions' as const;
-export const USER_TAG_TYPE = 'User' as const;
-export const DASHBOARD_STATS_TAG_TYPE = 'DashboardStats' as const;
-export const DASHBOARD_CHART_TAG_TYPE = 'DashboardChart' as const;
-export const ADMINS_TAG_TYPE = 'Admins' as const;
-export const ADMIN_ROLES_TAG_TYPE = 'AdminRoles' as const;
-export const LIVE_EVENTS_TAG_TYPE = 'LiveEvents' as const;
-export const LIVE_EVENT_COMMENTS_TAG_TYPE = 'LiveEventComments' as const;

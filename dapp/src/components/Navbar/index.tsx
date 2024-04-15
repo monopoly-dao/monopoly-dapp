@@ -39,6 +39,7 @@ const Navbar = () => {
       alignItems={{ xs: 'flex-start', sm: 'center' }}
       justifyContent='space-between'
       px={{ xs: '5%', md: '10%' }}
+      py='10px'
       className={styles.navbar}
     >
       <Stack

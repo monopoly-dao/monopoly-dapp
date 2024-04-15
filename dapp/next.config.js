@@ -6,6 +6,7 @@ const nextConfig = {
       'images.pexels.com',
       'lh3.googleusercontent.com',
       'img.freepik.com',
+      'firebasestorage.googleapis.com',
     ],
   },
   swcMinify: true,
