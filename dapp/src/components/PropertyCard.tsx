@@ -8,9 +8,13 @@ import { Property } from '../api/properties/propertiesApiTypes';
 
 type PropertyCardProps = {
   property: Property;
+  wishlist: string[] | undefined;
 };
 
-export default function PropertyCard({ property }: PropertyCardProps) {
+export default function PropertyCard({
+  property,
+  wishlist,
+}: PropertyCardProps) {
   return (
     <div className='w-fit border border-gray-300 rounded-[12px] bg-white'>
       <Image
@@ -27,7 +31,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           </Link>
           <WishlistButton
             propertyId={property.id}
-            isFavourite={property.isFavourite}
+            isFavourite={wishlist?.includes(property.id) ?? false}
             propertyName={property.name}
           />
         </div>

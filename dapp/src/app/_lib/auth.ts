@@ -36,6 +36,8 @@ export const authOptions: NextAuthOptions = {
 
           return user.data.data;
         } catch (error) {
+          console.log(error);
+
           if (error instanceof AxiosError) {
             if (
               error.response?.data &&

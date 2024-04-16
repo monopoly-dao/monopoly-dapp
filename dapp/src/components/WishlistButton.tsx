@@ -3,6 +3,7 @@
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import { IconButton } from '@mui/material';
+import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
 import {
@@ -24,12 +25,23 @@ export default function WishlistButton({
   propertyName,
   size = 'medium',
 }: WishlistButtonProps) {
+  const session = useSession();
   const [addToWishlist] = useAddToWishlistMutation();
   const [removeFromWishlist] = useRemoveFromWishlistMutation();
 
+  const isLoggedIn = session.status === 'authenticated';
+
   async function addToWishlistFn() {
+    if (!isLoggedIn) {
+      toast.error('Sign in before you can add property to wishlist');
+      return;
+    }
+
     try {
-      await addToWishlist(propertyId).unwrap();
+      await addToWishlist({
+        propertyId,
+        userId: session.data.id,
+      }).unwrap();
 
       toast.success(`${propertyName} successfully added to wishlist`);
     } catch (e) {
@@ -38,8 +50,16 @@ export default function WishlistButton({
   }
 
   async function removeFromWishlistFn() {
+    if (!isLoggedIn) {
+      toast.error('Sign in before you can add property to wishlist');
+      return;
+    }
+
     try {
-      await removeFromWishlist(propertyId).unwrap();
+      await removeFromWishlist({
+        propertyId,
+        userId: session.data.id,
+      }).unwrap();
 
       toast.success(`${propertyName} successfully removed from wishlist`);
     } catch (e) {

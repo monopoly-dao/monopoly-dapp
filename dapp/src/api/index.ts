@@ -1,7 +1,8 @@
-'use client';
+// 'use client';
 
+import { createApi } from '@reduxjs/toolkit/query/react';
 // import { createApi } from '@reduxjs/toolkit/query';
-import { BaseQueryFn, createApi } from '@reduxjs/toolkit/query/react';
+import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { signOut } from 'next-auth/react';
 import toast from 'react-hot-toast';
@@ -80,5 +81,5 @@ export const globalApi = createApi({
   }),
   reducerPath: GLOBAL_API_REDUCER_PATH,
   endpoints: () => ({}),
-  tagTypes: ['Properties'],
+  tagTypes: ['Properties', 'Wishlist'],
 });

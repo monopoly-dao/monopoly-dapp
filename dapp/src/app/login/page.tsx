@@ -9,7 +9,6 @@ import { useFormik } from 'formik';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import signup from 'public/assets/red.jpg';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -108,7 +107,7 @@ export default function Login() {
     >
       <div className={styles.signup}>
         <div className={styles.left}>
-          <Image src={signup} alt='signup splash' fill priority />
+          <Image src='/assets/red.jpg' alt='signup splash' fill priority />
         </div>
         <div className={styles.right}>
           <div className={styles.title}>

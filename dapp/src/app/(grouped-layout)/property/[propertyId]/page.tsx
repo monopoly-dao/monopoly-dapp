@@ -2,17 +2,27 @@
 
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
-import { useGetPropertyQuery } from '../../../../api/properties';
+import {
+  useGetPropertyQuery,
+  useGetWishlistQuery,
+} from '../../../../api/properties';
 import WishlistButton from '../../../../components/WishlistButton';
 
 export default function Page() {
   const { propertyId } = useParams();
 
-  const { data } = useGetPropertyQuery(propertyId as string);
+  const session = useSession();
+  const userId = session.data?.id;
 
+  const { data } = useGetPropertyQuery(propertyId as string);
   const property = data?.propertyDetails;
+
+  const { data: wishlistResponse } = useGetWishlistQuery(userId ?? '');
+  const wishlist = wishlistResponse?.data?.wishlist;
+  const wishlistPropertyIds = wishlist?.map((item) => item._id);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const numberOfPhotos = property?.photos.length ?? 0;
@@ -71,7 +81,7 @@ export default function Page() {
           <WishlistButton
             propertyId={property.id}
             propertyName={property.name}
-            isFavourite={property.isFavourite}
+            isFavourite={wishlistPropertyIds?.includes(property.id) ?? false}
             size='large'
           />
         )}

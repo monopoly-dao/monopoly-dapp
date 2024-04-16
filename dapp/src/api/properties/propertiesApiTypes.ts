@@ -12,3 +12,14 @@ export type Property = {
     deedUrl: string;
   };
 };
+
+export type WishlistItem = {
+  _id: string;
+  contractAddress: string;
+  deedUrl: string;
+};
+
+export type Wishlist = {
+  userId: string;
+  wishlist: WishlistItem[];
+};
