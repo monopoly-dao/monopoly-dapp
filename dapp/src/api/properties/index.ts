@@ -15,7 +15,7 @@ const propertiesApi = globalApi.injectEndpoints({
       providesTags: ['Properties'],
     }),
 
-    getProperty: build.query<{ propertyDetails: Property }, string>({
+    getProperty: build.query<Property, string>({
       query: (payload) => ({
         url: PropertiesEndpoints.Get_Property.replace(':propertyId', payload),
         method: GET_METHOD,

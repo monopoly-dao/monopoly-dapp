@@ -24,6 +24,7 @@ import { handleErrors } from '../../../utils/error';
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -31,6 +32,14 @@ export default function Page() {
 
   const handleMouseDownPassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleClickShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const handleMouseDownConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
 
   // const handleClose = (e: React.SyntheticEvent | Event, reason?: string) => {
@@ -53,7 +62,9 @@ export default function Page() {
       setIsLoading(true);
       try {
         await axios.post(`${AUTH_BASE_URL}${AuthEndpoints.Signup}`, {
-          ...values,
+          email: values.email,
+          password: values.password,
+          displayName: values.displayName,
         });
 
         resetForm();
@@ -125,6 +136,28 @@ export default function Page() {
                   edge='end'
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Input
+          required
+          label='Confirm Password'
+          id={SignupIds.ConfirmPassword}
+          {...getFormikInputProps(SignupIds.ConfirmPassword)}
+          type={showConfirmPassword ? 'text' : 'password'}
+          onPaste={(e) => e.preventDefault()}
+          inputProps={{
+            endAdornment: (
+              <InputAdornment position='end'>
+                <IconButton
+                  aria-label='toggle password visibility'
+                  onClick={handleClickShowConfirmPassword}
+                  onMouseDown={handleMouseDownConfirmPassword}
+                  edge='end'
+                >
+                  {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             ),

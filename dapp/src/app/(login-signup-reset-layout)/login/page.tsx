@@ -55,6 +55,7 @@ export default function Page() {
         const res = await signIn('login', { redirect: false, ...values });
 
         if ((!res || res.error) && res?.error !== 'undefined') {
+          console.log(res);
           if (res?.error === 'CredentialsSignin') {
             setIsLoading(false);
 

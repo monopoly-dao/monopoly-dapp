@@ -1,6 +1,6 @@
 import { InputProps } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, ClipboardEventHandler } from 'react';
 
 export type CustomInputProps = Omit<InputProps, 'error'> & {
   required: boolean;
@@ -17,6 +17,7 @@ export type CustomInputProps = Omit<InputProps, 'error'> & {
   touched?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onBlur: any;
+  onPaste?: ClipboardEventHandler<HTMLInputElement | HTMLDivElement>;
 };
 
 export default function Input({
@@ -33,6 +34,7 @@ export default function Input({
   error,
   touched,
   onBlur,
+  onPaste,
 }: CustomInputProps) {
   return (
     <div className='w-full'>
@@ -50,6 +52,7 @@ export default function Input({
         margin='normal'
         InputProps={inputProps}
         onBlur={onBlur}
+        onPaste={onPaste}
       />
       {touched && error && <p className='text-xs text-red-600'>{error}</p>}
     </div>

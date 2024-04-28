@@ -1,4 +1,4 @@
-import { object, string } from 'yup';
+import { object, ref, string } from 'yup';
 
 import { SignupIds } from './signupConstants';
 
@@ -26,4 +26,7 @@ export const signupSchema = object({
       excludeEmptyString: true,
       message: 'Please include at least one lowercase letter',
     }),
+  [SignupIds.ConfirmPassword]: string()
+    .required('Please provide a password confirmation')
+    .oneOf([ref('password')], 'Passwords must match'),
 });

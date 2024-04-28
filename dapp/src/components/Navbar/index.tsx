@@ -23,6 +23,10 @@ const authenticatedNavLinks = [
     route: '',
   },
   {
+    label: 'Wishlist.',
+    route: '/wishlist',
+  },
+  {
     label: 'Logout.',
     route: '/logout',
   },

@@ -36,35 +36,18 @@ export const authOptions: NextAuthOptions = {
 
           return user.data.data;
         } catch (error) {
-          console.log(error);
-
           if (error instanceof AxiosError) {
             if (
               error.response?.data &&
-              typeof error.response.data === 'object'
+              typeof error.response.data === 'string'
             ) {
-              if (
-                error.response.data.message &&
-                typeof error.response.data.message === 'string'
-              ) {
-                if (
-                  error.response.data &&
-                  typeof error.response.data.data === 'object' &&
-                  'error' in error.response.data.data &&
-                  typeof error.response.data.data.error === 'string'
-                ) {
-                  logger(error.response.data.data.error);
-                  throw new Error(error.response.data.data.error);
-                }
-                if (
-                  error.response.data.error.toLowerCase() ===
-                  'Email or Password Incorrect'.toLowerCase()
-                ) {
-                  throw new Error('Invalid credentials. Please try again');
-                }
+              const errorMsg = error.response.data;
+              if (errorMsg.includes('Firebase: Error')) {
+                logger(errorMsg);
+                throw new Error(errorMsg.replace('Firebase: Error ', ''));
               }
-              logger(error.response.data.message);
-              throw new Error(error.response.data.message);
+              logger(error.response.data);
+              throw new Error(error.response.data);
             }
           }
         }
