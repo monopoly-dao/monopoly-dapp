@@ -1,4 +1,3 @@
-import { LucideIcon } from 'lucide-react';
 import * as React from 'react';
 import { IconType } from 'react-icons';
 import { ImSpinner2 } from 'react-icons/im';
@@ -17,7 +16,7 @@ type IconButtonProps = {
   isLoading?: boolean;
   isDarkBg?: boolean;
   variant?: (typeof IconButtonVariant)[number];
-  icon?: IconType | LucideIcon;
+  icon?: IconType;
   classNames?: {
     icon?: string;
   };
