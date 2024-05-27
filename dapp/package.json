@@ -37,7 +37,7 @@
     "firebase": "^9.14.0",
     "firebaseui": "^6.0.2",
     "near-api-js": "^0.44.2",
-    "next": "13.0.5",
+    "next": "14.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-material-ui-carousel": "^3.4.2",
