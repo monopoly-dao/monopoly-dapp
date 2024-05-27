@@ -14,11 +14,13 @@ import toast from 'react-hot-toast';
 
 import styles from '../../../styles/Signup.module.css';
 
+import Button from '@/components/Button';
+import Input from '@/components/Input';
+
+import { handleErrors } from '@/utils/error';
+
 import { LoginIds, loginInitialValues } from './_utils/loginConstants';
 import { loginSchema } from './_utils/loginValidations';
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
-import { handleErrors } from '../../../utils/error';
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false);
@@ -55,7 +57,6 @@ export default function Page() {
         const res = await signIn('login', { redirect: false, ...values });
 
         if ((!res || res.error) && res?.error !== 'undefined') {
-          console.log(res);
           if (res?.error === 'CredentialsSignin') {
             setIsLoading(false);
 
@@ -83,6 +84,7 @@ export default function Page() {
     validationSchema: loginSchema,
     validateOnBlur: true,
     validateOnChange: true,
+    validateOnMount: true,
   });
 
   const getFormikInputProps = (id: keyof typeof values) => {

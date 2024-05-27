@@ -1,10 +1,13 @@
 'use client';
 
 import { Stack } from '@mui/material';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import { CiMenuFries } from 'react-icons/ci';
 
 import styles from './Navbar.module.scss';
+
+import { cn } from '@/lib/utils';
 
 const unauthentiatedNavLinks = [
   {
@@ -15,12 +18,16 @@ const unauthentiatedNavLinks = [
     label: 'Register.',
     route: '/signup',
   },
+  {
+    label: 'Portfolio.',
+    route: '/portfolio',
+  },
 ];
 
 const authenticatedNavLinks = [
   {
     label: 'Profile.',
-    route: '',
+    route: '/profile',
   },
   {
     label: 'Wishlist.',
@@ -39,12 +46,14 @@ const Navbar = () => {
 
   return (
     <Stack
-      direction={{ xs: 'column', sm: 'row' }}
-      alignItems={{ xs: 'flex-start', sm: 'center' }}
+      direction='row'
+      alignItems='center'
       justifyContent='space-between'
-      px={{ xs: '5%', md: '10%' }}
+      px='5%'
       py='10px'
-      className={styles.navbar}
+      className={cn('bg-navy text-white border-b-[0.5px] border-light-grey', [
+        styles.navbar,
+      ])}
     >
       <Stack
         direction='row'
@@ -52,7 +61,7 @@ const Navbar = () => {
         gap='20px'
         width={{ xs: '100%', sm: '60%' }}
       >
-        <p>
+        <p className='text-light-grey'>
           Settley<span>.</span>
         </p>
         {/* <input
@@ -68,12 +77,14 @@ const Navbar = () => {
         justifyContent='space-between'
         width={{ xs: '100%', sm: 'auto' }}
       >
-        {navLinks.map((link) => (
-          <Link key={link.label} href={link.route}>
+        {/* {navLinks.map((link) => (
+          <Link key={link.label} href={link.route} className='text-light-grey'>
             {link.label}
           </Link>
-        ))}
+        ))} */}
       </Stack>
+
+      <CiMenuFries className='text-5xl' />
     </Stack>
   );
 };
