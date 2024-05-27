@@ -1,5 +1,6 @@
-import styles from "./ArticleItem.module.scss";
-import Image from "next/image";
+import Image from 'next/image';
+
+import styles from './ArticleItem.module.scss';
 
 type ArticleItemProps = {
   src: string;
@@ -10,7 +11,7 @@ type ArticleItemProps = {
 const ArticleItem = ({ src, alt, text }: ArticleItemProps) => {
   return (
     <div className={styles.articleItem}>
-      <Image src={src} alt={alt} loading="lazy" width={200} height={200} />
+      <Image src={src} alt={alt} loading='lazy' width={200} height={200} />
       <p>{text}</p>
     </div>
   );

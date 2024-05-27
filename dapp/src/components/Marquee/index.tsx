@@ -1,41 +1,40 @@
-import styles from "./Marquee.module.css";
-import Image from "next/image";
-import image from "public/assets/render.jpg";
-import { useEffect } from "react";
+import Image from 'next/image';
+
+import styles from './Marquee.module.css';
 
 export default function Marquee() {
   const hey = [
     {
-      name: "House",
-      src: "https://images.pexels.com/photos/2980955/pexels-photo-2980955.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      name: 'House',
+      src: 'https://images.pexels.com/photos/2980955/pexels-photo-2980955.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
     },
     {
-      name: "another house",
-      src: "https://images.pexels.com/photos/1590336/pexels-photo-1590336.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      name: 'another house',
+      src: 'https://images.pexels.com/photos/1590336/pexels-photo-1590336.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
     },
     {
-      name: "house3",
-      src: "https://images.pexels.com/photos/750697/pexels-photo-750697.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      name: 'house3',
+      src: 'https://images.pexels.com/photos/750697/pexels-photo-750697.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
     },
     {
-      name: "another",
-      src: "https://images.pexels.com/photos/2351649/pexels-photo-2351649.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      name: 'another',
+      src: 'https://images.pexels.com/photos/2351649/pexels-photo-2351649.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
     },
     {
-      name: "House",
-      src: "https://images.pexels.com/photos/2371975/pexels-photo-2371975.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      name: 'House',
+      src: 'https://images.pexels.com/photos/2371975/pexels-photo-2371975.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
     },
     {
-      name: "another house",
-      src: "https://images.pexels.com/photos/463734/pexels-photo-463734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      name: 'another house',
+      src: 'https://images.pexels.com/photos/463734/pexels-photo-463734.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
     },
     {
-      name: "house3",
-      src: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      name: 'house3',
+      src: 'https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
     },
     {
-      name: "another",
-      src: "https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      name: 'another',
+      src: 'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
     },
   ];
 
@@ -71,11 +70,11 @@ export default function Marquee() {
           <h3>FEATURED PROPERTY</h3>
           <div className={styles.image}>
             <Image
-              src="https://images.pexels.com/photos/3617496/pexels-photo-3617496.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              alt="property"
+              src='https://images.pexels.com/photos/3617496/pexels-photo-3617496.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+              alt='property'
               width={500}
               height={400}
-              objectFit="contain"
+              objectFit='contain'
             />
           </div>
         </div>
@@ -86,7 +85,7 @@ export default function Marquee() {
           {hey.map((item, index) => (
             <div key={index}>
               <div className={styles.curated}>
-                <Image src={item.src} alt="property" fill />
+                <Image src={item.src} alt='property' fill />
               </div>
               <h3>{item.name}</h3>
             </div>

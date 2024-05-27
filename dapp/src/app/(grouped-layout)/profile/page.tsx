@@ -8,7 +8,7 @@ import { useGetUserDetailsQuery } from '../../../api/profile';
 export default function Page() {
   const session = useSession();
   const userId = session.data?.id ?? '';
-  const email = session.data?.email ?? '';
+  // const email = session.data?.email ?? '';
 
   const { data } = useGetUserDetailsQuery(userId);
   const userDetails = data?.data;

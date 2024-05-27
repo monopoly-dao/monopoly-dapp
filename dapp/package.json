@@ -28,7 +28,6 @@
     "@near-wallet-selector/nightly-connect": "^7.2.1",
     "@near-wallet-selector/sender": "^7.2.1",
     "@near-wallet-selector/wallet-connect": "^7.2.1",
-    "@next/swc-win32-x64-msvc": "^13.4.2",
     "@reduxjs/toolkit": "^2.1.0",
     "@types/node": "18.11.9",
     "@types/react": "18.2.45",
