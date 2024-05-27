@@ -1,6 +1,7 @@
 'use client';
 
 import { Stack } from '@mui/material';
+import Link from 'next/link';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { CiMenuFries } from 'react-icons/ci';
@@ -77,11 +78,11 @@ const Navbar = () => {
         justifyContent='space-between'
         width={{ xs: '100%', sm: 'auto' }}
       >
-        {/* {navLinks.map((link) => (
+        {navLinks.map((link) => (
           <Link key={link.label} href={link.route} className='text-light-grey'>
             {link.label}
           </Link>
-        ))} */}
+        ))}
       </Stack>
 
       <CiMenuFries className='text-5xl' />
