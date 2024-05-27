@@ -1,7 +1,6 @@
 'use client';
 
 import { Stack } from '@mui/material';
-import Link from 'next/link';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { CiMenuFries } from 'react-icons/ci';
@@ -9,6 +8,7 @@ import { CiMenuFries } from 'react-icons/ci';
 import styles from './Navbar.module.scss';
 
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 const unauthentiatedNavLinks = [
   {
