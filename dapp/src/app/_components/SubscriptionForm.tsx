@@ -6,8 +6,9 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { object, string } from 'yup';
 
+import { Input } from '@/components/input';
+
 import Button from '../../components/Button';
-import Input from '../../components/Input';
 import { handleErrors } from '../../utils/error';
 
 export default function SubscriptionForm() {
@@ -69,7 +70,6 @@ export default function SubscriptionForm() {
         id='subscribe'
         required
         label='Email address'
-        fullWidth
         {...getFormikInputProps('subscribe')}
       />
 

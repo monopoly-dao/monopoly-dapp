@@ -1,16 +1,15 @@
 'use client';
 
-import { Stack } from '@mui/material';
 import { useSession } from 'next-auth/react';
 
-import styles from '../../styles/Dashboard.module.scss';
-
-import SubscriptionForm from '../_components/SubscriptionForm';
+import Cities from './_components/Cities';
+import Header from './_components/Header';
+import HowItWorks from './_components/HowItWorks';
+import TrendingProperties from './_components/TrendingProperties';
 import {
   useGetPropertiesQuery,
   useGetWishlistQuery,
 } from '../../api/properties';
-import Carousel from '../../components/Carousel';
 import PropertyCard from '../../components/PropertyCard';
 
 function Dashboard() {
@@ -27,24 +26,28 @@ function Dashboard() {
 
   return (
     <div>
-      <Stack
-        direction={{ xs: 'column', sm: 'row' }}
-        alignItems='center'
-        justifyContent='space-between'
-        className={styles.banner}
-      >
-        <p>Own property affordably from all over the world</p>
+      <Header />
 
-        <Stack direction='row' gap='40px'>
-          <button role='button' className='black-bg'>
-            Browse assets
-          </button>
-          <button role='button' className='transparent-bg'>
-            Browse assets
-          </button>
-        </Stack>
-      </Stack>
-      <Carousel />
+      <div className='px-[5%] py-14 flex flex-col gap-16 lg:gap-32'>
+        <HowItWorks />
+        <TrendingProperties />
+        <div className='flex flex-col gap-4 w-full sm:w-4/5 lg:w-3/5'>
+          <h2 className='font-bold text-3xl sm:text-5xl'>
+            Decentralised real estate agency
+          </h2>
+          <p>
+            We are your decentralised real estate agent, handling the end to end
+            process of acquiring and managing real world assets globally to
+            provide dynamic yield and a safer store of value using blockchain
+            Technology. MonopolyDAO also offers a secondary marketplace for
+            fractional digitalised real estate, even for properties not
+            initially owned by the DAO. We aim to provide further liquidity to
+            the real estate market and be a reputable blockchain investment with
+            yield you can understand.
+          </p>
+        </div>
+        <Cities />
+      </div>
 
       <div className='my-20 px-[7%] grid grid-cols-3 gap-4'>
         {properties?.map((property) => (
@@ -54,9 +57,9 @@ function Dashboard() {
         ))}
       </div>
 
-      <div className='px-[7%]'>
+      {/* <div className='px-[7%]'>
         <SubscriptionForm />
-      </div>
+      </div> */}
     </div>
   );
 }

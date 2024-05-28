@@ -4,7 +4,7 @@ import { Box, Button } from '@mui/material';
 import { useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
 
-import Input from '@/components/Input';
+import { Input } from '@/components/input';
 
 import {
   UpdateProfileIds,

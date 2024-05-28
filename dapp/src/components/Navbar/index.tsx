@@ -1,27 +1,29 @@
 'use client';
 
 import { Stack } from '@mui/material';
+import Link from 'next/link';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { CiMenuFries } from 'react-icons/ci';
+import { IoWalletOutline } from 'react-icons/io5';
+import { VscAccount } from 'react-icons/vsc';
 
 import styles from './Navbar.module.scss';
 
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
+
+import IconButton from '../buttons/IconButton';
+import { InputSearch } from '../input';
+import SettleyLogo from '../SettleyLogo';
 
 const unauthentiatedNavLinks = [
   {
-    label: 'Sign in.',
-    route: '/login',
+    label: 'Listings',
+    route: '/',
   },
   {
-    label: 'Register.',
-    route: '/signup',
-  },
-  {
-    label: 'Portfolio.',
-    route: '/portfolio',
+    label: 'How it Works',
+    route: '/',
   },
 ];
 
@@ -52,40 +54,41 @@ const Navbar = () => {
       justifyContent='space-between'
       px='5%'
       py='10px'
-      className={cn('bg-navy text-white border-b-[0.5px] border-light-grey', [
-        styles.navbar,
-      ])}
+      className={cn('bg-navy text-white', [styles.navbar])}
     >
-      <Stack
-        direction='row'
-        alignItems='center'
-        gap='20px'
-        width={{ xs: '100%', sm: '60%' }}
-      >
-        <p className='text-light-grey'>
-          Settley<span>.</span>
-        </p>
-        {/* <input
-          type="text"
-          name="search"
-          placeholder="Search property, assets and collections"
-        /> */}
-      </Stack>
+      <SettleyLogo colour='white' />
 
-      <Stack
-        direction='row'
-        gap={{ xs: '0px', sm: '30px', md: '60px' }}
-        justifyContent='space-between'
-        width={{ xs: '100%', sm: 'auto' }}
-      >
+      <InputSearch containerClassName='w-1/4 hidden sm:flex' />
+
+      <div className='items-center hidden lg:flex text-sm gap-4'>
         {navLinks.map((link) => (
           <Link key={link.label} href={link.route} className='text-light-grey'>
             {link.label}
           </Link>
         ))}
-      </Stack>
+      </div>
 
-      <CiMenuFries className='text-5xl' />
+      <div className='items-center gap-4 hidden sm:flex whitespace-nowrap'>
+        <Link
+          className='text-light-grey flex gap-2 py-2 px-5 font-semibold items-center'
+          href='/login'
+        >
+          <IoWalletOutline />
+          Sign in
+        </Link>
+        <Link
+          className='text-navy bg-yellow rounded-[6px] py-2 px-5 flex gap-2 font-semibold items-center'
+          href='/signup'
+        >
+          <VscAccount /> Sign up
+        </Link>
+      </div>
+
+      <IconButton
+        variant='ghost'
+        icon={CiMenuFries}
+        className='text-3xl block sm:hidden'
+      />
     </Stack>
   );
 };

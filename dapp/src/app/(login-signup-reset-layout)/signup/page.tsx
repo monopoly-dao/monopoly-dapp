@@ -1,10 +1,6 @@
 'use client';
 
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import Link from 'next/link';
@@ -13,40 +9,18 @@ import toast from 'react-hot-toast';
 
 import styles from '../../../styles/Signup.module.css';
 
+import Button from '@/components/buttons/Button';
+import { Input } from '@/components/input';
+
+import { AUTH_BASE_URL } from '@/api';
+import { AuthEndpoints } from '@/api/auth/authApiConstants';
+import { handleErrors } from '@/utils/error';
+
 import { SignupIds, signupInitialValues } from './_utils/signupConstants';
 import { signupSchema } from './_utils/signupValidations';
-import { AUTH_BASE_URL } from '../../../api';
-import { AuthEndpoints } from '../../../api/auth/authApiConstants';
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
-import { handleErrors } from '../../../utils/error';
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleClickShowConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
-
-  const handleMouseDownConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
-
-  // const handleClose = (e: React.SyntheticEvent | Event, reason?: string) => {
-  //   if (reason === 'clickaway') {
-  //     return;
-  //   }
-  // };
 
   const {
     getFieldProps,
@@ -100,11 +74,7 @@ export default function Page() {
       className={styles.right}
     >
       <div className={styles.title}>
-        <h1>
-          Get started
-          <br />
-          with MonopolyDAO
-        </h1>
+        <h1>Get started with MonopolyDAO</h1>
         <p>Create your account and start purchasing properties in minutes</p>
       </div>
       <div className={styles.form}>
@@ -125,47 +95,19 @@ export default function Page() {
           label='Password'
           id={SignupIds.Password}
           {...getFormikInputProps(SignupIds.Password)}
-          type={showPassword ? 'text' : 'password'}
-          inputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge='end'
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
+          type='password'
         />
         <Input
           required
           label='Confirm Password'
           id={SignupIds.ConfirmPassword}
           {...getFormikInputProps(SignupIds.ConfirmPassword)}
-          type={showConfirmPassword ? 'text' : 'password'}
+          type='password'
           onPaste={(e) => e.preventDefault()}
-          inputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowConfirmPassword}
-                  onMouseDown={handleMouseDownConfirmPassword}
-                  edge='end'
-                >
-                  {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
         />
         <Button
-          variant='contained'
           type='submit'
+          className='py-4 px-10'
           disabled={isLoading || !isValid || !dirty}
         >
           Sign up

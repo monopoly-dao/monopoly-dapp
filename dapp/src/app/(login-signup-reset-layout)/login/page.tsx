@@ -1,10 +1,6 @@
 'use client';
 
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -14,8 +10,8 @@ import toast from 'react-hot-toast';
 
 import styles from '../../../styles/Signup.module.css';
 
-import Button from '@/components/Button';
-import Input from '@/components/Input';
+import Button from '@/components/buttons/Button';
+import { Input } from '@/components/input';
 
 import { handleErrors } from '@/utils/error';
 
@@ -24,23 +20,8 @@ import { loginSchema } from './_utils/loginValidations';
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  // const handleClose = (e: React.SyntheticEvent | Event, reason?: string) => {
-  //   if (reason === 'clickaway') {
-  //     return;
-  //   }
-  // };
 
   const {
     getFieldProps,
@@ -119,25 +100,11 @@ export default function Page() {
           required
           label='Password'
           {...getFormikInputProps(LoginIds.Password)}
-          type={showPassword ? 'text' : 'password'}
-          inputProps={{
-            endAdornment: (
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge='end'
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
+          type='password'
         />
         <Button
           type='submit'
-          variant='contained'
+          className='py-4 px-10'
           disabled={isLoading || !isValid || !dirty}
         >
           Log in

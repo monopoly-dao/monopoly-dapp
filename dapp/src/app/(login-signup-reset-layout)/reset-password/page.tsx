@@ -3,17 +3,19 @@
 import Box from '@mui/material/Box';
 import axios from 'axios';
 import { useFormik } from 'formik';
+import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { object, string } from 'yup';
 
 import styles from '../../../styles/Signup.module.css';
 
-import { AUTH_BASE_URL } from '../../../api';
-import { AuthEndpoints } from '../../../api/auth/authApiConstants';
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
-import { handleErrors } from '../../../utils/error';
+import Button from '@/components/buttons/Button';
+import { Input } from '@/components/input';
+
+import { AUTH_BASE_URL } from '@/api';
+import { AuthEndpoints } from '@/api/auth/authApiConstants';
+import { handleErrors } from '@/utils/error';
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false);
@@ -95,11 +97,17 @@ export default function Page() {
 
         <Button
           type='submit'
-          variant='contained'
+          className='py-4 px-10'
           disabled={isLoading || !isValid || !dirty}
         >
           Reset Password
         </Button>
+        <h4 className={styles.h5}>
+          Remember your password?{' '}
+          <Link href='/login' className='underline'>
+            Log in
+          </Link>
+        </h4>
       </div>
     </Box>
   );

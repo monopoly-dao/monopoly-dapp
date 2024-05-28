@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url(https://fonts.googleapis.com/css?family=Darker+Grotesque:300,regular,500,600,700,800,900);
 
 html,
 body {
@@ -8,6 +9,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  box-sizing: border-box;
   /* color: #c9ff63; */
 }
 
@@ -33,11 +35,11 @@ html {
 body {
   margin: 0 auto;
   min-height: 100vh;
-  @apply text-white bg-navy;
+  @apply text-black bg-white;
 }
 
 p {
-  color: white;
+  /* color: white; */
 }
 
 a {
@@ -47,15 +49,15 @@ a {
 
 * {
   box-sizing: border-box;
-  font-family: 'Apfel Grotesk', sans-serif;
 }
 
+p,
 h1,
 h2,
 h3,
 h4,
 h5 {
-  color: white;
+  @apply font-primary;
 }
 h1 {
   font-size: 50px;
@@ -68,7 +70,14 @@ h2 {
 }
 
 p {
-  font-family: 'Craftwork Grotesk', sans-serif;
+  /* font-family: 'Craftwork Grotesk', sans-serif; */
+}
+
+.linear-gradient {
+  background: -webkit-linear-gradient(white, #272343);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 button {
