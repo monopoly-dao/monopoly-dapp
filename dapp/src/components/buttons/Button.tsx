@@ -98,6 +98,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'active:bg-white',
               'disabled:bg-white',
             ],
+            variant === 'dark' && [
+              'text-white border-black bg-black',
+              'active:bg-white active:text-black',
+              'disabled:bg-black/20',
+            ],
           ],
           isLoading && [
             'relative text-transparent transition-none',

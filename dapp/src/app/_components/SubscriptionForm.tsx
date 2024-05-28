@@ -2,14 +2,14 @@
 
 import axios from 'axios';
 import { useFormik } from 'formik';
+import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { object, string } from 'yup';
 
+import Button from '@/components/buttons/Button';
 import { Input } from '@/components/input';
-
-import Button from '../../components/Button';
-import { handleErrors } from '../../utils/error';
+import SettleyLogo from '@/components/SettleyLogo';
 
 export default function SubscriptionForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,14 +30,14 @@ export default function SubscriptionForm() {
       setIsLoading(true);
 
       try {
-        axios.post(
+        await axios.post(
           `https://mdao-emailservice.fly.dev/email/send?email=${values.subscribe}`
         );
 
         toast.success('Newsletter subscription activated');
         resetForm();
       } catch (e) {
-        handleErrors(e);
+        toast.error('Failed to submit email');
       } finally {
         setIsLoading(false);
       }
@@ -59,31 +59,36 @@ export default function SubscriptionForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='w-80 p-5 flex flex-col gap-4'>
-      <div className='flex items-center gap-3'>
-        <div className='w-4 h-4 bg-[#72ff5b] rounded-[100%]' />
-        <h4>NEWSLETTER</h4>
-      </div>
-      <p>Get a summary of the Settley community action every week</p>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
+      <SettleyLogo colour='dark' />
+      <p>Join our newsletter to stay up to date on new peoperties</p>
 
-      <Input
-        id='subscribe'
-        required
-        label='Email address'
-        {...getFormikInputProps('subscribe')}
-      />
+      <div className='flex items-start gap-4'>
+        <Input
+          id='subscribe'
+          // label='Email address'
+          placeholder='Enter your email'
+          {...getFormikInputProps('subscribe')}
+        />
 
-      <div>
         <Button
-          className='black-bg !w-fit'
+          className='py-4 px-7 rounded-[6px] h-full'
+          variant='dark'
           type='submit'
           isLoading={isLoading}
           disabled={!isValid || !dirty}
-          variant='contained'
         >
           Subscribe!
         </Button>
       </div>
+
+      <p className='-mt-2'>
+        By subscribing you agree to with our{' '}
+        <Link href='/' className='underline'>
+          Privacy Policy
+        </Link>{' '}
+        and provide consent to receive updates from MDAO
+      </p>
     </form>
   );
 }
