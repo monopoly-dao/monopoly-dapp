@@ -66,7 +66,6 @@ export default function UpdateProfileForm({ detailsFromDb }: Props) {
       <Input
         id={UpdateProfileIds.FirstName}
         required
-        fullWidth
         label='First Name'
         {...getFormikInputProps(UpdateProfileIds.FirstName)}
       />
