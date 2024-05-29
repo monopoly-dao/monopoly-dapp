@@ -10,7 +10,7 @@ export default function SettleyLogo({ colour }: Props) {
     <Link href='/'>
       {colour === 'dark' && (
         <Image
-          src='/images/Logo 1.png'
+          src='/svg/Logo DARK.svg'
           alt='settley logo'
           width={144}
           height={44}
@@ -20,7 +20,7 @@ export default function SettleyLogo({ colour }: Props) {
       )}
       {colour === 'white' && (
         <Image
-          src='/images/Logo WHITE.png'
+          src='/svg/Logo WHITE.svg'
           alt='settley logo'
           width={144}
           height={44}

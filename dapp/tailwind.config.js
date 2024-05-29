@@ -9,7 +9,9 @@ module.exports = {
       colors: {
         navy: '#272343',
         'light-grey': '#F4F4F4',
+        'medium-grey': '#CBCBCB',
         yellow: '#FFD803',
+        cream: '#FFFBE5',
       },
     },
   },

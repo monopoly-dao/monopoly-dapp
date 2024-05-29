@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Header() {
   return (
-    <div className='bg-navy py-20 min-h-[360px] -mt-[1px] flex pl-[5%] relative'>
+    <div className='bg-navy py-20 min-h-[360px] -mt-[1px] flex px-[5%] relative'>
       <div className='w-full h-full opacity-20 absolute left-0 top-0'>
         <Image
           src='/images/header image.jpg'

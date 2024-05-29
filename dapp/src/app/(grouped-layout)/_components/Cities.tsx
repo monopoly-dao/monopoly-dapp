@@ -9,7 +9,7 @@ export default function Cities() {
       <div className='flex justify-between items-start'>
         <h2 className='font-bold text-3xl sm:text-5xl'>Explore Cities</h2>
         <Link
-          href='/'
+          href='/listings'
           className='text-navy flex font-semibold items-center gap-2'
         >
           View All <IoIosArrowForward />
@@ -23,7 +23,7 @@ export default function Cities() {
         />
         <TrendingPropertyCard
           image='/images/Montenegro.png'
-          caption='Montenegro, Serbia'
+          caption='Belgrade, Serbia'
         />
         <TrendingPropertyCard
           image='/images/Monaco.png'

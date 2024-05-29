@@ -32,14 +32,12 @@ function Dashboard() {
         <HowItWorks />
         <TrendingProperties />
         <div className='flex flex-col gap-4 w-full sm:w-4/5 lg:w-3/5'>
-          <h2 className='font-bold text-3xl sm:text-5xl'>
-            Decentralised real estate agency
-          </h2>
+          <h2 className='font-bold text-3xl sm:text-5xl'>Who we are</h2>
           <p>
             We are your decentralised real estate agent, handling the end to end
             process of acquiring and managing real world assets globally to
             provide dynamic yield and a safer store of value using blockchain
-            Technology. MonopolyDAO also offers a secondary marketplace for
+            Technology. Settley also offers a secondary marketplace for
             fractional digitalised real estate, even for properties not
             initially owned by the DAO. We aim to provide further liquidity to
             the real estate market and be a reputable blockchain investment with

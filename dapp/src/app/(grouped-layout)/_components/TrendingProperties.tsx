@@ -9,7 +9,7 @@ export default function TrendingProperties() {
       <div className='flex justify-between items-start'>
         <h2 className='font-bold text-3xl sm:text-5xl'>Trending Properties</h2>
         <Link
-          href='/'
+          href='/listings'
           className='text-navy flex font-semibold items-center gap-2'
         >
           View All <IoIosArrowForward />

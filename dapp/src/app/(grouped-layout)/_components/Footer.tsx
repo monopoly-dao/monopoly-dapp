@@ -17,7 +17,6 @@ const exploreLinks = [
   { label: 'Lisbon', href: '/' },
   { label: 'Monaco', href: '/' },
   { label: 'Abu Dhabi', href: '/' },
-  { label: 'Jebbah', href: '/' },
 ];
 
 const followLinks = [
@@ -30,22 +29,22 @@ const followLinks = [
 
 export default function Footer() {
   return (
-    <footer className='px-[5%] mb-10 sm:mb-20'>
-      <div className='grid grid-cols-3 sm:grid-cols-6 gap-10 justify-between mb-11 sm:mb-20'>
+    <footer className=''>
+      <div className='grid px-[5%] grid-cols-3 lg:grid-cols-6 gap-10 justify-between mb-11 sm:mb-20'>
         <div className='col-span-3'>
           <SubscriptionForm />
         </div>
-        <div className='justify-self-center'>
+        <div className='justify-self-center sm:justify-self-start lg:justify-self-center'>
           <FooterColumnLinks title='About' links={aboutLinks} />
         </div>
-        <div className='justify-self-center'>
+        <div className='justify-self-center sm:justify-self-start lg:justify-self-center'>
           <FooterColumnLinks title='Explore' links={exploreLinks} />
         </div>
-        <div className='justify-self-center'>
+        <div className='justify-self-center sm:justify-self-start lg:justify-self-center'>
           <FooterColumnLinks title='Follow Us' links={followLinks} />
         </div>
       </div>
-      <div className='border-t border-black pt-8 flex items-center justify-between'>
+      <div className='border-t px-[5%] pb-10 sm:pb-20 bg-navy text-white border-black pt-8 flex flex-col gap-4 sm:gap-0 sm:flex-row items-start sm:items-center justify-between'>
         <p>© 2024 Settley. All rights reserved.</p>
         <div className='flex items-center text-sm gap-6'>
           <Link href='/' className='underline'>

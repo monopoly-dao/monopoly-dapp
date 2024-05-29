@@ -19,7 +19,7 @@ import SettleyLogo from '../SettleyLogo';
 const unauthentiatedNavLinks = [
   {
     label: 'Listings',
-    route: '/',
+    route: '/listings',
   },
   {
     label: 'How it Works',
@@ -53,7 +53,7 @@ const Navbar = () => {
       alignItems='center'
       justifyContent='space-between'
       px='5%'
-      py='10px'
+      py='15px'
       className={cn('bg-navy text-white', [styles.navbar])}
     >
       <SettleyLogo colour='white' />
