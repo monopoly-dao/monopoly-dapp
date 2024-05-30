@@ -5,29 +5,48 @@ import { IoLocationOutline } from 'react-icons/io5';
 
 import IconButton from '@/components/buttons/IconButton';
 
-export default function ListingCard() {
+type Props = {
+  name: string;
+  image: string;
+  location: string;
+  beds: number;
+  baths: number;
+  unitsLeft: number;
+  pricePerUnit: number;
+};
+
+export default function ListingCard({
+  name,
+  location,
+  image,
+  beds,
+  baths,
+  unitsLeft,
+  pricePerUnit,
+}: Props) {
   return (
     <div className='w-full h-[450px] rounded-[12px] bg-white shadow'>
       <Image
-        src='/images/mansion.jpg'
+        src={image}
         alt='mansion'
         width={300}
         height={220}
+        quality={100}
         className='w-full h-[220px] object-cover rounded-t-[12px]'
       />
       <div className='py-6 px-4'>
-        <p className='text-navy font-bold text-xl'>Property name</p>
+        <p className='text-navy font-bold text-xl'>{name}</p>
         <div className='mt-2 flex items-center gap-3 text-sm text-gray-500'>
           <IoLocationOutline className='text-lg' />
-          Mumbai, India
+          {location}
         </div>
         <div className='mt-6 pb-6 border-b-[2px] border-medium-grey flex items-center justify-between'>
           <div className='flex items-center gap-4 text-lg'>
             <div className='flex items-center gap-1'>
-              <BiBed /> <p>2 Beds</p>
+              <BiBed /> <p>{beds} Beds</p>
             </div>
             <div className='flex items-center gap-1'>
-              <BiBath /> <p>1 Bath</p>
+              <BiBath /> <p>{baths} Bath</p>
             </div>
           </div>
           <IconButton
@@ -38,10 +57,10 @@ export default function ListingCard() {
         </div>
         <div className='mt-4 flex items-end justify-between'>
           <div className='flex items-end'>
-            <p className='font-bold text-2xl'>$500</p>
+            <p className='font-bold text-2xl'>${pricePerUnit}</p>
             <p>/unit</p>
           </div>
-          <p className='text-navy/40'>2000 units left</p>
+          <p className='text-navy/40'>{unitsLeft} units left</p>
         </div>
       </div>
     </div>

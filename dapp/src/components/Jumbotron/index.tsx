@@ -4,7 +4,7 @@ import house from 'public/assets/House.png';
 
 import styles from '../Header/Header.module.css';
 
-import Button from '../Button';
+import Button from '../buttons/Button';
 
 export default function Jumbotron() {
   return (
@@ -18,7 +18,7 @@ export default function Jumbotron() {
           Join a community of people crowd-funding to own great property around
           the world. Connect, review deals, interact with property owners, and{' '}
         </p>
-        <Button variant='contained'>connect wallet</Button>
+        <Button>connect wallet</Button>
       </div>
       <div className={styles.hero}>
         <div className={styles.secondHero}></div>
