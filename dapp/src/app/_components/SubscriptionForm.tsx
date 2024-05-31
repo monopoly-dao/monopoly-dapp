@@ -61,7 +61,7 @@ export default function SubscriptionForm() {
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
       <SettleyLogo colour='dark' />
-      <p>Join our newsletter to stay up to date on new properties</p>
+      <p>Join our newsletter to stay up to date on new property listings</p>
 
       <div className='flex items-start gap-4 h-[53px]'>
         <Input
@@ -85,11 +85,11 @@ export default function SubscriptionForm() {
       </div>
 
       <p className='-mt-2'>
-        By subscribing you agree to with our{' '}
+        By subscribing, you agree to our{' '}
         <Link href='/' className='underline'>
           Privacy Policy
         </Link>{' '}
-        and provide consent to receive updates from MDAO
+        and provide consent to receive updates from Settley.
       </p>
     </form>
   );

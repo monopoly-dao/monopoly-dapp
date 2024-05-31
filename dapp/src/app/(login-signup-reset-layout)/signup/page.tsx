@@ -74,7 +74,7 @@ export default function Page() {
       className={styles.right}
     >
       <div className={styles.title}>
-        <h1>Get started with MonopolyDAO</h1>
+        <h1>Get started with Settley</h1>
         <p>Create your account and start purchasing properties in minutes</p>
       </div>
       <div className={styles.form}>

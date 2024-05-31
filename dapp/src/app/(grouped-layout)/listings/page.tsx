@@ -11,6 +11,7 @@ const listings = [
     baths: 10,
     unitsLeft: 50,
     pricePerUnit: 2,
+    symbol: 'PAJM',
   },
   {
     name: 'Glass Key',
@@ -20,6 +21,7 @@ const listings = [
     baths: 2,
     unitsLeft: 500,
     pricePerUnit: 20,
+    symbol: 'GLKY',
   },
   {
     name: 'Bayview Retreat',
@@ -29,6 +31,7 @@ const listings = [
     baths: 4,
     unitsLeft: 10,
     pricePerUnit: 5,
+    symbol: 'bayr',
   },
   {
     name: 'Lisbon Loft Apartments',
@@ -38,6 +41,7 @@ const listings = [
     baths: 10,
     unitsLeft: 50,
     pricePerUnit: 2,
+    symbol: 'lila',
   },
   {
     name: 'Vineyard Haven Villa',
@@ -47,6 +51,7 @@ const listings = [
     baths: 10,
     unitsLeft: 50,
     pricePerUnit: 2,
+    symbol: 'vnhy',
   },
   {
     name: 'Montenegro Mountain Lodge',
@@ -56,6 +61,7 @@ const listings = [
     baths: 1,
     unitsLeft: 10,
     pricePerUnit: 2,
+    symbol: 'mnml',
   },
   {
     name: 'Pearl Beach Resort',
@@ -65,6 +71,7 @@ const listings = [
     baths: 10,
     unitsLeft: 500,
     pricePerUnit: 9,
+    symbol: 'prlb',
   },
   {
     name: 'Golden Sands Villa',
@@ -74,6 +81,7 @@ const listings = [
     baths: 4,
     unitsLeft: 100,
     pricePerUnit: 2,
+    symbol: 'gldv',
   },
   {
     name: 'Dubai Desert Oasis Villa',
@@ -83,6 +91,7 @@ const listings = [
     baths: 10,
     unitsLeft: 50,
     pricePerUnit: 2,
+    symbol: 'dbdv',
   },
   {
     name: 'Oasis Tower Residence',
@@ -92,6 +101,7 @@ const listings = [
     baths: 10,
     unitsLeft: 50,
     pricePerUnit: 2,
+    symbol: 'ostr',
   },
   {
     name: 'Azure Bay Apartments',
@@ -101,6 +111,7 @@ const listings = [
     baths: 3,
     unitsLeft: 9,
     pricePerUnit: 6,
+    symbol: 'azba',
   },
   {
     name: 'Sunset Retreat',
@@ -110,6 +121,7 @@ const listings = [
     baths: 10,
     unitsLeft: 3,
     pricePerUnit: 50,
+    symbol: 'snsr',
   },
 ];
 

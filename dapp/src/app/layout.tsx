@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Darker_Grotesque } from 'next/font/google';
+import { Darker_Grotesque, Inter } from 'next/font/google';
 import { getServerSession } from 'next-auth';
 import { Toaster } from 'react-hot-toast';
 
@@ -51,6 +51,12 @@ const darkerGrotesque = Darker_Grotesque({
   variable: '--font-dark-grotesk',
 });
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -59,7 +65,7 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang='en' className={`${darkerGrotesque.variable}`}>
+    <html lang='en' className={`${darkerGrotesque.variable} ${inter.variable}`}>
       <body>
         <NextAuthProvider session={session}>
           <ReduxProvider>

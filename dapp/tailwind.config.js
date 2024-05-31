@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: ['var(--font-dark-grotesk)'],
+        inter: ['var(--font-inter)'],
       },
       colors: {
         navy: '#272343',

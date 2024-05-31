@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { BiBath, BiBed } from 'react-icons/bi';
 import { FaRegBookmark } from 'react-icons/fa';
 import { IoLocationOutline } from 'react-icons/io5';
@@ -13,6 +14,7 @@ type Props = {
   baths: number;
   unitsLeft: number;
   pricePerUnit: number;
+  symbol: string;
 };
 
 export default function ListingCard({
@@ -23,9 +25,13 @@ export default function ListingCard({
   baths,
   unitsLeft,
   pricePerUnit,
+  symbol,
 }: Props) {
   return (
-    <div className='w-full h-[450px] rounded-[12px] bg-white shadow'>
+    <Link
+      href={`/listing/${symbol}`}
+      className='w-full min-h-[450px] rounded-[12px] bg-white shadow'
+    >
       <Image
         src={image}
         alt='mansion'
@@ -34,8 +40,11 @@ export default function ListingCard({
         quality={100}
         className='w-full h-[220px] object-cover rounded-t-[12px]'
       />
-      <div className='py-6 px-4'>
-        <p className='text-navy font-bold text-xl'>{name}</p>
+      <div className='py-6 px-4 w-full'>
+        <div className='flex items-start justify-between gap-1'>
+          <p className='text-navy font-bold w-3/4 truncate text-xl'>{name}</p>
+          <p className='text-[green] font-bold text-2xl uppercase'>${symbol}</p>
+        </div>
         <div className='mt-2 flex items-center gap-3 text-sm text-gray-500'>
           <IoLocationOutline className='text-lg' />
           {location}
@@ -63,6 +72,6 @@ export default function ListingCard({
           <p className='text-navy/40'>{unitsLeft} units left</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

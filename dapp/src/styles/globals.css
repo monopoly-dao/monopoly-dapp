@@ -80,12 +80,12 @@ p {
   -webkit-text-fill-color: transparent;
 }
 
-button {
+/* button {
   border: none;
   outline: none;
   cursor: pointer;
   font-family: 'Aktiv Grotesk', sans-serif;
-}
+} */
 
 button.black-bg {
   background: #000000;

@@ -31,17 +31,22 @@ function Dashboard() {
       <div className='px-[5%] py-14 flex flex-col gap-16 lg:gap-32'>
         <HowItWorks />
         <TrendingProperties />
-        <div className='flex flex-col gap-4 w-full sm:w-4/5 lg:w-3/5'>
-          <h2 className='font-bold text-3xl sm:text-5xl'>Who we are</h2>
-          <p>
+        <div className='gap-4 w-full grid grid-cols-1 xl:grid-cols-6'>
+          <h2 className='font-bold text-3xl sm:text-5xl col-span-2'>
+            Who are we?
+          </h2>
+          <p className='col-span-2 w-full sm:w-4/5 lg:w-3/5 xl:w-full'>
             We are your decentralised real estate agent, handling the end to end
             process of acquiring and managing real world assets globally to
             provide dynamic yield and a safer store of value using blockchain
-            Technology. Settley also offers a secondary marketplace for
-            fractional digitalised real estate, even for properties not
-            initially owned by the DAO. We aim to provide further liquidity to
-            the real estate market and be a reputable blockchain investment with
-            yield you can understand.
+            Technology.
+          </p>
+          <p className='col-span-2 w-full sm:w-4/5 lg:w-3/5 xl:w-full'>
+            Settley also offers a secondary marketplace for fractional
+            digitalised real estate, even for properties not initially owned by
+            the DAO. We aim to provide further liquidity to the real estate
+            market and be a reputable blockchain investment with yield you can
+            understand.
           </p>
         </div>
         <Cities />
