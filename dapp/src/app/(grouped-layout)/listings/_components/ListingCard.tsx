@@ -43,7 +43,7 @@ export default function ListingCard({
       <div className='py-6 px-4 w-full'>
         <div className='flex items-start justify-between gap-1'>
           <p className='text-navy font-bold w-3/4 truncate text-xl'>{name}</p>
-          <p className='text-[green] font-bold uppercase'>${symbol}</p>
+          <p className='text-[green] font-semibold uppercase'>${symbol}</p>
         </div>
         <div className='mt-2 flex items-center gap-3 text-sm text-gray-500'>
           <IoLocationOutline className='text-lg' />
