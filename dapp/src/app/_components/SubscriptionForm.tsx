@@ -60,7 +60,7 @@ export default function SubscriptionForm() {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
-      <SettleyLogo colour='dark' />
+      <SettleyLogo colour='new' />
       <p>Join our newsletter to stay up to date on new property listings</p>
 
       <div className='flex items-start gap-4 h-[53px]'>
@@ -75,7 +75,7 @@ export default function SubscriptionForm() {
 
         <Button
           className='py-4 px-7 rounded-[6px] h-[calc(100%-8px)] sm:h-[calc(100%-2px)]'
-          variant='dark'
+          // variant='dark'
           type='submit'
           isLoading={isLoading}
           disabled={!isValid || !dirty}

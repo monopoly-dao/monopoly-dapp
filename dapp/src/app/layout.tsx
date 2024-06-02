@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Darker_Grotesque, Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import { getServerSession } from 'next-auth';
 import { Toaster } from 'react-hot-toast';
 
@@ -12,6 +13,7 @@ import { NextAuthProvider } from '../components/next-auth-provider';
 import { ReduxProvider } from '../components/redux-provider';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: siteConfig.title,
   applicationName: siteConfig.title,
   description: siteConfig.description,
@@ -36,6 +38,7 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/images/og.png`],
+    creator: '@mubaraq__',
   },
   authors: [
     {
@@ -57,6 +60,34 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
+const ppNeueMontreal = localFont({
+  src: [
+    {
+      path: '../../public/fonts/NeueMontreal-Light.otf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-neue-montreal',
+  display: 'swap',
+  preload: true,
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -65,7 +96,10 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang='en' className={`${darkerGrotesque.variable} ${inter.variable}`}>
+    <html
+      lang='en'
+      className={`${darkerGrotesque.variable} ${inter.variable} ${ppNeueMontreal.variable}`}
+    >
       <body>
         <NextAuthProvider session={session}>
           <ReduxProvider>

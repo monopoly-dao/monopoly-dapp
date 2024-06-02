@@ -29,8 +29,8 @@ const followLinks = [
 
 export default function Footer() {
   return (
-    <footer className=''>
-      <div className='grid px-[5%] grid-cols-3 lg:grid-cols-6 gap-10 justify-between mb-11 sm:mb-20'>
+    <footer className='mt-24 px-[5%] lg:px-[7%]'>
+      <div className='grid grid-cols-3 lg:grid-cols-6 gap-10 justify-between mb-11 sm:mb-20'>
         <div className='col-span-3'>
           <SubscriptionForm />
         </div>
@@ -44,7 +44,7 @@ export default function Footer() {
           <FooterColumnLinks title='Follow Us' links={followLinks} />
         </div>
       </div>
-      <div className='border-t px-[5%] pb-10 sm:pb-20 bg-navy text-white border-black pt-8 flex flex-col gap-4 sm:gap-0 sm:flex-row items-start sm:items-center justify-between'>
+      <div className='border-t pb-10 sm:pb-20 bg-white text-black border-black pt-8 flex flex-col gap-4 sm:gap-0 sm:flex-row items-start sm:items-center justify-between'>
         <p>© 2024 Settley. All rights reserved.</p>
         <div className='flex items-center text-sm gap-6'>
           <Link href='/' className='underline'>

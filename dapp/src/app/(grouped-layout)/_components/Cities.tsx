@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { IoIosArrowForward } from 'react-icons/io';
 
 import TrendingPropertyCard from './TrendingPropertyCard';
 
@@ -7,16 +6,23 @@ export default function Cities() {
   return (
     <div className='flex flex-col gap-6 sm:gap-12'>
       <div className='flex justify-between items-start'>
-        <h2 className='font-bold text-3xl sm:text-5xl'>Explore Cities</h2>
+        <div>
+          <h2 className='font-medium text-3xl sm:text-4xl'>Explore Cities</h2>
+          <p className='mt-5 w-full sm:w-4/5'>
+            Discover the cities with the most sought after properties and asset
+            owners right now.
+          </p>
+        </div>
         <Link
           href='/listings'
-          className='text-navy flex font-semibold items-center gap-2'
+          className='text-black flex font-medium items-center gap-2 underline whitespace-nowrap'
         >
-          View All <IoIosArrowForward />
+          View All
+          {/* <IoIosArrowForward /> */}
         </Link>
       </div>
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8'>
+      <div className='grid grid-cols-1 sm:grid-cols-3 gap-8'>
         <TrendingPropertyCard
           image='/assets/auction houses.svg'
           caption='Lisbon, Portugal'
@@ -28,10 +34,6 @@ export default function Cities() {
         <TrendingPropertyCard
           image='/images/Monaco.png'
           caption='Monaco, France'
-        />
-        <TrendingPropertyCard
-          image='/assets/Beachfront property.svg'
-          caption='Abu Dhabi, UAE'
         />
       </div>
     </div>

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = {
-  colour: 'white' | 'dark';
+  colour: 'white' | 'dark' | 'new';
 };
 
 export default function SettleyLogo({ colour }: Props) {
@@ -21,6 +21,16 @@ export default function SettleyLogo({ colour }: Props) {
       {colour === 'white' && (
         <Image
           src='/svg/Logo WHITE.svg'
+          alt='settley logo'
+          width={144}
+          height={44}
+          quality={100}
+          className='w-[144px]'
+        />
+      )}
+      {colour === 'new' && (
+        <Image
+          src='/svg/Settley.svg'
           alt='settley logo'
           width={144}
           height={44}

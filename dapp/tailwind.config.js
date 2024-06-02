@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         primary: ['var(--font-dark-grotesk)'],
         inter: ['var(--font-inter)'],
+        'n-montreal': ['var(--font-neue-montreal)'],
       },
       colors: {
         navy: '#272343',

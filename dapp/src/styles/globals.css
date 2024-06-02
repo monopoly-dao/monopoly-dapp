@@ -35,7 +35,7 @@ html {
 body {
   margin: 0 auto;
   min-height: 100vh;
-  @apply text-black bg-cream;
+  @apply text-black bg-white;
 }
 
 p {
@@ -56,8 +56,10 @@ h1,
 h2,
 h3,
 h4,
-h5 {
-  @apply font-primary;
+h5,
+button,
+a {
+  @apply font-n-montreal;
 }
 h1 {
   font-size: 50px;
@@ -69,9 +71,10 @@ h2 {
   margin-block: 0px;
 }
 
-p {
-  /* font-family: 'Craftwork Grotesk', sans-serif; */
-}
+/* p {
+  
+  font-family: 'Craftwork Grotesk', sans-serif;
+} */
 
 .linear-gradient {
   background: -webkit-linear-gradient(white, #272343);

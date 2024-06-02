@@ -5,15 +5,12 @@ import Link from 'next/link';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { CiMenuFries } from 'react-icons/ci';
-import { IoWalletOutline } from 'react-icons/io5';
-import { VscAccount } from 'react-icons/vsc';
 
 import styles from './Navbar.module.scss';
 
 import { cn } from '@/lib/utils';
 
 import IconButton from '../buttons/IconButton';
-import { InputSearch } from '../input';
 import SettleyLogo from '../SettleyLogo';
 
 const unauthentiatedNavLinks = [
@@ -52,42 +49,43 @@ const Navbar = () => {
       direction='row'
       alignItems='center'
       justifyContent='space-between'
-      px='5%'
-      py='15px'
-      className={cn('bg-navy text-white', [styles.navbar])}
+      className={cn(
+        'bg-white text-white mt-12 pt-2 pb-8 border-y px-[5%] sm:px-[7%] border-black',
+        [styles.navbar]
+      )}
     >
-      <SettleyLogo colour='white' />
+      <SettleyLogo colour='new' />
 
-      <InputSearch containerClassName='w-1/4 hidden sm:flex' />
+      {/* <InputSearch containerClassName='w-1/4 hidden sm:flex' /> */}
 
-      <div className='items-center hidden lg:flex text-sm gap-4'>
-        {navLinks.map((link) => (
-          <Link key={link.label} href={link.route} className='text-light-grey'>
-            {link.label}
-          </Link>
-        ))}
-      </div>
-
-      <div className='items-center gap-4 hidden sm:flex whitespace-nowrap'>
-        <Link
+      <div className='items-center gap-11 hidden sm:flex whitespace-nowrap'>
+        {/* <Link
           className='text-light-grey flex gap-2 py-2 px-5 font-semibold items-center'
           href='/login'
         >
           <IoWalletOutline />
           Sign in
-        </Link>
+        </Link> */}
+        <div className='items-center hidden sm:flex gap-11'>
+          {navLinks.map((link) => (
+            <Link key={link.label} href={link.route} className='text-[#1E1E1E]'>
+              {link.label}
+            </Link>
+          ))}
+        </div>
         <Link
-          className='text-navy bg-yellow rounded-[6px] py-2 px-5 flex gap-2 font-semibold items-center'
-          href='/signup'
+          className='text-navy bg-yellow/50 rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
+          href='/login'
         >
-          <VscAccount /> Sign up
+          {/* <VscAccount />  */}
+          Login
         </Link>
       </div>
 
       <IconButton
         variant='ghost'
         icon={CiMenuFries}
-        className='text-3xl block sm:hidden'
+        className='text-3xl text-black block sm:hidden'
       />
     </Stack>
   );

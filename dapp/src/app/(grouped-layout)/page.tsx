@@ -1,64 +1,76 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import Cities from './_components/Cities';
-import Header from './_components/Header';
 import HowItWorks from './_components/HowItWorks';
 import TrendingProperties from './_components/TrendingProperties';
-import {
-  useGetPropertiesQuery,
-  useGetWishlistQuery,
-} from '../../api/properties';
-import PropertyCard from '../../components/PropertyCard';
+import WhoAreWe from './_components/WhoAreWe';
 
 function Dashboard() {
-  const session = useSession();
-  const userId = session.data?.id;
+  // const session = useSession();
+  // const userId = session.data?.id;
 
-  const { data } = useGetPropertiesQuery();
-  const { data: wishlistResponse } = useGetWishlistQuery(userId ?? '');
+  // const { data } = useGetPropertiesQuery();
+  // const { data: wishlistResponse } = useGetWishlistQuery(userId ?? '');
 
-  const wishlist = wishlistResponse?.data?.wishlist;
-  const wishlistPropertyIds = wishlist?.map((item) => item._id);
+  // const wishlist = wishlistResponse?.data?.wishlist;
+  // const wishlistPropertyIds = wishlist?.map((item) => item._id);
 
-  const properties = data?.data;
+  // const properties = data?.data;
 
   return (
     <div>
-      <Header />
+      <div className='mt-20 mb-24 flex flex-col gap-11 px-[5%] sm:px-[7%]'>
+        <h1 className='font-medium text-[45px] w-full leading-[55px] sm:leading-[75px] lg:leading-[96px] sm:text-[60px] lg:text-[80px]'>
+          <div>Join the future of </div>
+          <div>property ownership</div>
+        </h1>
+        <p>
+          Settley is redefining property ownership by leveraging decentralized
+          finance.
+        </p>
+      </div>
 
-      <div className='px-[5%] py-14 flex flex-col gap-16 lg:gap-32'>
-        <HowItWorks />
-        <TrendingProperties />
-        <div className='gap-4 w-full grid grid-cols-1 xl:grid-cols-6'>
-          <h2 className='font-bold text-3xl sm:text-5xl col-span-2'>
-            Who are we?
-          </h2>
-          <p className='col-span-2 w-full sm:w-4/5 lg:w-3/5 xl:w-full'>
-            We are your decentralised real estate agent, handling the end to end
-            process of acquiring and managing real world assets globally to
-            provide dynamic yield and a safer store of value using blockchain
-            Technology.
-          </p>
-          <p className='col-span-2 w-full sm:w-4/5 lg:w-3/5 xl:w-full'>
-            Settley also offers a secondary marketplace for fractional
-            digitalised real estate, even for properties not initially owned by
-            the DAO. We aim to provide further liquidity to the real estate
-            market and be a reputable blockchain investment with yield you can
-            understand.
-          </p>
+      <div className='relative'>
+        <Image
+          src='/images/landing-banner.jpg'
+          alt='banner'
+          width={1000}
+          height={595}
+          quality={100}
+          className='w-full h-[250px] sm:h-[400px] lg:h-[595px] object-cover'
+        />
+        <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
+          <Link href='/' className='flex items-center gap-5'>
+            Villa in Lake Como, Italy{' '}
+            <Image
+              src='/icons/long white arrow.png'
+              alt='arrow'
+              width={58}
+              height={1}
+            />
+          </Link>
         </div>
+      </div>
+
+      <HowItWorks />
+
+      <TrendingProperties />
+
+      <div className='bg-cream px-[5%] lg:px-[7%] py-12 sm:py-20 lg:py-28 flex flex-col gap-28'>
+        <WhoAreWe />
         <Cities />
       </div>
 
-      <div className='my-20 px-[7%] grid grid-cols-3 gap-4'>
+      {/* <div className='my-20 px-[7%] grid grid-cols-3 gap-4'>
         {properties?.map((property) => (
           <div key={property._id} className='col-span-1'>
             <PropertyCard property={property} wishlist={wishlistPropertyIds} />
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* <div className='px-[7%]'>
         <SubscriptionForm />

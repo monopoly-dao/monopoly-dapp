@@ -1,6 +1,6 @@
 import ListingCard from './_components/ListingCard';
-import ListingsHeader from './_components/ListingsHeader';
 import PropertiesFilter from './_components/PropertiesFIlter';
+import ListingHeader from '../listing/_components/ListingHeader';
 
 const listings = [
   {
@@ -128,7 +128,7 @@ const listings = [
 export default function Page() {
   return (
     <div>
-      <ListingsHeader />
+      <ListingHeader />
 
       <div className='mt-16 mb-16 sm:mb-32 px-[5%]'>
         <div className='flex flex-col lg:flex-row gap-3 justify-between items-start'>
