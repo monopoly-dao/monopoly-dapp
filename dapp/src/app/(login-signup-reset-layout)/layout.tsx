@@ -21,7 +21,7 @@ export default function LoginSignupResetLayout({
         </div>
         <div className='w-full sm:w-3/5 bg-white flex flex-col justify-between'>
           <div className='py-5 ml-[5%]'>
-            <SettleyLogo colour='dark' />
+            <SettleyLogo colour='new' />
           </div>
           <div className='mt-16 px-[5%] w-full sm:w-5/6'>{children}</div>
           <p className='h-14 ml-[5%]'>© 2024 Settley</p>

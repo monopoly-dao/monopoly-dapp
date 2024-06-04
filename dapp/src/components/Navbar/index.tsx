@@ -4,17 +4,16 @@ import { Stack } from '@mui/material';
 import Link from 'next/link';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import { CiMenuFries } from 'react-icons/ci';
 import { VscAccount } from 'react-icons/vsc';
 
 import styles from './Navbar.module.scss';
 
 import { cn } from '@/lib/utils';
 
-import IconButton from '../buttons/IconButton';
+import MobileMenuContainer from './MobileMenuContainer';
 import SettleyLogo from '../SettleyLogo';
 
-const unauthentiatedNavLinks = [
+export const unauthentiatedNavLinks = [
   {
     label: 'Listings',
     route: '/listings',
@@ -25,7 +24,7 @@ const unauthentiatedNavLinks = [
   },
 ];
 
-const authenticatedNavLinks = [
+export const authenticatedNavLinks = [
   {
     label: 'Wishlist',
     route: '/wishlist',
@@ -47,7 +46,7 @@ const Navbar = () => {
       alignItems='center'
       justifyContent='space-between'
       className={cn(
-        'bg-white text-white mt-12 pt-2 pb-8 border-y px-[5%] sm:px-[7%] border-black',
+        'bg-white text-white mt-12 z-[10] pt-2 pb-8 border-y px-[5%] sm:px-[7%] border-black',
         [styles.navbar]
       )}
     >
@@ -90,11 +89,7 @@ const Navbar = () => {
         )}
       </div>
 
-      <IconButton
-        variant='ghost'
-        icon={CiMenuFries}
-        className='text-3xl text-black block sm:hidden'
-      />
+      <MobileMenuContainer />
     </Stack>
   );
 };
