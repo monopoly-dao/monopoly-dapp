@@ -22,7 +22,7 @@ export default function Page() {
     <div className='p-[5%]'>
       <h1>Wishlist</h1>
 
-      <div className='my-20 grid grid-cols-3 gap-4'>
+      <div className='my-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
         {wishlistProperties?.map((property) => (
           <div key={property._id} className='col-span-1'>
             <PropertyCard property={property} wishlist={wishlistPropertyIds} />

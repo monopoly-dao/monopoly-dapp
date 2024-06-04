@@ -18,6 +18,12 @@ export default function MobileMenu({ close }: Props) {
   const isLoggedIn = session.data;
   const navLinks = isLoggedIn ? authenticatedNavLinks : unauthentiatedNavLinks;
 
+  function closeAfterAnyAction() {
+    setTimeout(() => {
+      close();
+    }, 1000);
+  }
+
   return (
     <div className='h-full w-full bg-white p-[22px]'>
       <div className='flex justify-end'>
@@ -33,7 +39,10 @@ export default function MobileMenu({ close }: Props) {
         </button>
       </div>
 
-      <div className='text-dark mt-10 flex w-full flex-col items-center gap-6'>
+      <div
+        className='text-dark mt-10 flex w-full flex-col items-center gap-6'
+        onClick={closeAfterAnyAction}
+      >
         <div className='items-center flex flex-col gap-6'>
           {navLinks.map((link) => (
             <Link key={link.label} href={link.route} className='text-[#1E1E1E]'>

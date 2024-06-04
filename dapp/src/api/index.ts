@@ -4,7 +4,8 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 // import { createApi } from '@reduxjs/toolkit/query';
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { signOut } from 'next-auth/react';
+import { Session } from 'next-auth';
+import { getSession, signOut } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
 import {
@@ -16,6 +17,8 @@ import {
 // TODO: convert hardcoded base urls to env;
 export const AUTH_BASE_URL = 'https://settley-auth.fly.dev';
 export const BASE_URL = 'https://settley.fly.dev';
+// 'http://localhost:8000';
+// 'https://settley.fly.dev';
 
 // initialize an empty api service that we'll inject endpoints into later as needed
 axios.defaults.timeout = AXIOS_TIMEOUT_TIME;
@@ -37,12 +40,12 @@ const axiosBaseQuery =
     unknown
   > =>
   async (args, _api, _extraOptions) => {
-    // let session: Session | null = null;
+    let session: Session | null = null;
     const { url, method, data, params } = args;
 
     try {
-      // session = await getSession();
-      // const token = session && session.accessToken;
+      session = await getSession();
+      const token = session && session.token;
 
       const result = await axios({
         url: url,
@@ -51,7 +54,7 @@ const axiosBaseQuery =
         params,
         baseURL: baseUrl,
         headers: {
-          // Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         timeout: AXIOS_TIMEOUT_TIME,
         timeoutErrorMessage: AXIOS_TIMEOUT_MSG,
