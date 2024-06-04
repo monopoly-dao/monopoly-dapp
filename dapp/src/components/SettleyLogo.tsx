@@ -15,7 +15,7 @@ export default function SettleyLogo({ colour }: Props) {
           width={144}
           height={44}
           quality={100}
-          className='w-[144px]'
+          className='w-[144px] h-auto'
         />
       )}
       {colour === 'white' && (
@@ -25,7 +25,7 @@ export default function SettleyLogo({ colour }: Props) {
           width={144}
           height={44}
           quality={100}
-          className='w-[144px]'
+          className='w-[144px] h-auto'
         />
       )}
       {colour === 'new' && (
@@ -35,7 +35,7 @@ export default function SettleyLogo({ colour }: Props) {
           width={144}
           height={44}
           quality={100}
-          className='w-[144px]'
+          className='w-[144px] h-auto'
         />
       )}
     </Link>

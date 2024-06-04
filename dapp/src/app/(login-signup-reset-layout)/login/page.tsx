@@ -35,6 +35,7 @@ export default function Page() {
     initialValues: loginInitialValues,
     onSubmit: async (values) => {
       try {
+        setIsLoading(true);
         const res = await signIn('login', { redirect: false, ...values });
 
         if ((!res || res.error) && res?.error !== 'undefined') {
@@ -105,7 +106,8 @@ export default function Page() {
         <Button
           type='submit'
           className='py-4 px-10'
-          disabled={isLoading || !isValid || !dirty}
+          isLoading={isLoading}
+          disabled={!isValid || !dirty}
         >
           Log in
         </Button>

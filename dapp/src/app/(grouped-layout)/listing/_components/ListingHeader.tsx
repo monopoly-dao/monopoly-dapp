@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { CiShare2 } from 'react-icons/ci';
 import { IoLocationOutline } from 'react-icons/io5';
 import { VscAccount } from 'react-icons/vsc';
 
@@ -38,13 +37,13 @@ export default function ListingHeader() {
           <Button variant='light' className='text-navy bg-white py-2 px-5'>
             Buy Property
           </Button>
-          <Button
+          {/* <Button
             variant='outline'
             leftIcon={CiShare2}
             className='py-2 px-5 bg-transparent text-white border-white'
           >
             Share
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

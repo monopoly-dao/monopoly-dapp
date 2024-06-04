@@ -30,7 +30,7 @@ export default function ListingCard({
   return (
     <Link
       href={`/listing/${symbol}`}
-      className='w-full min-h-[450px] rounded-[12px] bg-white shadow'
+      className='w-full min-h-[450px] rounded-[12px] bg-white shadow-2xl'
     >
       <Image
         src={image}

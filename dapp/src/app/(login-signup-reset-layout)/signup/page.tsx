@@ -108,7 +108,8 @@ export default function Page() {
         <Button
           type='submit'
           className='py-4 px-10'
-          disabled={isLoading || !isValid || !dirty}
+          isLoading={isLoading}
+          disabled={!isValid || !dirty}
         >
           Sign up
         </Button>

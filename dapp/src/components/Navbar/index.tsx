@@ -5,6 +5,7 @@ import Link from 'next/link';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { CiMenuFries } from 'react-icons/ci';
+import { VscAccount } from 'react-icons/vsc';
 
 import styles from './Navbar.module.scss';
 
@@ -26,16 +27,12 @@ const unauthentiatedNavLinks = [
 
 const authenticatedNavLinks = [
   {
-    label: 'Profile.',
-    route: '/profile',
-  },
-  {
-    label: 'Wishlist.',
+    label: 'Wishlist',
     route: '/wishlist',
   },
   {
-    label: 'Logout.',
-    route: '/logout',
+    label: 'Listings',
+    route: '/listings',
   },
 ];
 
@@ -73,13 +70,24 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
-        <Link
-          className='text-navy bg-yellow/50 rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
-          href='/login'
-        >
-          {/* <VscAccount />  */}
-          Login
-        </Link>
+        {isLoggedIn && (
+          <Link
+            className='text-navy bg-yellow/50 rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
+            href='/profile'
+          >
+            <VscAccount />
+            Profile
+          </Link>
+        )}
+        {!isLoggedIn && (
+          <Link
+            className='text-navy bg-yellow/50 rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
+            href='/login'
+          >
+            {/* <VscAccount />  */}
+            Login
+          </Link>
+        )}
       </div>
 
       <IconButton

@@ -14,8 +14,8 @@ import {
 } from '../constants/appConstants';
 
 // TODO: convert hardcoded base urls to env;
-export const AUTH_BASE_URL = 'http://localhost:3006';
-export const BASE_URL = 'http://localhost:8000';
+export const AUTH_BASE_URL = 'https://settley-auth.fly.dev';
+export const BASE_URL = 'https://settley.fly.dev';
 
 // initialize an empty api service that we'll inject endpoints into later as needed
 axios.defaults.timeout = AXIOS_TIMEOUT_TIME;
@@ -61,7 +61,14 @@ const axiosBaseQuery =
     } catch (axiosError) {
       const err = axiosError as AxiosError;
 
-      if (err?.response?.status === 401) {
+      if (
+        err?.response?.data &&
+        typeof err.response.data === 'object' &&
+        err.response.data &&
+        'message' in err.response.data &&
+        typeof err.response.data.message === 'string' &&
+        err?.response?.data?.message === 'Unauthorized request'
+      ) {
         toast.error('Session expired. Please login again');
         signOut();
       }
