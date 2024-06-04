@@ -21,7 +21,7 @@ export default function MobileMenu({ close }: Props) {
   function closeAfterAnyAction() {
     setTimeout(() => {
       close();
-    }, 1000);
+    }, 700);
   }
 
   return (
