@@ -20,15 +20,15 @@ export default function TrendingProperties() {
 
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-5'>
         <TrendingPropertyCard
-          image='/images/header image.jpg'
-          caption='Abu Dhabi, UAE'
+          image='/images/mykonos.png'
+          caption='Greece, Mykonos'
         />
         <TrendingPropertyCard
-          image='/svg/Beachfront property.svg'
+          image='/images/mykonos-2.png'
           caption='Monaco, France'
         />
         <TrendingPropertyCard
-          image='/images/header image.jpg'
+          image='/images/france.png'
           caption='Madrid, Spain'
         />
       </div>

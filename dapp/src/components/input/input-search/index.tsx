@@ -1,8 +1,9 @@
 'use client';
 
 import { useFormik } from 'formik';
-import { Search } from 'lucide-react';
+import { LucideIcon, Search } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { IconType } from 'react-icons';
 import { ImSpinner2 } from 'react-icons/im';
 
 import { cn } from '@/lib/utils';
@@ -18,6 +19,7 @@ export interface InputSearchProp
   inputClassName?: string;
   containerClassName?: string;
   updateQuery?: boolean;
+  icon?: IconType | LucideIcon;
 }
 
 const InputSearch = ({
@@ -30,6 +32,7 @@ const InputSearch = ({
   inputClassName,
   containerClassName,
   updateQuery,
+  icon: Icon,
   ...rest
 }: InputSearchProp) => {
   const router = useRouter();
@@ -67,6 +70,8 @@ const InputSearch = ({
     },
   });
 
+  const SearchIcon = Icon ?? Search;
+
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -97,7 +102,7 @@ const InputSearch = ({
         value={formik.values.search}
         {...rest}
       />
-      <Search className='text-black absolute left-3' size={16} />
+      <SearchIcon className='text-black absolute left-3' size={16} />
       {isLoading && (
         <div className='text-amali-green absolute right-6 top-1/2 -translate-y-1/2'>
           <ImSpinner2 className='animate-spin' />

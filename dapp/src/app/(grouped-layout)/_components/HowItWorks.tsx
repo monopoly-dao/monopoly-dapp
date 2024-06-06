@@ -22,10 +22,10 @@ export default function HowItWorks() {
             property.
           </p>
         </div>
-        <Button className='py-4 px-6 bg-yellow/50 w-fit font-medium'>
+        <Button className='py-4 px-6 bg-navy text-white w-fit font-medium'>
           Explore Properties
           <Image
-            src='/icons/long black arrow.png'
+            src='/icons/white arrow.png'
             alt='arrow'
             width={33}
             height={1}

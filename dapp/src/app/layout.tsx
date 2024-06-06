@@ -14,7 +14,10 @@ import { ReduxProvider } from '../components/redux-provider';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: siteConfig.title,
+  title: {
+    default: 'Settley',
+    template: `%s | ${siteConfig.title}`,
+  },
   applicationName: siteConfig.title,
   description: siteConfig.description,
   robots: { index: true, follow: true },
@@ -40,6 +43,20 @@ export const metadata: Metadata = {
     images: [`${siteConfig.url}/images/og.png`],
     creator: '@mubaraq__',
   },
+  keywords: [
+    'Settley',
+    'SettleyCo',
+    'Settley Co',
+    'MonopolyDAO',
+    'Monopoly DAO',
+    'MDAO',
+    'Properties',
+    'Fractions',
+    'Property Ownership',
+    'Ownership',
+    'Property Fractions',
+    'Settley Properties',
+  ],
   authors: [
     {
       // name: 'Product Studio HQ',

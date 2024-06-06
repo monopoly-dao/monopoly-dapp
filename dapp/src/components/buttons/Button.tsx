@@ -69,9 +69,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'disabled:bg-gray-200',
             ],
             variant === 'primary' && [
-              'bg-yellow border-yellow text-navy',
-              'active:bg-yellow',
-              'disabled:bg-yellow/20 disabled:border-yellow/10 disabled:text-navy/90',
+              'bg-navy border-navy text-white',
+              'active:bg-navy',
+              'disabled:bg-navy/20 disabled:border-navy/10 disabled:text-white/90',
             ],
             variant === 'primary-ghost' && [
               'bg-primary-100 text-primary-700 border-primary-100',

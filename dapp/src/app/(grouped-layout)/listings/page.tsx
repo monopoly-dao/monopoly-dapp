@@ -1,6 +1,6 @@
 import ListingCard from './_components/ListingCard';
+import ListingsHeader from './_components/ListingsHeader';
 import PropertiesFilter from './_components/PropertiesFIlter';
-import ListingHeader from '../listing/_components/ListingHeader';
 
 const listings = [
   {
@@ -128,14 +128,16 @@ const listings = [
 export default function Page() {
   return (
     <div>
-      <ListingHeader />
+      <ListingsHeader />
 
-      <div className='mt-16 mb-16 sm:mb-32 px-[5%]'>
-        <div className='flex flex-col lg:flex-row gap-3 justify-between items-start'>
-          <h2 className='font-bold text-3xl sm:text-5xl'>Popular Properties</h2>
+      <div className='mt-16 sm:mt-28 mb-16 sm:mb-32 px-[5%]'>
+        <div className='flex flex-col lg:flex-row gap-3 justify-between items-start mb-16'>
+          <h2 className='font-medium text-3xl sm:text-4xl'>
+            Popular Properties
+          </h2>
           <PropertiesFilter />
         </div>
-        <div className='my-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
+        <div className='my-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
           {listings.map((listing, id) => (
             <ListingCard key={id} {...listing} />
           ))}

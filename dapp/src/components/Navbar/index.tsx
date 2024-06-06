@@ -71,7 +71,7 @@ const Navbar = () => {
         </div>
         {isLoggedIn && (
           <Link
-            className='text-navy bg-yellow/50 rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
+            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
             href='/profile'
           >
             <VscAccount />
@@ -80,7 +80,7 @@ const Navbar = () => {
         )}
         {!isLoggedIn && (
           <Link
-            className='text-navy bg-yellow/50 rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
+            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
             href='/login'
           >
             {/* <VscAccount />  */}

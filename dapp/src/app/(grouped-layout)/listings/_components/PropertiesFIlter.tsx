@@ -14,7 +14,7 @@ export default function PropertiesFilter() {
   }
 
   return (
-    <div className='flex'>
+    <div className='flex flex-wrap'>
       {filters.map((filter) => (
         <div
           key={filter}

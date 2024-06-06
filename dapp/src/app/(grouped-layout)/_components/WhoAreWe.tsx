@@ -23,14 +23,9 @@ export default function WhoAreWe() {
         </p>
       </div>
 
-      <Button className='py-4 px-6 bg-yellow/50 w-fit mt-4 font-medium'>
+      <Button className='py-4 px-6 bg-navy text-white w-fit mt-4 font-medium'>
         Read More{' '}
-        <Image
-          src='/icons/long black arrow.png'
-          alt='arrow'
-          width={33}
-          height={1}
-        />
+        <Image src='/icons/white arrow.png' alt='arrow' width={33} height={1} />
       </Button>
     </div>
   );

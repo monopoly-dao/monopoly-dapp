@@ -24,16 +24,16 @@ export default function Cities() {
 
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-8'>
         <TrendingPropertyCard
-          image='/svg/auction houses.svg'
-          caption='Lisbon, Portugal'
+          image='/images/mykonos.png'
+          caption='Greece, Mykonos'
         />
         <TrendingPropertyCard
-          image='/images/Montenegro.png'
-          caption='Belgrade, Serbia'
-        />
-        <TrendingPropertyCard
-          image='/images/Monaco.png'
+          image='/images/mykonos-2.png'
           caption='Monaco, France'
+        />
+        <TrendingPropertyCard
+          image='/images/france.png'
+          caption='Madrid, Spain'
         />
       </div>
     </div>

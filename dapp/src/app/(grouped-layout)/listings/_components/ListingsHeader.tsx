@@ -1,51 +1,25 @@
 import Image from 'next/image';
 
-type Props = {
-  image: string;
-  title: string;
-  caption: string;
-};
-
-function HeaderProperty({ image, title, caption }: Props) {
-  return (
-    <div className='w-full h-[284px] relative rounded-[12px] flex flex-col justify-end p-6 bottom-fade'>
-      <Image
-        src={image}
-        alt='apartment'
-        quality={100}
-        width={300}
-        height={280}
-        className='w-full h-full absolute object-cover top-0 left-0 rounded-[12px] bottom-fade'
-      />
-      <div className='flex flex-col z-[2] text-light-grey gap-3'>
-        <p className='text-2xl font-bold'>{title}</p>
-        <p className='font-medium'>{caption}</p>
-      </div>
-    </div>
-  );
-}
+import PropertiesSearch from '../../listings/_components/PropertiesSearch';
 
 export default function ListingsHeader() {
   return (
-    <div className='bg-navy py-20 min-h-[360px] -mt-[1px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-[5%] relative'>
-      <HeaderProperty
-        image='/images/apartment buildings.jpg'
-        title='Jackson Heights'
-        caption='$ 50,000'
-      />
-      <div className='hidden sm:block'>
-        <HeaderProperty
-          image='/images/mansion.jpg'
-          title='Crestville'
-          caption='$ 50,000'
+    <div className='bg-navy pt-24 pb-48 min-h-[360px] flex px-[5%] relative mt-5'>
+      <div className='w-full h-full absolute left-0 top-0'>
+        <Image
+          src='/images/listings-header.jpg'
+          alt='building'
+          width={400}
+          height={360}
+          quality={100}
+          className='w-full h-full min-h-[360px] object-cover'
         />
       </div>
-      <div className='hidden lg:block'>
-        <HeaderProperty
-          image='/images/school dorm.jpg'
-          title='Oxford Projects'
-          caption='$ 50,000'
-        />
+      <div className='z-[2] w-full flex flex-col gap-16 items-center text-white'>
+        <h1 className='text-center text-3xl sm:text-4xl lg:text-6xl w-full sm:w-1/2'>
+          Discover properties from around the world
+        </h1>
+        <PropertiesSearch />
       </div>
     </div>
   );
