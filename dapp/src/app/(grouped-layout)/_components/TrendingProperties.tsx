@@ -24,7 +24,7 @@ export default function TrendingProperties() {
           caption='Abu Dhabi, UAE'
         />
         <TrendingPropertyCard
-          image='/assets/Beachfront property.svg'
+          image='/svg/Beachfront property.svg'
           caption='Monaco, France'
         />
         <TrendingPropertyCard

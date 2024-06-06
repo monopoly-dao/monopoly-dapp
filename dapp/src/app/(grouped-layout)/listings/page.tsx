@@ -55,7 +55,7 @@ const listings = [
   },
   {
     name: 'Montenegro Mountain Lodge',
-    image: '/assets/Beachfront property.svg',
+    image: '/svg/Beachfront property.svg',
     location: 'Zabljak, Montenegro',
     beds: 2,
     baths: 1,
@@ -75,7 +75,7 @@ const listings = [
   },
   {
     name: 'Golden Sands Villa',
-    image: '/assets/auction houses.svg',
+    image: '/svg/auction houses.svg',
     location: 'Lisbon, Portugal',
     beds: 3,
     baths: 4,
@@ -85,7 +85,7 @@ const listings = [
   },
   {
     name: 'Dubai Desert Oasis Villa',
-    image: '/assets/Featured image.svg',
+    image: '/svg/Featured image.svg',
     location: 'Dubai, UAE',
     beds: 5,
     baths: 10,
@@ -115,7 +115,7 @@ const listings = [
   },
   {
     name: 'Sunset Retreat',
-    image: '/assets/Beachfront property.svg',
+    image: '/svg/Beachfront property.svg',
     location: 'Algarve, Portugal',
     beds: 10,
     baths: 10,

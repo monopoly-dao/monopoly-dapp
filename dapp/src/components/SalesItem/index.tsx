@@ -6,7 +6,7 @@ const SalesItem = () => {
   return (
     <div className={styles.salesItem}>
       <Image
-        src='/assets/auction houses.svg'
+        src='/svg/auction houses.svg'
         alt='houses'
         width={200}
         height={200}

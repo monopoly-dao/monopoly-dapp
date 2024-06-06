@@ -6,7 +6,7 @@ export default function RealEstateCard() {
     <Link href='/portfolio/gff374-dff' className='w-full flex flex-col gap-3'>
       <div className='w-full rounded-[10px]'>
         <Image
-          src='/assets/auction houses.svg'
+          src='/svg/auction houses.svg'
           alt='real estate'
           width={300}
           height={200}

@@ -24,7 +24,7 @@ export default function Cities() {
 
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-8'>
         <TrendingPropertyCard
-          image='/assets/auction houses.svg'
+          image='/svg/auction houses.svg'
           caption='Lisbon, Portugal'
         />
         <TrendingPropertyCard

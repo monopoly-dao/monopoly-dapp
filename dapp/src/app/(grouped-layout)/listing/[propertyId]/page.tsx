@@ -34,7 +34,7 @@ export default function Page() {
           </div>
           <div className='col-span-1 row-span-1'>
             <Image
-              src='/assets/Beachfront property.svg'
+              src='/svg/Beachfront property.svg'
               alt='apartment'
               width={200}
               height={200}
@@ -44,7 +44,7 @@ export default function Page() {
           </div>
           <div className='col-span-1 row-span-1'>
             <Image
-              src='/assets/Featured image.svg'
+              src='/svg/Featured image.svg'
               alt='apartment'
               width={200}
               height={200}

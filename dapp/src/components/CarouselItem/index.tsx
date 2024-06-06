@@ -12,7 +12,7 @@ const CarouselItem = () => {
       className={styles.carouselItem}
     >
       <Image
-        src='/assets/Featured image.svg'
+        src='/svg/Featured image.svg'
         alt='carousel image'
         loading='lazy'
         width={200}
@@ -32,7 +32,7 @@ const CarouselItem = () => {
         >
           <Stack direction='row' alignItems='center' justifyContent='center'>
             <Image
-              src='/assets/fire icon.svg'
+              src='/svg/fire icon.svg'
               alt='fire'
               width={20}
               height={20}

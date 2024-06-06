@@ -10,7 +10,7 @@ export default function Page() {
       <div className='flex flex-col gap-5 sm:flex-row'>
         <div className='w-full sm:w-3/4 rounded-[10px]'>
           <Image
-            src='/assets/auction houses.svg'
+            src='/svg/auction houses.svg'
             alt='real estate'
             width={300}
             height={200}
