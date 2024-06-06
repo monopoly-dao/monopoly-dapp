@@ -28,7 +28,6 @@
     "@near-wallet-selector/nightly-connect": "^7.2.1",
     "@near-wallet-selector/sender": "^7.2.1",
     "@near-wallet-selector/wallet-connect": "^7.2.1",
-    "@netlify/plugin-nextjs": "4",
     "@reduxjs/toolkit": "^2.1.0",
     "axios": "^1.6.6",
     "clsx": "^2.1.0",
