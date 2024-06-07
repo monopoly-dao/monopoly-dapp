@@ -53,7 +53,7 @@ export default function MobileMenu({ close }: Props) {
         <div className='bg-medium-grey h-[0.5px] w-full' />
         {isLoggedIn && (
           <Link
-            className='text-navy bg-yellow/50 rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center w-fit'
+            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
             href='/profile'
           >
             <VscAccount />
@@ -62,7 +62,7 @@ export default function MobileMenu({ close }: Props) {
         )}
         {!isLoggedIn && (
           <Link
-            className='text-navy bg-yellow/50 rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center w-fit'
+            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
             href='/login'
           >
             Login

@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon/favicon.ico',
     shortcut: '/favicon/favicon-16x16.png',
-    apple: '/favicon/apple-icon-72x72.png',
+    apple: '/favicon/apple-touch-icon.png',
   },
-  manifest: `/favicon/webmanifest.json`,
+  manifest: `/favicon/site.webmanifest`,
   openGraph: {
     url: siteConfig.url,
     title: siteConfig.title,
