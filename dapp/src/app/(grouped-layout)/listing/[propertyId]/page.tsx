@@ -5,6 +5,8 @@ import { MdPool } from 'react-icons/md';
 
 import Button from '@/components/buttons/Button';
 
+import YouMightAlsoLike from '../_components/YouMightAlsoLike';
+
 export default function Page() {
   return (
     <div>
@@ -55,7 +57,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className='mt-12 flex flex-col-reverse sm:flex-row w-full justify-between gap-5'>
+        <div className='mt-12 mb-16 flex flex-col-reverse sm:flex-row w-full justify-between gap-5'>
           <div className='w-full sm:w-3/5 flex flex-col gap-7'>
             <div>
               <p className='text-3xl font-medium'>
@@ -149,6 +151,8 @@ export default function Page() {
             </Button>
           </div>
         </div>
+
+        <YouMightAlsoLike />
       </div>
     </div>
   );
