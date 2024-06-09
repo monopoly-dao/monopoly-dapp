@@ -6,7 +6,9 @@ export const signupSchema = object({
   [SignupIds.Email]: string()
     .email('Email is not valid')
     .required('Please provide your email address'),
-  [SignupIds.Username]: string().required('Please provide your username'),
+  [SignupIds.Username]: string()
+    .required('Please provide your username')
+    .min(6, 'Username must have a minimum of 6 characters'),
   [SignupIds.Password]: string()
     .required('Password is required')
     .min(8, 'Password must be at least 8 characters')
