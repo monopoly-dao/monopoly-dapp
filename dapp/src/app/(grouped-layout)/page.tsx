@@ -48,7 +48,7 @@ function Dashboard() {
             <Image
               src='/icons/white arrow.png'
               alt='arrow'
-              width={58}
+              width={33}
               height={1}
             />
           </Link>
