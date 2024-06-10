@@ -6,9 +6,7 @@ export default function TrendingProperties() {
   return (
     <div className='flex flex-col gap-6 sm:gap-12 bg-white py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'>
       <div className='flex justify-between items-start'>
-        <h2 className='font-medium text-3xl sm:text-4xl'>
-          Trending Properties
-        </h2>
+        <h2 className='text-3xl sm:text-4xl'>Trending Properties</h2>
         <Link
           href='/listings'
           className='text-black flex font-medium items-center gap-2 underline'

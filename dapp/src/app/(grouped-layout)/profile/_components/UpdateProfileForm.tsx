@@ -1,10 +1,15 @@
 'use client';
 
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { useFormik } from 'formik';
 import { useSession } from 'next-auth/react';
+import toast from 'react-hot-toast';
 
+import Button from '@/components/buttons/Button';
 import { Input } from '@/components/input';
+
+import { useUpdateUserDetailsMutation } from '@/api/profile';
+import { handleErrors } from '@/utils/error';
 
 import {
   UpdateProfileIds,
@@ -18,15 +23,14 @@ type Props = {
     lastName: string;
     email: string;
     phone: string;
-    address: string;
     twitter: string;
-    preferredCurrency: string;
   };
 };
 
 export default function UpdateProfileForm({ detailsFromDb }: Props) {
   const session = useSession();
   const email = session.data?.email ?? '';
+  const [updateUser, { isLoading }] = useUpdateUserDetailsMutation();
 
   const {
     getFieldProps,
@@ -38,8 +42,23 @@ export default function UpdateProfileForm({ detailsFromDb }: Props) {
     handleSubmit,
   } = useFormik({
     initialValues: detailsFromDb ?? UpdateProfileInitialValues(email),
-    onSubmit: async () => {
-      //
+    onSubmit: async (values) => {
+      const formData = new FormData();
+      formData.set('firstName', values.firstName);
+      formData.set('lastName', values.lastName);
+      formData.set('phone', values.phone);
+      formData.set('twitter', values.twitter);
+
+      try {
+        await updateUser({
+          data: formData,
+          userId: session.data?.id ?? '',
+        }).unwrap();
+
+        toast.success('Data successfuly updatd');
+      } catch (e) {
+        handleErrors(e);
+      }
     },
     validationSchema: updateProfileSchema,
     validateOnBlur: true,
@@ -76,22 +95,10 @@ export default function UpdateProfileForm({ detailsFromDb }: Props) {
         {...getFormikInputProps(UpdateProfileIds.LastName)}
       />
       <Input
-        id={UpdateProfileIds.Email}
-        required
-        label='Email address'
-        {...getFormikInputProps(UpdateProfileIds.Email)}
-      />
-      <Input
         id={UpdateProfileIds.Phone}
         required
         label='Phone number'
         {...getFormikInputProps(UpdateProfileIds.Phone)}
-      />
-      <Input
-        id={UpdateProfileIds.Address}
-        required
-        label='House address'
-        {...getFormikInputProps(UpdateProfileIds.Address)}
       />
       <Input
         required={false}
@@ -99,14 +106,13 @@ export default function UpdateProfileForm({ detailsFromDb }: Props) {
         label='Twitter'
         {...getFormikInputProps(UpdateProfileIds.Twitter)}
       />
-      <Input
-        id={UpdateProfileIds.Preferred_Currency}
-        required
-        label='Preferred Currency'
-        {...getFormikInputProps(UpdateProfileIds.Preferred_Currency)}
-      />
 
-      <Button type='submit' variant='contained' disabled={!isValid || !dirty}>
+      <Button
+        type='submit'
+        isLoading={isLoading}
+        disabled={!isValid || !dirty}
+        className='w-fit py-2 px-8'
+      >
         Save Changes
       </Button>
     </Box>

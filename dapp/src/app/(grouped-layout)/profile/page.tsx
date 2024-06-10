@@ -2,6 +2,8 @@
 
 import { useSession } from 'next-auth/react';
 
+import LoadingSkeleton from '@/components/LoadingSkeleton';
+
 import UpdateProfileForm from './_components/UpdateProfileForm';
 import { useGetUserDetailsQuery } from '../../../api/profile';
 
@@ -10,7 +12,7 @@ export default function Page() {
   const userId = session.data?.id ?? '';
   // const email = session.data?.email ?? '';
 
-  const { data } = useGetUserDetailsQuery(userId);
+  const { data, isLoading } = useGetUserDetailsQuery(userId);
   const userDetails = data?.data;
 
   const initialValuesFromDb = {
@@ -18,13 +20,11 @@ export default function Page() {
     lastName: userDetails?.lastName ?? '',
     email: userDetails?.userDetails.email ?? '',
     phone: userDetails?.userDetails.phone ?? '',
-    address: userDetails?.userDetails.address ?? '',
     twitter: userDetails?.userDetails.twitter ?? '',
-    preferredCurrency: userDetails?.userDetails.preferredCurrency ?? '',
   };
 
   return (
-    <div className='p-[5%]'>
+    <div className='py-[5%] px-[5%] lg:px-[7%]'>
       <h1>Profile</h1>
 
       {/* <Box
@@ -67,11 +67,22 @@ export default function Page() {
           {...getFormikInputProps(UpdateProfileIds.Email)}
         />
       </Box> */}
-      {userDetails ? (
-        <UpdateProfileForm key='Edit' detailsFromDb={initialValuesFromDb} />
-      ) : (
-        <UpdateProfileForm key='Create' />
+      {isLoading && (
+        <div className='mt-10 w-3/4 flex flex-col gap-4'>
+          {Array(4)
+            .fill('')
+            .map((_, id) => (
+              <LoadingSkeleton key={id} className='w-full h-14' />
+            ))}
+        </div>
       )}
+
+      {!isLoading &&
+        (userDetails ? (
+          <UpdateProfileForm key='Edit' detailsFromDb={initialValuesFromDb} />
+        ) : (
+          <UpdateProfileForm key='Create' />
+        ))}
     </div>
   );
 }

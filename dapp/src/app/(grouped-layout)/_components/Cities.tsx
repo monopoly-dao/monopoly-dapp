@@ -7,7 +7,7 @@ export default function Cities() {
     <div className='flex flex-col gap-6 sm:gap-12'>
       <div className='flex justify-between items-start'>
         <div>
-          <h2 className='font-medium text-3xl sm:text-4xl'>Explore Cities</h2>
+          <h2 className='text-3xl sm:text-4xl'>Explore Cities</h2>
           <p className='mt-5 w-full sm:w-4/5'>
             Discover the cities with the most sought after properties and asset
             owners right now.

@@ -1,28 +1,37 @@
+'use client';
+
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import Button from '@/components/buttons/Button';
 
 export default function HowItWorks() {
+  const router = useRouter();
+
   return (
     <div className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-14 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'>
       <div className='flex flex-col gap-5'>
         <h2 className='font-medium text-3xl sm:text-5xl'>
-          Own a property in minutes
+          With Settley, you can own a property in minutes
         </h2>
         <div className='w-full lg:w-4/5 flex flex-col gap-[2px]'>
           <p>
-            Buy property instantly on the blockchain, whole or fractionalized.
+            Our blockchain technology lets you buy property anywhere in the
+            world in an instant, whole or fractionalised.
           </p>
           <p>
-            Simplify real-world property transactions with automated title
-            management.
+            Settley simplifies real world property transactions using automated
+            title management and trustless blockchain powered services.
           </p>
-          <p>
+          {/* <p>
             Our local entity acts as an escrow agent on your behalf when you buy
             property.
-          </p>
+          </p> */}
         </div>
-        <Button className='py-4 px-6 bg-navy text-white w-fit font-medium'>
+        <Button
+          onClick={() => router.push('/listings')}
+          className='py-4 px-6 bg-navy text-white w-fit font-medium'
+        >
           Explore Properties
           <Image
             src='/icons/white arrow.png'

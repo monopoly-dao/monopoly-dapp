@@ -46,7 +46,7 @@ function Dashboard() {
           <Link href='/' className='flex items-center gap-5'>
             Villa in Lake Como, Italy{' '}
             <Image
-              src='/icons/long white arrow.png'
+              src='/icons/white arrow.png'
               alt='arrow'
               width={58}
               height={1}
