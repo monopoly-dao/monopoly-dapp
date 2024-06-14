@@ -75,7 +75,7 @@ const Navbar = () => {
             href='/profile'
           >
             <VscAccount />
-            Profile
+            Account
           </Link>
         )}
         {!isLoggedIn && (

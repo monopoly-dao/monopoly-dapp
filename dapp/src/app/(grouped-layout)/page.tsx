@@ -1,5 +1,4 @@
-'use client';
-
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -7,6 +6,16 @@ import Cities from './_components/Cities';
 import HowItWorks from './_components/HowItWorks';
 import TrendingProperties from './_components/TrendingProperties';
 import WhoAreWe from './_components/WhoAreWe';
+
+export const metadata: Metadata = {
+  title: 'Settley | Join the future of property ownership',
+  keywords: [
+    'Settley',
+    'Join the future of property ownership',
+    'SettleyCo',
+    'Settley co',
+  ],
+};
 
 function Dashboard() {
   // const session = useSession();

@@ -24,9 +24,7 @@ export default function Page() {
   };
 
   return (
-    <div className='py-[5%] px-[5%] lg:px-[7%]'>
-      <h1>Profile</h1>
-
+    <div>
       {/* <Box
         component='form'
         sx={{

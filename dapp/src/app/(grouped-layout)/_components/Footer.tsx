@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
 import SubscriptionForm from '@/app/_components/SubscriptionForm';
@@ -22,9 +22,13 @@ const exploreLinks = [
 const followLinks = [
   { label: 'Facebook', href: '/', icon: FaFacebook },
   { label: 'Instagram', href: '/', icon: FaInstagram },
-  { label: 'X', href: '/', icon: FaXTwitter },
+  {
+    label: 'X',
+    href: 'https://x.com/settleyApp',
+    icon: FaXTwitter,
+    openInNewTab: true,
+  },
   { label: 'LinkedIn', href: '/', icon: FaLinkedin },
-  { label: 'YouTube', href: '/', icon: FaYoutube },
 ];
 
 export default function Footer() {

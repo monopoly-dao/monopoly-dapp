@@ -57,7 +57,7 @@ export default function MobileMenu({ close }: Props) {
             href='/profile'
           >
             <VscAccount />
-            Profile
+            Account
           </Link>
         )}
         {!isLoggedIn && (

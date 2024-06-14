@@ -46,6 +46,7 @@ export const metadata: Metadata = {
   keywords: [
     'Settley',
     'SettleyCo',
+    'settleyco',
     'Settley Co',
     'MonopolyDAO',
     'Monopoly DAO',

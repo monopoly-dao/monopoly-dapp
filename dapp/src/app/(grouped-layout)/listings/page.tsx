@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import ListingCard from './_components/ListingCard';
 import ListingsHeader from './_components/ListingsHeader';
 import PropertiesFilter from './_components/PropertiesFIlter';
@@ -124,6 +126,19 @@ const listings = [
     symbol: 'snsr',
   },
 ];
+
+export const metadata: Metadata = {
+  title: 'Settley | Property Listings',
+  keywords: [
+    'Settley',
+    'Listings',
+    'Settley Listings',
+    'Settley Properties',
+    'Property Listings',
+    'SettleyCo',
+    'Settley co',
+  ],
+};
 
 export default function Page() {
   return (
