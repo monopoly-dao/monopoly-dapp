@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://settly.co
+Host: https://settley.co
 
 # Sitemaps
-Sitemap: https://settly.co/sitemap.xml
+Sitemap: https://settley.co/sitemap.xml
