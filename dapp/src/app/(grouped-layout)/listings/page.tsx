@@ -128,7 +128,7 @@ const listings = [
 ];
 
 export const metadata: Metadata = {
-  title: 'Settley | Property Listings',
+  title: 'Property Listings',
   keywords: [
     'Settley',
     'Listings',

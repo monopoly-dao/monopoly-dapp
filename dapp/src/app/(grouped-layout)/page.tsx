@@ -8,7 +8,9 @@ import TrendingProperties from './_components/TrendingProperties';
 import WhoAreWe from './_components/WhoAreWe';
 
 export const metadata: Metadata = {
-  title: 'Settley | Join the future of property ownership',
+  title: 'Join the future of property ownership',
+  description:
+    'Settley allows you to buy and own a home in minutes enabled by blockchain technology.',
   keywords: [
     'Settley',
     'Join the future of property ownership',

@@ -22,6 +22,6 @@ module.exports = {
   },
   additionalPaths: async (config) => [
     await config.transform(config, '/listings'),
-    await config.transform(config, '/account'),
+    await config.transform(config, '/profile'),
   ],
 };

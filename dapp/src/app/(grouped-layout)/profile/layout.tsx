@@ -10,7 +10,7 @@ const profileLinks = [
 ];
 
 export const metadata: Metadata = {
-  title: 'Settley | Account',
+  title: 'Account',
   keywords: [
     'Settley',
     'Profile',
