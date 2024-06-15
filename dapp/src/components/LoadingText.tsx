@@ -4,12 +4,21 @@ import LoadingSkeleton from './LoadingSkeleton';
 
 type LoadingTextProps = {
   value: string | number | undefined;
+  isLoading: boolean;
 };
 
-const LoadingText = ({ value }: LoadingTextProps) => {
+const LoadingText = ({ value, isLoading }: LoadingTextProps) => {
   return (
     <>
-      {value === 0 ? 0 : value ?? <LoadingSkeleton containerClassName='w-24' />}
+      {value ? (
+        value
+      ) : value === 0 ? (
+        0
+      ) : !value && isLoading ? (
+        <LoadingSkeleton containerClassName='w-24' />
+      ) : (
+        'Not set'
+      )}
     </>
   );
 };

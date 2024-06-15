@@ -18,6 +18,7 @@ import {
 import { updateProfileSchema } from '../_utils/updateProfileValidations';
 
 type Props = {
+  setProfileToView: () => void;
   detailsFromDb?: {
     firstName: string;
     lastName: string;
@@ -27,7 +28,10 @@ type Props = {
   };
 };
 
-export default function UpdateProfileForm({ detailsFromDb }: Props) {
+export default function UpdateProfileForm({
+  setProfileToView,
+  detailsFromDb,
+}: Props) {
   const session = useSession();
   const email = session.data?.email ?? '';
   const [updateUser, { isLoading }] = useUpdateUserDetailsMutation();
@@ -56,6 +60,7 @@ export default function UpdateProfileForm({ detailsFromDb }: Props) {
         }).unwrap();
 
         toast.success('Data successfuly updatd');
+        setProfileToView();
       } catch (e) {
         handleErrors(e);
       }
@@ -80,7 +85,7 @@ export default function UpdateProfileForm({ detailsFromDb }: Props) {
         '& .MuiTextField-root': { width: 'inherit' },
       }}
       onSubmit={handleSubmit}
-      className='mt-10 w-3/4 flex flex-col gap-3'
+      className='mt-10 w-3/4 lg:w-1/2 flex flex-col gap-3'
     >
       <Input
         id={UpdateProfileIds.FirstName}
@@ -107,14 +112,23 @@ export default function UpdateProfileForm({ detailsFromDb }: Props) {
         {...getFormikInputProps(UpdateProfileIds.Twitter)}
       />
 
-      <Button
-        type='submit'
-        isLoading={isLoading}
-        disabled={!isValid || !dirty}
-        className='w-fit py-2 px-8'
-      >
-        Save Changes
-      </Button>
+      <div className='flex items-center gap-4'>
+        <Button
+          className='w-fit py-2 px-8'
+          variant='outline'
+          onClick={setProfileToView}
+        >
+          Back
+        </Button>
+        <Button
+          type='submit'
+          isLoading={isLoading}
+          disabled={!isValid || !dirty}
+          className='w-fit py-2 px-8'
+        >
+          Save Changes
+        </Button>
+      </div>
     </Box>
   );
 }

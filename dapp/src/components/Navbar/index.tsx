@@ -26,8 +26,8 @@ export const unauthentiatedNavLinks = [
 
 export const authenticatedNavLinks = [
   {
-    label: 'Wishlist',
-    route: '/wishlist',
+    label: 'Bookmarks',
+    route: '/profile/bookmarks',
   },
   {
     label: 'Listings',

@@ -89,12 +89,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'disabled:bg-warning-100',
             ],
             variant === 'outline-primary' && [
-              'text-yellow border-yellow bg-yellow/10',
+              'text-navy border-navy bg-navy/10',
               'active:bg-white',
               'disabled:bg-white',
             ],
             variant === 'outline' && [
-              'text-yellow border-yellow bg-white',
+              'text-navy border-navy bg-transparent',
               'active:bg-white',
               'disabled:bg-white',
             ],
