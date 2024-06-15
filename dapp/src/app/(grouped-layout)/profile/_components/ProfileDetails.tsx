@@ -67,7 +67,7 @@ export default function ProfileDetails({ setProfileToEdit }: Props) {
         <p className='text-lg text-dark-grey font-inter'>
           <LoadingText
             isLoading={isLoading}
-            value={userDetails?.userDetails.twitter}
+            value={userDetails?.userDetails.username}
           />
         </p>
       </div>

@@ -22,8 +22,9 @@ export default function Page() {
   const initialValuesFromDb = {
     firstName: userDetails?.firstName ?? '',
     lastName: userDetails?.lastName ?? '',
-    email: userDetails?.userDetails.email ?? '',
+    // email: userDetails?.userDetails.email ?? '',
     phone: userDetails?.userDetails.phone ?? '',
+    username: userDetails?.userDetails.username ?? '',
     twitter: userDetails?.userDetails.twitter ?? '',
   };
 

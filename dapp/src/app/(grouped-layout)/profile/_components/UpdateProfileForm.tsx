@@ -22,7 +22,8 @@ type Props = {
   detailsFromDb?: {
     firstName: string;
     lastName: string;
-    email: string;
+    // email: string;
+    username: string;
     phone: string;
     twitter: string;
   };
@@ -52,6 +53,7 @@ export default function UpdateProfileForm({
       formData.set('lastName', values.lastName);
       formData.set('phone', values.phone);
       formData.set('twitter', values.twitter);
+      formData.set('username', values.username);
 
       try {
         await updateUser({
@@ -98,6 +100,12 @@ export default function UpdateProfileForm({
         required
         label='Last Name'
         {...getFormikInputProps(UpdateProfileIds.LastName)}
+      />
+      <Input
+        id={UpdateProfileIds.Username}
+        required
+        label='Username'
+        {...getFormikInputProps(UpdateProfileIds.Username)}
       />
       <Input
         id={UpdateProfileIds.Phone}

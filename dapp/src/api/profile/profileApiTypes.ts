@@ -6,8 +6,9 @@ export type UserDetailsResponse = {
     _id: string;
     address: string;
     phone: string;
-    email: string;
-    preferredCurrency: string;
+    username: string;
+    // email: string;
+    // preferredCurrency: string;
     twitter?: string;
     status: 'incomplete';
   };
