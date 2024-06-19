@@ -106,6 +106,19 @@ const ppNeueMontreal = localFont({
   preload: true,
 });
 
+const craftworkGrotesk = localFont({
+  src: [
+    {
+      path: '../../public/fonts/CraftworkGrotesk-Regular.woff',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-craft',
+  display: 'swap',
+  preload: true,
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -116,7 +129,7 @@ export default async function RootLayout({
   return (
     <html
       lang='en'
-      className={`${darkerGrotesque.variable} ${inter.variable} ${ppNeueMontreal.variable}`}
+      className={`${darkerGrotesque.variable} ${inter.variable} ${ppNeueMontreal.variable} ${craftworkGrotesk.variable}`}
     >
       <body>
         <NextAuthProvider session={session}>

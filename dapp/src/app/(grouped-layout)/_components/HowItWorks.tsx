@@ -9,7 +9,10 @@ export default function HowItWorks() {
   const router = useRouter();
 
   return (
-    <div className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-14 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'>
+    <div
+      id='how-it-works'
+      className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-14 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'
+    >
       <div className='flex flex-col gap-5'>
         <h2 className='font-medium text-3xl sm:text-5xl'>
           With Settley, you can own a property in minutes

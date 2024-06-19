@@ -1,6 +1,7 @@
 'use client';
 
 import Link, { LinkProps } from 'next/link';
+import { useRef } from 'react';
 
 import { cn } from '@/lib/utils';
 import useCheckLinkActive from '@/hooks/useCheckLinkActive';
@@ -34,10 +35,12 @@ const ActiveLink: React.FC<ActiveLinkProps> = ({
   ...rest
 }) => {
   const isActive = useCheckLinkActive(href.toString(), as, index);
+  const linkRef = useRef<HTMLAnchorElement | null>(null);
 
   return (
     <Link
       href={href}
+      ref={linkRef}
       className={cn(
         [className && className],
         [isActive && activeClassName && activeClassName],

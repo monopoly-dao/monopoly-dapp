@@ -7,6 +7,7 @@ module.exports = {
         primary: ['var(--font-dark-grotesk)'],
         inter: ['var(--font-inter)'],
         'n-montreal': ['var(--font-neue-montreal)'],
+        craftwork: ['var(--font-craft)'],
       },
       colors: {
         navy: '#272343',
@@ -15,6 +16,8 @@ module.exports = {
         'dark-grey': '#515151',
         yellow: '#FFD803',
         cream: '#FFFBE5',
+        'light-green': '#DCF1BF',
+        'light-red': '#F7D9D9',
       },
     },
   },

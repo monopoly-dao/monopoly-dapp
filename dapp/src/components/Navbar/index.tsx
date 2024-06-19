@@ -2,6 +2,7 @@
 
 import { Stack } from '@mui/material';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { VscAccount } from 'react-icons/vsc';
@@ -11,6 +12,7 @@ import styles from './Navbar.module.scss';
 import { cn } from '@/lib/utils';
 
 import MobileMenuContainer from './MobileMenuContainer';
+import Button from '../buttons/Button';
 import SettleyLogo from '../SettleyLogo';
 
 export const unauthentiatedNavLinks = [
@@ -20,18 +22,20 @@ export const unauthentiatedNavLinks = [
   },
   {
     label: 'How it Works',
-    route: '/',
+    route: '/#how-it-works',
+    isLinkToSection: true,
   },
 ];
 
 export const authenticatedNavLinks = [
   {
-    label: 'Bookmarks',
-    route: '/profile/bookmarks',
-  },
-  {
     label: 'Listings',
     route: '/listings',
+  },
+  {
+    label: 'How it Works',
+    route: '/#how-it-works',
+    isLinkToSection: true,
   },
 ];
 
@@ -39,6 +43,8 @@ const Navbar = () => {
   const session = useSession();
   const isLoggedIn = session.data;
   const navLinks = isLoggedIn ? authenticatedNavLinks : unauthentiatedNavLinks;
+
+  const router = useRouter();
 
   return (
     <Stack
@@ -63,24 +69,42 @@ const Navbar = () => {
           Sign in
         </Link> */}
         <div className='items-center hidden sm:flex gap-11'>
-          {navLinks.map((link) => (
-            <Link key={link.label} href={link.route} className='text-[#1E1E1E]'>
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            if (link.isLinkToSection)
+              return (
+                <Button
+                  key={link.label}
+                  onClick={() => router.push(link.route)}
+                  variant='ghost'
+                  className='text-[#1E1E1E] bg-transparent border-none font-craftwork text-base font-light'
+                >
+                  {link.label}
+                </Button>
+              );
+            else
+              return (
+                <Link
+                  key={link.label}
+                  href={link.route}
+                  className='text-[#1E1E1E] font-light font-craftwork'
+                >
+                  {link.label}
+                </Link>
+              );
+          })}
         </div>
         {isLoggedIn && (
           <Link
-            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
-            href='/profile'
+            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
+            href='/dashboard'
           >
             <VscAccount />
-            Account
+            Dashboard
           </Link>
         )}
         {!isLoggedIn && (
           <Link
-            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center'
+            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
             href='/login'
           >
             {/* <VscAccount />  */}

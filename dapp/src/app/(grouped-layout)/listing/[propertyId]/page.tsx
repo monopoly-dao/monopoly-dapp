@@ -1,13 +1,20 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaUmbrellaBeach } from 'react-icons/fa6';
 import { MdPool } from 'react-icons/md';
 
+import useDisclosure from '@/hooks/useDisclosure';
+
 import Button from '@/components/buttons/Button';
 
+import BuyPropertyModal from '../_components/BuyPropertyModal';
 import YouMightAlsoLike from '../_components/YouMightAlsoLike';
 
 export default function Page() {
+  const { isOpen: isBuyOpen, open: openBuy, close: closeBuy } = useDisclosure();
+
   return (
     <div>
       <div className='mt-8 sm:mb-32 px-[5%] sm:px-[7%]'>
@@ -145,6 +152,7 @@ export default function Page() {
             </div> */}
             <Button
               variant='ghost'
+              onClick={openBuy}
               className='max-w-[258px] py-4 w-full bg-navy text-white border-navy'
             >
               Buy Property
@@ -154,6 +162,12 @@ export default function Page() {
 
         <YouMightAlsoLike />
       </div>
+
+      <BuyPropertyModal
+        isOpen={isBuyOpen}
+        handleOpenModal={openBuy}
+        handleCloseModal={closeBuy}
+      />
     </div>
   );
 }

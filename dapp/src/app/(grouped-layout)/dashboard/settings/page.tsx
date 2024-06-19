@@ -3,9 +3,10 @@
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
-import ProfileDetails from './_components/ProfileDetails';
-import UpdateProfileForm from './_components/UpdateProfileForm';
-import { useGetUserDetailsQuery } from '../../../api/profile';
+import { useGetUserDetailsQuery } from '@/api/profile';
+
+import ProfileDetails from '../_components/ProfileDetails';
+import UpdateProfileForm from '../_components/UpdateProfileForm';
 
 export default function Page() {
   const [profileState, setProfileState] = useState<
