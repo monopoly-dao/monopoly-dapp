@@ -15,6 +15,7 @@ export default function TrendingPropertyCard({ image, caption }: Props) {
         height={171}
         quality={100}
         className='w-full h-[297px] object-cover'
+        unoptimized
       />
       <p className='text-black'>{caption}</p>
     </div>
