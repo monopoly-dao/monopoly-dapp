@@ -23,8 +23,10 @@ export default function WishlistButton({
   propertyName,
 }: WishlistButtonProps) {
   const session = useSession();
-  const [addToWishlist] = useAddToWishlistMutation();
-  const [removeFromWishlist] = useRemoveFromWishlistMutation();
+  const [addToWishlist, { isLoading: isAddLoading }] =
+    useAddToWishlistMutation();
+  const [removeFromWishlist, { isLoading: isRemoveLoading }] =
+    useRemoveFromWishlistMutation();
 
   const isLoggedIn = session.status === 'authenticated';
 
@@ -65,11 +67,13 @@ export default function WishlistButton({
   }
 
   const wishlistFn = isFavourite ? removeFromWishlistFn : addToWishlistFn;
+  const isLoading = isAddLoading || isRemoveLoading;
 
   return (
     <IconButton
       variant='ghost'
       onClick={wishlistFn}
+      isLoading={isLoading}
       className='text-2xl absolute top-6 right-4 z-[2] p-2 rounded-[100%] bg-white'
       icon={isFavourite ? FaBookmark : FaRegBookmark}
     />
