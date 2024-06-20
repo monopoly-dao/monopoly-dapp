@@ -46,7 +46,7 @@ function Dashboard() {
 
       <div className='relative'>
         <Image
-          src='/images/landing-banner.jpg'
+          src='/images/landing-banner.png'
           alt='banner'
           width={1000}
           height={595}
