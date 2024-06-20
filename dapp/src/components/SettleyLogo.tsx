@@ -36,6 +36,7 @@ export default function SettleyLogo({ colour }: Props) {
           height={44}
           quality={100}
           className='w-[144px] h-auto'
+          priority
         />
       )}
     </Link>

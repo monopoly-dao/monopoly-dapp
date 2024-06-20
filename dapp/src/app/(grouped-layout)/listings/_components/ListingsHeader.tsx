@@ -13,6 +13,7 @@ export default function ListingsHeader() {
           height={360}
           quality={100}
           className='w-full h-full min-h-[360px] object-cover'
+          unoptimized
         />
       </div>
       <div className='z-[2] w-full flex flex-col gap-16 items-center text-white'>

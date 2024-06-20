@@ -1,146 +1,42 @@
-import { Metadata } from 'next';
+'use client';
+
+import { useSession } from 'next-auth/react';
+
+import ListingCardLoader from '@/components/ListingCardLoader';
+
+import { useGetPropertiesQuery, useGetWishlistQuery } from '@/api/properties';
 
 import ListingCard from './_components/ListingCard';
 import ListingsHeader from './_components/ListingsHeader';
 import PropertiesFilter from './_components/PropertiesFIlter';
 
-const listings = [
-  {
-    name: 'Palm Jumeirah',
-    image: '/images/mansion.jpg',
-    location: 'Dubai, UAE',
-    beds: 5,
-    baths: 10,
-    unitsLeft: 50,
-    pricePerUnit: 2,
-    symbol: 'PAJM',
-  },
-  {
-    name: 'Glass Key',
-    image: '/images/apartment buildings.jpg',
-    location: 'Florida, USA',
-    beds: 3,
-    baths: 2,
-    unitsLeft: 500,
-    pricePerUnit: 20,
-    symbol: 'GLKY',
-  },
-  {
-    name: 'Bayview Retreat',
-    image: '/images/school dorm.jpg',
-    location: 'Zabljak, Montenegro',
-    beds: 6,
-    baths: 4,
-    unitsLeft: 10,
-    pricePerUnit: 5,
-    symbol: 'bayr',
-  },
-  {
-    name: 'Lisbon Loft Apartments',
-    image: '/images/Monaco.png',
-    location: 'Lisbon, Portgal',
-    beds: 5,
-    baths: 10,
-    unitsLeft: 50,
-    pricePerUnit: 2,
-    symbol: 'lila',
-  },
-  {
-    name: 'Vineyard Haven Villa',
-    image: '/images/header image.jpg',
-    location: 'Douro Valley, Portugal',
-    beds: 5,
-    baths: 10,
-    unitsLeft: 50,
-    pricePerUnit: 2,
-    symbol: 'vnhy',
-  },
-  {
-    name: 'Montenegro Mountain Lodge',
-    image: '/svg/Beachfront property.svg',
-    location: 'Zabljak, Montenegro',
-    beds: 2,
-    baths: 1,
-    unitsLeft: 10,
-    pricePerUnit: 2,
-    symbol: 'mnml',
-  },
-  {
-    name: 'Pearl Beach Resort',
-    image: '/images/Monaco.png',
-    location: 'Dubai, UAE',
-    beds: 5,
-    baths: 10,
-    unitsLeft: 500,
-    pricePerUnit: 9,
-    symbol: 'prlb',
-  },
-  {
-    name: 'Golden Sands Villa',
-    image: '/svg/auction houses.svg',
-    location: 'Lisbon, Portugal',
-    beds: 3,
-    baths: 4,
-    unitsLeft: 100,
-    pricePerUnit: 2,
-    symbol: 'gldv',
-  },
-  {
-    name: 'Dubai Desert Oasis Villa',
-    image: '/svg/Featured image.svg',
-    location: 'Dubai, UAE',
-    beds: 5,
-    baths: 10,
-    unitsLeft: 50,
-    pricePerUnit: 2,
-    symbol: 'dbdv',
-  },
-  {
-    name: 'Oasis Tower Residence',
-    image: '/images/apartment buildings.jpg',
-    location: 'Dubai, UAE',
-    beds: 5,
-    baths: 10,
-    unitsLeft: 50,
-    pricePerUnit: 2,
-    symbol: 'ostr',
-  },
-  {
-    name: 'Azure Bay Apartments',
-    image: '/images/school dorm.jpg',
-    location: 'Kotor, Montenegro',
-    beds: 3,
-    baths: 3,
-    unitsLeft: 9,
-    pricePerUnit: 6,
-    symbol: 'azba',
-  },
-  {
-    name: 'Sunset Retreat',
-    image: '/svg/Beachfront property.svg',
-    location: 'Algarve, Portugal',
-    beds: 10,
-    baths: 10,
-    unitsLeft: 3,
-    pricePerUnit: 50,
-    symbol: 'snsr',
-  },
-];
-
-export const metadata: Metadata = {
-  title: 'Property Listings',
-  keywords: [
-    'Settley',
-    'Listings',
-    'Settley Listings',
-    'Settley Properties',
-    'Property Listings',
-    'SettleyCo',
-    'Settley co',
-  ],
-};
+// export const metadata: Metadata = {
+//   title: 'Property Listings',
+//   keywords: [
+//     'Settley',
+//     'Listings',
+//     'Settley Listings',
+//     'Settley Properties',
+//     'Property Listings',
+//     'SettleyCo',
+//     'Settley co',
+//   ],
+// };
 
 export default function Page() {
+  const session = useSession();
+  const isLoggedIn = session.data;
+  const userId = session.data?.id ?? '';
+
+  const { data: propertiesResponse, isLoading } = useGetPropertiesQuery();
+  const properties = propertiesResponse?.data;
+
+  const { data: wishlistResponse } = useGetWishlistQuery(userId ?? '', {
+    skip: !isLoggedIn,
+  });
+  const wishlist = wishlistResponse?.data?.wishlist;
+  const wishlistPropertyIds = wishlist?.map((item) => item._id);
+
   return (
     <div>
       <ListingsHeader />
@@ -153,8 +49,13 @@ export default function Page() {
           <PropertiesFilter />
         </div>
         <div className='my-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {listings.map((listing, id) => (
-            <ListingCard key={id} {...listing} />
+          <ListingCardLoader cardNumber={12} isLoading={isLoading} />
+          {properties?.map((property) => (
+            <ListingCard
+              key={property._id}
+              property={property}
+              wishlist={wishlistPropertyIds}
+            />
           ))}
         </div>
       </div>

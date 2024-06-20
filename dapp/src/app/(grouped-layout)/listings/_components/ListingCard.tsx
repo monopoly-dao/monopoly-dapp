@@ -1,81 +1,86 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaRegBookmark } from 'react-icons/fa';
 
-import IconButton from '@/components/buttons/IconButton';
+import WishlistButton from '@/components/WishlistButton';
+
+import { Property } from '@/api/properties/propertiesApiTypes';
+import { formatAmount } from '@/utils/utils';
 
 type Props = {
-  name: string;
-  image: string;
-  location: string;
-  beds: number;
-  baths: number;
-  unitsLeft: number;
-  pricePerUnit: number;
-  symbol: string;
+  property: Property;
+  wishlist: string[] | undefined;
 };
 
-export default function ListingCard({
-  name,
-  location,
-  image,
-  beds,
-  baths,
-  unitsLeft,
-  pricePerUnit,
-  symbol,
-}: Props) {
+export default function ListingCard({ property, wishlist }: Props) {
+  const {
+    propertyDetails: {
+      name,
+      symbol,
+      stateOrProvince,
+      country,
+      bed,
+      bath,
+      squareFt,
+      unitsLeft,
+      photos,
+    },
+  } = property;
+
   return (
-    <Link
-      href={`/listing/${symbol}`}
-      className='w-full min-h-[426px] relative bg-white shadow-2xl'
-    >
-      <Image
-        src={image}
-        alt='mansion'
-        width={300}
-        height={220}
-        quality={100}
-        className='w-full h-[220px] object-cover'
-      />
-      <div className='py-6 px-4 w-full'>
-        <div className='flex items-start justify-between gap-1'>
-          <p className='text-navy font-medium w-3/4 truncate'>{name}</p>
-          <p className='text-navy font-medium text-sm uppercase'>${symbol}</p>
-        </div>
-        <div className='mt-1 flex items-center gap-3 text-sm text-gray-500'>
-          {/* <IoLocationOutline className='text-lg' /> */}
-          {location}
-        </div>
-        <div className='mt-1 pb-4 border-b-[2px] border-medium-grey flex items-center justify-between'>
-          <div className='flex items-center gap-4 text-sm text-navy'>
-            <div className='flex items-center gap-1'>
-              {/* <BiBed /> */}
-              <p>{beds} Beds</p>
-            </div>
-            <div className='flex items-center gap-1'>
-              {/* <BiBath />  */}
-              <p>{baths} Bath</p>
-            </div>
-            <div className='flex items-center gap-1'>
-              {/* <BiBath />  */}
-              <p>2000 sqft</p>
-            </div>
-          </div>
-          <IconButton
-            variant='ghost'
-            icon={FaRegBookmark}
-            className='text-2xl absolute top-6 right-4 z-[2] p-2 rounded-[100%] bg-white'
-          />
-        </div>
-        <div className='mt-4 flex items-end justify-between'>
-          <div className='flex items-end'>
-            <p className='font-bold text-2xl'>${pricePerUnit}</p>
-            <p>/unit</p>
-          </div>
-          <p className='text-navy/40'>{unitsLeft} units left</p>
-        </div>
+    <div className='w-full min-h-[426px] relative bg-white shadow-2xl'>
+      <div onClick={(e) => e.stopPropagation()}>
+        <WishlistButton
+          propertyId={property._id}
+          propertyName={property?.propertyDetails.name ?? ''}
+          isFavourite={wishlist?.includes(property._id) ?? false}
+        />
       </div>
-    </Link>
+      <Link href={`/listing/${property._id}`}>
+        <Image
+          src={photos[0].url}
+          alt={name}
+          width={300}
+          height={220}
+          quality={100}
+          className='w-full h-[220px] object-cover'
+          unoptimized
+          loading='lazy'
+        />
+
+        <div className='py-6 px-4 w-full'>
+          <div className='flex items-start justify-between gap-1'>
+            <p className='text-navy font-medium w-3/4 truncate'>{name}</p>
+            <p className='text-navy font-medium text-sm uppercase'>${symbol}</p>
+          </div>
+          <div className='mt-1 flex items-center gap-3 text-sm text-gray-500'>
+            {/* <IoLocationOutline className='text-lg' /> */}
+            {stateOrProvince}, {country}
+          </div>
+          <div className='mt-1 pb-4 border-b-[2px] border-medium-grey flex items-center justify-between'>
+            <div className='flex items-center gap-4 text-sm text-navy'>
+              <div className='flex items-center gap-1'>
+                {/* <BiBed /> */}
+                <p>{bed} Beds</p>
+              </div>
+              <div className='flex items-center gap-1'>
+                {/* <BiBath />  */}
+                <p>{bath} Bath</p>
+              </div>
+              <div className='flex items-center gap-1'>
+                {/* <BiBath />  */}
+                <p>{formatAmount(squareFt)} sqft</p>
+              </div>
+            </div>
+          </div>
+          <div className='mt-4 flex items-end justify-between'>
+            <div className='flex items-end'>
+              <p className='font-bold text-2xl'>$1</p>
+              <p>/unit</p>
+            </div>
+            <p className='text-navy/40'>{formatAmount(unitsLeft)} units left</p>
+          </div>
+        </div>
+      </Link>
+    </div>
   );
 }

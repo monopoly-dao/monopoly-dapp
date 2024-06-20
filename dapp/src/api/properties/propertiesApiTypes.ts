@@ -14,6 +14,13 @@ export type Property = {
     country: string;
     lat: string;
     lon: string;
+    units: string;
+    unitsLeft: string;
+    symbol: string;
+    bed: string;
+    bath: string;
+    squareFt: string;
+    owners: string[];
   };
 };
 

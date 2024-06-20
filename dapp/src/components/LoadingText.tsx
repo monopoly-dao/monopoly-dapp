@@ -1,13 +1,16 @@
 import React from 'react';
 
+import { cn } from '@/lib/utils';
+
 import LoadingSkeleton from './LoadingSkeleton';
 
 type LoadingTextProps = {
   value: string | number | undefined;
   isLoading: boolean;
+  className?: string;
 };
 
-const LoadingText = ({ value, isLoading }: LoadingTextProps) => {
+const LoadingText = ({ value, isLoading, className }: LoadingTextProps) => {
   return (
     <>
       {value ? (
@@ -15,7 +18,7 @@ const LoadingText = ({ value, isLoading }: LoadingTextProps) => {
       ) : value === 0 ? (
         0
       ) : !value && isLoading ? (
-        <LoadingSkeleton containerClassName='w-24' />
+        <LoadingSkeleton containerClassName={cn('w-24', [className])} />
       ) : (
         'Not set'
       )}
