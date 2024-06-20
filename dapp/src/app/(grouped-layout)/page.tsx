@@ -52,8 +52,6 @@ function Dashboard() {
           height={595}
           quality={100}
           className='w-full h-[250px] sm:h-[400px] lg:h-[595px] object-cover'
-          priority
-          unoptimized
         />
         <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
           <Link href='/listings' className='flex items-center gap-5'>
