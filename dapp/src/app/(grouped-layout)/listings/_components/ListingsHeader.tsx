@@ -7,7 +7,7 @@ export default function ListingsHeader() {
     <div className='bg-navy pt-24 pb-48 min-h-[360px] flex px-[5%] relative mt-5'>
       <div className='w-full h-full absolute left-0 top-0'>
         <Image
-          src='/images/listings-header.jpg'
+          src='/images/listings-header.png'
           alt='building'
           width={400}
           height={360}
