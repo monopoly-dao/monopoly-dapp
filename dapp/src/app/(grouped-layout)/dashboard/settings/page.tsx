@@ -14,10 +14,10 @@ export default function Page() {
   >('view');
 
   const session = useSession();
-  const userId = session.data?.id ?? '';
+  const userFirebaseId = session.data?.userFirebaseId ?? '';
   // const email = session.data?.email ?? '';
 
-  const { data } = useGetUserDetailsQuery(userId);
+  const { data } = useGetUserDetailsQuery(userFirebaseId);
   const userDetails = data?.data;
 
   const initialValuesFromDb = {

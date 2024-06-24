@@ -12,10 +12,10 @@ import ListingCard from '../../listings/_components/ListingCard';
 export default function BookmarkSection() {
   const session = useSession();
 
-  const userId = session.data?.id ?? '';
-  const { data, isLoading } = useGetWishlistQuery(userId);
+  const userFirebaseId = session.data?.userFirebaseId ?? '';
+  const { data, isLoading } = useGetWishlistQuery(userFirebaseId);
 
-  const { data: wishlistResponse } = useGetWishlistQuery(userId ?? '');
+  const { data: wishlistResponse } = useGetWishlistQuery(userFirebaseId ?? '');
 
   const wishlist = wishlistResponse?.data?.wishlist;
   const wishlistPropertyIds = wishlist?.map((item) => item._id);

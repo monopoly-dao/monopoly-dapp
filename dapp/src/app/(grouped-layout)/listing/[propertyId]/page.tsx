@@ -29,7 +29,7 @@ export default function Page() {
   } = useGetPropertyQuery(propertyId as string);
 
   const session = useSession();
-  const userId = session.data?.id ?? '';
+  const userFirebaseId = session.data?.userFirebaseId ?? '';
   const { isOpen: isBuyOpen, open: openBuy, close: closeBuy } = useDisclosure();
 
   if (error) handleErrors(error);
@@ -216,7 +216,7 @@ export default function Page() {
         handleOpenModal={openBuy}
         handleCloseModal={closeBuy}
         propertyId={propertyId as string}
-        userId={userId}
+        userFirebaseId={userFirebaseId}
       />
     </div>
   );

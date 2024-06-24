@@ -27,6 +27,6 @@ export type Property = {
 export type WishlistItem = Property;
 
 export type Wishlist = {
-  userId: string;
+  userFirebaseId: string;
   wishlist: WishlistItem[];
 };

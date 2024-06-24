@@ -39,7 +39,7 @@ export default function WishlistButton({
     try {
       await addToWishlist({
         propertyId,
-        userId: session.data.id,
+        userFirebaseId: session.data.userFirebaseId,
       }).unwrap();
 
       toast.success(`${propertyName} successfully added to bookmarks`);
@@ -57,7 +57,7 @@ export default function WishlistButton({
     try {
       await removeFromWishlist({
         propertyId,
-        userId: session.data.id,
+        userFirebaseId: session.data.userFirebaseId,
       }).unwrap();
 
       toast.success(`${propertyName} successfully removed from bookmarks`);

@@ -8,10 +8,10 @@ import PropertyCard from '../../../components/PropertyCard';
 export default function Page() {
   const session = useSession();
 
-  const userId = session.data?.id ?? '';
-  const { data } = useGetWishlistQuery(userId);
+  const userFirebaseId = session.data?.userFirebaseId ?? '';
+  const { data } = useGetWishlistQuery(userFirebaseId);
 
-  const { data: wishlistResponse } = useGetWishlistQuery(userId ?? '');
+  const { data: wishlistResponse } = useGetWishlistQuery(userFirebaseId ?? '');
 
   const wishlist = wishlistResponse?.data?.wishlist;
   const wishlistPropertyIds = wishlist?.map((item) => item._id);

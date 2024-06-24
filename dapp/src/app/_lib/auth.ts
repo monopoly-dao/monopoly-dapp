@@ -83,8 +83,7 @@ export const authOptions: NextAuthOptions = {
     session: ({ session, token }) => {
       session.token = token.data.token;
       session.email = token.data.email;
-      session.id = token.data.id;
-      session.displayName = token.data.displayName;
+      session.userFirebaseId = token.data.userFirebaseId;
 
       return session;
     },

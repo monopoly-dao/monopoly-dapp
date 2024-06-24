@@ -9,7 +9,7 @@ const marketplaceApi = globalApi.injectEndpoints({
   endpoints: (build) => ({
     enterPosition: build.mutation<
       INetworkSuccessResponse<void>,
-      { userId: string; propertyId: string; units: number }
+      { userFirebaseId: string; propertyId: string; units: number }
     >({
       query: (payload) => ({
         url: MarketplaceEndpoints.enterPosition,

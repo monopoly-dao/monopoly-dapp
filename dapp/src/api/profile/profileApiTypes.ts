@@ -1,5 +1,5 @@
 export type UserDetailsResponse = {
-  id: string;
+  userFirebaseId: string;
   firstName: string;
   lastName: string;
   userDetails: {

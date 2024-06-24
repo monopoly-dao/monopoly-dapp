@@ -12,12 +12,12 @@ import { handleErrors } from '@/utils/error';
 import { formatAmount, removeNonDigit } from '@/utils/utils';
 
 type Props = ModalProps & {
-  userId: string;
+  userFirebaseId: string;
   propertyId: string;
 };
 
 export default function BuyPropertyModal({
-  userId,
+  userFirebaseId,
   propertyId,
   ...props
 }: Props) {
@@ -30,7 +30,7 @@ export default function BuyPropertyModal({
     onSubmit: async (values) => {
       try {
         await enterPosition({
-          userId,
+          userFirebaseId,
           propertyId,
           units: Number(removeNonDigit(values.units)),
         }).unwrap();

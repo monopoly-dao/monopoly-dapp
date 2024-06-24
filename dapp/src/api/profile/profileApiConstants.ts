@@ -1,4 +1,4 @@
 export enum ProfileEndpoints {
-  Get_Profile_Details = '/profile/:userId',
-  Update_Profile = '/profile/:id',
+  Get_Profile_Details = '/profile/:userFirebaseId',
+  Update_Profile = '/profile/:userFirebaseId',
 }

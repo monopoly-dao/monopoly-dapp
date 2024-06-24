@@ -6,16 +6,14 @@ declare module 'next-auth' {
    */
   interface Session {
     token: string;
-    id: string;
+    userFirebaseId: string;
     email: string;
-    displayName: string;
   }
 
   interface User {
     token: string;
-    id: string;
+    userFirebaseId: string;
     email: string;
-    displayName: string;
   }
 }
 
@@ -24,9 +22,8 @@ declare module 'next-auth/jwt' {
   interface JWT extends DefaultJWT {
     data: {
       token: string;
-      id: string;
+      userFirebaseId: string;
       email: string;
-      displayName: string;
     };
   }
 }

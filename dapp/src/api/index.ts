@@ -15,10 +15,11 @@ import {
 } from '../constants/appConstants';
 
 // TODO: convert hardcoded base urls to env;
-export const AUTH_BASE_URL = 'https://settley-auth.fly.dev';
-export const BASE_URL = 'https://settley.fly.dev';
+export const AUTH_BASE_URL = 'http://localhost:3001';
+export const BASE_URL = 'http://localhost:8000';
 // 'http://localhost:8000';
 // 'https://settley.fly.dev';
+// https://settley-auth.fly.dev
 
 // initialize an empty api service that we'll inject endpoints into later as needed
 axios.defaults.timeout = AXIOS_TIMEOUT_TIME;

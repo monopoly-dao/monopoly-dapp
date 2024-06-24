@@ -12,7 +12,10 @@ const profileApi = globalApi.injectEndpoints({
       string
     >({
       query: (payload) => ({
-        url: ProfileEndpoints.Get_Profile_Details.replace(':userId', payload),
+        url: ProfileEndpoints.Get_Profile_Details.replace(
+          ':userFirebaseId',
+          payload
+        ),
         method: GET_METHOD,
       }),
       providesTags: ['Profile'],
@@ -20,10 +23,13 @@ const profileApi = globalApi.injectEndpoints({
 
     updateUserDetails: build.mutation<
       INetworkSuccessResponse<UserDetailsResponse>,
-      { userId: string; data: FormData }
+      { userFirebaseId: string; data: FormData }
     >({
       query: (payload) => ({
-        url: ProfileEndpoints.Update_Profile.replace(':id', payload.userId),
+        url: ProfileEndpoints.Update_Profile.replace(
+          ':userFirebaseId',
+          payload.userFirebaseId
+        ),
         method: PUT_METHOD,
         data: payload.data,
       }),
