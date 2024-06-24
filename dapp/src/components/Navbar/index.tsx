@@ -17,6 +17,10 @@ import SettleyLogo from '../SettleyLogo';
 
 export const unauthentiatedNavLinks = [
   {
+    label: 'FAQs',
+    route: '/faqs',
+  },
+  {
     label: 'Listings',
     route: '/listings',
   },
@@ -28,6 +32,10 @@ export const unauthentiatedNavLinks = [
 ];
 
 export const authenticatedNavLinks = [
+  {
+    label: 'FAQs',
+    route: '/faqs',
+  },
   {
     label: 'Listings',
     route: '/listings',
@@ -48,6 +56,7 @@ const Navbar = () => {
 
   return (
     <Stack
+      component='nav'
       direction='row'
       alignItems='center'
       justifyContent='space-between'

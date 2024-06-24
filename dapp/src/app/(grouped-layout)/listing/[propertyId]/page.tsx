@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { FaUmbrellaBeach } from 'react-icons/fa6';
 import { MdPool } from 'react-icons/md';
 
@@ -11,6 +12,7 @@ import Button from '@/components/buttons/Button';
 import LoadingText from '@/components/LoadingText';
 
 import { useGetPropertyQuery } from '@/api/properties';
+import authenticatedFuncWrapper from '@/utils/authenticatedFuncWrapper';
 import { handleErrors } from '@/utils/error';
 import { formatAmount } from '@/utils/utils';
 
@@ -26,6 +28,8 @@ export default function Page() {
     isLoading,
   } = useGetPropertyQuery(propertyId as string);
 
+  const session = useSession();
+  const userId = session.data?.id ?? '';
   const { isOpen: isBuyOpen, open: openBuy, close: closeBuy } = useDisclosure();
 
   if (error) handleErrors(error);
@@ -194,7 +198,9 @@ export default function Page() {
             </div> */}
             <Button
               variant='ghost'
-              onClick={openBuy}
+              onClick={() => {
+                authenticatedFuncWrapper(openBuy, session.status);
+              }}
               className='max-w-[258px] py-4 w-full bg-navy text-white border-navy'
             >
               Buy Property
@@ -209,6 +215,8 @@ export default function Page() {
         isOpen={isBuyOpen}
         handleOpenModal={openBuy}
         handleCloseModal={closeBuy}
+        propertyId={propertyId as string}
+        userId={userId}
       />
     </div>
   );

@@ -1,7 +1,9 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
+import CardPaginationContainer from '@/components/CardPaginationContainer';
 import ListingCardLoader from '@/components/ListingCardLoader';
 
 import { useGetPropertiesQuery, useGetWishlistQuery } from '@/api/properties';
@@ -28,7 +30,16 @@ export default function Page() {
   const isLoggedIn = session.data;
   const userId = session.data?.id ?? '';
 
-  const { data: propertiesResponse, isLoading } = useGetPropertiesQuery();
+  const searchParams = useSearchParams();
+  const page = Number(searchParams.get('page')) || 1;
+  const {
+    data: propertiesResponse,
+    isLoading,
+    isFetching,
+  } = useGetPropertiesQuery({
+    limit: 12,
+    page,
+  });
   const properties = propertiesResponse?.data;
 
   const { data: wishlistResponse } = useGetWishlistQuery(userId ?? '', {
@@ -48,16 +59,24 @@ export default function Page() {
           </h2>
           <PropertiesFilter />
         </div>
-        <div className='my-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
-          <ListingCardLoader cardNumber={12} isLoading={isLoading} />
-          {properties?.map((property) => (
-            <ListingCard
-              key={property._id}
-              property={property}
-              wishlist={wishlistPropertyIds}
+
+        <CardPaginationContainer
+          totalPages={propertiesResponse?.meta.totalPages}
+        >
+          <div className='my-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+            <ListingCardLoader
+              cardNumber={12}
+              isLoading={isLoading || isFetching}
             />
-          ))}
-        </div>
+            {properties?.map((property) => (
+              <ListingCard
+                key={property._id}
+                property={property}
+                wishlist={wishlistPropertyIds}
+              />
+            ))}
+          </div>
+        </CardPaginationContainer>
       </div>
     </div>
   );
