@@ -64,7 +64,7 @@ export default function Input({
               id={id}
               {...rest}
               className={cn(
-                'w-full border-0 bg-transparent py-2.5 pl-2 pr-[20%] text-sm shadow-none outline-none ring-0 placeholder:text-xs placeholder:text-gray-600 ',
+                'w-full border-0 bg-transparent py-2.5 pl-2 pr-[20%] text-sm shadow-none outline-none ring-0 placeholder:text-xs placeholder:text-gray-600',
                 'focus:ring-0 md:py-3 md:pl-4 md:pr-[15%] md:text-sm md:placeholder:text-sm lg:pr-[8.33%] lg:text-base lg:placeholder:text-base',
                 [className && className],
                 [inputClassName && inputClassName]

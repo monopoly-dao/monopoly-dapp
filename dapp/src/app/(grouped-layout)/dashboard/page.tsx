@@ -2,9 +2,8 @@ import { PiHouseLine } from 'react-icons/pi';
 import { PiCubeFill } from 'react-icons/pi';
 import { TbWheel } from 'react-icons/tb';
 
-import BookmarkSection from './_components/BookmarkSection';
+import AssetsSection from './_components/AssetsSection';
 import DashboardCard from './_components/DashboardCard';
-import TransactionsSection from './_components/TransactionsSection';
 
 export default function Page() {
   return (
@@ -33,12 +32,12 @@ export default function Page() {
       </div>
 
       <div className='mt-20'>
-        <BookmarkSection />
+        <AssetsSection />
       </div>
 
-      <div className='mt-20'>
+      {/* <div className='mt-20'>
         <TransactionsSection />
-      </div>
+      </div> */}
     </div>
   );
 }

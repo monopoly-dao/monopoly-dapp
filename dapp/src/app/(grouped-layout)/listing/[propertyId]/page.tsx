@@ -102,7 +102,7 @@ export default function Page() {
                     <LoadingText
                       isLoading={isLoading}
                       className='w-10'
-                      value={property?.propertyDetails.squareFt}
+                      value={formatAmount(property?.propertyDetails.squareFt)}
                     />{' '}
                     sqft
                   </p>
@@ -142,13 +142,17 @@ export default function Page() {
             <div className='h-[1px] w-full bg-medium-grey' />
             <div className='flex flex-col gap-4'>
               <p className='font-medium text-xl'>Contract Address</p>
-              <p className=' break-words'>
+              <Link
+                href={`https://sepolia.etherscan.io/${property?.contractAddress}`}
+                target='_blank'
+                className='text-[blue] underline break-words'
+              >
                 <LoadingText
                   isLoading={isLoading}
                   className='w-10'
                   value={property?.contractAddress}
                 />
-              </p>
+              </Link>
             </div>
             <div className='h-[1px] w-full bg-medium-grey' />
             <div className='flex flex-col gap-4'>

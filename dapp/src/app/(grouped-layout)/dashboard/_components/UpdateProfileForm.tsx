@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 
 import Button from '@/components/buttons/Button';
 import { Input } from '@/components/input';
+import Phone from '@/components/input/input-phone';
 
 import { useUpdateUserDetailsMutation } from '@/api/profile';
 import { handleErrors } from '@/utils/error';
@@ -45,6 +46,8 @@ export default function UpdateProfileForm({
     isValid,
     dirty,
     handleSubmit,
+    setFieldTouched,
+    setFieldValue,
   } = useFormik({
     initialValues: detailsFromDb ?? UpdateProfileInitialValues(email),
     onSubmit: async (values) => {
@@ -107,11 +110,16 @@ export default function UpdateProfileForm({
         label='Username'
         {...getFormikInputProps(UpdateProfileIds.Username)}
       />
-      <Input
+      <Phone
         id={UpdateProfileIds.Phone}
         required
+        type='tel'
         label='Phone number'
         {...getFormikInputProps(UpdateProfileIds.Phone)}
+        handleChange={(value) => {
+          setFieldTouched(UpdateProfileIds.Phone);
+          setFieldValue(UpdateProfileIds.Phone, value);
+        }}
       />
       <Input
         required={false}
