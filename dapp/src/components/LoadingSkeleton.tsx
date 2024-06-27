@@ -13,7 +13,7 @@ const LoadingSkeleton = ({
 }: SkeletonProps) => {
   return (
     <Skeleton
-      className={cn('inline-block', [className && className])}
+      className={cn('inline-block h-full', [className && className])}
       containerClassName={cn('inline-block', [
         containerClassName && containerClassName,
       ])}

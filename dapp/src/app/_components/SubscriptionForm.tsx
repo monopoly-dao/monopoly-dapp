@@ -24,14 +24,21 @@ export default function SubscriptionForm() {
     resetForm,
   } = useFormik({
     initialValues: {
-      subscribe: '',
+      email: '',
     },
     onSubmit: async (values) => {
       setIsLoading(true);
 
       try {
         await axios.post(
-          `https://mdao-emailservice.fly.dev/email/send?email=${values.subscribe}`
+          'https://connect.mailerlite.com/api/subscribers',
+          { email: values.email },
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_MAILERLITE_API_TOKEN}`,
+              'Content-Type': 'application/json',
+            },
+          }
         );
 
         toast.success('Newsletter subscription activated');
@@ -43,7 +50,7 @@ export default function SubscriptionForm() {
       }
     },
     validationSchema: object({
-      subscribe: string()
+      email: string()
         .email('Email is invalid')
         .required('Please provide email'),
     }),
@@ -65,12 +72,12 @@ export default function SubscriptionForm() {
 
       <div className='flex items-start gap-4 h-[53px]'>
         <Input
-          id='subscribe'
+          id='email'
           // label='Email address'
           placeholder='Enter your email'
           containerClassName='h-full'
           className='h-full'
-          {...getFormikInputProps('subscribe')}
+          {...getFormikInputProps('email')}
         />
 
         <Button
@@ -80,7 +87,7 @@ export default function SubscriptionForm() {
           isLoading={isLoading}
           disabled={!isValid || !dirty}
         >
-          Subscribe!
+          Subscribe
         </Button>
       </div>
 

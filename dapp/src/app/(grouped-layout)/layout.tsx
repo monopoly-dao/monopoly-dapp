@@ -10,7 +10,7 @@ export default function GroupedLayout({ children }: PropsWithChildren) {
     <div>
       <Navbar />
 
-      {children}
+      <main>{children}</main>
 
       <Footer />
     </div>

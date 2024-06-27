@@ -99,7 +99,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
               {
                 'text-white': ['primary', 'dark'].includes(variant),
                 'text-black': ['light'].includes(variant),
-                'text-primary-500': ['outline', 'ghost'].includes(variant),
+                'text-navy': ['outline', 'ghost'].includes(variant),
               }
             )}
           >

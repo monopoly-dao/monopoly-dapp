@@ -23,51 +23,44 @@ export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const {
-    getFieldProps,
-    getFieldMeta,
-    values,
-    resetForm,
-    isValid,
-    dirty,
-    handleSubmit,
-  } = useFormik({
-    initialValues: loginInitialValues,
-    onSubmit: async (values) => {
-      try {
-        setIsLoading(true);
-        const res = await signIn('login', { redirect: false, ...values });
+  const { getFieldProps, getFieldMeta, values, isValid, dirty, handleSubmit } =
+    useFormik({
+      initialValues: loginInitialValues,
+      onSubmit: async (values) => {
+        try {
+          setIsLoading(true);
+          const res = await signIn('login', { redirect: false, ...values });
 
-        if ((!res || res.error) && res?.error !== 'undefined') {
-          if (res?.error === 'CredentialsSignin') {
+          if ((!res || res.error) && res?.error !== 'undefined') {
+            if (res?.error === 'CredentialsSignin') {
+              setIsLoading(false);
+
+              toast.error('Something went wrong');
+              return;
+            }
+            toast.error(res?.error || 'Something went wrong');
             setIsLoading(false);
 
-            toast.error('Something went wrong');
             return;
           }
-          toast.error(res?.error || 'Something went wrong');
+          // resetForm();
+          const callbackUrl = searchParams.get('callbackUrl');
+
+          if (typeof callbackUrl === 'string') {
+            return router.replace(new URL(callbackUrl).toString());
+          }
+
+          router.replace('/');
+        } catch (error) {
           setIsLoading(false);
-
-          return;
+          handleErrors(error);
         }
-        resetForm();
-        const callbackUrl = searchParams.get('callbackUrl');
-
-        if (typeof callbackUrl === 'string') {
-          return router.replace(new URL(callbackUrl).toString());
-        }
-
-        router.replace('/');
-      } catch (error) {
-        setIsLoading(false);
-        handleErrors(error);
-      }
-    },
-    validationSchema: loginSchema,
-    validateOnBlur: true,
-    validateOnChange: true,
-    validateOnMount: true,
-  });
+      },
+      validationSchema: loginSchema,
+      validateOnBlur: true,
+      validateOnChange: true,
+      validateOnMount: true,
+    });
 
   const getFormikInputProps = (id: keyof typeof values) => {
     return {

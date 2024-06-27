@@ -32,10 +32,11 @@ export default function SettleyLogo({ colour }: Props) {
         <Image
           src='/svg/Settley.svg'
           alt='settley logo'
-          width={144}
+          width={200}
           height={44}
           quality={100}
-          className='w-[144px] h-auto'
+          className='w-[200px] h-auto'
+          priority
         />
       )}
     </Link>

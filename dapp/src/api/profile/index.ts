@@ -1,7 +1,15 @@
 import { ProfileEndpoints } from './profileApiConstants';
-import { UserDetailsResponse } from './profileApiTypes';
+import {
+  TransactionResponse,
+  UserAssetsResponse,
+  UserDetailsResponse,
+  WalletStatsResponse,
+} from './profileApiTypes';
 import { globalApi } from '..';
-import { INetworkSuccessResponse } from '../../@types/appTypes';
+import {
+  INetworkSuccessResponse,
+  PaginatedSuccessResponse,
+} from '../../@types/appTypes';
 import { GET_METHOD, PUT_METHOD } from '../../constants/appConstants';
 
 const profileApi = globalApi.injectEndpoints({
@@ -12,7 +20,10 @@ const profileApi = globalApi.injectEndpoints({
       string
     >({
       query: (payload) => ({
-        url: ProfileEndpoints.Get_Profile_Details.replace(':userId', payload),
+        url: ProfileEndpoints.Get_Profile_Details.replace(
+          ':userFirebaseId',
+          payload
+        ),
         method: GET_METHOD,
       }),
       providesTags: ['Profile'],
@@ -20,17 +31,75 @@ const profileApi = globalApi.injectEndpoints({
 
     updateUserDetails: build.mutation<
       INetworkSuccessResponse<UserDetailsResponse>,
-      { userId: string; data: FormData }
+      { userFirebaseId: string; data: FormData }
     >({
       query: (payload) => ({
-        url: ProfileEndpoints.Update_Profile.replace(':id', payload.userId),
+        url: ProfileEndpoints.Update_Profile.replace(
+          ':userFirebaseId',
+          payload.userFirebaseId
+        ),
         method: PUT_METHOD,
         data: payload.data,
       }),
       invalidatesTags: ['Profile'],
     }),
+
+    getWalletStats: build.query<
+      INetworkSuccessResponse<WalletStatsResponse>,
+      string
+    >({
+      query: (payload) => ({
+        url: ProfileEndpoints.Get_Wallet_Stats.replace(
+          ':userFirebaseId',
+          payload
+        ),
+        method: GET_METHOD,
+      }),
+      providesTags: ['WalletStats'],
+    }),
+
+    getUserAssets: build.query<
+      PaginatedSuccessResponse<UserAssetsResponse[]>,
+      { page: number; limit: number; userFirebaseId: string }
+    >({
+      query: (payload) => ({
+        url: ProfileEndpoints.Get_Holdings.replace(
+          ':userFirebaseId',
+          payload.userFirebaseId
+        ),
+        method: GET_METHOD,
+        params: {
+          page: payload.page,
+          limit: payload.limit,
+        },
+      }),
+      providesTags: ['Holdings'],
+    }),
+
+    getUserTransactions: build.query<
+      PaginatedSuccessResponse<TransactionResponse[]>,
+      { page: number; limit: number; userFirebaseId: string }
+    >({
+      query: (payload) => ({
+        url: ProfileEndpoints.Get_Transactions.replace(
+          ':userFirebaseId',
+          payload.userFirebaseId
+        ),
+        method: GET_METHOD,
+        params: {
+          page: payload.page,
+          limit: payload.limit,
+        },
+      }),
+      providesTags: ['Transactions'],
+    }),
   }),
 });
 
-export const { useGetUserDetailsQuery, useUpdateUserDetailsMutation } =
-  profileApi;
+export const {
+  useGetUserDetailsQuery,
+  useUpdateUserDetailsMutation,
+  useGetWalletStatsQuery,
+  useGetUserAssetsQuery,
+  useGetUserTransactionsQuery,
+} = profileApi;

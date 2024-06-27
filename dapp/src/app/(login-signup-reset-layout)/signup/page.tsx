@@ -38,7 +38,6 @@ export default function Page() {
         await axios.post(`${AUTH_BASE_URL}${AuthEndpoints.Signup}`, {
           email: values.email,
           password: values.password,
-          displayName: values.displayName,
         });
 
         resetForm();
@@ -78,12 +77,6 @@ export default function Page() {
         <p>Create your account and start purchasing properties in minutes</p>
       </div>
       <div className={styles.form}>
-        <Input
-          required
-          label='Username'
-          id={SignupIds.Username}
-          {...getFormikInputProps(SignupIds.Username)}
-        />
         <Input
           required
           label='Email address'

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
-const filters = ['View all', 'Naples', 'Monaco', 'London'];
+const filters = ['View all'];
 
 export default function PropertiesFilter() {
   const [activeTab, setActiveTab] = useState('View all');

@@ -27,7 +27,7 @@ const TableContainer = ({
   containerClassName,
   // limit,
   isLoading,
-  alignHeader = 'left',
+  // alignHeader = 'left',
   totalPages,
 }: TableContainerProps) => {
   const router = useRouter();
@@ -41,25 +41,25 @@ const TableContainer = ({
 
     router.replace(`?${params.toString()}`, { scroll: false });
   }
-  const textAlign = `text-${alignHeader}`;
+  // const textAlign = `text-${alignHeader}`;
 
   return (
     <div
-      className={cn('no-scrollbar w-full overflow-x-auto', [
+      className={cn('no-scrollbar w-full overflow-x-auto bg-white', [
         containerClassName && containerClassName,
       ])}
     >
       {!isLoading && (
-        <table className='w-full border-separate border-spacing-y-5'>
-          <thead className='bg-primary-grey h-auto w-full border-none'>
+        <table className='w-full border-collapse border border-medium-grey bg-white'>
+          <thead className='w-full border-none'>
             <tr className='w-auto'>
               {headers.map((header) => (
                 <th
                   key={header}
                   className={cn(
-                    `mr-2 whitespace-nowrap border-none px-2 py-5 font-normal text-gray-800 first:rounded-l-[8px] last:rounded-r-[8px] lg:mr-4 lg:px-4`,
-                    tableHeadClass,
-                    textAlign
+                    `mr-2 whitespace-nowrap py-4 px-5 font-normal text-black lg:mr-4 text-left`,
+                    'font-inter font-semibold border-b border-black',
+                    tableHeadClass
                   )}
                 >
                   {header}
@@ -77,7 +77,7 @@ const TableContainer = ({
         <ReactPaginate
           pageCount={totalPages}
           forcePage={page - 1}
-          containerClassName='flex gap-2 justify-end items-center'
+          containerClassName='flex gap-2 justify-end mt-8 items-center'
           onPageChange={handlePageChange}
           previousLabel={<PiCaretLeft />}
           nextLabel={<PiCaretRight />}

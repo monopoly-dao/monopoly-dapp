@@ -7,7 +7,7 @@ export default function LoginSignupResetLayout({
   children,
 }: PropsWithChildren) {
   return (
-    <div className='w-full'>
+    <main className='w-full'>
       <div className='flex h-screen w-full'>
         <div className='hidden sm:block w-2/5 overflow-hidden'>
           <Image
@@ -27,6 +27,6 @@ export default function LoginSignupResetLayout({
           <p className='h-14 ml-[5%]'>© 2024 Settley</p>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
