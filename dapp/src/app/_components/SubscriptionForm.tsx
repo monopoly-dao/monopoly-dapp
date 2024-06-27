@@ -87,7 +87,7 @@ export default function SubscriptionForm() {
           isLoading={isLoading}
           disabled={!isValid || !dirty}
         >
-          Subscribe!
+          Subscribe
         </Button>
       </div>
 

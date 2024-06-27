@@ -29,8 +29,8 @@ export default function Page() {
           <div>property ownership</div>
         </h1>
         <p>
-          Settley is redefining property ownership by leveraging decentralized
-          finance.
+          Settley allows you to buy and own a home in minutes enabled by
+          blockchain technology.
         </p>
       </div>
 

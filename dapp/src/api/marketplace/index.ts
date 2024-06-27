@@ -16,6 +16,9 @@ const marketplaceApi = globalApi.injectEndpoints({
         method: POST_METHOD,
         data: payload,
       }),
+      invalidatesTags: (_r, _e, arg) => [
+        { type: 'Properties', id: arg.propertyId },
+      ],
     }),
   }),
 });

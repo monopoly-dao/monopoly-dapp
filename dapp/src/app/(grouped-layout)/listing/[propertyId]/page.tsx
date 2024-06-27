@@ -143,7 +143,7 @@ export default function Page() {
             <div className='flex flex-col gap-4'>
               <p className='font-medium text-xl'>Contract Address</p>
               <Link
-                href={`https://sepolia.etherscan.io/${property?.contractAddress}`}
+                href={`https://sepolia.etherscan.io/address/${property?.contractAddress}`}
                 target='_blank'
                 className='text-[blue] underline break-words'
               >

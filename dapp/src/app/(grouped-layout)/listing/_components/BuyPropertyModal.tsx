@@ -1,6 +1,7 @@
 'use client';
 
 import { useFormik } from 'formik';
+import toast from 'react-hot-toast';
 import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
@@ -23,41 +24,50 @@ export default function BuyPropertyModal({
 }: Props) {
   const [enterPosition, { isLoading }] = useEnterPositionMutation();
 
-  const { values, handleSubmit, getFieldMeta, getFieldProps } = useFormik({
-    initialValues: {
-      units: '0',
-    },
-    onSubmit: async (values) => {
-      try {
-        await enterPosition({
-          userFirebaseId,
-          propertyId,
-          units: Number(removeNonDigit(values.units)),
-        }).unwrap();
-      } catch (e) {
-        handleErrors(e);
-      }
-    },
-    validationSchema: object({
-      units: string()
-        .required('Please provide a valid amount')
-        .test(
-          'Check if amount is valid',
-          'Please provide a valid amount',
-          (value, context) => {
-            if (!value) return context.createError();
-            const cleanAmount = value.replace(/\D/g, '');
+  const { values, handleSubmit, getFieldMeta, getFieldProps, isValid } =
+    useFormik({
+      initialValues: {
+        units: '0',
+      },
+      onSubmit: async (values) => {
+        try {
+          await enterPosition({
+            userFirebaseId,
+            propertyId,
+            units: Number(removeNonDigit(values.units)),
+          }).unwrap();
 
-            if (!cleanAmount.length) {
-              return context.createError();
+          toast.success(
+            `You have successfully bought ${values.units} units of this property`
+          );
+          props.handleCloseModal();
+        } catch (e) {
+          handleErrors(e);
+        }
+      },
+      validationSchema: object({
+        units: string()
+          .required('Please provide a valid amount')
+          .test(
+            'Check if amount is valid',
+            'Please provide a valid amount',
+            (value, context) => {
+              if (!value) return context.createError();
+              const cleanAmount = value.replace(/\D/g, '');
+
+              if (!cleanAmount.length) {
+                return context.createError();
+              }
+              const isValid = /^[0-9]+$/.test(cleanAmount);
+
+              return isValid || context.createError();
             }
-            const isValid = /^[0-9]+$/.test(cleanAmount);
-
-            return isValid || context.createError();
-          }
-        ),
-    }),
-  });
+          ),
+      }),
+      validateOnBlur: true,
+      validateOnMount: true,
+      validateOnChange: true,
+    });
 
   function getFormikInputProps(id: keyof typeof values) {
     return {
@@ -87,10 +97,20 @@ export default function BuyPropertyModal({
           >
             Close
           </Button>
-          <Button type='submit' isLoading={isLoading} className='py-3 px-10'>
+          <Button
+            type='submit'
+            isLoading={isLoading}
+            disabled={!isValid}
+            className='py-3 px-10'
+          >
             Buy
           </Button>
         </div>
+        {isLoading && (
+          <p className='text-red-400 text-sm my-2'>
+            Buying a property could take some time, please hold on
+          </p>
+        )}
       </form>
     </Modal>
   );

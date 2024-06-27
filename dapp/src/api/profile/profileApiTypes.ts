@@ -1,3 +1,5 @@
+import { Property } from '../properties/propertiesApiTypes';
+
 export type UserDetailsResponse = {
   userFirebaseId: string;
   firstName: string;
@@ -12,4 +14,27 @@ export type UserDetailsResponse = {
     twitter?: string;
     status: 'incomplete';
   };
+};
+
+export type WalletStatsResponse = {
+  walletBalance: number;
+  totalProperties: number;
+  totalValue: number;
+};
+
+export type UserAssetsResponse = {
+  property: Property;
+  units: string;
+  _id: string;
+};
+
+export type TransactionResponse = {
+  _id: string;
+  userFirebaseId: string;
+  amount: {
+    $numberDecimal: string;
+  };
+  property: Property;
+  type: 'bought' | 'sold';
+  created_at: string;
 };

@@ -1,4 +1,4 @@
-export const AXIOS_TIMEOUT_TIME = 30000;
+export const AXIOS_TIMEOUT_TIME = 90000;
 export const AXIOS_TIMEOUT_MSG = 'Request Timeout';
 export const TOKEN_EXPIRED_MSG = 'session expired. please login again';
 export const REFETCH_TIME = 43200000;

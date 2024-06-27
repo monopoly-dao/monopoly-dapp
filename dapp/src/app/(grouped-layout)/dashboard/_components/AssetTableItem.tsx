@@ -1,20 +1,28 @@
-import { TbWheel } from 'react-icons/tb';
-
 import { cn } from '@/lib/utils';
 
-export default function AssetTableItem() {
-  const tableClass = 'px-5 border-b border-medium-grey py-3';
+import { UserAssetsResponse } from '@/api/profile/profileApiTypes';
+import { formatAmount } from '@/utils/utils';
+
+type Props = {
+  asset: UserAssetsResponse;
+};
+
+export default function AssetTableItem({ asset }: Props) {
+  const tableClass = 'px-5 border-b border-medium-grey py-3 font-inter';
 
   return (
     <tr>
       <td className={cn([tableClass])}>
-        <div className='flex items-center gap-2'>
-          <TbWheel />
-          $MIAMI
+        <div className='flex items-center gap-2 font-medium'>
+          {/* <TbWheel /> */}${asset.property.propertyDetails.symbol}
         </div>
       </td>
-      <td className={cn('text-center', [tableClass])}>12.5</td>
-      <td className={cn('text-right', [tableClass])}>$12.5</td>
+      <td className={cn('text-center', [tableClass])}>
+        {formatAmount(asset.units)}
+      </td>
+      <td className={cn('text-right', [tableClass])}>
+        ${formatAmount(asset.units)}
+      </td>
     </tr>
   );
 }

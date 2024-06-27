@@ -14,7 +14,7 @@ type Props = {
 
 export default function FooterColumnLinks({ title, links }: Props) {
   return (
-    <div className='flex flex-col gap-6 text-black'>
+    <div className='flex flex-col gap-6 text-black w-full'>
       <p className='text-primary-light font-extrabold'>{title}</p>
       <div className='flex cursor-pointer items-start gap-3 flex-col'>
         {links.map((link) => {

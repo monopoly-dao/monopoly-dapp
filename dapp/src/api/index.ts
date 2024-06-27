@@ -92,5 +92,12 @@ export const globalApi = createApi({
   }),
   reducerPath: GLOBAL_API_REDUCER_PATH,
   endpoints: () => ({}),
-  tagTypes: ['Properties', 'Wishlist', 'Profile'],
+  tagTypes: [
+    'Properties',
+    'Wishlist',
+    'Profile',
+    'WalletStats',
+    'Holdings',
+    'Transactions',
+  ],
 });

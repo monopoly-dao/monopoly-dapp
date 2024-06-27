@@ -8,9 +8,15 @@ type LoadingTextProps = {
   value: string | number | undefined;
   isLoading: boolean;
   className?: string;
+  placeholder?: string;
 };
 
-const LoadingText = ({ value, isLoading, className }: LoadingTextProps) => {
+const LoadingText = ({
+  value,
+  isLoading,
+  className,
+  placeholder = 'Not set',
+}: LoadingTextProps) => {
   return (
     <>
       {value ? (
@@ -20,7 +26,7 @@ const LoadingText = ({ value, isLoading, className }: LoadingTextProps) => {
       ) : !value && isLoading ? (
         <LoadingSkeleton containerClassName={cn('w-24', [className])} />
       ) : (
-        'Not set'
+        placeholder
       )}
     </>
   );

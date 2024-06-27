@@ -1,7 +1,15 @@
 import { ProfileEndpoints } from './profileApiConstants';
-import { UserDetailsResponse } from './profileApiTypes';
+import {
+  TransactionResponse,
+  UserAssetsResponse,
+  UserDetailsResponse,
+  WalletStatsResponse,
+} from './profileApiTypes';
 import { globalApi } from '..';
-import { INetworkSuccessResponse } from '../../@types/appTypes';
+import {
+  INetworkSuccessResponse,
+  PaginatedSuccessResponse,
+} from '../../@types/appTypes';
 import { GET_METHOD, PUT_METHOD } from '../../constants/appConstants';
 
 const profileApi = globalApi.injectEndpoints({
@@ -35,8 +43,63 @@ const profileApi = globalApi.injectEndpoints({
       }),
       invalidatesTags: ['Profile'],
     }),
+
+    getWalletStats: build.query<
+      INetworkSuccessResponse<WalletStatsResponse>,
+      string
+    >({
+      query: (payload) => ({
+        url: ProfileEndpoints.Get_Wallet_Stats.replace(
+          ':userFirebaseId',
+          payload
+        ),
+        method: GET_METHOD,
+      }),
+      providesTags: ['WalletStats'],
+    }),
+
+    getUserAssets: build.query<
+      PaginatedSuccessResponse<UserAssetsResponse[]>,
+      { page: number; limit: number; userFirebaseId: string }
+    >({
+      query: (payload) => ({
+        url: ProfileEndpoints.Get_Holdings.replace(
+          ':userFirebaseId',
+          payload.userFirebaseId
+        ),
+        method: GET_METHOD,
+        params: {
+          page: payload.page,
+          limit: payload.limit,
+        },
+      }),
+      providesTags: ['Holdings'],
+    }),
+
+    getUserTransactions: build.query<
+      PaginatedSuccessResponse<TransactionResponse[]>,
+      { page: number; limit: number; userFirebaseId: string }
+    >({
+      query: (payload) => ({
+        url: ProfileEndpoints.Get_Transactions.replace(
+          ':userFirebaseId',
+          payload.userFirebaseId
+        ),
+        method: GET_METHOD,
+        params: {
+          page: payload.page,
+          limit: payload.limit,
+        },
+      }),
+      providesTags: ['Transactions'],
+    }),
   }),
 });
 
-export const { useGetUserDetailsQuery, useUpdateUserDetailsMutation } =
-  profileApi;
+export const {
+  useGetUserDetailsQuery,
+  useUpdateUserDetailsMutation,
+  useGetWalletStatsQuery,
+  useGetUserAssetsQuery,
+  useGetUserTransactionsQuery,
+} = profileApi;
