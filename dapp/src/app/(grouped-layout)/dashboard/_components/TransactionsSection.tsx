@@ -2,8 +2,6 @@ import Link from 'next/link';
 
 import TableContainer from '@/components/table';
 
-import TransactionTableItem from './TransactionTableItem';
-
 const headers = [
   'Transaction ID',
   'Property ID',
@@ -28,9 +26,9 @@ export default function TransactionsSection() {
       </div>
 
       <TableContainer headers={headers}>
+        {/* <TransactionTableItem />
         <TransactionTableItem />
-        <TransactionTableItem />
-        <TransactionTableItem />
+        <TransactionTableItem /> */}
       </TableContainer>
     </div>
   );

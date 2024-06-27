@@ -1,13 +1,22 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   image: string;
   caption: string;
+  propertyId: string;
 };
 
-export default function TrendingPropertyCard({ image, caption }: Props) {
+export default function TrendingPropertyCard({
+  image,
+  caption,
+  propertyId,
+}: Props) {
   return (
-    <div className='w-full flex flex-col gap-5'>
+    <Link
+      href={`/listing/${propertyId}`}
+      className='w-full flex flex-col gap-5'
+    >
       <Image
         src={image}
         alt={caption}
@@ -18,6 +27,6 @@ export default function TrendingPropertyCard({ image, caption }: Props) {
         unoptimized
       />
       <p className='text-black'>{caption}</p>
-    </div>
+    </Link>
   );
 }

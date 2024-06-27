@@ -18,6 +18,9 @@ const marketplaceApi = globalApi.injectEndpoints({
       }),
       invalidatesTags: (_r, _e, arg) => [
         { type: 'Properties', id: arg.propertyId },
+        'WalletStats',
+        'Transactions',
+        'Holdings',
       ],
     }),
   }),
