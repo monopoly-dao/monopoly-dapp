@@ -29,8 +29,7 @@ export default function Page() {
           <div>property ownership</div>
         </h1>
         <p>
-          Settley allows you to buy and own a home in minutes enabled by
-          blockchain technology.
+          Settley allows you to buy and own a home in minutes.
         </p>
       </div>
 
