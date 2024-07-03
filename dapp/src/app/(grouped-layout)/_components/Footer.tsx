@@ -37,7 +37,7 @@ const followLinks = [
 
 export default function Footer() {
   return (
-    <footer className='mt-24 px-[5%] lg:px-[7%]'>
+    <footer className='mt-24 px-[5%] lg:px-[7%]' id='footer'>
       <div className='grid grid-cols-2 lg:grid-cols-5 gap-10 justify-between mb-11 sm:mb-20'>
         <div className='col-span-2 lg:col-span-3'>
           <SubscriptionForm />

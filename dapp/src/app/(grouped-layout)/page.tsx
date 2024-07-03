@@ -23,14 +23,28 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div>
-      <div className='mt-20 mb-24 flex flex-col gap-11 px-[5%] sm:px-[7%]'>
+      <div className='mt-20 mb-20 flex flex-col gap-11 px-[5%] sm:px-[7%]'>
         <h1 className='font-medium text-[45px] w-full leading-[55px] sm:leading-[75px] lg:leading-[96px] sm:text-[60px] lg:text-[80px]'>
           <div>Join the future of </div>
           <div>property ownership</div>
         </h1>
-        <p>
-          Settley allows you to buy and own a home in minutes.
-        </p>
+        <p>Settley allows you to buy and own a home in minutes.</p>
+        <div className='w-full text-center font-inter text-lg sm:w-full lg:w-1/2 antialiased'>
+          <div className='flex flex-wrap w-full justify-center gap-4 sm:w-full lg:flex-nowrap lg:w-3/5'>
+            <Link
+              className='text-white font-normal bg-navy rounded-[6px] w-full py-5 sm:w-full'
+              href='/signup'
+            >
+              Get Started
+            </Link>
+            <Link
+              className='text-navy outline outline-1 outline-navy bg-white rounded-[6px] font-normal  w-full py-5 sm:w-full'
+              href='#footer'
+            >
+              Stay Updated
+            </Link>
+          </div>
+        </div>
       </div>
 
       <div className='relative'>
