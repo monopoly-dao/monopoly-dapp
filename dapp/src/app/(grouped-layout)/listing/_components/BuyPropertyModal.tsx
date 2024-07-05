@@ -38,7 +38,8 @@ export default function BuyPropertyModal({
           }).unwrap();
 
           toast.success(
-            `You have successfully bought ${values.units} units of this property`
+            // `You have successfully bought ${values.units} units of this property`
+            `Transaction successful.`
           );
           props.handleCloseModal();
         } catch (e) {
@@ -108,7 +109,7 @@ export default function BuyPropertyModal({
         </div>
         {isLoading && (
           <p className='text-red-400 text-sm my-2'>
-            Buying a property could take some time, please hold on
+            One Minute⏰.
           </p>
         )}
       </form>
