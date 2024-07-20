@@ -9,7 +9,10 @@ import Button from '@/components/buttons/Button';
 import { Input } from '@/components/input';
 import Phone from '@/components/input/input-phone';
 
-import { useUpdateUserDetailsMutation } from '@/api/profile';
+import {
+  useCreateUserDetailsMutation,
+  useUpdateUserDetailsMutation,
+} from '@/api/profile';
 import { handleErrors } from '@/utils/error';
 
 import {
@@ -19,6 +22,7 @@ import {
 import { updateProfileSchema } from '../_utils/updateProfileValidations';
 
 type Props = {
+  mode: 'create' | 'edit';
   setProfileToView: () => void;
   detailsFromDb?: {
     firstName: string;
@@ -33,10 +37,16 @@ type Props = {
 export default function UpdateProfileForm({
   setProfileToView,
   detailsFromDb,
+  mode,
 }: Props) {
   const session = useSession();
   const email = session.data?.email ?? '';
-  const [updateUser, { isLoading }] = useUpdateUserDetailsMutation();
+  const [updateUser, { isLoading: isUpdateLoading }] =
+    useUpdateUserDetailsMutation();
+  const [createUser, { isLoading: isCreateLoading }] =
+    useCreateUserDetailsMutation();
+
+  const isLoading = mode === 'create' ? isCreateLoading : isUpdateLoading;
 
   const {
     getFieldProps,
@@ -59,12 +69,23 @@ export default function UpdateProfileForm({
       formData.set('username', values.username);
 
       try {
-        await updateUser({
-          data: formData,
-          userFirebaseId: session.data?.userFirebaseId ?? '',
-        }).unwrap();
+        if (mode === 'create') {
+          await createUser({
+            data: formData,
+            userFirebaseId: session.data?.userFirebaseId ?? '',
+          }).unwrap();
 
-        toast.success('Data successfuly updatd');
+          toast.success('Profile details successfully created');
+          toast.success('Your wallet has been funded with test tokens');
+        } else {
+          await updateUser({
+            data: formData,
+            userFirebaseId: session.data?.userFirebaseId ?? '',
+          }).unwrap();
+
+          toast.success('Profile details successfuly updated');
+        }
+
         setProfileToView();
       } catch (e) {
         handleErrors(e);

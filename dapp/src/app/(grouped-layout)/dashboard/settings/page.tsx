@@ -47,11 +47,16 @@ export default function Page() {
         (userDetails ? (
           <UpdateProfileForm
             key='Edit'
+            mode='edit'
             detailsFromDb={initialValuesFromDb}
             setProfileToView={setProfileToView}
           />
         ) : (
-          <UpdateProfileForm key='Create' setProfileToView={setProfileToView} />
+          <UpdateProfileForm
+            key='Create'
+            mode='create'
+            setProfileToView={setProfileToView}
+          />
         ))}
     </div>
   );

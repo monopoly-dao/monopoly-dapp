@@ -10,7 +10,11 @@ import {
   INetworkSuccessResponse,
   PaginatedSuccessResponse,
 } from '../../@types/appTypes';
-import { GET_METHOD, PUT_METHOD } from '../../constants/appConstants';
+import {
+  GET_METHOD,
+  POST_METHOD,
+  PUT_METHOD,
+} from '../../constants/appConstants';
 
 const profileApi = globalApi.injectEndpoints({
   overrideExisting: true,
@@ -27,6 +31,21 @@ const profileApi = globalApi.injectEndpoints({
         method: GET_METHOD,
       }),
       providesTags: ['Profile'],
+    }),
+
+    createUserDetails: build.mutation<
+      INetworkSuccessResponse<UserDetailsResponse>,
+      { userFirebaseId: string; data: FormData }
+    >({
+      query: (payload) => ({
+        url: ProfileEndpoints.Create_Profile.replace(
+          ':userFirebaseId',
+          payload.userFirebaseId
+        ),
+        method: POST_METHOD,
+        data: payload.data,
+      }),
+      invalidatesTags: ['Profile'],
     }),
 
     updateUserDetails: build.mutation<
@@ -98,6 +117,7 @@ const profileApi = globalApi.injectEndpoints({
 
 export const {
   useGetUserDetailsQuery,
+  useCreateUserDetailsMutation,
   useUpdateUserDetailsMutation,
   useGetWalletStatsQuery,
   useGetUserAssetsQuery,
