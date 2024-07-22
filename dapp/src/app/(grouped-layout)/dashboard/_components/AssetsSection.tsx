@@ -16,7 +16,11 @@ export default function AssetsSection({ userFirebaseId }: Props) {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get('page')) || 1;
 
-  const { data: userAssetsResponse, isLoading } = useGetUserAssetsQuery({
+  const {
+    data: userAssetsResponse,
+    isLoading,
+    isFetching,
+  } = useGetUserAssetsQuery({
     userFirebaseId,
     page,
     limit: 10,
@@ -27,13 +31,13 @@ export default function AssetsSection({ userFirebaseId }: Props) {
   return (
     <div>
       <div className='flex justify-between items-start mb-6'>
-        <h2 className='text-3xl font-inter'>Wallet</h2>
+        <h2 className='text-3xl font-inter'>Assets</h2>
       </div>
 
       {assets?.length === 0 && `You don't have any assets yet`}
       <TableContainer
         tableHeadClass='last:text-right [&:nth-child(2)]:text-center'
-        isLoading={isLoading}
+        isLoading={isLoading || isFetching}
         headers={headers}
         totalPages={userAssetsResponse?.meta.totalPages}
       >

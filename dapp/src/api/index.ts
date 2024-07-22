@@ -16,7 +16,7 @@ import {
 
 // TODO: convert hardcoded base urls to env;
 export const AUTH_BASE_URL = 'https://settley-auth.fly.dev';
-export const BASE_URL = 'https://settley.fly.dev';
+export const BASE_URL = 'http://localhost:8000';
 // 'http://localhost:8000';
 // 'https://settley.fly.dev';
 // https://settley-auth.fly.dev

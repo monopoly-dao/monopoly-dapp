@@ -17,7 +17,7 @@ export default function TransactionTableItem({ transaction }: Props) {
     <tr>
       <td className={cn([tableClass])}>#{transaction._id}</td>
       <td className={cn([tableClass])}>
-        ${transaction.property.propertyDetails.symbol}
+        ${transaction.property?.propertyDetails.symbol}
       </td>
       <td className={cn([tableClass])}>
         {formatISODatetoDashSeparatedDateString(transaction.created_at)}

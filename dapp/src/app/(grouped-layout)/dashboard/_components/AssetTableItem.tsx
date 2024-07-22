@@ -14,7 +14,7 @@ export default function AssetTableItem({ asset }: Props) {
     <tr>
       <td className={cn([tableClass])}>
         <div className='flex items-center gap-2 font-medium'>
-          {/* <TbWheel /> */}${asset.property.propertyDetails.symbol}
+          {/* <TbWheel /> */}${asset.property?.propertyDetails.symbol}
         </div>
       </td>
       <td className={cn('text-center', [tableClass])}>

@@ -9,16 +9,16 @@ type TableLoaderProps = {
 const TableLoader = ({ className }: TableLoaderProps) => {
   return (
     <div className={cn('flex flex-col gap-5', [className && className])}>
-      <Skeleton className='w-full rounded-lg py-8' />
-      <Skeleton className='w-full py-7' />
-      <Skeleton className='w-full py-7' />
-      <Skeleton className='w-full py-7' />
-      <Skeleton className='w-full py-7' />
-      <Skeleton className='w-full py-7' />
-      <Skeleton className='w-full py-7' />
-      <Skeleton className='w-full py-7' />
-      <Skeleton className='w-full py-7' />
-      <Skeleton className='w-full py-7' />
+      <Skeleton className='w-full rounded-lg py-5' />
+      <Skeleton className='w-full py-5' />
+      <Skeleton className='w-full py-5' />
+      <Skeleton className='w-full py-5' />
+      <Skeleton className='w-full py-5' />
+      <Skeleton className='w-full py-5' />
+      <Skeleton className='w-full py-5' />
+      <Skeleton className='w-full py-5' />
+      <Skeleton className='w-full py-5' />
+      <Skeleton className='w-full py-5' />
     </div>
   );
 };

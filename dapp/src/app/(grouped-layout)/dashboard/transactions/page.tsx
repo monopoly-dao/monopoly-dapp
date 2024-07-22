@@ -25,12 +25,15 @@ export default function Page() {
   const session = useSession();
   const userFirebaseId = session.data?.userFirebaseId ?? '';
 
-  const { data: userTransactionsResponse, isLoading } =
-    useGetUserTransactionsQuery({
-      userFirebaseId,
-      page,
-      limit: 10,
-    });
+  const {
+    data: userTransactionsResponse,
+    isLoading,
+    isFetching,
+  } = useGetUserTransactionsQuery({
+    userFirebaseId,
+    page,
+    limit: 10,
+  });
 
   const transactions = userTransactionsResponse?.data;
 
@@ -41,7 +44,7 @@ export default function Page() {
       {transactions?.length === 0 && `You don't have any transactions yet`}
       <TableContainer
         headers={headers}
-        isLoading={isLoading}
+        isLoading={isLoading || isFetching}
         totalPages={userTransactionsResponse?.meta.totalPages}
       >
         {transactions?.map((transaction) => (
