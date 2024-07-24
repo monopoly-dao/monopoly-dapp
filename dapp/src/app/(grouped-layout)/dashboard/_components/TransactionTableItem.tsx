@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { IoIosLink } from 'react-icons/io';
+
 import { cn } from '@/lib/utils';
 
 import { TransactionResponse } from '@/api/profile/profileApiTypes';
@@ -15,7 +18,18 @@ export default function TransactionTableItem({ transaction }: Props) {
 
   return (
     <tr>
-      <td className={cn([tableClass])}>#{transaction._id}</td>
+      <td className={cn([tableClass])}>
+        <div className='flex items-center'>
+          <Link
+            href={`https://sepolia.etherscan.io/tx/${transaction.txHash}`}
+            className='underline flex items-center'
+            target='_blank'
+          >
+            <IoIosLink />
+            <p className='w-40 truncate'>{transaction.txHash}</p>
+          </Link>
+        </div>
+      </td>
       <td className={cn([tableClass])}>
         ${transaction.property?.propertyDetails.symbol}
       </td>

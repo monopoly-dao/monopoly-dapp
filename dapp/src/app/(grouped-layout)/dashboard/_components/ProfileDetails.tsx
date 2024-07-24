@@ -89,15 +89,6 @@ export default function ProfileDetails({ setProfileToEdit }: Props) {
           />
         </p>
       </div>
-      <div>
-        <p className='text-2xl font-inter'>Wallet Address</p>
-        <p className='text-lg text-dark-grey font-n-montreal'>
-          <LoadingText
-            isLoading={isLoading}
-            value={userDetails?.userDetails.wKey}
-          />
-        </p>
-      </div>
     </div>
   );
 }

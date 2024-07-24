@@ -2,15 +2,21 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import toast from 'react-hot-toast';
 
+import LoadingText from '@/components/LoadingText';
 import TableContainer from '@/components/table';
 
-import { useGetUserTransactionsQuery } from '@/api/profile';
+import {
+  useGetUserDetailsQuery,
+  useGetUserTransactionsQuery,
+} from '@/api/profile';
+import { handleErrors } from '@/utils/error';
 
 import TransactionTableItem from '../_components/TransactionTableItem';
 
 const headers = [
-  'Transaction ID',
+  'Transaction Hash',
   'Asset Symbol',
   'Date',
   'Price',
@@ -25,6 +31,10 @@ export default function Page() {
   const session = useSession();
   const userFirebaseId = session.data?.userFirebaseId ?? '';
 
+  const { data: userDetailsResponse, isLoading: isUserLoading } =
+    useGetUserDetailsQuery(userFirebaseId);
+  const userDetails = userDetailsResponse?.data;
+
   const {
     data: userTransactionsResponse,
     isLoading,
@@ -37,9 +47,33 @@ export default function Page() {
 
   const transactions = userTransactionsResponse?.data;
 
+  async function copyWalletAddress() {
+    try {
+      await navigator.clipboard.writeText(userDetails?.userDetails.wKey ?? '');
+
+      toast.success('Wallet address has been copied!');
+    } catch (e) {
+      handleErrors(e);
+    }
+  }
+
   return (
     <div>
       <h2 className='text-3xl mt-12 font-inter mb-6'>Transaction History</h2>
+
+      <div className='mb-6 flex gap-4'>
+        <p className='text-xl font-inter'>Wallet Address:</p>
+        <p
+          className='text-lg text-dark-grey font-n-montreal cursor-pointer hover:underline'
+          onClick={copyWalletAddress}
+        >
+          <LoadingText
+            isLoading={isUserLoading}
+            value={userDetails?.userDetails.wKey}
+          />{' '}
+          - click to copy!
+        </p>
+      </div>
 
       {transactions?.length === 0 && `You don't have any transactions yet`}
       <TableContainer

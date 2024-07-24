@@ -37,5 +37,6 @@ export type TransactionResponse = {
   };
   property: Property;
   type: 'bought' | 'sold';
+  txHash: string;
   created_at: string;
 };
