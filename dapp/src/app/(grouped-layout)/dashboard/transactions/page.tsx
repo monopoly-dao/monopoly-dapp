@@ -43,13 +43,16 @@ export default function Page() {
     userFirebaseId,
     page,
     limit: 10,
+    sort: { created_at: 'desc' },
   });
 
   const transactions = userTransactionsResponse?.data;
 
   async function copyWalletAddress() {
     try {
-      await navigator.clipboard.writeText(userDetails?.userDetails.wKey ?? '');
+      await navigator.clipboard.writeText(
+        userDetails?.userDetails.walletAddress ?? ''
+      );
 
       toast.success('Wallet address has been copied!');
     } catch (e) {
@@ -62,14 +65,14 @@ export default function Page() {
       <h2 className='text-3xl mt-12 font-inter mb-6'>Transaction History</h2>
 
       <div className='mb-6 flex gap-4'>
-        <p className='text-xl font-inter'>Wallet Address:</p>
+        <p className='font-inter'>Wallet Address:</p>
         <p
-          className='text-lg text-dark-grey font-n-montreal cursor-pointer hover:underline'
+          className='text-dark-grey font-n-montreal cursor-pointer hover:underline'
           onClick={copyWalletAddress}
         >
           <LoadingText
             isLoading={isUserLoading}
-            value={userDetails?.userDetails.wKey}
+            value={userDetails?.userDetails.walletAddress}
           />{' '}
           - click to copy!
         </p>

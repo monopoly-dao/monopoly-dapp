@@ -32,7 +32,7 @@ export default function WishlistButton({
 
   async function addToWishlistFn() {
     if (!isLoggedIn) {
-      toast.error('Sign in before you can add a property to bookmarks');
+      toast.error('Sign in before you can add a property to wishlist');
       return;
     }
 
@@ -42,7 +42,7 @@ export default function WishlistButton({
         userFirebaseId: session.data.userFirebaseId,
       }).unwrap();
 
-      toast.success(`${propertyName} successfully added to bookmarks`);
+      toast.success(`${propertyName} successfully added to wishlist`);
     } catch (e) {
       handleErrors(e);
     }
@@ -50,7 +50,7 @@ export default function WishlistButton({
 
   async function removeFromWishlistFn() {
     if (!isLoggedIn) {
-      toast.error('Sign in before you can remove a property from bookmarks');
+      toast.error('Sign in before you can remove a property from wishlist');
       return;
     }
 
@@ -60,7 +60,7 @@ export default function WishlistButton({
         userFirebaseId: session.data.userFirebaseId,
       }).unwrap();
 
-      toast.success(`${propertyName} successfully removed from bookmarks`);
+      toast.success(`${propertyName} successfully removed from wishlist`);
     } catch (e) {
       handleErrors(e);
     }

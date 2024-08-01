@@ -12,7 +12,7 @@ export type UserDetailsResponse = {
     // email: string;
     // preferredCurrency: string;
     twitter?: string;
-    wKey: string;
+    walletAddress: string;
     status: 'incomplete';
   };
 };

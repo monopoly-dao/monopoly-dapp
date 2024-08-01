@@ -7,7 +7,7 @@ const profileLinks = [
   { route: '', label: 'Dashboard', index: true },
   { route: 'transactions', label: 'Transactions', index: false },
   { route: 'settings', label: 'Account Settings', index: false },
-  { route: 'bookmarks', label: 'Bookmarks', index: false },
+  { route: 'bookmarks', label: 'Wishlist', index: false },
 ];
 
 export const metadata: Metadata = {

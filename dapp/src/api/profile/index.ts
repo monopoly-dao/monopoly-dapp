@@ -97,7 +97,12 @@ const profileApi = globalApi.injectEndpoints({
 
     getUserTransactions: build.query<
       PaginatedSuccessResponse<TransactionResponse[]>,
-      { page: number; limit: number; userFirebaseId: string }
+      {
+        page: number;
+        limit: number;
+        userFirebaseId: string;
+        sort: Record<string, 'asc' | 'desc'>;
+      }
     >({
       query: (payload) => ({
         url: ProfileEndpoints.Get_Transactions.replace(
@@ -108,6 +113,7 @@ const profileApi = globalApi.injectEndpoints({
         params: {
           page: payload.page,
           limit: payload.limit,
+          sort: payload.sort,
         },
       }),
       providesTags: ['Transactions'],
