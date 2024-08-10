@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import Cities from './_components/Cities';
 import FAQ from './_components/FAQ';
+import GetStartedLink from './_components/GetStartedLink';
 import HowItWorks from './_components/HowItWorks';
 import TrendingProperties from './_components/TrendingProperties';
 import WhoAreWe from './_components/WhoAreWe';
@@ -31,12 +32,7 @@ export default function Page() {
         <p>Settley allows you to buy and own a home in minutes.</p>
         <div className='w-full text-center font-inter text-lg sm:w-full lg:w-1/2 antialiased'>
           <div className='flex flex-wrap w-full justify-center gap-4 sm:w-full lg:flex-nowrap lg:w-3/5'>
-            <Link
-              className='text-white font-normal bg-navy rounded-[6px] w-full py-5 sm:w-full'
-              href='/signup'
-            >
-              Get Started
-            </Link>
+            <GetStartedLink />
             <Link
               className='text-navy outline outline-1 outline-navy bg-white rounded-[6px] font-normal  w-full py-5 sm:w-full'
               href='#footer'
