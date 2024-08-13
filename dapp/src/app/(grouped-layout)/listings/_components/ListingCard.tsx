@@ -22,6 +22,7 @@ export default function ListingCard({ property, wishlist }: Props) {
       bath,
       squareFt,
       unitsLeft,
+      units,
       photos,
     },
   } = property;
@@ -72,12 +73,17 @@ export default function ListingCard({ property, wishlist }: Props) {
               </div>
             </div>
           </div>
-          <div className='mt-4 flex items-end justify-between'>
-            <div className='flex items-end'>
-              <p className='font-bold text-2xl'>$1</p>
-              <p>/unit</p>
+          <div className='mt-4 flex items-start justify-between'>
+            <div className='flex flex-col gap-1'>
+              <div className='flex items-end'>
+                <p className='font-bold text-2xl'>$1</p>
+                <p>/unit</p>
+              </div>
+              <p className='text-navy/40 font-inter text-xs'>
+                {formatAmount(unitsLeft)}/{formatAmount(units)} units left
+              </p>
             </div>
-            <p className='text-navy/40'>{formatAmount(unitsLeft)} units left</p>
+            <p className='font-inter text-gray-500'>Buy Now</p>
           </div>
         </div>
       </Link>
