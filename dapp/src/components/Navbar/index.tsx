@@ -11,6 +11,7 @@ import styles from './Navbar.module.scss';
 
 import { cn } from '@/lib/utils';
 
+import LogoutDropdown from './LogoutDropdown';
 import MobileMenuContainer from './MobileMenuContainer';
 import Button from '../buttons/Button';
 import SettleyLogo from '../SettleyLogo';
@@ -61,7 +62,7 @@ const Navbar = () => {
       alignItems='center'
       justifyContent='space-between'
       className={cn(
-        'bg-white text-white mt-12 z-[10] pt-2 pb-8 border-y px-[5%] sm:px-[7%] border-black',
+        'bg-white text-white mt-6 lg:mt-12 z-[10] pt-2 pb-8 border-y px-[5%] sm:px-[7%] border-black',
         [styles.navbar]
       )}
     >
@@ -69,7 +70,7 @@ const Navbar = () => {
 
       {/* <InputSearch containerClassName='w-1/4 hidden sm:flex' /> */}
 
-      <div className='items-center gap-11 hidden sm:flex whitespace-nowrap'>
+      <div className='items-center gap-5 lg:gap-11 hidden sm:flex whitespace-nowrap'>
         {/* <Link
           className='text-light-grey flex gap-2 py-2 px-5 font-semibold items-center'
           href='/login'
@@ -77,7 +78,7 @@ const Navbar = () => {
           <IoWalletOutline />
           Sign in
         </Link> */}
-        <div className='items-center hidden sm:flex gap-11'>
+        <div className='items-center hidden sm:flex gap-5 lg:gap-11'>
           {navLinks.map((link) => {
             if (link.isLinkToSection)
               return (
@@ -85,7 +86,7 @@ const Navbar = () => {
                   key={link.label}
                   onClick={() => router.push(link.route)}
                   variant='ghost'
-                  className='text-[#1E1E1E] bg-transparent border-none font-craftwork text-base font-light'
+                  className='text-[#1E1E1E] bg-transparent p-0 border-none font-craftwork text-xs lg:text-base font-light'
                 >
                   {link.label}
                 </Button>
@@ -95,7 +96,7 @@ const Navbar = () => {
                 <Link
                   key={link.label}
                   href={link.route}
-                  className='text-[#1E1E1E] font-light font-craftwork'
+                  className='text-[#1E1E1E] font-light text-xs lg:text-base font-craftwork'
                 >
                   {link.label}
                 </Link>
@@ -103,21 +104,24 @@ const Navbar = () => {
           })}
         </div>
         {isLoggedIn && (
-          <Link
-            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
-            href='/dashboard'
-          >
-            <VscAccount />
-            Dashboard
-          </Link>
+          <>
+            <LogoutDropdown />
+            <Link
+              className='text-white text-xs lg:text-base bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
+              href='/dashboard'
+            >
+              <VscAccount />
+              Dashboard
+            </Link>
+          </>
         )}
         {!isLoggedIn && (
           <Link
-            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
+            className='text-white text-xs lg:text-base bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
             href='/login'
           >
             {/* <VscAccount />  */}
-            Login
+            Login / Signup
           </Link>
         )}
       </div>
