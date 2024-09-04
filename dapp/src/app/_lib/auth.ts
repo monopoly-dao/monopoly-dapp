@@ -1,6 +1,8 @@
 import axios, { AxiosError } from 'axios';
 import { NextAuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import 'firebase/firestore';
 
 import { INetworkSuccessResponse } from '../../@types/appTypes';
 import { AUTH_BASE_URL } from '../../api';
@@ -55,7 +57,20 @@ export const authOptions: NextAuthOptions = {
         return null;
       },
     }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      authorization: {
+        params: {
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
+    }),
   ],
+
   pages: {
     error: '/login',
     signIn: '/login',
@@ -67,7 +82,7 @@ export const authOptions: NextAuthOptions = {
   },
   secret: `${process.env.NEXTAUTH_SECRET}`,
   callbacks: {
-    jwt: ({ token, user, trigger, session }) => {
+    jwt: async ({ token, user, trigger, session, profile }) => {
       if (trigger === 'update') {
         const updatedToken = token;
 
@@ -78,13 +93,29 @@ export const authOptions: NextAuthOptions = {
 
       user && (token.data = user);
 
+      if (profile && !('userFirebaseId' in token.data)) {
+        try {
+          const r = await axios.post(`${AUTH_BASE_URL}/google-signin`, {
+            email: profile.email,
+          });
+          const result = r.data as {
+            token: string;
+            userFirebaseId: string;
+            email: string;
+          };
+          token.data = result;
+          return token;
+        } catch (e) {
+          return token;
+        }
+      }
+
       return token;
     },
-    session: ({ session, token }) => {
+    session: async ({ session, token }) => {
       session.token = token.data.token;
       session.email = token.data.email;
       session.userFirebaseId = token.data.userFirebaseId;
-
       return session;
     },
   },

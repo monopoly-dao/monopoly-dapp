@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
+import { MdContentCopy } from 'react-icons/md';
 
 import LoadingText from '@/components/LoadingText';
 import TableContainer from '@/components/table';
@@ -67,14 +68,14 @@ export default function Page() {
       <div className='mb-6 flex gap-4'>
         <p className='font-inter'>Wallet Address:</p>
         <p
-          className='text-dark-grey font-n-montreal cursor-pointer hover:underline'
+          className='text-dark-grey flex items-center font-n-montreal cursor-pointer hover:underline'
           onClick={copyWalletAddress}
         >
           <LoadingText
             isLoading={isUserLoading}
             value={userDetails?.userDetails.walletAddress}
           />{' '}
-          - click to copy!
+          <MdContentCopy />
         </p>
       </div>
 
