@@ -82,7 +82,7 @@ export const authOptions: NextAuthOptions = {
   },
   secret: `${process.env.NEXTAUTH_SECRET}`,
   callbacks: {
-    jwt: async ({ token, user, trigger, session, profile }) => {
+    jwt: async ({ token, user, trigger, session }) => {
       if (trigger === 'update') {
         const updatedToken = token;
 
@@ -93,22 +93,22 @@ export const authOptions: NextAuthOptions = {
 
       user && (token.data = user);
 
-      // if (profile && !('userFirebaseId' in token.data)) {
-      //   try {
-      //     const r = await axios.post(`${AUTH_BASE_URL}/google-signin`, {
-      //       email: profile.email,
-      //     });
-      //     const result = r.data as {
-      //       token: string;
-      //       userFirebaseId: string;
-      //       email: string;
-      //     };
-      //     token.data = result;
-      //     return token;
-      //   } catch (e) {
-      //     return token;
-      //   }
-      // }
+      if (user && !('userFirebaseId' in token.data)) {
+        try {
+          const r = await axios.post(`${AUTH_BASE_URL}/google-signin`, {
+            email: user.email,
+          });
+          const result = r.data as {
+            token: string;
+            userFirebaseId: string;
+            email: string;
+          };
+          token.data = result;
+          return token;
+        } catch (e) {
+          return token;
+        }
+      }
 
       return token;
     },
