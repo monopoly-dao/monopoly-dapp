@@ -1,26 +1,24 @@
 'use client';
 
-// import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { FcGoogle } from 'react-icons/fc';
 
 import { handleErrors } from '@/utils/error';
 
 export default function GoogleButton() {
-  // const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
 
   async function googleSignIn() {
     try {
-      // const paramsUrl = searchParams.get('callbackUrl');
-      // let callbackUrl: string;
+      const paramsUrl = searchParams.get('callbackUrl');
+      let callbackUrl: string;
 
-      // if (typeof paramsUrl === 'string') {
-      //   callbackUrl = new URL(paramsUrl).toString();
-      // } else callbackUrl = '/';
+      if (typeof paramsUrl === 'string') {
+        callbackUrl = new URL(paramsUrl).toString();
+      } else callbackUrl = '/';
 
-      // await signIn('google', { redirect: false, callbackUrl });
-
-      await signIn('google');
+      await signIn('google', { redirect: false, callbackUrl });
     } catch (e) {
       handleErrors(e);
     }
