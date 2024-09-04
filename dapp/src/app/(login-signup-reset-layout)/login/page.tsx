@@ -11,6 +11,7 @@ import toast from 'react-hot-toast';
 import styles from '../../../styles/Signup.module.css';
 
 import Button from '@/components/buttons/Button';
+import GoogleButton from '@/components/GoogleButton';
 import { Input } from '@/components/input';
 
 import { handleErrors } from '@/utils/error';
@@ -70,68 +71,56 @@ export default function Page() {
   };
 
   return (
-    <Box
-      component='form'
-      sx={{
-        '& .MuiTextField-root': { width: 'inherit' },
-      }}
-      onSubmit={handleSubmit}
-      className={styles.right}
-    >
-      <div className={styles.title}>
-        <h1>Welcome back!</h1>
-        <p>Log in to your account to manage your assets</p>
-      </div>
-      <div className={styles.form}>
-        <Input
-          id={LoginIds.Email}
-          required
-          label='Email address'
-          {...getFormikInputProps(LoginIds.Email)}
-        />
-        <Input
-          id={LoginIds.Email}
-          required
-          label='Password'
-          {...getFormikInputProps(LoginIds.Password)}
-          type='password'
-        />
-        <Button
-          type='submit'
-          className='py-4 px-10'
-          isLoading={isLoading}
-          disabled={!isValid || !dirty}
-        >
-          Log in
-        </Button>
-        <h4 className={styles.h5}>
-          Don&apos;t have an account?{' '}
-          <Link href='/signup' className='underline'>
-            Sign up
-          </Link>
-        </h4>
-        <h4 className={styles.h5}>
-          Forgotten your password?{' '}
-          <Link href='/reset-password' className='underline'>
-            Reset your password
-          </Link>
-        </h4>
-      </div>
-      {/* <div className={styles.divider}>
-            <Divider>OR</Divider>
-          </div> */}
-      {/* <GoogleButton type='contained'>
-            <Image src={google} alt='google icon' width={35} height={35} />
-            &nbsp; &nbsp; Continue with Google
-          </GoogleButton> */}
-
-      {/* <Snackbar
-            open={!!error}
-            autoHideDuration={3000}
-            onClose={handleClose}
-            message={error}
-            // action={action}
-          /> */}
-    </Box>
+    <>
+      <Box
+        component='form'
+        sx={{
+          '& .MuiTextField-root': { width: 'inherit' },
+        }}
+        onSubmit={handleSubmit}
+        className={styles.right}
+      >
+        <div className={styles.title}>
+          <h1>Welcome back!</h1>
+          <p>Log in to your account to manage your assets</p>
+        </div>
+        <div className={styles.form}>
+          <Input
+            id={LoginIds.Email}
+            required
+            label='Email address'
+            {...getFormikInputProps(LoginIds.Email)}
+          />
+          <Input
+            id={LoginIds.Email}
+            required
+            label='Password'
+            {...getFormikInputProps(LoginIds.Password)}
+            type='password'
+          />
+          <Button
+            type='submit'
+            className='py-4 px-10'
+            isLoading={isLoading}
+            disabled={!isValid || !dirty}
+          >
+            Log in
+          </Button>
+          <h4 className={styles.h5}>
+            Don&apos;t have an account?{' '}
+            <Link href='/signup' className='underline'>
+              Sign up
+            </Link>
+          </h4>
+          <h4 className={styles.h5}>
+            Forgotten your password?{' '}
+            <Link href='/reset-password' className='underline'>
+              Reset your password
+            </Link>
+          </h4>
+        </div>
+      </Box>
+      <GoogleButton />
+    </>
   );
 }
