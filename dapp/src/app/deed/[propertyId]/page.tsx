@@ -76,7 +76,7 @@ export default function Page() {
       <h2 className='text-xl mt-10'>Recitals</h2>
       <ol className='list-decimal pl-10'>
         <li>
-          Settley DAO is a decentralized autonomous organization identified by
+          Settley DAO is a decentralized autonomous organization identified by{' '}
           {deedDetails?.propertyAddress} and constituted as a legal entity under
           the Laws of Wyoming for its Members' ownership and management of real
           property globally;

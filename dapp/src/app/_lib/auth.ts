@@ -92,26 +92,20 @@ export const authOptions: NextAuthOptions = {
       }
 
       user && (token.data = user);
-      console.log(user);
-      console.log(token);
 
       if (!('userFirebaseId' in token.data)) {
         try {
-          console.log(token);
           const r = await axios.post(`${AUTH_BASE_URL}/google-signin`, {
             email: token.email,
           });
-          console.log(r);
           const result = r.data as {
             token: string;
             userFirebaseId: string;
             email: string;
           };
           token.data = result;
-          console.log(token);
           return token;
         } catch (e) {
-          console.log(e);
           return token;
         }
       }
