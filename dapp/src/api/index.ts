@@ -1,5 +1,3 @@
-// 'use client';
-
 import { createApi } from '@reduxjs/toolkit/query/react';
 // import { createApi } from '@reduxjs/toolkit/query';
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
@@ -99,5 +97,6 @@ export const globalApi = createApi({
     'WalletStats',
     'Holdings',
     'Transactions',
+    'DeedDetails',
   ],
 });

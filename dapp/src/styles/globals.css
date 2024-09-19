@@ -10,8 +10,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   box-sizing: border-box;
-  --scroll-behavior: smooth!important;
-  scroll-behavior: smooth!important;
+  --scroll-behavior: smooth !important;
+  scroll-behavior: smooth !important;
   /* color: #c9ff63; */
 }
 
@@ -61,6 +61,7 @@ h3,
 h4,
 h5,
 button,
+li,
 a {
   @apply font-n-montreal;
 }
@@ -137,4 +138,10 @@ button.transparent-bg {
 
 .PhoneInput {
   @apply pl-2 w-full;
+}
+
+@media print {
+  @page {
+    margin: 100px 0;
+  }
 }
