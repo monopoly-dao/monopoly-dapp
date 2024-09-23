@@ -9,6 +9,8 @@ import HowItWorks from './_components/HowItWorks';
 import TrendingProperties from './_components/TrendingProperties';
 import WhoAreWe from './_components/WhoAreWe';
 
+import landingBanner from '~/images/landing-banner.png';
+
 export const metadata: Metadata = {
   title: 'Join the future of property ownership',
   description:
@@ -45,11 +47,12 @@ export default function Page() {
 
       <div className='relative'>
         <Image
-          src='/images/landing-banner.png'
+          src={landingBanner}
           alt='banner'
           width={1000}
           height={595}
           quality={100}
+          placeholder='blur'
           className='w-full h-[250px] sm:h-[400px] lg:h-[595px] object-cover'
         />
         <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>

@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 import styles from '../../../styles/Signup.module.css';
 
 import Button from '@/components/buttons/Button';
+import GoogleButton from '@/components/GoogleButton';
 import { Input } from '@/components/input';
 
 import { AUTH_BASE_URL } from '@/api';
@@ -18,7 +19,6 @@ import { handleErrors } from '@/utils/error';
 
 import { SignupIds, signupInitialValues } from './_utils/signupConstants';
 import { signupSchema } from './_utils/signupValidations';
-import GoogleButton from '@/components/GoogleButton';
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false);

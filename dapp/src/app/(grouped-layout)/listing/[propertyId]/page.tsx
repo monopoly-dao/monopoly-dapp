@@ -130,13 +130,13 @@ export default function Page() {
             </div>
             <div className='h-[1px] w-full bg-medium-grey' />
             <div className='flex flex-col gap-4'>
-              <p className='font-medium text-xl'>Deed URL</p>
+              <p className='font-medium text-xl'>Property Title Deed</p>
               <Link
-                className='underline'
+                className='underline w-fit'
                 href={`/deed/${property?._id}`}
                 target='_blank'
               >
-                Get Deed
+                View Title Deed
               </Link>
             </div>
             <div className='h-[1px] w-full bg-medium-grey' />
