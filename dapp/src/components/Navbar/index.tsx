@@ -145,7 +145,7 @@ const Navbar = () => {
           <Link href='/dashboard/settings' className='underline font-mono'>
             link
           </Link>{' '}
-          to complete your profile and receive your tokens
+          to complete your profile and receive your test tokens
         </div>
       )}
     </>
