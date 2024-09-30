@@ -59,9 +59,12 @@ const Navbar = () => {
 
   const userFirebaseId = session.data?.userFirebaseId ?? '';
 
-  const { data: userResponse } = useGetUserDetailsQuery(userFirebaseId, {
-    skip: !isLoggedIn,
-  });
+  const { data: userResponse, isLoading } = useGetUserDetailsQuery(
+    userFirebaseId,
+    {
+      skip: !isLoggedIn,
+    }
+  );
   const userDetails = userResponse?.data.userDetails;
 
   return (
@@ -139,7 +142,7 @@ const Navbar = () => {
         <MobileMenuContainer />
       </Stack>
 
-      {isLoggedIn && !userDetails && (
+      {isLoggedIn && !userDetails && !isLoading && (
         <div className='bg-navy py-4 text-white w-full text-center font-mono'>
           Follow this{' '}
           <Link href='/dashboard/settings' className='underline font-mono'>

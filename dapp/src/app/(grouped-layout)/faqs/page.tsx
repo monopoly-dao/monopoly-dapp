@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { faqs } from '@/constants/appConstants';
 
-import FAQItem from '../_components/FAQItem';
+import FAQItem from './_components/FAQItem';
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions',
@@ -19,11 +19,8 @@ export default function Page() {
       <div>
         <h2 className='mb-4'>Operational</h2>
         <div className='grid grid-cols-1 gap-y-8'>
-          {faqs.slice(0, 5).map((item, id) => (
-            <FAQItem key={id} {...item} />
-          ))}
-          {faqs.slice(6).map((item, id) => (
-            <FAQItem key={id} {...item} />
+          {faqs.map((item, id) => (
+            <FAQItem key={id} index={id} {...item} />
           ))}
         </div>
       </div>

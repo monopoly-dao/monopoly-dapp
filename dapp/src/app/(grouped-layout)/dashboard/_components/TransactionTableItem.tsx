@@ -14,7 +14,7 @@ type Props = {
 };
 
 export default function TransactionTableItem({ transaction }: Props) {
-  const tableClass = 'px-5 border-b border-medium-grey py-3';
+  const tableClass = 'px-5 border-b border-medium-grey py-3 font-mono';
 
   return (
     <tr>
@@ -34,7 +34,9 @@ export default function TransactionTableItem({ transaction }: Props) {
         ${transaction.property?.propertyDetails.symbol}
       </td>
       <td className={cn([tableClass])}>
-        {formatISODatetoDashSeparatedDateString(transaction.created_at)}
+        <p className='min-w-24'>
+          {formatISODatetoDashSeparatedDateString(transaction.created_at)}
+        </p>
       </td>
       <td className={cn([tableClass])}>
         ${formatAmount(transaction.amount.$numberDecimal)}

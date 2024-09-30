@@ -65,10 +65,10 @@ export default function Page() {
     <div>
       <h2 className='text-3xl mt-12 font-inter mb-6'>Transaction History</h2>
 
-      <div className='mb-6 flex gap-4'>
+      <div className='mb-6 flex flex-col md:flex-row gap-1 md:gap-4'>
         <p className='font-inter'>Wallet Address:</p>
         <p
-          className='text-dark-grey flex items-center font-n-montreal cursor-pointer hover:underline'
+          className='text-dark-grey text-sm md:text-base flex items-center font-n-montreal cursor-pointer hover:underline'
           onClick={copyWalletAddress}
         >
           <LoadingText
