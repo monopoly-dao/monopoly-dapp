@@ -21,7 +21,7 @@ export default function TransactionTableItem({ transaction }: Props) {
       <td className={cn([tableClass])}>
         <div className='flex items-center'>
           <Link
-            href={`https://sepolia.etherscan.io/tx/${transaction.txHash}`}
+            href={`https://basescan.org/tx/${transaction.txHash}`}
             className='underline flex items-center'
             target='_blank'
           >
