@@ -10,7 +10,7 @@ export default function GetStartedLink() {
     <>
       {!isLoggedIn && (
         <Link
-          className='text-white font-normal bg-navy rounded-[6px] w-full py-5 sm:w-full'
+          className='text-white font-normal bg-navy rounded-[6px] w-full max-w-[140px] py-2 px-4'
           href='/signup'
         >
           Get Started
@@ -18,7 +18,7 @@ export default function GetStartedLink() {
       )}
       {isLoggedIn && (
         <Link
-          className='text-white font-normal bg-navy rounded-[6px] w-full py-5 sm:w-full'
+          className='text-white font-normal bg-navy rounded-[6px] w-full max-w-[140px] py-2 px-4'
           href='/listings'
         >
           Buy Now

@@ -3,7 +3,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { FiUserPlus } from 'react-icons/fi';
 import { IoMdClose } from 'react-icons/io';
+import { LuLogIn } from 'react-icons/lu';
 import { VscAccount } from 'react-icons/vsc';
 
 import { authenticatedNavLinks, unauthentiatedNavLinks } from '.';
@@ -56,7 +58,7 @@ export default function MobileMenu({ close }: Props) {
                   key={link.label}
                   onClick={() => router.push(link.route)}
                   variant='ghost'
-                  className='text-[#1E1E1E] bg-transparent border-none font-craftwork text-base font-light'
+                  className='text-[#1E1E1E] bg-transparent !text-base border-none font-craftwork font-semibold'
                 >
                   {link.label}
                 </Button>
@@ -66,7 +68,7 @@ export default function MobileMenu({ close }: Props) {
                 <Link
                   key={link.label}
                   href={link.route}
-                  className='text-[#1E1E1E] font-light font-craftwork'
+                  className='text-[#1E1E1E] font-semibold font-craftwork'
                 >
                   {link.label}
                 </Link>
@@ -87,12 +89,22 @@ export default function MobileMenu({ close }: Props) {
           </>
         )}
         {!isLoggedIn && (
-          <Link
-            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
-            href='/login'
-          >
-            Login / Signup
-          </Link>
+          <>
+            <Link
+              className='text-navy text-sm rounded-[6px] py-3 px-5 flex gap-2 font-semibold items-center font-craftwork border border-medium-grey'
+              href='/login'
+            >
+              <LuLogIn className='text-base' />
+              Login
+            </Link>
+            <Link
+              className='text-white text-sm bg-navy rounded-[6px] py-3 px-5 flex gap-2 font-semibold items-center font-craftwork'
+              href='/signup'
+            >
+              <FiUserPlus className='text-base' />
+              Sign Up
+            </Link>
+          </>
         )}
         <div className='bg-medium-grey h-[0.5px] w-full' />
       </div>

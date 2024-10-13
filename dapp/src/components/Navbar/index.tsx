@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import { FiUserPlus } from 'react-icons/fi';
+import { LuLogIn } from 'react-icons/lu';
 import { VscAccount } from 'react-icons/vsc';
 
 import styles from './Navbar.module.scss';
@@ -75,7 +77,7 @@ const Navbar = () => {
         alignItems='center'
         justifyContent='space-between'
         className={cn(
-          'bg-white text-white mt-6 lg:mt-12 z-[10] pt-2 pb-8 border-y px-[5%] sm:px-[7%] border-black',
+          'bg-white text-white mt-6 lg:mt-12 z-[10] pt-2 pb-5 border-y px-[5%] border-black',
           [styles.navbar]
         )}
       >
@@ -83,59 +85,60 @@ const Navbar = () => {
 
         {/* <InputSearch containerClassName='w-1/4 hidden sm:flex' /> */}
 
-        <div className='items-center gap-5 lg:gap-11 hidden sm:flex whitespace-nowrap'>
-          {/* <Link
-          className='text-light-grey flex gap-2 py-2 px-5 font-semibold items-center'
-          href='/login'
-        >
-          <IoWalletOutline />
-          Sign in
-        </Link> */}
-          <div className='items-center hidden sm:flex gap-5 lg:gap-11'>
-            {navLinks.map((link) => {
-              if (link.isLinkToSection)
-                return (
-                  <Button
-                    key={link.label}
-                    onClick={() => router.push(link.route)}
-                    variant='ghost'
-                    className='text-[#1E1E1E] bg-transparent p-0 border-none font-craftwork text-xs lg:text-base font-light'
-                  >
-                    {link.label}
-                  </Button>
-                );
-              else
-                return (
-                  <Link
-                    key={link.label}
-                    href={link.route}
-                    className='text-[#1E1E1E] font-light text-xs lg:text-base font-craftwork'
-                  >
-                    {link.label}
-                  </Link>
-                );
-            })}
-          </div>
+        <div className='items-center hidden sm:flex gap-6 lg:gap-8'>
+          {navLinks.map((link) => {
+            if (link.isLinkToSection)
+              return (
+                <Button
+                  key={link.label}
+                  onClick={() => router.push(link.route)}
+                  variant='ghost'
+                  className='text-[#1E1E1E] bg-transparent p-0 border-none font-craftwork text-xs lg:text-sm font-semibold'
+                >
+                  {link.label}
+                </Button>
+              );
+            else
+              return (
+                <Link
+                  key={link.label}
+                  href={link.route}
+                  className='text-[#1E1E1E] font-semibold text-xs lg:text-sm font-craftwork'
+                >
+                  {link.label}
+                </Link>
+              );
+          })}
+          {isLoggedIn && <LogoutDropdown />}
+        </div>
+
+        <div className='items-center gap-3 hidden sm:flex whitespace-nowrap'>
           {isLoggedIn && (
-            <>
-              <LogoutDropdown />
-              <Link
-                className='text-white text-xs lg:text-base bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
-                href='/dashboard'
-              >
-                <VscAccount />
-                Dashboard
-              </Link>
-            </>
-          )}
-          {!isLoggedIn && (
             <Link
               className='text-white text-xs lg:text-base bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
-              href='/login'
+              href='/dashboard'
             >
-              {/* <VscAccount />  */}
-              Login / Signup
+              <VscAccount />
+              Dashboard
             </Link>
+          )}
+          {!isLoggedIn && (
+            <>
+              <Link
+                className='text-navy text-xs lg:text-sm rounded-[6px] py-2 px-4 flex gap-2 font-semibold items-center font-craftwork border border-medium-grey'
+                href='/login'
+              >
+                <LuLogIn className='text-base' />
+                Login
+              </Link>
+              <Link
+                className='text-white text-xs lg:text-sm bg-navy rounded-[6px] py-2 px-4 flex gap-2 font-semibold items-center font-craftwork'
+                href='/signup'
+              >
+                <FiUserPlus className='text-base' />
+                Sign Up
+              </Link>
+            </>
           )}
         </div>
 

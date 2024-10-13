@@ -26,22 +26,22 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div>
-      <div className='mt-20 mb-20 flex flex-col gap-11 px-[5%] sm:px-[7%]'>
-        <h1 className='font-medium text-[45px] w-full leading-[55px] sm:leading-[75px] lg:leading-[96px] sm:text-[60px] lg:text-[80px]'>
-          <div>Join the future of </div>
-          <div>property ownership</div>
+      <div className='mt-10 mb-20 flex flex-col gap-5 px-[5%] sm:px-[7%] text-center items-center'>
+        <h1 className='font-medium text-[30px] w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[40px] lg:text-[60px]'>
+          <div>Join the future of property </div>
+          <div>ownership</div>
         </h1>
-        <p>Settley allows you to buy and own a home in minutes.</p>
-        <div className='w-full text-center font-inter text-lg sm:w-full lg:w-1/2 antialiased'>
-          <div className='flex flex-wrap w-full justify-center gap-4 sm:w-full lg:flex-nowrap lg:w-3/5'>
-            <GetStartedLink />
-            <Link
-              className='text-navy outline outline-1 outline-navy bg-white rounded-[6px] font-normal  w-full py-5 sm:w-full'
-              href='#footer'
-            >
-              Stay Updated
-            </Link>
-          </div>
+        <p className='text-dark-grey'>
+          Settley allows you to buy and own a home in minutes.
+        </p>
+        <div className='w-full text-center gap-4 flex items-center justify-center font-inter text-sm'>
+          <GetStartedLink />
+          <Link
+            className='text-navy outline outline-1 outline-navy bg-white rounded-[6px] font-normal w-full max-w-[140px] py-2 px-5'
+            href='#footer'
+          >
+            Stay Updated
+          </Link>
         </div>
       </div>
 
@@ -82,4 +82,25 @@ export default function Page() {
       </div>
     </div>
   );
+}
+
+{
+  /* <div className='mt-20 mb-20 flex flex-col gap-11 px-[5%] sm:px-[7%]'>
+  <h1 className='font-medium text-[45px] w-full leading-[55px] sm:leading-[75px] lg:leading-[96px] sm:text-[60px] lg:text-[80px]'>
+    <div>Join the future of </div>
+    <div>property ownership</div>
+  </h1>
+  <p>Settley allows you to buy and own a home in minutes.</p>
+  <div className='w-full text-center font-inter text-lg sm:w-full lg:w-1/2 antialiased'>
+    <div className='flex flex-wrap w-full justify-center gap-4 sm:w-full lg:flex-nowrap lg:w-3/5'>
+      <GetStartedLink />
+      <Link
+        className='text-navy outline outline-1 outline-navy bg-white rounded-[6px] font-normal  w-full py-5 sm:w-full'
+        href='#footer'
+      >
+        Stay Updated
+      </Link>
+    </div>
+  </div>
+</div>; */
 }

@@ -35,7 +35,7 @@ export default function SettleyLogo({ colour }: Props) {
           width={200}
           height={44}
           quality={100}
-          className='w-[200px] h-auto'
+          className='w-[140px] lg:w-[170px] xl:w-[200px] h-auto'
           priority
         />
       )}
