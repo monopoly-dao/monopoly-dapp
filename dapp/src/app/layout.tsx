@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Darker_Grotesque, Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import { getServerSession } from 'next-auth';
+import NextTopLoader from 'nextjs-toploader';
 import { Toaster } from 'react-hot-toast';
 
 import '../styles/globals.css';
@@ -134,6 +135,7 @@ export default async function RootLayout({
       <body>
         <NextAuthProvider session={session}>
           <ReduxProvider>
+            <NextTopLoader color='#272343' />
             {children}
             <Toaster position='top-right' />
           </ReduxProvider>

@@ -91,14 +91,14 @@ export default function MobileMenu({ close }: Props) {
         {!isLoggedIn && (
           <>
             <Link
-              className='text-navy text-sm rounded-[6px] py-3 px-5 flex gap-2 font-semibold items-center font-craftwork border border-medium-grey'
+              className='text-navy text-sm w-[120px] rounded-[6px] py-3 px-5 flex gap-2 font-semibold items-center font-craftwork border border-medium-grey'
               href='/login'
             >
               <LuLogIn className='text-base' />
               Login
             </Link>
             <Link
-              className='text-white text-sm bg-navy rounded-[6px] py-3 px-5 flex gap-2 font-semibold items-center font-craftwork'
+              className='text-white text-sm w-[120px] bg-navy rounded-[6px] py-3 px-5 flex gap-2 font-semibold items-center font-craftwork'
               href='/signup'
             >
               <FiUserPlus className='text-base' />

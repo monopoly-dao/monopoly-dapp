@@ -44,6 +44,7 @@
     "next": "14.1.0",
     "next-auth": "^4.24.5",
     "next-sitemap": "^4.2.3",
+    "nextjs-toploader": "^3.7.15",
     "pdfmake": "^0.2.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
