@@ -68,6 +68,11 @@ const Navbar = () => {
     }
   );
   const userDetails = userResponse?.data.userDetails;
+  const isProfileComplete =
+    userDetails?.twitter &&
+    userDetails.username &&
+    userResponse?.data.firstName &&
+    userResponse.data.lastName;
 
   return (
     <>
@@ -145,7 +150,7 @@ const Navbar = () => {
         <MobileMenuContainer />
       </Stack>
 
-      {isLoggedIn && !userDetails && !isLoading && (
+      {isLoggedIn && !isLoading && !isProfileComplete && (
         <div className='bg-navy py-4 text-white w-full text-center font-mono'>
           Follow this{' '}
           <Link href='/dashboard/settings' className='underline font-mono'>

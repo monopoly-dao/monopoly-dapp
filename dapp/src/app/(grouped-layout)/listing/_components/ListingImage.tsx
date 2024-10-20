@@ -17,11 +17,9 @@ export default function ListingImage({ src, alt }: Props) {
 
   return (
     <>
-      <LoadingSkeleton
-        containerClassName={cn('w-full h-full', [
-          isImageFetching ? 'block' : 'hidden',
-        ])}
-      />
+      {isImageFetching && (
+        <LoadingSkeleton containerClassName={cn('w-full h-full')} />
+      )}
       <Image
         src={src}
         alt={alt}

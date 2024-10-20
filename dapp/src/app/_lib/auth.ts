@@ -1,11 +1,12 @@
 import axios, { AxiosError } from 'axios';
-import { NextAuthOptions, User } from 'next-auth';
+import { getServerSession, NextAuthOptions, Session, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
+import TwitterProvider from 'next-auth/providers/twitter';
 import 'firebase/firestore';
 
 import { INetworkSuccessResponse } from '../../@types/appTypes';
-import { AUTH_BASE_URL } from '../../api';
+import { AUTH_BASE_URL, BASE_URL } from '../../api';
 import { AuthEndpoints } from '../../api/auth/authApiConstants';
 import logger from '../../utils/logger';
 
@@ -69,6 +70,12 @@ export const authOptions: NextAuthOptions = {
         },
       },
     }),
+
+    TwitterProvider({
+      clientId: process.env.TWITTER_CLIENT_ID as string,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
+      version: '2.0', // opt-in to Twitter OAuth 2.0
+    }),
   ],
 
   pages: {
@@ -82,7 +89,7 @@ export const authOptions: NextAuthOptions = {
   },
   secret: `${process.env.NEXTAUTH_SECRET}`,
   callbacks: {
-    jwt: async ({ token, user, trigger, session }) => {
+    jwt: async ({ token, user, trigger, session, account, profile }) => {
       if (trigger === 'update') {
         const updatedToken = token;
 
@@ -91,8 +98,43 @@ export const authOptions: NextAuthOptions = {
         return updatedToken;
       }
 
+      if (account?.provider === 'twitter' && profile) {
+        if (
+          'data' in profile &&
+          typeof profile.data === 'object' &&
+          profile.data &&
+          'username' in profile.data &&
+          typeof profile.data.username === 'string'
+        ) {
+          const credentialsSession = (await getServerSession(
+            authOptions
+          )) as Session;
+          const newToken = {
+            data: {
+              token: credentialsSession.token,
+              email: credentialsSession.email,
+              userFirebaseId: credentialsSession.userFirebaseId,
+            },
+          };
+
+          await axios.post(
+            `${BASE_URL}/profile/connect-twitter/${newToken.data.userFirebaseId}`,
+            {
+              twitterUsername: profile.data.username,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${newToken.data.token}`,
+              },
+            }
+          );
+          return newToken;
+        }
+      }
+
       user && (token.data = user);
 
+      // google sign in handler
       if (!('userFirebaseId' in token.data)) {
         try {
           const r = await axios.post(`${AUTH_BASE_URL}/google-signin`, {

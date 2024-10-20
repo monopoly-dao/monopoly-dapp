@@ -30,7 +30,6 @@ type Props = {
     // email: string;
     username: string;
     phone: string;
-    twitter: string;
   };
 };
 
@@ -65,7 +64,6 @@ export default function UpdateProfileForm({
       formData.set('firstName', values.firstName);
       formData.set('lastName', values.lastName);
       formData.set('phone', values.phone);
-      formData.set('twitter', values.twitter);
       formData.set('username', values.username);
 
       try {
@@ -76,7 +74,9 @@ export default function UpdateProfileForm({
           }).unwrap();
 
           toast.success('Profile details successfully created');
-          toast.success('Your wallet has been funded with test tokens');
+          toast.success(
+            'Connect your X account to complete your profile and get funded with test tokens!'
+          );
         } else {
           await updateUser({
             data: formData,
@@ -115,38 +115,28 @@ export default function UpdateProfileForm({
     >
       <Input
         id={UpdateProfileIds.FirstName}
-        required
         label='First Name'
         {...getFormikInputProps(UpdateProfileIds.FirstName)}
       />
       <Input
         id={UpdateProfileIds.LastName}
-        required
         label='Last Name'
         {...getFormikInputProps(UpdateProfileIds.LastName)}
       />
       <Input
         id={UpdateProfileIds.Username}
-        required
         label='Username'
         {...getFormikInputProps(UpdateProfileIds.Username)}
       />
       <Phone
         id={UpdateProfileIds.Phone}
-        required
         type='tel'
-        label='Phone number'
+        label='Phone number (optional)'
         {...getFormikInputProps(UpdateProfileIds.Phone)}
         handleChange={(value) => {
           setFieldTouched(UpdateProfileIds.Phone);
           setFieldValue(UpdateProfileIds.Phone, value);
         }}
-      />
-      <Input
-        required={false}
-        id={UpdateProfileIds.Twitter}
-        label='Twitter'
-        {...getFormikInputProps(UpdateProfileIds.Twitter)}
       />
 
       <div className='flex items-center gap-4'>

@@ -10,6 +10,7 @@ import useDisclosure from '@/hooks/useDisclosure';
 
 import Button from '@/components/buttons/Button';
 import LoadingText from '@/components/LoadingText';
+import Tooltip from '@/components/Tooltip';
 
 import { useGetPropertyQuery } from '@/api/properties';
 import authenticatedFuncWrapper from '@/utils/authenticatedFuncWrapper';
@@ -130,7 +131,10 @@ export default function Page() {
             </div>
             <div className='h-[1px] w-full bg-medium-grey' />
             <div className='flex flex-col gap-4'>
-              <p className='font-medium text-xl'>Property Title Deed</p>
+              <p className='font-medium text-xl flex items-center gap-2'>
+                Property Title Deed
+                <Tooltip caption='Click on View Title Deed to generate and download the deed document for this property.' />
+              </p>
               <Link
                 className='underline w-fit'
                 href={`/deed/${property?._id}`}
@@ -141,7 +145,10 @@ export default function Page() {
             </div>
             <div className='h-[1px] w-full bg-medium-grey' />
             <div className='flex flex-col gap-4'>
-              <p className='font-medium text-xl'>Contract Address</p>
+              <p className='font-medium text-xl flex items-center gap-2'>
+                Contract Address
+                <Tooltip caption='You can follow the link to view this property on the basescan blockchain explorer.' />
+              </p>
               <Link
                 href={`https://basescan.org/address/${property?.contractAddress}`}
                 target='_blank'
