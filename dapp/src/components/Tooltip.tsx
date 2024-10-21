@@ -21,14 +21,14 @@ export default function Tooltip({ caption }: Props) {
       <IconButton
         variant='ghost'
         icon={RiErrorWarningLine}
-        onClick={tooltip.toggle}
+        onClick={tooltip.open}
         onMouseEnter={tooltip.open}
         onMouseLeave={tooltip.close}
         classNames={{ icon: 'text-base' }}
       />
 
       {tooltip.isOpen && (
-        <span className='absolute leading-[15px] -top-10 text-[10px] font-normal font-inter z-[5] bg-medium-grey p-2 rounded-[8px] w-[300px]'>
+        <span className='absolute leading-[15px] -left-[150px] md:left-0 -top-10 text-[10px] font-normal font-inter z-[5] bg-medium-grey p-2 rounded-[8px] w-[300px]'>
           {caption}
         </span>
       )}

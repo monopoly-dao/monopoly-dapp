@@ -58,7 +58,7 @@ export default function MobileMenu({ close }: Props) {
                   key={link.label}
                   onClick={() => router.push(link.route)}
                   variant='ghost'
-                  className='text-[#1E1E1E] bg-transparent !text-base border-none font-craftwork font-semibold'
+                  className='text-[#1E1E1E] bg-transparent !text-base border-none font-craftwork font-bold'
                 >
                   {link.label}
                 </Button>
@@ -68,7 +68,7 @@ export default function MobileMenu({ close }: Props) {
                 <Link
                   key={link.label}
                   href={link.route}
-                  className='text-[#1E1E1E] font-semibold font-craftwork'
+                  className='text-[#1E1E1E] font-bold font-craftwork'
                 >
                   {link.label}
                 </Link>

@@ -30,6 +30,10 @@ export const unauthentiatedNavLinks = [
     route: '/listings',
   },
   {
+    label: 'Docs',
+    route: 'https://settley.gitbook.io/settley/',
+  },
+  {
     label: 'How it Works',
     route: '/#how-it-works',
     isLinkToSection: true,
@@ -44,6 +48,10 @@ export const authenticatedNavLinks = [
   {
     label: 'Listings',
     route: '/listings',
+  },
+  {
+    label: 'Docs',
+    route: 'https://settley.gitbook.io/settley/',
   },
   {
     label: 'How it Works',
@@ -98,7 +106,7 @@ const Navbar = () => {
                   key={link.label}
                   onClick={() => router.push(link.route)}
                   variant='ghost'
-                  className='text-[#1E1E1E] bg-transparent p-0 border-none font-craftwork text-xs lg:text-sm font-semibold'
+                  className='text-[#1E1E1E] bg-transparent p-0 border-none font-craftwork text-xs lg:text-sm font-bold'
                 >
                   {link.label}
                 </Button>
@@ -108,7 +116,7 @@ const Navbar = () => {
                 <Link
                   key={link.label}
                   href={link.route}
-                  className='text-[#1E1E1E] font-semibold text-xs lg:text-sm font-craftwork'
+                  className='text-[#1E1E1E] font-bold text-xs lg:text-sm font-craftwork'
                 >
                   {link.label}
                 </Link>

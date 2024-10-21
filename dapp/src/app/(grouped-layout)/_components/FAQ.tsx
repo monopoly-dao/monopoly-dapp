@@ -12,7 +12,7 @@ export default function FAQ() {
       </h2>
 
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-8 gap-x-14'>
-        {faqs.map((item, id) => (
+        {faqs.slice(0, 2).map((item, id) => (
           <FAQItem key={id} {...item} />
         ))}
       </div>
