@@ -28,10 +28,12 @@ export default function DashboardCard({
   const _ArrowIcon = isChangePositive ? IoArrowUp : IoArrowDown;
 
   return (
-    <div className='w-full p-6 border border-medium-grey flex items-center gap-4 justify-between'>
+    <div className='w-full p-6 border shadow flex rounded-lg items-start gap-4 justify-between'>
       <div className='flex flex-col gap-1 font-inter'>
-        <p className='font-inter'>{title}</p>
-        <p className='text-2xl font-inter'>
+        <p className='font-inter text-sm font-medium text-medium-grey'>
+          {title}
+        </p>
+        <p className='text-3xl font-bold font-inter'>
           {isMoney && '$'}
           <LoadingText
             isLoading={isLoading}

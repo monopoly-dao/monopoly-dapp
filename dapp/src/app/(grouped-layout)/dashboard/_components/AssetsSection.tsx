@@ -31,7 +31,7 @@ export default function AssetsSection({ userFirebaseId }: Props) {
   return (
     <div>
       <div className='flex justify-between items-start mb-6'>
-        <h2 className='text-3xl font-inter'>Assets</h2>
+        <h2 className='text-3xl font-inter'>Your Assets</h2>
       </div>
 
       {assets?.length === 0 && `You don't have any assets yet`}

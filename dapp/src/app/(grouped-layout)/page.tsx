@@ -6,6 +6,7 @@ import Cities from './_components/Cities';
 import FAQ from './_components/FAQ';
 import GetStartedLink from './_components/GetStartedLink';
 import HowItWorks from './_components/HowItWorks';
+import OwnProperty from './_components/OwnProperty';
 import TrendingProperties from './_components/TrendingProperties';
 import WhoAreWe from './_components/WhoAreWe';
 
@@ -67,6 +68,8 @@ export default function Page() {
           </Link>
         </div>
       </div>
+
+      <OwnProperty />
 
       <HowItWorks />
 

@@ -3,12 +3,17 @@
 import { useSession } from 'next-auth/react';
 import { PiHouseLine } from 'react-icons/pi';
 import { PiCubeFill } from 'react-icons/pi';
+import { GoHome } from 'react-icons/go';
+
 import { TbWheel } from 'react-icons/tb';
+import { FiKey } from 'react-icons/fi';
+import { IoWalletOutline } from 'react-icons/io5';
 
 import { useGetWalletStatsQuery } from '@/api/profile';
 
 import AssetsSection from './_components/AssetsSection';
 import DashboardCard from './_components/DashboardCard';
+import ExploreOpportunities from './_components/ExploreOpportunites';
 
 export default function Page() {
   const session = useSession();
@@ -29,14 +34,14 @@ export default function Page() {
           isLoading={isLoading}
           isMoney
           percentChange={100}
-          icon={TbWheel}
+          icon={GoHome}
         />
         <DashboardCard
-          title='Total Portfolio Volume'
+          title='Properties Owned'
           amount={walletStats?.totalProperties}
           isLoading={isLoading}
           percentChange={-100}
-          icon={PiHouseLine}
+          icon={FiKey}
         />
         <DashboardCard
           title='Wallet Balance'
@@ -44,9 +49,16 @@ export default function Page() {
           isLoading={isLoading}
           isMoney
           percentChange={100}
-          icon={PiCubeFill}
+          icon={IoWalletOutline}
         />
       </div>
+
+      {(walletStats?.totalProperties === 0 || !walletStats?.totalProperties) &&
+        !isLoading && (
+          <div className='mt-20'>
+            <ExploreOpportunities />
+          </div>
+        )}
 
       <div className='mt-20'>
         <AssetsSection userFirebaseId={userFirebaseId} />

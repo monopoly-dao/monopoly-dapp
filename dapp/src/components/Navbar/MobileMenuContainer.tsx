@@ -50,13 +50,12 @@ export default function MobileMenuContainer() {
 
   return (
     <div className='relative block md:hidden' ref={ref}>
-      <button onClick={toggleMenu}>
-        <IconButton
-          variant='ghost'
-          icon={CiMenuFries}
-          className='text-3xl text-black block sm:hidden'
-        />
-      </button>
+      <IconButton
+        variant='ghost'
+        icon={CiMenuFries}
+        onClick={toggleMenu}
+        className='text-3xl text-black block sm:hidden'
+      />
 
       <AnimatePresence>
         {isMenuOpen && (
