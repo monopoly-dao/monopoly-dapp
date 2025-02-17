@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://beta.settley.co
+
+# Sitemaps
+Sitemap: https://beta.settley.co/sitemap.xml
