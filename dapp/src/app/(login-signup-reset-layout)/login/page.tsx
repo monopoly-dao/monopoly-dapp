@@ -48,10 +48,13 @@ export default function Page() {
           const callbackUrl = searchParams.get('callbackUrl');
 
           if (typeof callbackUrl === 'string') {
-            return router.replace(new URL(callbackUrl).toString());
+            router.replace(new URL(callbackUrl).toString());
+
+            return (window.location.href = new URL(callbackUrl).toString());
           }
 
           router.replace('/');
+          window.location.href = `${window.location.origin}/`;
         } catch (error) {
           setIsLoading(false);
           handleErrors(error);

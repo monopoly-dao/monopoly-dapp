@@ -5,9 +5,11 @@ import Link from 'next/link';
 import Cities from './_components/Cities';
 import FAQ from './_components/FAQ';
 import GetStartedLink from './_components/GetStartedLink';
-import HowItWorks from './_components/HowItWorks';
 import OwnProperty from './_components/OwnProperty';
+import StepsToBuy from './_components/StepsToBuy';
+import Testimonials from './_components/Testimonials';
 import TrendingProperties from './_components/TrendingProperties';
+import ValueProp from './_components/ValueProp';
 import WhoAreWe from './_components/WhoAreWe';
 
 import landingBanner from '~/images/landing-banner.png';
@@ -71,7 +73,11 @@ export default function Page() {
 
       <OwnProperty />
 
-      <HowItWorks />
+      <ValueProp />
+
+      <StepsToBuy />
+
+      {/* <HowItWorks /> */}
 
       <TrendingProperties />
 
@@ -79,6 +85,8 @@ export default function Page() {
         <WhoAreWe />
         <Cities />
       </div>
+
+      <Testimonials />
 
       <div className='px-[5%] lg:px-[7%]'>
         <FAQ />

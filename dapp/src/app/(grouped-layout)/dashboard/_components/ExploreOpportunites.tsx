@@ -1,8 +1,9 @@
 'use client';
 
-import Button from '@/components/buttons/Button';
 import { useRouter } from 'next/navigation';
 import { IoArrowForward } from 'react-icons/io5';
+
+import Button from '@/components/buttons/Button';
 
 export default function ExploreOpportunities() {
   const router = useRouter();

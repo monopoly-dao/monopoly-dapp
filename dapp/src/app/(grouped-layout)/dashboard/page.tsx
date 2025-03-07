@@ -1,12 +1,8 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { PiHouseLine } from 'react-icons/pi';
-import { PiCubeFill } from 'react-icons/pi';
-import { GoHome } from 'react-icons/go';
-
-import { TbWheel } from 'react-icons/tb';
 import { FiKey } from 'react-icons/fi';
+import { GoHome } from 'react-icons/go';
 import { IoWalletOutline } from 'react-icons/io5';
 
 import { useGetWalletStatsQuery } from '@/api/profile';

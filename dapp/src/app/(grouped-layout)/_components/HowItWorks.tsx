@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { VscCheckAll } from 'react-icons/vsc';
 
 import howItWorks from '~/images/settley-how-it-works.png';
 
@@ -16,10 +17,22 @@ export default function HowItWorks() {
             rights, from receiving rental income to making decisions about the
             property. Your ownership means;
           </p>
-          <p>Real legal rights backed by traditional and blockchain deeds</p>
-          <p>Share in property value and rental income</p>
-          <p>Vote on property decisions</p>
-          <p>Sell your share when you want (secondary market coming soon)</p>
+          <p className='flex items-center gap-3'>
+            <VscCheckAll /> Real legal rights backed by traditional and
+            blockchain deeds
+          </p>
+          <p className='flex items-center gap-3'>
+            <VscCheckAll />
+            Share in property value and rental income
+          </p>
+          <p className='flex items-center gap-3'>
+            <VscCheckAll />
+            Vote on property decisions
+          </p>
+          <p className='flex items-center gap-3'>
+            <VscCheckAll />
+            Sell your share when you want (secondary market coming soon)
+          </p>
         </div>
       </div>
 
