@@ -5,11 +5,9 @@ import Link from 'next/link';
 import Cities from './_components/Cities';
 import FAQ from './_components/FAQ';
 import GetStartedLink from './_components/GetStartedLink';
+import HowItWorks from './_components/HowItWorks';
 import OwnProperty from './_components/OwnProperty';
-import StepsToBuy from './_components/StepsToBuy';
-import Testimonials from './_components/Testimonials';
 import TrendingProperties from './_components/TrendingProperties';
-import ValueProp from './_components/ValueProp';
 import WhoAreWe from './_components/WhoAreWe';
 
 import landingBanner from '~/images/landing-banner.png';
@@ -29,13 +27,15 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div>
-      <div className='mt-10 mb-20 flex flex-col gap-5 px-[5%] sm:px-[7%] text-center items-center'>
-        <h1 className='font-medium text-[30px] w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[40px] lg:text-[60px]'>
-          <div>Join the future of property </div>
-          <div>ownership</div>
+      <div className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'>
+        <h1 className='font-medium !font-roboto text-[24px] w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
+          <div>Join the Future of </div>
+          <div>Real Estate Investment</div>
         </h1>
-        <p className='text-dark-grey'>
-          Settley allows you to buy and own a home in minutes.
+        <p className='text-dark-grey font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
+          Join us in reshaping property ownership—building the Amazon of real
+          estate, making premium European properties accessible through
+          collective investment.
         </p>
         <div className='w-full text-center gap-4 flex items-center justify-center font-inter text-sm'>
           <GetStartedLink />
@@ -73,11 +73,11 @@ export default function Page() {
 
       <OwnProperty />
 
-      <ValueProp />
+      {/* <ValueProp /> */}
 
-      <StepsToBuy />
+      {/* <StepsToBuy /> */}
 
-      {/* <HowItWorks /> */}
+      <HowItWorks />
 
       <TrendingProperties />
 
@@ -86,7 +86,7 @@ export default function Page() {
         <Cities />
       </div>
 
-      <Testimonials />
+      {/* <Testimonials /> */}
 
       <div className='px-[5%] lg:px-[7%]'>
         <FAQ />

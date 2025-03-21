@@ -8,6 +8,8 @@ module.exports = {
         inter: ['var(--font-inter)'],
         'n-montreal': ['var(--font-neue-montreal)'],
         craftwork: ['var(--font-craft)'],
+        roboto: ['var(--font-roboto)'],
+        merriweather: ['var(font-merriweather)'],
       },
       colors: {
         navy: '#272343',
@@ -18,6 +20,7 @@ module.exports = {
         cream: '#FFFBE5',
         'light-green': '#DCF1BF',
         'light-red': '#F7D9D9',
+        'primary-orange': '#FC6720',
       },
     },
   },

@@ -1,5 +1,10 @@
 import { Metadata } from 'next';
-import { Darker_Grotesque, Inter } from 'next/font/google';
+import {
+  Darker_Grotesque,
+  Inter,
+  Merriweather,
+  Roboto,
+} from 'next/font/google';
 import localFont from 'next/font/local';
 import { getServerSession } from 'next-auth';
 import NextTopLoader from 'nextjs-toploader';
@@ -79,6 +84,20 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700', '900'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
+
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
+
 const ppNeueMontreal = localFont({
   src: [
     {
@@ -130,7 +149,9 @@ export default async function RootLayout({
   return (
     <html
       lang='en'
-      className={`${darkerGrotesque.variable} ${inter.variable} ${ppNeueMontreal.variable} ${craftworkGrotesk.variable}`}
+      className={`${darkerGrotesque.variable} ${inter.variable} 
+                  ${ppNeueMontreal.variable} ${craftworkGrotesk.variable} 
+                  ${roboto.variable} ${merriweather.variable}`}
     >
       <body>
         <NextAuthProvider session={session}>

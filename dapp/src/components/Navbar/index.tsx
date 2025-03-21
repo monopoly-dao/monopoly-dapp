@@ -2,7 +2,7 @@
 
 import { Stack } from '@mui/material';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { FiUserPlus } from 'react-icons/fi';
@@ -64,6 +64,7 @@ const Navbar = () => {
   const session = useSession();
   const isLoggedIn = session.data;
   const navLinks = isLoggedIn ? authenticatedNavLinks : unauthentiatedNavLinks;
+  const pathname = usePathname();
 
   const router = useRouter();
 
@@ -106,7 +107,10 @@ const Navbar = () => {
                   key={link.label}
                   onClick={() => router.push(link.route)}
                   variant='ghost'
-                  className='text-[#1E1E1E] bg-transparent p-0 border-none font-craftwork text-xs lg:text-sm font-bold'
+                  className={cn(
+                    'text-[#1E1E1E] bg-transparent p-0 border-none font-roboto text-xs lg:text-sm',
+                    [pathname === link.route && 'text-primary-orange']
+                  )}
                 >
                   {link.label}
                 </Button>
@@ -116,7 +120,10 @@ const Navbar = () => {
                 <Link
                   key={link.label}
                   href={link.route}
-                  className='text-[#1E1E1E] font-bold text-xs lg:text-sm font-craftwork'
+                  className={cn(
+                    'text-[#1E1E1E] text-xs lg:text-sm font-roboto',
+                    [pathname === link.route && 'text-primary-orange']
+                  )}
                 >
                   {link.label}
                 </Link>
