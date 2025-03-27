@@ -78,8 +78,7 @@ const Navbar = () => {
   );
   const userDetails = userResponse?.data.userDetails;
   const isProfileComplete =
-    userDetails?.twitter &&
-    userDetails.username &&
+    userDetails?.username &&
     userResponse?.data.firstName &&
     userResponse.data.lastName;
 
