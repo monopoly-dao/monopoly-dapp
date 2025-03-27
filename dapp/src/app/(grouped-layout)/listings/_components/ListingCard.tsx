@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import RatePercentageIndicator from '@/components/PercentageIndicator';
 import WishlistButton from '@/components/WishlistButton';
 
 import { Property } from '@/api/properties/propertiesApiTypes';
@@ -26,6 +27,10 @@ export default function ListingCard({ property, wishlist }: Props) {
       photos,
     },
   } = property;
+
+  const generateRandomNumbers = (): number => {
+    return Math.floor(Math.random() * (30 - 5 + 1)) + 5;
+  };
 
   return (
     <div className='w-full min-h-[426px] relative bg-white shadow-2xl'>
@@ -83,7 +88,10 @@ export default function ListingCard({ property, wishlist }: Props) {
                 {formatAmount(unitsLeft)}/{formatAmount(units)} units left
               </p>
             </div>
-            <p className='font-inter text-gray-500'>Buy Now</p>
+            <div className='flex flex-col gap-1 items-center'>
+              <p className='font-inter text-gray-500'>Buy Now</p>
+              <RatePercentageIndicator amount={`${generateRandomNumbers()}`} />
+            </div>
           </div>
         </div>
       </Link>

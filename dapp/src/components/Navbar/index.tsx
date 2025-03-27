@@ -108,7 +108,7 @@ const Navbar = () => {
                   variant='ghost'
                   className={cn(
                     'text-[#1E1E1E] bg-transparent p-0 border-none font-roboto text-xs lg:text-sm',
-                    [pathname === link.route && 'text-primary-orange']
+                    [pathname === link.route && 'text-navy']
                   )}
                 >
                   {link.label}
@@ -121,7 +121,7 @@ const Navbar = () => {
                   href={link.route}
                   className={cn(
                     'text-[#1E1E1E] text-xs lg:text-sm font-roboto',
-                    [pathname === link.route && 'text-primary-orange']
+                    [pathname === link.route && 'text-navy']
                   )}
                 >
                   {link.label}
