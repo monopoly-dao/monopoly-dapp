@@ -95,7 +95,7 @@ const merriweather = Merriweather({
   subsets: ['latin'],
   weight: ['300', '400', '700', '900'],
   display: 'swap',
-  variable: '--font-roboto',
+  variable: '--font-merriweather',
 });
 
 const ppNeueMontreal = localFont({

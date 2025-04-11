@@ -9,6 +9,11 @@ export function formatAmount(
   // Remove any non-digit characters
   const cleanAmount = removeNonDigit(amount);
 
+  if (cleanAmount.endsWith('.')) {
+    // Keep the trailing decimal for partial input like "123."
+    return `${currency ? `${currency} ` : ''}${cleanAmount}`;
+  }
+
   return `${currency ? `${currency} ` : ''}${
     cleanAmount
       ? parseFloat(cleanAmount).toLocaleString('en-us', {
@@ -19,10 +24,20 @@ export function formatAmount(
 }
 
 export function removeNonDigit(amount: string) {
-  // Remove any non-digit characters
-  if (!amount) return '';
+  // Allow numbers and at most one decimal point
+  const validAmount = amount
+    .replace(/[^0-9.]/g, '')
+    .replace(/(\..*?)\./g, '$1');
 
-  return amount.replace(/[^0-9.]/g, '');
+  // Prevent truncating input like "123."
+  if (validAmount.endsWith('.')) return validAmount;
+
+  // Restrict to two decimal places
+  const [integerPart, decimalPart] = validAmount.split('.');
+  if (decimalPart && decimalPart.length > 2) {
+    return `${integerPart}.${decimalPart.substring(0, 2)}`;
+  }
+  return validAmount;
 }
 
 export function formatISODatetoString(date = '2023-12-05T00:36:06.278Z') {

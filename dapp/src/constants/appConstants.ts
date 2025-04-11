@@ -4,6 +4,7 @@ export const TOKEN_EXPIRED_MSG = 'session expired. please login again';
 export const REFETCH_TIME = 43200000;
 
 export const GLOBAL_API_REDUCER_PATH = 'globalApi' as const;
+export const CAMPAIGN_PAYMENT_REDUCER_PATH = 'campaignPayment' as const;
 
 // API METHODS
 export const GET_METHOD = 'GET';

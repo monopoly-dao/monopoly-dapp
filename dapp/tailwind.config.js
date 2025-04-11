@@ -9,7 +9,7 @@ module.exports = {
         'n-montreal': ['var(--font-neue-montreal)'],
         craftwork: ['var(--font-craft)'],
         roboto: ['var(--font-roboto)'],
-        merriweather: ['var(font-merriweather)'],
+        merriweather: ['var(--font-merriweather)'],
       },
       colors: {
         navy: '#272343',

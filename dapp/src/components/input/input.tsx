@@ -89,7 +89,7 @@ export default function Input({
           type === 'text') && (
           <div
             className={cn(
-              'focus-within:border-yellow rounded-[6px] flex w-full flex-row items-center border border-gray-600 text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
+              'focus-within:border-navy rounded-[6px] flex w-full flex-row items-center border border-gray-600 text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
               // [
               //   variant === 'primary' && 'bg-secondary-bg border-secondary-bg',
               //   variant === 'secondary' && 'bg-tertiary-bg border-tertiary-bg',

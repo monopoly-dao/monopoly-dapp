@@ -81,9 +81,9 @@ const Select = ({
           classNames={{
             option: (state) =>
               cn(
-                'hover:bg-primary hover:text-white p-2 bg-transparent text-xs lg:text-sm focus:bg-primary focus-within:bg-primary',
+                'hover:bg-navy hover:text-white p-2 bg-transparent text-xs lg:text-sm focus:bg-navy focus-within:bg-navy',
                 [state.isSelected && 'font-semibold'],
-                [state.isFocused && 'bg-primary bg-opacity-80 text-white']
+                [state.isFocused && 'bg-navy bg-opacity-80 text-white']
               ),
             control: () =>
               cn(
