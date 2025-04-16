@@ -9,7 +9,10 @@ import PayCrypto from './PayCrypto';
 import PayeeDetails from './PayeeDetails';
 import PaymentSuccess from './PaymentSuccess';
 
-export default function PaymentForm() {
+type Props = {
+  isOnHomepage?: boolean;
+};
+export default function PaymentForm({ isOnHomepage }: Props) {
   const stage = useAppSelector((state) => state.campaignPayment.stage);
 
   return (
@@ -21,7 +24,7 @@ export default function PaymentForm() {
       }}
     >
       <AnimatePresence>
-        {stage === 'details' && <PayeeDetails />}
+        {stage === 'details' && <PayeeDetails isOnHomepage={isOnHomepage} />}
         {stage === 'crypto' && <PayCrypto />}
         {stage === 'crptoQR' && <CryptoAddress />}
         {stage === 'success' && <PaymentSuccess />}

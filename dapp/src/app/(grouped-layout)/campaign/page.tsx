@@ -1,10 +1,17 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { FaCircleCheck } from 'react-icons/fa6';
+import Link from 'next/link';
+import { FaArrowRight } from 'react-icons/fa6';
 
 import { siteConfig } from '@/constants/config';
 
-import PaymentForm from './_components/PaymentForm';
+import BecomeFoundingMember from './_components/BecomeFoundingMember';
+import FoundersCollection from './_components/FoundersCollection';
+import InvestmentVision from './_components/InvestmentVision';
+import OwnHome from './_components/OwnHome';
+import Revolutionary from './_components/Revolutionary';
+
+import campaignHero from '~/images/Campaign-hero.png';
 
 export const metadata: Metadata = {
   title: 'Campaign',
@@ -35,60 +42,57 @@ export const metadata: Metadata = {
   },
 };
 
-const list = [
-  "Priority access to Settley's platform",
-  'Exclusive investment opportunities',
-  'Reduced fees on transactions',
-  'Direct support from our founding team',
-];
-
 export default function Page() {
   return (
-    <section className='grid grid-cols-1 bg-[#F9F9FC] lg:grid-cols-2 overflow-x-hidden items-center px-[5%] md:px-[10%] lg:px-[5%] gap-10 lg:gap-[7%] py-[100px] relative'>
-      <div className='flex flex-col'>
-        <h1 className='text-[#333333] font-bold text-4xl font-roboto lg:text-[50px] leading-[120%]'>
-          Join our Early Supporter Program
+    <section className='overflow-x-hidden'>
+      <div className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'>
+        <div className='border border-navy rounded-[16px] py-2 px-3 font-roboto text-xs font-medium'>
+          Exclusive Pre-Launch Community
+        </div>
+        <h1 className='font-semibold !font-roboto text-4xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
+          <div>Join the Future of </div>
+          <div>Real Estate Investment</div>
         </h1>
-        <p className='text-[#303030CC] text-lg mt-[10px] font-merriweather'>
-          Be among the first to experience Settley's revolutionary blockchain
-          platform, transforming global property buying with enhanced security,
-          transparency, and efficiency.
+        <p className='text-dark-grey font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
+          Join us in reshaping property ownership—building the Amazon of real
+          estate, making premium European properties accessible through
+          collective investment.
         </p>
-        <div className='flex flex-col mt-[30px] gap-4'>
-          {list.map((item, index) => (
-            <div key={index} className='flex items-center gap-3'>
-              <FaCircleCheck className='text-2xl text-[#231399]' />
-              <p className='font-roboto text-[#333333CC]'>{item}</p>
-            </div>
-          ))}
+        <div className='text-center gap-[10px] flex flex-col items-center justify-center font-roboto text-sm'>
+          <Link
+            className='bg-navy text-white rounded-[60px] font-medium flex items-center gap-1 w-fit py-4 px-7'
+            href='/campaign/payment'
+          >
+            Join the Founding Community <FaArrowRight className='text-2xl' />
+          </Link>
+          <p className='font-roboto text-xs italic'>
+            Limited to first 100 members
+          </p>
         </div>
       </div>
 
-      <PaymentForm />
+      <div className='my-[50px] px-[1%]'>
+        <Image
+          src={campaignHero}
+          alt='banner'
+          width={1000}
+          height={640}
+          // quality={100}
+          placeholder='blur'
+          // priority
+          className='w-full aspect-[1403/640] object-cover rounded-[20px]'
+        />
+      </div>
 
-      <Image
-        src='/svg/blue-stripe.svg'
-        alt='stripe'
-        className='absolute z-[0] right-0 bottom-[250px] md:top-[300px] lg:top-[30px]'
-        width={337}
-        height={268}
-      />
+      <Revolutionary />
 
-      <Image
-        src='/svg/blue-stripe.svg'
-        alt='stripe'
-        className='absolute z-[0] right-0 bottom-[150px] md:bottom-[230px] lg:right-[-280px] lg:bottom-[260px]'
-        width={337}
-        height={268}
-      />
+      <InvestmentVision />
 
-      <Image
-        src='/svg/blue-stripe.svg'
-        alt='stripe'
-        className='absolute z-[0] right-0 lg:right-[4%] bottom-0'
-        width={337}
-        height={268}
-      />
+      <OwnHome />
+
+      <BecomeFoundingMember />
+
+      <FoundersCollection />
     </section>
   );
 }

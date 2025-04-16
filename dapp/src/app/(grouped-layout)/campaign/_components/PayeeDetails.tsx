@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 
 import Button from '@/components/buttons/Button';
@@ -18,11 +19,16 @@ import { detailsSchema } from '../_utils/paymentValidations';
 
 const paymentOptions = ['Crypto'].map((e) => ({ label: e, value: e }));
 
-export default function PayeeDetails() {
+type Props = {
+  isOnHomepage?: boolean;
+};
+
+export default function PayeeDetails({ isOnHomepage }: Props) {
   const { firstName, lastName, email, phone, country, paymentMethod } =
     useAppSelector((state) => state.campaignPayment);
 
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const initialValues = useMemo(
     () => ({
@@ -47,6 +53,10 @@ export default function PayeeDetails() {
   } = useFormik({
     initialValues,
     onSubmit: (values) => {
+      if (isOnHomepage) {
+        router.push('/campaign/payment');
+      }
+
       dispatch(setDetails(values));
       if (values.paymentMethod === 'Crypto') {
         dispatch(setCampaignPaymentStage('crypto'));
