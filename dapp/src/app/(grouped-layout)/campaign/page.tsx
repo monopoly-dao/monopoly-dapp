@@ -6,10 +6,13 @@ import { FaArrowRight } from 'react-icons/fa6';
 import { siteConfig } from '@/constants/config';
 
 import BecomeFoundingMember from './_components/BecomeFoundingMember';
+import CampaignFAQs from './_components/CampaignFAQs';
 import FoundersCollection from './_components/FoundersCollection';
 import InvestmentVision from './_components/InvestmentVision';
 import OwnHome from './_components/OwnHome';
+import Partners from './_components/Partners';
 import Revolutionary from './_components/Revolutionary';
+import Testimonials from './_components/Testimonials';
 
 import campaignHero from '~/images/Campaign-hero.png';
 
@@ -93,6 +96,12 @@ export default function Page() {
       <BecomeFoundingMember />
 
       <FoundersCollection />
+
+      <Partners />
+
+      <Testimonials />
+
+      <CampaignFAQs />
     </section>
   );
 }
