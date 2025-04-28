@@ -53,7 +53,7 @@ export default function Footer() {
         </div>
       </div>
       <div className='border-t pb-10 sm:pb-20 bg-white text-black border-black pt-8 flex flex-col gap-4 sm:gap-0 sm:flex-row items-start sm:items-center justify-between'>
-        <p>© 2024 Settley. All rights reserved.</p>
+        <p>© 2025 Settley. All rights reserved.</p>
         <div className='flex items-center text-sm gap-6'>
           <Link href='/' className='underline'>
             Privacy Policy
