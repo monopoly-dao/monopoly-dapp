@@ -15,6 +15,27 @@ body {
   /* color: #c9ff63; */
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #272343 white;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: #272343;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #3c3949;
+  border-radius: 14px;
+}
+
 @font-face {
   font-family: 'Apfel Grotesk';
   src: url('../../public/fonts/ApfelGrotezk-Regular.otf');

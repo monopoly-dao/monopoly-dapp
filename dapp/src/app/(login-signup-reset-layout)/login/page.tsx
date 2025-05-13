@@ -75,6 +75,17 @@ export default function Page() {
 
   return (
     <>
+      <div className='absolute flex items-center top-5 right-[5%] sm:right-10 gap-4'>
+        <p className='font-roboto hidden sm:block text-sm text-[#57534E]'>
+          Need to create an account?
+        </p>
+        <Link
+          href='/signup'
+          className='rounded-[8px] text-black px-4 py-3 border border-black font-roboto text-sm'
+        >
+          Sign Up
+        </Link>
+      </div>
       <Box
         component='form'
         sx={{
@@ -83,47 +94,51 @@ export default function Page() {
         onSubmit={handleSubmit}
         className={styles.right}
       >
-        <div className={styles.title}>
-          <h1>Welcome back!</h1>
-          <p>Log in to your account to manage your assets</p>
-        </div>
+        <h1 className='font-merriweather font-bold text-3xl mb-4'>
+          Welcome Back!
+        </h1>
+
         <div className={styles.form}>
           <Input
             id={LoginIds.Email}
-            required
             label='Email address'
             {...getFormikInputProps(LoginIds.Email)}
+            labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
-          <Input
-            id={LoginIds.Email}
-            required
-            label='Password'
-            {...getFormikInputProps(LoginIds.Password)}
-            type='password'
-          />
+          <div>
+            <Input
+              id={LoginIds.Email}
+              label='Password'
+              {...getFormikInputProps(LoginIds.Password)}
+              type='password'
+              labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            />
+            <Link
+              href='/reset-password'
+              className='mt-1 font-semibold text-sm font-inter flex justify-end w-full'
+            >
+              Forgot password?
+            </Link>
+          </div>
           <Button
             type='submit'
-            className='py-4 px-10'
+            className='py-3 px-10 mt-6 rounded-[8px] font-roboto'
             isLoading={isLoading}
             disabled={!isValid || !dirty}
           >
-            Log in
+            Log In
           </Button>
-          <h4 className={styles.h5}>
+          {/* <h4 className={styles.h5}>
             Don&apos;t have an account?{' '}
             <Link href='/signup' className='underline'>
               Sign up
             </Link>
-          </h4>
-          <h4 className={styles.h5}>
-            Forgotten your password?{' '}
-            <Link href='/reset-password' className='underline'>
-              Reset your password
-            </Link>
-          </h4>
+          </h4> */}
         </div>
       </Box>
-      <GoogleButton />
+      <div className='mt-3'>
+        <GoogleButton />
+      </div>
     </>
   );
 }

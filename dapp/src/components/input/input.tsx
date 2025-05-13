@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
+import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx';
 
 import { cn } from '@/lib/utils';
 
@@ -45,7 +46,7 @@ export default function Input({
         {type === 'password' && (
           <div
             className={cn(
-              'focus-within:border-yellow rounded-[6px] relative flex w-full flex-row items-center border border-gray-600 text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
+              'focus-within:border-navy rounded-[6px] relative flex w-full flex-row items-center border border-gray-500 text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
               // [
               //   variant === 'primary' && 'bg-secondary-bg border-secondary-bg',
               //   variant === 'secondary' && 'bg-tertiary-bg border-tertiary-bg',
@@ -72,13 +73,23 @@ export default function Input({
               required={required}
             />
 
-            <button
-              type='button'
-              className='absolute right-3 text-xs text-gray-600 outline-none'
-              onClick={toggleVisibility}
-            >
-              {hidden ? 'Show' : 'Hide'}
-            </button>
+            <span className='absolute right-0 -translate-x-1/2 cursor-pointer'>
+              {!hidden ? (
+                <span
+                  onClick={toggleVisibility}
+                  className='text-tertiary-grey select-none text-xl font-medium'
+                >
+                  <RxEyeClosed />
+                </span>
+              ) : (
+                <span
+                  onClick={toggleVisibility}
+                  className='text-tertiary-grey select-none text-xl font-medium'
+                >
+                  <RxEyeOpen />
+                </span>
+              )}
+            </span>
           </div>
         )}
 
@@ -89,7 +100,7 @@ export default function Input({
           type === 'text') && (
           <div
             className={cn(
-              'focus-within:border-navy rounded-[6px] flex w-full flex-row items-center border border-gray-600 text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
+              'focus-within:border-navy rounded-[6px] flex w-full flex-row items-center border border-gray-500 text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
               // [
               //   variant === 'primary' && 'bg-secondary-bg border-secondary-bg',
               //   variant === 'secondary' && 'bg-tertiary-bg border-tertiary-bg',

@@ -25,17 +25,16 @@ export default function GoogleButton() {
   }
 
   return (
-    <div className='flex flex-col gap-4 max-w-[500px] mb-5'>
-      <div className='flex items-center gap-4'>
-        <div className='w-full h-[1px] bg-dark-grey/50 ' />
-        OR
-        <div className='w-full h-[1px] bg-dark-grey/50 ' />
-      </div>
+    <div className='flex flex-col gap-5 w-full mb-5'>
+      <p className='flex items-center gap-4 text-center font-roboto text-sm w-full justify-center'>
+        or connect with
+      </p>
       <button
-        className='w-full flex items-center gap-3 justify-center bg-white shadow-2xl px-10 py-3'
+        className='w-full flex items-center gap-2 rounded-[8px] font-roboto border border-[#D6D3D1] justify-center px-10 py-4'
         onClick={googleSignIn}
       >
-        <FcGoogle className='text-3xl' /> Continue with Google
+        Continue with Google
+        <FcGoogle className='text-2xl' />
       </button>
     </div>
   );
