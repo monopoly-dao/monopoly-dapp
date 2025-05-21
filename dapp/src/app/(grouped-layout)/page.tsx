@@ -1,16 +1,17 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 
-import Cities from './_components/Cities';
 import FAQ from './_components/FAQ';
 import GetStartedLink from './_components/GetStartedLink';
-import HowItWorks from './_components/HowItWorks';
 import OwnProperty from './_components/OwnProperty';
-import TrendingProperties from './_components/TrendingProperties';
-import WhoAreWe from './_components/WhoAreWe';
+import OwnShare from './_components/OwnShare';
+import RealWorldAssets from './_components/RealWorldAssets';
+import ReimagineAssetOwnership from './_components/ReimagineAssetOwnership';
+import Partners from './campaign/_components/Partners';
+import Testimonials from './campaign/_components/Testimonials';
 
-import landingBanner from '~/images/landing-banner.png';
+import JMHouse from '~/images/JM_Mishref_House.png';
+import landingBanner from '~/images/landing-banner-2.png';
 
 export const metadata: Metadata = {
   title: 'Join the future of property ownership',
@@ -28,7 +29,7 @@ export default function Page() {
   return (
     <div>
       <div className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'>
-        <h1 className='font-medium !font-roboto text-[24px] w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
+        <h1 className='!font-roboto text-[24px] w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
           <div>Join the Future of </div>
           <div>Real Estate Investment</div>
         </h1>
@@ -39,26 +40,28 @@ export default function Page() {
         </p>
         <div className='w-full text-center gap-4 flex items-center justify-center font-inter text-sm'>
           <GetStartedLink />
-          <Link
+
+          {/* <Link
             className='text-navy outline outline-1 outline-navy bg-white rounded-[6px] font-normal w-full max-w-[140px] py-2 px-5'
             href='#footer'
           >
             Stay Updated
-          </Link>
+          </Link> */}
         </div>
       </div>
 
-      <div className='relative'>
+      <div className='relative px-[1.5%]'>
         <Image
           src={landingBanner}
           alt='banner'
           width={1000}
-          height={595}
+          height={640}
           quality={100}
           placeholder='blur'
-          className='w-full h-[250px] sm:h-[400px] lg:h-[595px] object-cover'
+          // priority
+          className='w-full aspect-[1403/640] object-cover rounded-[20px]'
         />
-        <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
+        {/* <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
           <Link href='/listings' className='flex items-center gap-5'>
             Villa in Lake Como, Italy{' '}
             <Image
@@ -68,25 +71,52 @@ export default function Page() {
               height={1}
             />
           </Link>
-        </div>
+        </div> */}
       </div>
 
+      <OwnShare />
+
       <OwnProperty />
+
+      <RealWorldAssets />
 
       {/* <ValueProp /> */}
 
       {/* <StepsToBuy /> */}
 
-      <HowItWorks />
+      {/* <HowItWorks /> */}
 
-      <TrendingProperties />
+      {/* <TrendingProperties /> */}
 
-      <div className='bg-cream px-[5%] lg:px-[7%] py-12 sm:py-20 lg:py-28 flex flex-col gap-28'>
+      {/* <div className='bg-cream px-[5%] lg:px-[7%] py-12 sm:py-20 lg:py-28 flex flex-col gap-28'>
         <WhoAreWe />
         <Cities />
+      </div> */}
+
+      <ReimagineAssetOwnership />
+
+      <div className='w-full h-[500px] relative lg:h-[700px]'>
+        <Image
+          src={JMHouse}
+          alt='jm house'
+          width={1000}
+          height={1000}
+          className='w-full h-[500px] lg:h-[700px] object-cover top-0 left-0 absolute'
+        />
+        <div className='absolute z-[3] text-white w-4/5 lg:w-3/4 font-merriweather bottom-[5%] left-[5%]'>
+          Settley is a real world asset infrastructure protocol that enables the
+          purchase and ownership of physical property through on-chain
+          primitives. The platform transforms real estate into digitally native
+          assets while maintaining full legal and regulatory compliance across
+          jurisdictions.
+        </div>
       </div>
 
-      {/* <Testimonials /> */}
+      <Partners />
+
+      <div className='bg-cream'>
+        <Testimonials />
+      </div>
 
       <div className='px-[5%] lg:px-[7%]'>
         <FAQ />

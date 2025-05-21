@@ -1,4 +1,11 @@
+import { ExternalProvider } from '@ethersproject/providers';
 import { DefaultJWT } from 'next-auth/jwt';
+
+declare global {
+  interface Window {
+    ethereum?: ExternalProvider;
+  }
+}
 
 declare module 'next-auth' {
   /**

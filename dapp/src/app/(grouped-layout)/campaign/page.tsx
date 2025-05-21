@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 
 import { siteConfig } from '@/constants/config';
 
@@ -42,8 +43,25 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const campaignSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Settley Campaign',
+    description: 'Join our early supporter program and be a founding member.',
+    url: `${siteConfig.url}/campaign`,
+    keywords: metadata.keywords,
+    image: [`${siteConfig.url}/images/campaign-og.png`],
+    // Additional properties can be added based on the content of the page
+  };
+
   return (
     <section className='overflow-x-hidden'>
+      <Script
+        id='campaign-schema'
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(campaignSchema) }}
+      />
+
       <CampaignHeader />
 
       <Revolutionary />

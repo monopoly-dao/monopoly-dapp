@@ -14,6 +14,7 @@ export interface CampaignPaymentState {
   paymentMethod: string;
   cryptoAmount: string;
   crypto: string;
+  walletAddress: string;
 }
 
 export const initialState: CampaignPaymentState = {
@@ -26,6 +27,7 @@ export const initialState: CampaignPaymentState = {
   paymentMethod: '',
   cryptoAmount: '',
   crypto: '',
+  walletAddress: '',
 };
 
 export const campaignPaymentSlice = createSlice({
@@ -64,6 +66,13 @@ export const campaignPaymentSlice = createSlice({
       });
     },
 
+    setWalletAddress: (
+      state,
+      action: PayloadAction<CampaignPaymentState['walletAddress']>
+    ) => {
+      return { ...state, walletAddress: action.payload };
+    },
+
     setCampaignPaymentStage: (
       state,
       action: PayloadAction<CampaignPaymentState['stage']>
@@ -82,6 +91,7 @@ export const {
   setDetails,
   setCampaignPaymentStage,
   setCryptoDetails,
+  setWalletAddress,
 } = campaignPaymentSlice.actions;
 
 export const campaignPaymentReducer = campaignPaymentSlice.reducer;

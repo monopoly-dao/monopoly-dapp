@@ -6,6 +6,7 @@ import {
   Roboto,
 } from 'next/font/google';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import { getServerSession } from 'next-auth';
 import NextTopLoader from 'nextjs-toploader';
 import { Toaster } from 'react-hot-toast';
@@ -53,6 +54,14 @@ export const metadata: Metadata = {
     'Settley',
     'SettleyCo',
     'settleyco',
+    'settle',
+    'Settle',
+    'settle co',
+    'setley',
+    'settleco',
+    'settley beta',
+    'buy property on the blockchain',
+    'buy property',
     'Settley Co',
     'MonopolyDAO',
     'Monopoly DAO',
@@ -146,6 +155,20 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
 
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.title,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    keywords: metadata.keywords,
+    // potentialAction: {
+    //   '@type': 'SearchAction',
+    //   target: `${siteConfig.url}/listings?q={search_term_string}`,
+    //   'query-input': 'required name=search_term_string',
+    // },
+  };
+
   return (
     <html
       lang='en'
@@ -153,6 +176,13 @@ export default async function RootLayout({
                   ${ppNeueMontreal.variable} ${craftworkGrotesk.variable} 
                   ${roboto.variable} ${merriweather.variable}`}
     >
+      <head>
+        <Script
+          id='structured-data'
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      </head>
       <body>
         <NextAuthProvider session={session}>
           <ReduxProvider>

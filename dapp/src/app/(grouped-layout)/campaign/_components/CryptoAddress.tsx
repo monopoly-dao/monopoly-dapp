@@ -1,19 +1,68 @@
+import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useMemo } from 'react';
+import toast from 'react-hot-toast';
 import { IoIosArrowRoundBack } from 'react-icons/io';
-import { IoCopyOutline } from 'react-icons/io5';
 import { LuBitcoin } from 'react-icons/lu';
+import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
-import IconButton from '@/components/buttons/IconButton';
+import { Input } from '@/components/input';
 
-import { useAppDispatch } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/store';
 
 import { setCampaignPaymentStage } from '@/slices/campaignPaymentSlice';
 import { multiStepVariants } from '@/utils/variants';
 
 export default function CryptoAddress() {
+  const { walletAddress } = useAppSelector((state) => state.campaignPayment);
+
   const dispatch = useAppDispatch();
+
+  const initialValues = useMemo(
+    () => ({
+      ...{ walletAddress: '' },
+      walletAddress,
+    }),
+    [walletAddress]
+  );
+
+  const { values, getFieldMeta, getFieldProps, setFieldValue } = useFormik({
+    initialValues,
+    onSubmit: () => {
+      dispatch(setCampaignPaymentStage('success'));
+    },
+    validationSchema: object({
+      walletAddress: string().optional(),
+    }),
+    validateOnMount: true,
+    validateOnBlur: true,
+    validateOnChange: true,
+  });
+
+  const getFormikInputProps = (id: keyof typeof values) => {
+    return {
+      ...getFieldProps(id),
+      ...getFieldMeta(id),
+    };
+  };
+
+  async function connectMetamask() {
+    if (typeof window.ethereum === 'undefined') {
+      alert('Install MetaMask extension!!');
+      return;
+    }
+
+    try {
+      const accounts = await window.ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+      await setFieldValue('walletAddress', accounts[0], true);
+    } catch (error) {
+      toast.error('Error connecting to Metamask');
+    }
+  }
 
   return (
     <motion.form
@@ -42,7 +91,36 @@ export default function CryptoAddress() {
         <LuBitcoin className='text-2xl text-primary-orange' /> Bitcoin (BTC)
       </div>
 
-      <div className='flex flex-col gap-[6px] col-span-2'>
+      <div className='col-span-2'>
+        <Input
+          id='walletAddress'
+          label='Wallet Address'
+          placeholder='0x.....'
+          {...getFormikInputProps('walletAddress')}
+          containerClassName='border-[#D0D5DD] rounded-[8px]'
+        />
+
+        <div className='flex flex-col gap-5 w-full mb-5'>
+          <p className='flex items-center gap-4 text-center font-roboto text-sm w-full justify-center'>
+            or connect with
+          </p>
+          <button
+            type='button'
+            className='w-full flex items-center gap-2 rounded-[8px] bg-slate-300 font-roboto border border-[#D6D3D1] justify-center px-10 py-3 !text-sm'
+            onClick={connectMetamask}
+          >
+            Continue with Metamask
+            <Image
+              src='/svg/metamask.svg'
+              alt='metamask'
+              width={24}
+              height={24}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* <div className='flex flex-col gap-[6px] col-span-2'>
         <p className='text-[#344054] text-sm font-medium'>
           Send to this address
         </p>
@@ -59,7 +137,7 @@ export default function CryptoAddress() {
             icon={IoCopyOutline}
           />
         </div>
-      </div>
+      </div> */}
 
       <div className='flex justify-center col-span-2'>
         <Image
@@ -78,7 +156,6 @@ export default function CryptoAddress() {
         <Button
           className='!rounded-[100px] w-full uppercase font-roboto py-3'
           type='submit'
-          onClick={() => dispatch(setCampaignPaymentStage('success'))}
         >
           I’ve completed my payement
         </Button>

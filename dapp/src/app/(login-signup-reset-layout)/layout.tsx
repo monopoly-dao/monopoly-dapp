@@ -9,7 +9,7 @@ export default function LoginSignupResetLayout({
   children,
 }: PropsWithChildren) {
   return (
-    <main className='w-full max-w-[1440px] mx-auto'>
+    <main className='w-full max-w-[1540px] mx-auto'>
       <div className='bg-gradient-to-b from-white to-[#F4F4F4] md:h-screen w-full relative overflow-hidden'>
         <div className='py-5 ml-[5%]'>
           <SettleyLogo colour='new' />

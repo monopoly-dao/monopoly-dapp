@@ -1,12 +1,14 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import Script from 'next/script';
 import { useSession } from 'next-auth/react';
 
 import CardPaginationContainer from '@/components/CardPaginationContainer';
 import ListingCardLoader from '@/components/ListingCardLoader';
 
 import { useGetPropertiesQuery, useGetWishlistQuery } from '@/api/properties';
+import { siteConfig } from '@/constants/config';
 
 import ListingCard from './_components/ListingCard';
 import ListingsHeader from './_components/ListingsHeader';
@@ -48,8 +50,48 @@ export default function Page() {
   const wishlist = wishlistResponse?.data?.wishlist;
   const wishlistPropertyIds = wishlist?.map((item) => item._id);
 
+  const listingsSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage', // Or ItemList if you want to list individual properties
+    name: 'Settley Property Listings',
+    description: 'Browse our wide selection of properties for sale.',
+    url: `${siteConfig.url}/listings`,
+    keywords: [
+      'Settley',
+      'Listings',
+      'Settley Listings',
+      'Settley Properties',
+      'Property Listings',
+      'SettleyCo',
+      'Settley co',
+      'settle',
+      'settley',
+    ],
+    // If you want to list individual properties (more complex):
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: properties?.map((property, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'RealEstateListing', // Or Property if RealEstateListing isn't appropriate
+          name: property.propertyDetails.name,
+          description: property.propertyDetails.description,
+          url: `${siteConfig.url}/listings/${property._id}`, // Assuming you have individual property pages
+          // Add more property details here
+        },
+      })),
+    },
+  };
+
   return (
     <div>
+      <Script
+        id='listings-schema'
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(listingsSchema) }}
+      />
+
       <ListingsHeader />
 
       <div className='mt-16 sm:mt-28 mb-16 sm:mb-32 px-[5%]'>
