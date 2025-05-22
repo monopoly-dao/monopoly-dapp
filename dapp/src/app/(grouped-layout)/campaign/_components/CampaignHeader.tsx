@@ -38,7 +38,7 @@ export default function CampaignHeader() {
             <div>Own Real Assets,</div>
             <div>Share with Your Circle</div>
           </h1>
-          <p className='text-dark-grey font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
+          <p className='text-dark-grey text-xs font-light font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
             Real Ownership. Real Assets. Real Simple.
           </p>
           <div className='text-center gap-[10px] flex flex-col items-center justify-center font-roboto text-sm'>

@@ -25,7 +25,7 @@ export default function Page() {
   return (
     <div>
       <div className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'>
-        <h1 className='!font-roboto text-[24px] w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
+        <h1 className='!font-roboto font-semibold text-[24px] w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
           <div>Own Real Assets,</div>
           <div>Share with Your Circle</div>
         </h1>
@@ -34,7 +34,7 @@ export default function Page() {
           protocol. Experience shared ownership while keeping it simple, secure,
           and genuinely yours.
         </p>
-        <p className='text-dark-grey font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
+        <p className='text-dark-grey font-light text-xs font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
           Real Ownership. Real Assets. Real Simple.
         </p>
         <div className='w-full text-center gap-4 flex items-center justify-center font-inter text-sm'>
