@@ -5,10 +5,6 @@ import FAQ from './_components/FAQ';
 import GetStartedLink from './_components/GetStartedLink';
 import OwnProperty from './_components/OwnProperty';
 import OwnShare from './_components/OwnShare';
-import RealWorldAssets from './_components/RealWorldAssets';
-import ReimagineAssetOwnership from './_components/ReimagineAssetOwnership';
-import Partners from './campaign/_components/Partners';
-import Testimonials from './campaign/_components/Testimonials';
 
 import JMHouse from '~/images/JM_Mishref_House.png';
 import landingBanner from '~/images/landing-banner-2.png';
@@ -30,13 +26,16 @@ export default function Page() {
     <div>
       <div className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'>
         <h1 className='!font-roboto text-[24px] w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
-          <div>Join the Future of </div>
-          <div>Real Estate Investment</div>
+          <div>Own Real Assets,</div>
+          <div>Share with Your Circle</div>
         </h1>
         <p className='text-dark-grey font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
-          Join us in reshaping property ownership—building the Amazon of real
-          estate, making premium European properties accessible through
-          collective investment.
+          Unlock genuine ownership of premium properties via our blockchain
+          protocol. Experience shared ownership while keeping it simple, secure,
+          and genuinely yours.
+        </p>
+        <p className='text-dark-grey font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
+          Real Ownership. Real Assets. Real Simple.
         </p>
         <div className='w-full text-center gap-4 flex items-center justify-center font-inter text-sm'>
           <GetStartedLink />
@@ -78,7 +77,7 @@ export default function Page() {
 
       <OwnProperty />
 
-      <RealWorldAssets />
+      {/* <RealWorldAssets /> */}
 
       {/* <ValueProp /> */}
 
@@ -93,7 +92,7 @@ export default function Page() {
         <Cities />
       </div> */}
 
-      <ReimagineAssetOwnership />
+      {/* <ReimagineAssetOwnership /> */}
 
       <div className='w-full h-[500px] relative lg:h-[700px]'>
         <Image
@@ -104,19 +103,17 @@ export default function Page() {
           className='w-full h-[500px] lg:h-[700px] object-cover top-0 left-0 absolute'
         />
         <div className='absolute z-[3] text-white w-4/5 lg:w-3/4 font-merriweather bottom-[5%] left-[5%]'>
-          Settley is a real world asset infrastructure protocol that enables the
-          purchase and ownership of physical property through on-chain
-          primitives. The platform transforms real estate into digitally native
-          assets while maintaining full legal and regulatory compliance across
-          jurisdictions.
+          <h2 className='text-3xl sm:text-5xl mb-14 lg:mb-20'>
+            Frequently Asked Questions
+          </h2>
         </div>
       </div>
 
-      <Partners />
+      {/* <Partners /> */}
 
-      <div className='bg-cream'>
+      {/* <div className='bg-cream'>
         <Testimonials />
-      </div>
+      </div> */}
 
       <div className='px-[5%] lg:px-[7%]'>
         <FAQ />

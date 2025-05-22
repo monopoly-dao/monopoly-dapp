@@ -7,9 +7,9 @@ import FAQItem from './FAQItem';
 export default function FAQ() {
   return (
     <div className='py-12 sm:py-20'>
-      <h2 className='text-3xl sm:text-5xl mb-14 lg:mb-20'>
+      {/* <h2 className='text-3xl sm:text-5xl mb-14 lg:mb-20'>
         Frequently Asked Questions
-      </h2>
+      </h2> */}
 
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-8 gap-x-14'>
         {faqs.slice(0, 2).map((item, id) => (

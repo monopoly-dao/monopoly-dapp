@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { FaArrowRight } from 'react-icons/fa6';
 import { VscCheckAll } from 'react-icons/vsc';
 
 export default function OwnShare() {
@@ -35,6 +37,14 @@ export default function OwnShare() {
             Sell your share when you want (secondary market coming soon)
           </p>
         </div>
+
+        <Link
+          className='bg-navy text-white rounded-[60px] font-medium flex items-center gap-1 w-fit py-3 text-sm px-7'
+          href='/faqs'
+        >
+          Learn More
+          <FaArrowRight className='text-xl' />
+        </Link>
       </div>
 
       <Image

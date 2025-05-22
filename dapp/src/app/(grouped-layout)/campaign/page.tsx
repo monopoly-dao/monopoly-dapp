@@ -9,9 +9,7 @@ import CampaignHeader from './_components/CampaignHeader';
 import FoundersCollection from './_components/FoundersCollection';
 import InvestmentVision from './_components/InvestmentVision';
 import OwnHome from './_components/OwnHome';
-import Partners from './_components/Partners';
 import Revolutionary from './_components/Revolutionary';
-import Testimonials from './_components/Testimonials';
 
 export const metadata: Metadata = {
   title: 'Campaign',
@@ -74,9 +72,9 @@ export default function Page() {
 
       <FoundersCollection />
 
-      <Partners />
+      {/* <Partners /> */}
 
-      <Testimonials />
+      {/* <Testimonials /> */}
 
       <CampaignFAQs />
     </section>

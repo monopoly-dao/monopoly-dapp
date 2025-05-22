@@ -35,13 +35,11 @@ export default function CampaignHeader() {
             Exclusive Pre-Launch Community
           </div>
           <h1 className='font-semibold !font-roboto text-4xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
-            <div>Join the Future of </div>
-            <div>Real Estate Investment</div>
+            <div>Own Real Assets,</div>
+            <div>Share with Your Circle</div>
           </h1>
           <p className='text-dark-grey font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
-            Join us in reshaping property ownership—building the Amazon of real
-            estate, making premium European properties accessible through
-            collective investment.
+            Real Ownership. Real Assets. Real Simple.
           </p>
           <div className='text-center gap-[10px] flex flex-col items-center justify-center font-roboto text-sm'>
             <Link

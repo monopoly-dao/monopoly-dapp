@@ -13,6 +13,8 @@ import { Toaster } from 'react-hot-toast';
 
 import '../styles/globals.css';
 
+import TopScrollProvider from '@/components/scroll-provider';
+
 import { siteConfig } from '@/constants/config';
 
 import { authOptions } from './_lib/auth';
@@ -187,7 +189,7 @@ export default async function RootLayout({
         <NextAuthProvider session={session}>
           <ReduxProvider>
             <NextTopLoader color='#272343' />
-            {children}
+            <TopScrollProvider>{children}</TopScrollProvider>
             <Toaster position='top-right' />
           </ReduxProvider>
         </NextAuthProvider>
