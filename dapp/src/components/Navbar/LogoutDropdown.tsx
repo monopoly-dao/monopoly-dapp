@@ -39,7 +39,7 @@ export default function LogoutDropdown({ isMobileScreen }: Props) {
           toggle();
           e.stopPropagation();
         }}
-        className='text-[#1E1E1E] bg-transparent sm:text-xs lg:text-sm border-none font-craftwork text-base font-semibold flex items-center gap-3'
+        className='text-[#1E1E1E] bg-transparent sm:text-xs lg:text-sm border-none font-roboto text-base flex items-center gap-3'
       >
         <div>
           Hi{userDetails && ','}{' '}

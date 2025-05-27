@@ -1,19 +1,47 @@
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { TbBath, TbBed } from 'react-icons/tb';
 import Carousel from 'react-multi-carousel';
 
 import 'react-multi-carousel/lib/styles.css';
+
+import { cn } from '@/lib/utils';
+
+import Button from '@/components/buttons/Button';
 
 import { Property } from '@/api/properties/propertiesApiTypes';
 import { formatAmount } from '@/utils/utils';
 
 type Props = {
   property: Property;
+  width?: 'fixed' | 'variable';
+  link?: boolean;
 };
 
-export default function InvestmentPropertyCard({ property }: Props) {
+export default function InvestmentPropertyCard({
+  property,
+  link,
+  width = 'fixed',
+}: Props) {
+  const router = useRouter();
+
+  function handleRouting() {
+    if (!link) return;
+    router.push(`/listing/${property._id}`);
+  }
+
   return (
-    <div className='w-[320px] h-[430px] rounded-[20px] border p-[10px] border-[#00000033] md:w-[420px] md:h-[493px]'>
+    <div
+      className={cn(
+        'h-[480px] rounded-[20px] border p-[10px] border-[#00000033] md:h-[543px]',
+        [
+          width === 'variable' && 'w-full',
+          width === 'fixed' && 'w-[320px] md:w-[420px]',
+          link &&
+            'cursor-pointer hover:shadow-lg transition-shadow duration-300',
+        ]
+      )}
+    >
       <Carousel
         additionalTransfrom={0}
         arrows
@@ -119,6 +147,10 @@ export default function InvestmentPropertyCard({ property }: Props) {
             </p>
           </div>
         </div>
+
+        <Button className='rounded-[20px]' onClick={handleRouting}>
+          Buy Now
+        </Button>
       </div>
     </div>
   );
