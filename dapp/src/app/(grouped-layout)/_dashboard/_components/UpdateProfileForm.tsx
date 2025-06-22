@@ -6,8 +6,8 @@ import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
 import Button from '@/components/buttons/Button';
-import { Input } from '@/components/input';
 import Phone from '@/components/input/input-phone';
+import SettingsInput from '@/components/input/settings-input';
 
 import {
   useCreateUserDetailsMutation,
@@ -22,8 +22,8 @@ import {
 import { updateProfileSchema } from '../_utils/updateProfileValidations';
 
 type Props = {
-  mode: 'create' | 'edit';
-  setProfileToView: () => void;
+  mode?: 'create' | 'edit';
+  setProfileToView?: () => void;
   detailsFromDb?: {
     firstName: string;
     lastName: string;
@@ -36,8 +36,8 @@ type Props = {
 export default function UpdateProfileForm({
   setProfileToView,
   detailsFromDb,
-  mode,
-}: Props) {
+}: // mode,
+Props) {
   const session = useSession();
   const email = session.data?.email ?? '';
   const [updateUser, { isLoading: isUpdateLoading }] =
@@ -45,7 +45,9 @@ export default function UpdateProfileForm({
   const [createUser, { isLoading: isCreateLoading }] =
     useCreateUserDetailsMutation();
 
-  const isLoading = mode === 'create' ? isCreateLoading : isUpdateLoading;
+  const editMode = detailsFromDb ? 'edit' : 'create';
+
+  const isLoading = editMode === 'create' ? isCreateLoading : isUpdateLoading;
 
   const {
     getFieldProps,
@@ -67,7 +69,7 @@ export default function UpdateProfileForm({
       formData.set('username', values.username);
 
       try {
-        if (mode === 'create') {
+        if (editMode === 'create') {
           await createUser({
             data: formData,
             userFirebaseId: session.data?.userFirebaseId ?? '',
@@ -86,7 +88,7 @@ export default function UpdateProfileForm({
           toast.success('Profile details successfuly updated');
         }
 
-        setProfileToView();
+        setProfileToView?.();
       } catch (e) {
         handleErrors(e);
       }
@@ -111,19 +113,23 @@ export default function UpdateProfileForm({
         '& .MuiTextField-root': { width: 'inherit' },
       }}
       onSubmit={handleSubmit}
-      className='mt-10 w-3/4 lg:w-1/2 flex flex-col gap-3'
+      className='w-full flex flex-col gap-2 rounded-[16px] bg-white py-5 px-4'
     >
-      <Input
+      <p className='font-semibold mb-3 font-general-sans'>
+        Profile Information
+      </p>
+
+      <SettingsInput
         id={UpdateProfileIds.FirstName}
         label='First Name'
         {...getFormikInputProps(UpdateProfileIds.FirstName)}
       />
-      <Input
+      <SettingsInput
         id={UpdateProfileIds.LastName}
         label='Last Name'
         {...getFormikInputProps(UpdateProfileIds.LastName)}
       />
-      <Input
+      <SettingsInput
         id={UpdateProfileIds.Username}
         label='Username'
         {...getFormikInputProps(UpdateProfileIds.Username)}
@@ -131,7 +137,7 @@ export default function UpdateProfileForm({
       <Phone
         id={UpdateProfileIds.Phone}
         type='tel'
-        label='Phone number (optional)'
+        label='Phone (optional)'
         {...getFormikInputProps(UpdateProfileIds.Phone)}
         handleChange={(value) => {
           setFieldTouched(UpdateProfileIds.Phone);
@@ -139,14 +145,17 @@ export default function UpdateProfileForm({
         }}
       />
 
-      <div className='flex items-center gap-4'>
-        <Button
-          className='w-fit py-2 px-8'
-          variant='outline'
-          onClick={setProfileToView}
-        >
-          Back
-        </Button>
+      <div className='flex items-center gap-4 justify-end'>
+        {setProfileToView && (
+          <Button
+            className='w-fit py-2 px-8'
+            variant='outline'
+            onClick={setProfileToView}
+          >
+            Back
+          </Button>
+        )}
+
         <Button
           type='submit'
           isLoading={isLoading}

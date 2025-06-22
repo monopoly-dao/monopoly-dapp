@@ -18,6 +18,7 @@ type TableContainerProps = {
   totalPages?: number;
   limit?: number;
   isLoading?: boolean;
+  tableClassName?: string;
 };
 
 const TableContainer = ({
@@ -29,6 +30,7 @@ const TableContainer = ({
   isLoading,
   // alignHeader = 'left',
   totalPages,
+  tableClassName,
 }: TableContainerProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -50,7 +52,12 @@ const TableContainer = ({
       ])}
     >
       {!isLoading && (
-        <table className='w-full border-collapse border border-medium-grey bg-white'>
+        <table
+          className={cn(
+            'w-full border-collapse border border-medium-grey bg-white',
+            [tableClassName]
+          )}
+        >
           <thead className='w-full border-none'>
             <tr className='w-auto'>
               {headers.map((header) => (

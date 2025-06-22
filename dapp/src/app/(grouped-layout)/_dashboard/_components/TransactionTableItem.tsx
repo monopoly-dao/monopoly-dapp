@@ -14,12 +14,12 @@ type Props = {
 };
 
 export default function TransactionTableItem({ transaction }: Props) {
-  const tableClass = 'px-5 border-b border-medium-grey py-3 font-mono';
+  const tableClass = 'px-5 py-3 text-sm font-roboto text-[#353434]';
 
   return (
     <tr>
       <td className={cn([tableClass])}>
-        <div className='flex items-center'>
+        <div className='flex items-center font-medium'>
           <Link
             href={`https://basescan.org/tx/${transaction.txHash}`}
             className='underline flex items-center'
@@ -45,7 +45,9 @@ export default function TransactionTableItem({ transaction }: Props) {
         {formatAmount(transaction.amount.$numberDecimal)}
       </td>
       <td className={cn([tableClass])}>
-        <div>Complete</div>
+        <div className='w-fit font-general-sans font-medium py-1 px-[6px] text-[#16A34A] bg-[#DCFCE7] rounded-[4px] text-[10px]'>
+          Complete
+        </div>
       </td>
     </tr>
   );

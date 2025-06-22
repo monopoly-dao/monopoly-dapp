@@ -9,7 +9,7 @@ type Props = {
   title: string;
   amount?: string | number;
   percentChange: number;
-  icon: IconType;
+  icon?: IconType;
   isLoading: boolean;
   isMoney?: boolean;
 };
@@ -28,12 +28,12 @@ export default function DashboardCard({
   const _ArrowIcon = isChangePositive ? IoArrowUp : IoArrowDown;
 
   return (
-    <div className='w-full p-6 border shadow flex rounded-lg items-start gap-4 justify-between'>
-      <div className='flex flex-col gap-1 font-inter'>
-        <p className='font-inter text-sm font-medium text-medium-grey'>
+    <div className='w-full p-6 border shadow flex rounded-lg items-start gap-4 justify-between bg-white'>
+      <div className='flex flex-col gap-4 font-inter'>
+        <p className='font-roboto text-base font-medium text-[#1C1917]'>
           {title}
         </p>
-        <p className='text-3xl font-bold font-inter'>
+        <p className='text-2xl font-medium font-general-sans'>
           {isMoney && '$'}
           <LoadingText
             isLoading={isLoading}
@@ -53,7 +53,7 @@ export default function DashboardCard({
           vs last month
         </div> */}
       </div>
-      <Icon className='text-3xl' />
+      {Icon && <Icon className='text-3xl' />}
     </div>
   );
 }

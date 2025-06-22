@@ -10,6 +10,7 @@ module.exports = {
         craftwork: ['var(--font-craft)'],
         roboto: ['var(--font-roboto)'],
         merriweather: ['var(--font-merriweather)'],
+        'general-sans': ['var(--font-general-sans)'],
       },
       colors: {
         navy: '#272343',

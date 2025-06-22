@@ -35,8 +35,10 @@ export default function CampaignHeader() {
             Exclusive Pre-Launch Community
           </div>
           <h1 className='font-semibold !font-roboto text-4xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
-            <div>Own Real Assets,</div>
-            <div>Share with Your Circle</div>
+            {/* <div>Own Real Assets,</div>
+          <div>Share with Your Circle</div> */}
+            <div>Own a Property</div>
+            <div>In Minutes</div>
           </h1>
           <p className='text-dark-grey text-xs font-light font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
             Real Ownership. Real Assets. Real Simple.

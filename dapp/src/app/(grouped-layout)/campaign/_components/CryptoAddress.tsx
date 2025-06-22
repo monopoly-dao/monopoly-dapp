@@ -1,10 +1,12 @@
+import axios from 'axios';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { LuBitcoin } from 'react-icons/lu';
+import { WalletClient } from 'viem';
 import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
@@ -13,10 +15,22 @@ import { Input } from '@/components/input';
 import { useAppDispatch, useAppSelector } from '@/store';
 
 import { setCampaignPaymentStage } from '@/slices/campaignPaymentSlice';
+import { handleErrors } from '@/utils/error';
 import { multiStepVariants } from '@/utils/variants';
+
+import { ConnectWalletClient } from '../_utils/paymentClient';
 
 export default function CryptoAddress() {
   const { walletAddress } = useAppSelector((state) => state.campaignPayment);
+  const [wallet, setWallet] = useState<null | WalletClient>(null);
+  // const { address } = useAccount();
+  // const { disconnect } = useDisconnect();
+  // const { data: ensName } = useEnsName({ address });
+  // const { data: ensAvatar } = useEnsAvatar({ name: ensName! });
+
+  // useWalletClient();
+
+  // console.log({ address, data }, data?.getAddresses());
 
   const dispatch = useAppDispatch();
 
@@ -28,18 +42,34 @@ export default function CryptoAddress() {
     [walletAddress]
   );
 
-  const { values, getFieldMeta, getFieldProps, setFieldValue } = useFormik({
-    initialValues,
-    onSubmit: () => {
-      dispatch(setCampaignPaymentStage('success'));
-    },
-    validationSchema: object({
-      walletAddress: string().optional(),
-    }),
-    validateOnMount: true,
-    validateOnBlur: true,
-    validateOnChange: true,
-  });
+  const { values, getFieldMeta, getFieldProps, setFieldValue, handleSubmit } =
+    useFormik({
+      initialValues,
+      onSubmit: async () => {
+        // dispatch(setCampaignPaymentStage('success'));
+        try {
+          await axios.post('http://localhost:8001/ticket', {
+            stablecoinAddress: 'stablecoin',
+            numberOfTickets: 5,
+            walletClient: wallet,
+          });
+        } catch (e) {
+          handleErrors(e);
+        }
+      },
+      validationSchema: object({
+        walletAddress: string().optional(),
+      }),
+      validateOnMount: true,
+      validateOnBlur: true,
+      validateOnChange: true,
+    });
+
+  // useEffect(() => {
+  //   if (address) {
+  //     setFieldValue('address', address);
+  //   }
+  // }, [address, setFieldValue]);
 
   const getFormikInputProps = (id: keyof typeof values) => {
     return {
@@ -49,18 +79,29 @@ export default function CryptoAddress() {
   };
 
   async function connectMetamask() {
-    if (typeof window.ethereum === 'undefined') {
-      alert('Install MetaMask extension!!');
-      return;
-    }
+    // if (typeof window.ethereum === 'undefined') {
+    //   alert('Install MetaMask extension!!');
+    //   return;
+    // }
+    // try {
+    //   const accounts = await window.ethereum.request({
+    //     method: 'eth_requestAccounts',
+    //   });
+    //   await setFieldValue('walletAddress', accounts[0], true);
+    // } catch (error) {
+    //   toast.error('Error connecting to Metamask');
+    // }
 
     try {
-      const accounts = await window.ethereum.request({
-        method: 'eth_requestAccounts',
-      });
-      await setFieldValue('walletAddress', accounts[0], true);
-    } catch (error) {
-      toast.error('Error connecting to Metamask');
+      const walletClient = await ConnectWalletClient();
+
+      setWallet(walletClient);
+      // Performs Wallet Action to retrieve wallet address
+      const [address] = await walletClient.getAddresses();
+
+      await setFieldValue('walletAddress', address, true);
+    } catch (e) {
+      toast.error('Error connecting to wallet');
     }
   }
 
@@ -68,6 +109,7 @@ export default function CryptoAddress() {
     <motion.form
       variants={multiStepVariants}
       initial='initial'
+      onSubmit={handleSubmit}
       exit='exit'
       animate='animate'
       className='grid grid-cols-2 gap-x-3 gap-y-5'
@@ -117,6 +159,7 @@ export default function CryptoAddress() {
               height={24}
             />
           </button>
+          {/* <WalletOptions /> */}
         </div>
       </div>
 
