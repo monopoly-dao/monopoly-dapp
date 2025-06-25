@@ -25,7 +25,7 @@ export default function Page() {
   return (
     <div>
       <div className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'>
-        <h1 className='!font-roboto font-semibold text-[24px] w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
+        <h1 className='font-merriweather font-semibold text-3xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
           {/* <div>Own Real Assets,</div>
           <div>Share with Your Circle</div> */}
           <div>Own a Property</div>

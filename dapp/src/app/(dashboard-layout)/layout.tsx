@@ -17,7 +17,7 @@ export default async function AuthenticatedLayout({
           </div>
 
           <main className='col-span-1 relative col-start-2 grid h-full w-full grid-cols-1 grid-rows-[auto_1fr] overflow-hidden bg-white'>
-            <div className='flex justify-end md:hidden'>
+            <div className='flex justify-end md:hidden absolute top-6 right-[5%]'>
               <MobileSidebar />
             </div>
 
