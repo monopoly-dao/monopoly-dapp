@@ -3,7 +3,6 @@ import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
-import toast from 'react-hot-toast';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { LuBitcoin } from 'react-icons/lu';
 import { WalletClient } from 'viem';
@@ -14,11 +13,10 @@ import { Input } from '@/components/input';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 
+import { SettleyTicketer } from '@/sdk/ticketSDK';
 import { setCampaignPaymentStage } from '@/slices/campaignPaymentSlice';
 import { handleErrors } from '@/utils/error';
 import { multiStepVariants } from '@/utils/variants';
-
-import { ConnectWalletClient } from '../_utils/paymentClient';
 
 export default function CryptoAddress() {
   const { walletAddress } = useAppSelector((state) => state.campaignPayment);
@@ -92,17 +90,33 @@ export default function CryptoAddress() {
     //   toast.error('Error connecting to Metamask');
     // }
 
-    try {
-      const walletClient = await ConnectWalletClient();
+    // try {
+    //   const walletClient = await ConnectWalletClient();
 
-      setWallet(walletClient);
-      // Performs Wallet Action to retrieve wallet address
-      const [address] = await walletClient.getAddresses();
+    //   setWallet(walletClient);
+    //   // Performs Wallet Action to retrieve wallet address
+    //   const [address] = await walletClient.getAddresses();
 
-      await setFieldValue('walletAddress', address, true);
-    } catch (e) {
-      toast.error('Error connecting to wallet');
-    }
+    //   await setFieldValue('walletAddress', address, true);
+    // } catch (e) {
+    //   toast.error('Error connecting to wallet');
+    // }
+
+    const settleyTicketer = new SettleyTicketer(
+      'https://base-mainnet.g.alchemy.com/v2/yFt4FMjAbq32jZAKaYEd2CjQHQenxTQl',
+      '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9'
+    );
+
+    await settleyTicketer.connectWallet();
+
+    const address = (await settleyTicketer.getSignerAddress()) || '';
+
+    await settleyTicketer.mintToken(
+      2,
+      '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9'
+    );
+
+    console.log(address);
   }
 
   return (

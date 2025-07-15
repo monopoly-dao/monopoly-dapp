@@ -38,6 +38,10 @@ export const unauthentiatedNavLinks = [
     route: '/#how-it-works',
     isLinkToSection: true,
   },
+  {
+    label: 'Campaign',
+    route: '/campaign',
+  },
 ];
 
 export const authenticatedNavLinks = [
@@ -57,6 +61,10 @@ export const authenticatedNavLinks = [
     label: 'How it Works',
     route: '/#how-it-works',
     isLinkToSection: true,
+  },
+  {
+    label: 'Campaign',
+    route: '/campaign',
   },
 ];
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaDiscord } from 'react-icons/fa';
+import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
 import SubscriptionForm from '@/app/_components/SubscriptionForm';
@@ -27,10 +27,22 @@ const followLinks = [
     icon: FaXTwitter,
     openInNewTab: true,
   },
+  // {
+  //   label: 'Discord',
+  //   href: 'https://discord.gg/x54J7un2 ',
+  //   icon: FaDiscord,
+  //   openInNewTab: true,
+  // },
   {
-    label: 'Discord',
-    href: 'https://discord.gg/x54J7un2 ',
-    icon: FaDiscord,
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/settleyco',
+    icon: FaLinkedin,
+    openInNewTab: true,
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/settley.co/',
+    icon: FaInstagram,
     openInNewTab: true,
   },
 ];
