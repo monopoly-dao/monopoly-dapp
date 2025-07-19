@@ -9,6 +9,7 @@ import FooterColumnLinks from './FooterColumnLinks';
 const aboutLinks = [
   { label: 'The Team', href: '/team' },
   { label: 'How it works', href: '/faqs' },
+  { label: 'Game', href: 'https://game.settley.co' },
 ];
 
 // const exploreLinks = [
