@@ -6,23 +6,23 @@ import 'viem/window';
 
 export async function ConnectWalletClient() {
   // Check for window.ethereum
-  let transport;
+  // let transport;
   if (window.ethereum) {
-    transport = custom(window.ethereum);
+    // transport = custom(window.ethereum);
   } else {
     const errorMessage =
       'MetaMask or another web3 wallet is not installed. Please install one to proceed.';
     throw new Error(errorMessage);
   }
 
-  console.log(window.ethereum, transport);
+  // console.log(window.ethereum, transport);
 
   // Delcalre a Wallet Client
   const walletClient = createWalletClient({
     chain: hardhat,
     transport: http(),
   });
-  console.log({ walletClient });
+  // console.log({ walletClient });
 
   return walletClient;
 }

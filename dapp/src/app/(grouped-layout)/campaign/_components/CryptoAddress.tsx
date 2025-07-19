@@ -20,7 +20,7 @@ import { multiStepVariants } from '@/utils/variants';
 
 export default function CryptoAddress() {
   const { walletAddress } = useAppSelector((state) => state.campaignPayment);
-  const [wallet, setWallet] = useState<null | WalletClient>(null);
+  const [wallet] = useState<null | WalletClient>(null);
   // const { address } = useAccount();
   // const { disconnect } = useDisconnect();
   // const { data: ensName } = useEnsName({ address });
@@ -40,28 +40,27 @@ export default function CryptoAddress() {
     [walletAddress]
   );
 
-  const { values, getFieldMeta, getFieldProps, setFieldValue, handleSubmit } =
-    useFormik({
-      initialValues,
-      onSubmit: async () => {
-        // dispatch(setCampaignPaymentStage('success'));
-        try {
-          await axios.post('http://localhost:8001/ticket', {
-            stablecoinAddress: 'stablecoin',
-            numberOfTickets: 5,
-            walletClient: wallet,
-          });
-        } catch (e) {
-          handleErrors(e);
-        }
-      },
-      validationSchema: object({
-        walletAddress: string().optional(),
-      }),
-      validateOnMount: true,
-      validateOnBlur: true,
-      validateOnChange: true,
-    });
+  const { values, getFieldMeta, getFieldProps, handleSubmit } = useFormik({
+    initialValues,
+    onSubmit: async () => {
+      // dispatch(setCampaignPaymentStage('success'));
+      try {
+        await axios.post('http://localhost:8001/ticket', {
+          stablecoinAddress: 'stablecoin',
+          numberOfTickets: 5,
+          walletClient: wallet,
+        });
+      } catch (e) {
+        handleErrors(e);
+      }
+    },
+    validationSchema: object({
+      walletAddress: string().optional(),
+    }),
+    validateOnMount: true,
+    validateOnBlur: true,
+    validateOnChange: true,
+  });
 
   // useEffect(() => {
   //   if (address) {
@@ -109,14 +108,14 @@ export default function CryptoAddress() {
 
     await settleyTicketer.connectWallet();
 
-    const address = (await settleyTicketer.getSignerAddress()) || '';
+    // const address = (await settleyTicketer.getSignerAddress()) || '';
 
     await settleyTicketer.mintToken(
       2,
       '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9'
     );
 
-    console.log(address);
+    // console.log(address);
   }
 
   return (

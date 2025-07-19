@@ -4,8 +4,11 @@ import {
   Contract,
   Interface,
   JsonRpcProvider,
+  JsonRpcSigner,
   Wallet,
 } from 'ethers';
+
+import { handleErrors } from '@/utils/error';
 
 /// Import compiled ABI and type bindings for SettleyTicket
 import ticketObj from '../artifacts/contracts/Ticket.sol/SettleyTicket.json';
@@ -30,20 +33,20 @@ interface MintedToken {
 }
 
 /// @notice Interface for TokenMinted event structure
-interface TokenMintedEvent {
-  eventName: 'TokenMinted';
-  args: {
-    tokenId: bigint;
-    recipient: string;
-    amount: bigint;
-    tokenURI: string;
-    stableCoin: string;
-    stableAmount: bigint;
-    blockNumber: bigint;
-  };
-  transactionHash: string;
-  blockNumber: bigint;
-}
+// interface TokenMintedEvent {
+//   eventName: 'TokenMinted';
+//   args: {
+//     tokenId: bigint;
+//     recipient: string;
+//     amount: bigint;
+//     tokenURI: string;
+//     stableCoin: string;
+//     stableAmount: bigint;
+//     blockNumber: bigint;
+//   };
+//   transactionHash: string;
+//   blockNumber: bigint;
+// }
 
 /**
  * @title SettleyTicketer
@@ -51,7 +54,7 @@ interface TokenMintedEvent {
  */
 export class SettleyTicketer {
   private provider: JsonRpcProvider | BrowserProvider;
-  private signer?: Wallet | any;
+  private signer?: Wallet | JsonRpcSigner;
   private contractRead: SettleyTicket;
   private contractWrite: SettleyTicket;
 
@@ -83,15 +86,17 @@ export class SettleyTicketer {
 
   /// @notice Initializes the signer from MetaMask in the browser
   private async initializeBrowserSigner() {
-    console.log('outside');
+    // console.log('outside');
     if (this.provider instanceof BrowserProvider) {
       try {
         await this.provider.send('eth_requestAccounts', []);
         this.signer = await this.provider.getSigner();
-        console.log('signer', this.signer);
+        // console.log('signer', this.signer);
         this.contractWrite = this.contractWrite.connect(this.signer);
       } catch (error) {
-        console.warn('Failed to connect to browser wallet:', error);
+        // console.warn('Failed to connect to browser wallet:', error);
+        // throw new Error(`Failed to connect to browser wallet`)
+        handleErrors(error);
       }
     }
   }
@@ -197,7 +202,8 @@ export class SettleyTicketer {
         }
       }
     } catch (error) {
-      console.error('Error getting all purchases:', error);
+      // console.error('Error getting all purchases:', error);
+      handleErrors(error);
       throw error;
     }
 
@@ -262,7 +268,8 @@ export class SettleyTicketer {
       );
       await approveTx.wait(1);
     } catch (error) {
-      console.error('Error approving token: ', error);
+      handleErrors(error);
+      // console.error('Error approving token: ', error);
       throw error;
     }
 
@@ -295,15 +302,18 @@ export class SettleyTicketer {
         }
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       if (!tokenId!)
         throw new Error(
           'Could not find TokenMinted event in transaction receipt'
         );
     } catch (error) {
-      console.error('Error minting token: ', error);
+      handleErrors(error);
+      // console.error('Error minting token: ', error);
       throw error;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return [tokenId!, hash];
   }
 
