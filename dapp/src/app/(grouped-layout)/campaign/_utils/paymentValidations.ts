@@ -6,7 +6,7 @@ export const detailsSchema = object({
   phone: string().required('Phone is required'),
   email: string().required('Email is required').email('Invalid email format'),
   country: string().required('Country is required'),
-  paymentMethod: string().required('Payment Method is required'),
+  // paymentMethod: string().required('Payment Method is required'),
 });
 
 export const payCryptoSchema = object({
@@ -41,5 +41,5 @@ export const payCryptoSchema = object({
         return true;
       }
     ),
-  crypto: string().required('Please choose a cryptocurrency to send'),
+  method: string().required('Please choose a payment method'),
 });

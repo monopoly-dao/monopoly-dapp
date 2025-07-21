@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 
 import Button from '@/components/buttons/Button';
-import { Input, Select } from '@/components/input';
+import { Input } from '@/components/input';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 
@@ -17,15 +17,16 @@ import { multiStepVariants } from '@/utils/variants';
 import { detailsInitialValues } from '../_utils/paymentConstants';
 import { detailsSchema } from '../_utils/paymentValidations';
 
-const paymentOptions = ['Crypto'].map((e) => ({ label: e, value: e }));
+// const paymentOptions = ['Crypto'].map((e) => ({ label: e, value: e }));
 
 type Props = {
   isOnHomepage?: boolean;
 };
 
 export default function PayeeDetails({ isOnHomepage }: Props) {
-  const { firstName, lastName, email, phone, country, paymentMethod } =
-    useAppSelector((state) => state.campaignPayment);
+  const { firstName, lastName, email, phone, country } = useAppSelector(
+    (state) => state.campaignPayment
+  );
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -38,14 +39,14 @@ export default function PayeeDetails({ isOnHomepage }: Props) {
       email,
       phone,
       country,
-      paymentMethod,
+      // paymentMethod,
     }),
-    [firstName, lastName, email, phone, country, paymentMethod]
+    [firstName, lastName, email, phone, country]
   );
 
   const {
     values,
-    getFieldHelpers,
+    // getFieldHelpers,
     getFieldMeta,
     getFieldProps,
     handleSubmit,
@@ -58,9 +59,7 @@ export default function PayeeDetails({ isOnHomepage }: Props) {
       }
 
       dispatch(setDetails(values));
-      if (values.paymentMethod === 'Crypto') {
-        dispatch(setCampaignPaymentStage('crypto'));
-      }
+      dispatch(setCampaignPaymentStage('crypto'));
     },
     validationSchema: detailsSchema,
     validateOnMount: true,
@@ -75,10 +74,10 @@ export default function PayeeDetails({ isOnHomepage }: Props) {
     };
   };
 
-  const getFormikSelectProps = (field: keyof typeof values) => ({
-    ...getFieldHelpers(field),
-    ...getFieldMeta(field),
-  });
+  // const getFormikSelectProps = (field: keyof typeof values) => ({
+  //   ...getFieldHelpers(field),
+  //   ...getFieldMeta(field),
+  // });
 
   return (
     <motion.form
@@ -121,7 +120,7 @@ export default function PayeeDetails({ isOnHomepage }: Props) {
           containerClassName='border-[#D0D5DD] rounded-[8px]'
         />
       </div>
-      <div className='col-span-2'>
+      {/* <div className='col-span-2'>
         <Select
           id='paymentMethod'
           label='Preferred payment method'
@@ -129,7 +128,7 @@ export default function PayeeDetails({ isOnHomepage }: Props) {
           options={paymentOptions}
           containerClassName='border-[#D0D5DD] rounded-[8px]'
         />
-      </div>
+      </div> */}
 
       <Button
         className='mb-14 col-span-2 !rounded-[100px] w-full font-roboto py-3'

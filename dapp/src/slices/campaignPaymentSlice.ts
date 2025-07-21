@@ -13,7 +13,7 @@ export interface CampaignPaymentState {
   country: string;
   paymentMethod: string;
   cryptoAmount: string;
-  crypto: string;
+  method: string;
   walletAddress: string;
 }
 
@@ -26,7 +26,7 @@ export const initialState: CampaignPaymentState = {
   country: '',
   paymentMethod: '',
   cryptoAmount: '',
-  crypto: '',
+  method: '',
   walletAddress: '',
 };
 
@@ -57,7 +57,7 @@ export const campaignPaymentSlice = createSlice({
     setCryptoDetails: (
       state,
       action: PayloadAction<
-        Pick<CampaignPaymentState, 'cryptoAmount' | 'crypto'>
+        Pick<CampaignPaymentState, 'cryptoAmount' | 'method'>
       >
     ) => {
       return (state = {

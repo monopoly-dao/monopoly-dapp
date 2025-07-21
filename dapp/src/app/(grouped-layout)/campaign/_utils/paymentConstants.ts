@@ -9,5 +9,5 @@ export const detailsInitialValues = {
 
 export const payCryptoInitialValues = {
   cryptoAmount: '',
-  crypto: '',
+  method: '',
 };

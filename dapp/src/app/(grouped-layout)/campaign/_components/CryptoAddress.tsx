@@ -1,26 +1,37 @@
-import axios from 'axios';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import toast from 'react-hot-toast';
 import { IoIosArrowRoundBack } from 'react-icons/io';
-import { LuBitcoin } from 'react-icons/lu';
-import { WalletClient } from 'viem';
+import { IoCopyOutline } from 'react-icons/io5';
 import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
-import { Input } from '@/components/input';
+import IconButton from '@/components/buttons/IconButton';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 
+import { useJoinCampaignMutation } from '@/api/campaign';
 import { SettleyTicketer } from '@/sdk/ticketSDK';
 import { setCampaignPaymentStage } from '@/slices/campaignPaymentSlice';
 import { handleErrors } from '@/utils/error';
+import { removeNonDigit } from '@/utils/utils';
 import { multiStepVariants } from '@/utils/variants';
 
 export default function CryptoAddress() {
-  const { walletAddress } = useAppSelector((state) => state.campaignPayment);
-  const [wallet] = useState<null | WalletClient>(null);
+  const {
+    walletAddress,
+    method,
+    cryptoAmount,
+    firstName,
+    lastName,
+    email,
+    phone,
+    country,
+  } = useAppSelector((state) => state.campaignPayment);
+  const [joinCampaign, { isLoading }] = useJoinCampaignMutation();
+  // const [wallet] = useState<null | WalletClient>(null);
   // const { address } = useAccount();
   // const { disconnect } = useDisconnect();
   // const { data: ensName } = useEnsName({ address });
@@ -40,16 +51,26 @@ export default function CryptoAddress() {
     [walletAddress]
   );
 
-  const { values, getFieldMeta, getFieldProps, handleSubmit } = useFormik({
+  const { handleSubmit } = useFormik({
     initialValues,
     onSubmit: async () => {
-      // dispatch(setCampaignPaymentStage('success'));
       try {
-        await axios.post('http://localhost:8001/ticket', {
-          stablecoinAddress: 'stablecoin',
-          numberOfTickets: 5,
-          walletClient: wallet,
-        });
+        // await axios.post('http://localhost:8001/ticket', {
+        //   stablecoinAddress: 'stablecoin',
+        //   numberOfTickets: 5,
+        //   walletClient: wallet,
+        // });
+
+        await joinCampaign({
+          firstName,
+          lastName,
+          email,
+          phone,
+          country,
+          amount: Number(removeNonDigit(cryptoAmount)),
+        }).unwrap();
+
+        dispatch(setCampaignPaymentStage('success'));
       } catch (e) {
         handleErrors(e);
       }
@@ -68,12 +89,12 @@ export default function CryptoAddress() {
   //   }
   // }, [address, setFieldValue]);
 
-  const getFormikInputProps = (id: keyof typeof values) => {
-    return {
-      ...getFieldProps(id),
-      ...getFieldMeta(id),
-    };
-  };
+  // const getFormikInputProps = (id: keyof typeof values) => {
+  //   return {
+  //     ...getFieldProps(id),
+  //     ...getFieldMeta(id),
+  //   };
+  // };
 
   async function connectMetamask() {
     // if (typeof window.ethereum === 'undefined') {
@@ -116,6 +137,13 @@ export default function CryptoAddress() {
     );
 
     // console.log(address);
+
+    handleSubmit();
+  }
+
+  function copyWalletAddress(address: string) {
+    navigator.clipboard.writeText(address);
+    toast.success('Wallet address copied!');
   }
 
   return (
@@ -139,83 +167,96 @@ export default function CryptoAddress() {
         </Button>
       </div>
 
-      <div
+      {/* <div
         className='col-span-2 rounded-[8px] border border-[#D0D5DD] py-[10px] font-roboto px-[14px] flex items-center gap-2 text-navy'
         style={{ boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)' }}
       >
         <LuBitcoin className='text-2xl text-primary-orange' /> Bitcoin (BTC)
-      </div>
+      </div> */}
 
       <div className='col-span-2'>
-        <Input
+        {/* <Input
           id='walletAddress'
           label='Wallet Address'
           placeholder='0x.....'
           {...getFormikInputProps('walletAddress')}
           containerClassName='border-[#D0D5DD] rounded-[8px]'
-        />
+        /> */}
 
-        <div className='flex flex-col gap-5 w-full mb-5'>
-          <p className='flex items-center gap-4 text-center font-roboto text-sm w-full justify-center'>
-            or connect with
-          </p>
-          <button
-            type='button'
-            className='w-full flex items-center gap-2 rounded-[8px] bg-slate-300 font-roboto border border-[#D6D3D1] justify-center px-10 py-3 !text-sm'
-            onClick={connectMetamask}
-          >
-            Continue with Metamask
+        {method === 'metamask' && (
+          <div className='flex flex-col gap-5 w-full mb-5'>
+            <p className='flex items-center gap-4 font-roboto text-sm w-full'>
+              Please make sure your metamask extension is opened and active
+              before clicking below
+            </p>
+            <button
+              type='button'
+              className='w-full flex items-center gap-2 rounded-[8px] bg-slate-300 font-roboto border border-[#D6D3D1] justify-center px-10 py-3 !text-sm'
+              onClick={connectMetamask}
+            >
+              Continue with Metamask
+              <Image
+                src='/svg/metamask.svg'
+                alt='metamask'
+                width={24}
+                height={24}
+              />
+            </button>
+            {/* <WalletOptions /> */}
+          </div>
+        )}
+      </div>
+
+      {method === 'cex' && (
+        <>
+          <div className='flex flex-col gap-[6px] col-span-2'>
+            <p className='text-[#344054] text-sm font-medium'>
+              Send to this address
+            </p>
+            <div
+              className='rounded-[8px] border border-[#D0D5DD] py-[10px] font-roboto px-[14px] flex items-center gap-2 justify-between text-navy'
+              style={{ boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)' }}
+            >
+              <p className='w-3/4 truncate'>
+                bcajfkbkj123487djwh84rioc8usyg7u3bfiievh8wqu
+              </p>
+              <IconButton
+                variant='ghost'
+                className='text-2xl'
+                icon={IoCopyOutline}
+                onClick={() =>
+                  copyWalletAddress(
+                    'bcajfkbkj123487djwh84rioc8usyg7u3bfiievh8wqu'
+                  )
+                }
+              />
+            </div>
+          </div>
+
+          <div className='flex justify-center col-span-2'>
             <Image
-              src='/svg/metamask.svg'
-              alt='metamask'
-              width={24}
-              height={24}
+              src='/images/QR code.png'
+              alt='QR code'
+              width={200}
+              height={200}
             />
-          </button>
-          {/* <WalletOptions /> */}
-        </div>
-      </div>
+          </div>
 
-      {/* <div className='flex flex-col gap-[6px] col-span-2'>
-        <p className='text-[#344054] text-sm font-medium'>
-          Send to this address
-        </p>
-        <div
-          className='rounded-[8px] border border-[#D0D5DD] py-[10px] font-roboto px-[14px] flex items-center gap-2 justify-between text-navy'
-          style={{ boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)' }}
-        >
-          <p className='w-3/4 truncate'>
-            bcajfkbkj123487djwh84rioc8usyg7u3bfiievh8wqu
+          <p className='font-roboto col-span-2 text-center text-sm text-[#344054]'>
+            After sending, click the button below to confirm your payment
           </p>
-          <IconButton
-            variant='ghost'
-            className='text-2xl'
-            icon={IoCopyOutline}
-          />
-        </div>
-      </div> */}
 
-      <div className='flex justify-center col-span-2'>
-        <Image
-          src='/images/QR code.png'
-          alt='QR code'
-          width={200}
-          height={200}
-        />
-      </div>
-
-      <p className='font-roboto col-span-2 text-center text-sm text-[#344054]'>
-        After sending, click the button below to confirm your payment
-      </p>
-
-      <div className='mb-14 col-span-2 flex flex-col items-center gap-5'>
-        <Button
-          className='!rounded-[100px] w-full uppercase font-roboto py-3'
-          type='submit'
-        >
-          I’ve completed my payement
-        </Button>
-      </div>
+          <div className='mb-14 col-span-2 flex flex-col items-center gap-5'>
+            <Button
+              className='!rounded-[100px] w-full uppercase font-roboto py-3'
+              type='submit'
+              isLoading={isLoading}
+            >
+              I’ve completed my payement
+            </Button>
+          </div>
+        </>
+      )}
     </motion.form>
   );
 }

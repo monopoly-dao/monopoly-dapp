@@ -8,19 +8,25 @@ import { Input, Select } from '@/components/input';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 
-import { setCampaignPaymentStage } from '@/slices/campaignPaymentSlice';
+import {
+  setCampaignPaymentStage,
+  setCryptoDetails,
+} from '@/slices/campaignPaymentSlice';
 import { formatAmount, removeNonDigit } from '@/utils/utils';
 import { multiStepVariants } from '@/utils/variants';
 
 import { payCryptoInitialValues } from '../_utils/paymentConstants';
 import { payCryptoSchema } from '../_utils/paymentValidations';
 
-const paymentOptions = ['Crypto'].map((e) => ({ label: e, value: e }));
+const paymentOptions = [
+  { label: 'Browser Wallet extension (e.g. Metamask)', value: 'metamask' },
+  { label: 'CEX transfer (e.g. from Binance)', value: 'cex' },
+];
 
 const amounts = [10, 50, 100, 200, 500];
 
 export default function PayCrypto() {
-  const { cryptoAmount, crypto } = useAppSelector(
+  const { cryptoAmount, method } = useAppSelector(
     (state) => state.campaignPayment
   );
 
@@ -29,10 +35,10 @@ export default function PayCrypto() {
   const initialValues = useMemo(
     () => ({
       ...payCryptoInitialValues,
-      crypto,
+      method,
       cryptoAmount,
     }),
-    [crypto, cryptoAmount]
+    [method, cryptoAmount]
   );
 
   const {
@@ -45,7 +51,8 @@ export default function PayCrypto() {
     setFieldValue,
   } = useFormik({
     initialValues,
-    onSubmit: () => {
+    onSubmit: (values) => {
+      dispatch(setCryptoDetails(values));
       dispatch(setCampaignPaymentStage('crptoQR'));
     },
     validationSchema: payCryptoSchema,
@@ -127,9 +134,9 @@ export default function PayCrypto() {
 
       <div className='col-span-2'>
         <Select
-          id='crypto'
-          label='Select cryptocurrency'
-          {...getFormikSelectProps('crypto')}
+          id='method'
+          label='Payment method'
+          {...getFormikSelectProps('method')}
           options={paymentOptions}
           containerClassName='border-[#D0D5DD] rounded-[8px]'
         />
