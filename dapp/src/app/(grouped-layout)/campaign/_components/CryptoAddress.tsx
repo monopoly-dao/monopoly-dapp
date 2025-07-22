@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { IoCopyOutline } from 'react-icons/io5';
+import { LuBitcoin } from 'react-icons/lu';
 import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
@@ -167,13 +168,6 @@ export default function CryptoAddress() {
         </Button>
       </div>
 
-      {/* <div
-        className='col-span-2 rounded-[8px] border border-[#D0D5DD] py-[10px] font-roboto px-[14px] flex items-center gap-2 text-navy'
-        style={{ boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)' }}
-      >
-        <LuBitcoin className='text-2xl text-primary-orange' /> Bitcoin (BTC)
-      </div> */}
-
       <div className='col-span-2'>
         {/* <Input
           id='walletAddress'
@@ -210,6 +204,14 @@ export default function CryptoAddress() {
       {method === 'cex' && (
         <>
           <div className='flex flex-col gap-[6px] col-span-2'>
+            <div
+              className='col-span-2 rounded-[8px] border border-[#D0D5DD] py-[10px] font-roboto px-[14px] flex items-center gap-2 text-navy'
+              style={{ boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)' }}
+            >
+              <LuBitcoin className='text-2xl text-primary-orange' /> Bitcoin
+              (BTC)
+            </div>
+
             <p className='text-[#344054] text-sm font-medium'>
               Send to this address
             </p>
@@ -252,7 +254,7 @@ export default function CryptoAddress() {
               type='submit'
               isLoading={isLoading}
             >
-              I’ve completed my payement
+              I’ve completed my payment
             </Button>
           </div>
         </>
