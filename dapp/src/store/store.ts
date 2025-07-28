@@ -6,7 +6,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { campaignPaymentReducer } from '@/slices/campaignPaymentSlice';
 
 import storage from './customStorage';
-import { globalApi } from '../api';
+import { authApi, globalApi } from '../api';
 import {
   CAMPAIGN_PAYMENT_REDUCER_PATH,
   GLOBAL_API_REDUCER_PATH,
@@ -15,17 +15,22 @@ import {
 const persistConfig = {
   key: 'root',
   storage: storage,
-  blacklist: [GLOBAL_API_REDUCER_PATH, CAMPAIGN_PAYMENT_REDUCER_PATH],
+  blacklist: [
+    GLOBAL_API_REDUCER_PATH,
+    CAMPAIGN_PAYMENT_REDUCER_PATH,
+    authApi.reducerPath,
+  ],
 };
 
 const rootReducer = combineReducers({
   [globalApi.reducerPath]: globalApi.reducer,
+  [authApi.reducerPath]: authApi.reducer,
   [CAMPAIGN_PAYMENT_REDUCER_PATH]: campaignPaymentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const concatMiddleWare = [globalApi.middleware];
+const concatMiddleWare = [globalApi.middleware, authApi.middleware];
 
 // if (!isProd) {
 //   concatMiddleWare.push(logger);

@@ -5,4 +5,5 @@ export enum ProfileEndpoints {
   Get_Wallet_Stats = '/profile/walletStats/:userFirebaseId',
   Get_Holdings = '/profile/holdings/:userFirebaseId',
   Get_Transactions = '/transactions/:userFirebaseId',
+  GetUserEmails = '/user-emails/:query/:email',
 }

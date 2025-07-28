@@ -6,7 +6,11 @@ import { Session } from 'next-auth';
 import { getSession, signOut } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
+import { INetworkSuccessResponse } from '@/@types/appTypes';
+
+import { ProfileEndpoints } from './profile/profileApiConstants';
 import {
+  AUTH_API_REDUCER_PATH,
   AXIOS_TIMEOUT_MSG,
   AXIOS_TIMEOUT_TIME,
   GLOBAL_API_REDUCER_PATH,
@@ -100,3 +104,42 @@ export const globalApi = createApi({
     'DeedDetails',
   ],
 });
+
+export const authApi = createApi({
+  baseQuery: axiosBaseQuery({
+    baseUrl: AUTH_BASE_URL as string,
+  }),
+  reducerPath: AUTH_API_REDUCER_PATH,
+  endpoints: (build) => ({
+    getUserEmailsCount: build.query<
+      INetworkSuccessResponse<number>,
+      { email: string }
+    >({
+      query: ({ email }) => ({
+        url: ProfileEndpoints.GetUserEmails.replace(':query', 'count').replace(
+          ':email',
+          email
+        ),
+        method: 'GET',
+      }),
+      providesTags: ['UserEmails'],
+    }),
+
+    getUserEmails: build.query<BlobPart, { email: string }>({
+      query: ({ email }) => ({
+        url: ProfileEndpoints.GetUserEmails.replace(':query', 'csv').replace(
+          ':email',
+          email
+        ),
+        method: 'GET',
+      }),
+    }),
+  }),
+  tagTypes: ['UserEmails'],
+});
+
+export const {
+  useGetUserEmailsCountQuery,
+  useGetUserEmailsQuery,
+  useLazyGetUserEmailsQuery,
+} = authApi;
