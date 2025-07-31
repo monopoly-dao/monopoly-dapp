@@ -16,7 +16,8 @@ export default function ReimagineAssetOwnership() {
       <div className='flex flex-col gap-4'>
         <div className='flex items-center justify-between'>
           <p className='font-merriweather font-light w-1/2 text-2xl lg:text-4xl'>
-            Reimagining asset ownership through blockchain technology
+            Reimagining asset ownership
+            {/* through blockchain technology */}
           </p>
 
           <Link
@@ -30,9 +31,10 @@ export default function ReimagineAssetOwnership() {
         <p className='w-3/4 text-lg font-roboto'>
           We're creating a new standard for asset ownership where properties can
           be bought, sold, and managed with the same ease as digital
-          transactions. Through blockchain technology, we're eliminating
-          traditional barriers, reducing costs, and empowering investors with
-          direct control over their assets.
+          transactions.
+          {/* Through blockchain technology, */}
+          We're eliminating traditional barriers, reducing costs, and empowering
+          investors with direct control over their assets.
         </p>
       </div>
 

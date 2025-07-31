@@ -16,7 +16,8 @@ export default function OwnShare() {
             <div className='w-6 h-6 bg-black text-white rounded-[100%] flex items-center justify-center'>
               <VscCheckAll />
             </div>
-            Real legal rights backed by traditional and blockchain deeds
+            Real legal rights backed by traditional deeds
+            {/* and blockchain deeds */}
           </p>
           <p className='flex items-center gap-3'>
             <div className='w-6 h-6 bg-black text-white rounded-[100%] flex items-center justify-center'>

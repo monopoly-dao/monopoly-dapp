@@ -11,7 +11,7 @@ export default function Testimonials() {
         <TwitterCard
           authorName='Emily Roe'
           authorHandle='emilyr'
-          content='I never thought owning property could be this easy! With Settley, I bought a share in a stunning villa in minutes—no paperwork, no hassle. Just seamless, blockchain-powered ownership.'
+          content='I never thought owning property could be this easy! With Settley, I bought a share in a stunning villa in minutes—no paperwork, no hassle. Just seamless ownership' // blockchain-powered ownership.'
           timestamp='2h'
           likes={42}
           retweets={12}
@@ -38,7 +38,7 @@ export default function Testimonials() {
         <TwitterCard
           authorName='Danny Kenan'
           authorHandle='kenandaniel'
-          content={`I've always wanted to invest in real estate but thought it was too complex. Settley changed that. Simple, secure, and backed by blockchain. A game changer!`}
+          content={`I've always wanted to invest in real estate but thought it was too complex. Settley changed that. Simple, and secure. A game changer!`} //  and backed by blockchain
           timestamp='2h'
           likes={42}
           retweets={12}

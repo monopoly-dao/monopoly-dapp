@@ -21,8 +21,9 @@ export const faqs = [
   },
   {
     question: 'How does Settley work?',
+    // blockchain
     answer:
-      'Settley uses a mix of blockchain technology and boots on the ground to facilitate property transactions. Users can buy, sell, and manage properties through our user-friendly interface.',
+      'Settley uses a mix of technology and boots on the ground to facilitate property transactions. Users can buy, sell, and manage properties through our user-friendly interface.',
   },
   {
     question: 'How can I own a property in minutes with Settley?',
@@ -45,7 +46,7 @@ export const faqs = [
       'Simply sign up on our website, complete your profile, and follow the guided steps to start managing your properties.',
   },
   {
-    question: 'How does Settley ensure compliance with legal regulations?',
-    answer: `All transactions are recorded, and user profiles are KYC'd at certain thresholds to ensure compliance in all regions we operate. Our blockchain records provide an accurate list of everyone involved in an asset sale or purchase.`,
+    question: 'How does Settley ensure compliance with legal regulations?', // blockchain records
+    answer: `All transactions are recorded, and user profiles are KYC'd at certain thresholds to ensure compliance in all regions we operate. Our records provide an accurate list of everyone involved in an asset sale or purchase.`,
   },
 ];

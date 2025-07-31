@@ -5,7 +5,7 @@ const testimonials = [
     avatar: '/images/test-1.png',
     name: 'Emily Roe',
     content:
-      'I never thought owning property could be this easy! With Settley, I bought a share in a stunning villa in minutes—no paperwork, no hassle. Just seamless, blockchain-powered ownership.',
+      'I never thought owning property could be this easy! With Settley, I bought a share in a stunning villa in minutes—no paperwork, no hassle. Just seamless ownership.', // blockchain-powered ownership.',
   },
   {
     avatar: '/images/test-2.png',

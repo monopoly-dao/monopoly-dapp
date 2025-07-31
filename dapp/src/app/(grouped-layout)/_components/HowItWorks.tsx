@@ -18,8 +18,8 @@ export default function HowItWorks() {
             property. Your ownership means;
           </p>
           <p className='flex items-center gap-3'>
-            <VscCheckAll /> Real legal rights backed by traditional and
-            blockchain deeds
+            <VscCheckAll /> Real legal rights backed by traditional deeds
+            {/* blockchain deeds */}
           </p>
           <p className='flex items-center gap-3'>
             <VscCheckAll />

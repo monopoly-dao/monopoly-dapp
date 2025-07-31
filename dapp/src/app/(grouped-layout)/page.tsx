@@ -11,8 +11,7 @@ import landingBanner from '~/images/landing-banner-2.png';
 
 export const metadata: Metadata = {
   title: 'Join the future of property ownership',
-  description:
-    'Settley allows you to buy and own a home in minutes enabled by blockchain technology.',
+  description: 'Settley allows you to buy and own a home in minutes.', // enabled by blockchain technology.',
   keywords: [
     'Settley',
     'Join the future of property ownership',
@@ -32,9 +31,10 @@ export default function Page() {
           <div>In Minutes</div>
         </h1>
         <p className='text-dark-grey font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
-          Unlock genuine ownership of premium properties via our blockchain
-          protocol. Experience shared ownership while keeping it simple, secure,
-          and genuinely yours.
+          Unlock genuine ownership of premium properties.
+          {/* via our blockchain protocol.  */}
+          Experience shared ownership while keeping it simple, secure, and
+          genuinely yours.
         </p>
         <p className='text-dark-grey font-light text-xs font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
           Real Ownership. Real Assets. Real Simple.

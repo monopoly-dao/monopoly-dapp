@@ -18,9 +18,9 @@ export default function BecomeFoundingMember() {
           Become a Founding Member
         </h1>
         <p className='text-[#303030CC] text-lg mt-[10px] font-merriweather'>
-          Be among the first to experience Settley's revolutionary blockchain
-          platform, transforming global property buying with enhanced security,
-          transparency, and efficiency.
+          Be among the first to experience Settley's revolutionary
+          {/* blockchain */} platform, transforming global property buying with
+          enhanced security, transparency, and efficiency.
         </p>
         <div className='flex flex-col mt-[30px] gap-4'>
           {list.map((item, index) => (

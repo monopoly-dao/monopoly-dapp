@@ -66,7 +66,8 @@ export default function InvestmentVision() {
         </p>
         <p className='font-merriweather font-light text-[#0D0D0D]'>
           Settley simplifies real world propery transactions using automated
-          title management and trustless blockchain powered services.
+          title management.
+          {/* and trustless blockchain powered services. */}
         </p>
       </div>
 
