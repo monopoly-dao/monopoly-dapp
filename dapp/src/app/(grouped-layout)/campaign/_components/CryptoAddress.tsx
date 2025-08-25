@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { IoCopyOutline } from 'react-icons/io5';
@@ -19,6 +19,9 @@ import { setCampaignPaymentStage } from '@/slices/campaignPaymentSlice';
 import { handleErrors } from '@/utils/error';
 import { removeNonDigit } from '@/utils/utils';
 import { multiStepVariants } from '@/utils/variants';
+
+// https://cyan-traditional-woodpecker-474.mypinata.cloud/ipfs/bafkreido3sqpogvdk74uoraoh6wkl6crmrjt3wm7wxkwvo44o2hw5pfflu
+// https://cyan-traditional-woodpecker-474.mypinata.cloud/ipfs/bafkreib5wjrykhvhxgir25xyxeusi63w45kzyl3hxnb6qhmzqxasec6uve
 
 export default function CryptoAddress() {
   const {
@@ -44,6 +47,11 @@ export default function CryptoAddress() {
 
   const dispatch = useAppDispatch();
 
+  const settleyTicketer = new SettleyTicketer(
+    'https://base-mainnet.g.alchemy.com/v2/yFt4FMjAbq32jZAKaYEd2CjQHQenxTQl',
+    '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9'
+  );
+
   const initialValues = useMemo(
     () => ({
       ...{ walletAddress: '' },
@@ -51,6 +59,28 @@ export default function CryptoAddress() {
     }),
     [walletAddress]
   );
+
+  useEffect(() => {
+    (async () => {
+      await settleyTicketer.connectWallet();
+
+      const address = (await settleyTicketer.getSignerAddress()) || '';
+      console.log(address);
+
+      // await settleyTicketer.setBaseURI(
+      //   'https://cyan-traditional-woodpecker-474.mypinata.cloud/ipfs/bafkreido3sqpogvdk74uoraoh6wkl6crmrjt3wm7wxkwvo44o2hw5pfflu/'
+      // );
+
+      await settleyTicketer.mintToken(
+        2,
+        'https://cyan-traditional-woodpecker-474.mypinata.cloud/ipfs/bafkreido3sqpogvdk74uoraoh6wkl6crmrjt3wm7wxkwvo44o2hw5pfflu/',
+        '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9'
+      );
+
+      const purchases = await settleyTicketer.getAllPurchases();
+      console.log({ purchases });
+    })();
+  }, []);
 
   const { handleSubmit } = useFormik({
     initialValues,
@@ -123,19 +153,23 @@ export default function CryptoAddress() {
     //   toast.error('Error connecting to wallet');
     // }
 
-    const settleyTicketer = new SettleyTicketer(
-      'https://base-mainnet.g.alchemy.com/v2/yFt4FMjAbq32jZAKaYEd2CjQHQenxTQl',
-      '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9'
-    );
-
     await settleyTicketer.connectWallet();
 
-    // const address = (await settleyTicketer.getSignerAddress()) || '';
+    const address = (await settleyTicketer.getSignerAddress()) || '';
+    console.log(address);
+
+    // await settleyTicketer.setBaseURI(
+    //   'https://cyan-traditional-woodpecker-474.mypinata.cloud/ipfs/bafkreido3sqpogvdk74uoraoh6wkl6crmrjt3wm7wxkwvo44o2hw5pfflu/'
+    // );
 
     await settleyTicketer.mintToken(
       2,
+      'https://cyan-traditional-woodpecker-474.mypinata.cloud/ipfs/bafkreido3sqpogvdk74uoraoh6wkl6crmrjt3wm7wxkwvo44o2hw5pfflu/',
       '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9'
     );
+
+    const purchases = await settleyTicketer.getAllPurchases();
+    console.log({ purchases });
 
     // console.log(address);
 

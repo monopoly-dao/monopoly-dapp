@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa6';
+import { GoInfo } from 'react-icons/go';
 
 import OwnHomeCard from './OwnHomeCard';
 
 import card from '~/images/card.png';
 import community from '~/images/community-icon.png';
 import home from '~/images/home-icon.png';
-import womanWithKey from '~/images/woman-with-key.png';
+import keys from '~/images/keys-background.jpg';
 
 const data = [
   {
@@ -32,9 +33,9 @@ const data = [
 
 const steps = [
   'You commit funds (starting from just $10) to our pre-purchase pool by purchasing a digital collectible.',
-  'You indicate your location and property preferences through our voting system.',
-  'When the fundraising goal is met, Settley purchases ONE property based on community preferences and available funds.',
+  // 'You indicate your location and property preferences through our voting system.',
   'All contributors receive ownership tokens proportional to their investment in the acquired property.',
+  'When the fundraising goal is met, Settley purchases ONE property based on community preferences and available funds.',
 ];
 
 export default function OwnHome() {
@@ -63,27 +64,27 @@ export default function OwnHome() {
         </div>
       </div>
 
-      <div className='mt-20 rounded-[20px] bg-gradient-to-br from-[#ae54eb] to-[#060b55] p-5 grid grid-cols-1 lg:grid-cols-2'>
-        <div className='relative col-span-1 w-full h-full'>
+      <div className='mt-20 rounded-[20px] grid grid-cols-1 lg:grid-cols-2 relative'>
+        <div className='top-0 bottom-0 z-[0] absolute lg:relative col-span-1 lg:col-span-2 w-full h-full'>
           <Image
-            src={womanWithKey}
+            src={keys}
             alt='collectible'
-            width={600}
+            width={1500}
             height={700}
             quality={100}
             placeholder='blur'
-            className='lg:absolute lg:h-3/5 xl:h-4/5 object-cover lg:object-right bottom-0'
+            className='rounded-[20px] lg:max-h-[640px] w-full h-full lg:h-auto object-cover lg:object-right bottom-0'
           />
         </div>
-        <div className='py-7 lg:py-16 lg:pr-20 flex flex-col text-white gap-8'>
-          <p className='font-roboto font-medium text-3xl md:text-4xl lg:text-5xl'>
+        <div className='p-6 rounded-[20px] z-[1] lg:absolute col-span-1 lg:top-5 lg:bottom-5 w-full lg:right-5 lg:w-1/2 lg:p-6 flex flex-col justify-between text-white gap-8 border border-[#E0E0E0] bg-[#6C677980]'>
+          <p className='font-merriweather font-medium text-2xl md:text-3xl xl:text-5xl'>
             Settley brings collective power to real estate investment.
           </p>
-          <div className='flex flex-col gap-4 font-medium'>
+          <div className='flex flex-col gap-5'>
             {steps.map((step, i) => (
-              <div key={step} className='flex items-start gap-6'>
+              <div key={step} className='flex items-start gap-3'>
                 <div>
-                  <p className='text-navy bg-white rounded-[100%] w-6 h-6 flex items-center justify-center'>
+                  <p className='text-navy bg-white rounded-[100%] w-6 h-6 text-sm flex items-center justify-center'>
                     {i + 1}
                   </p>
                 </div>
@@ -92,8 +93,24 @@ export default function OwnHome() {
             ))}
           </div>
           <div className='bg-[#E1E2E166] w-full h-[1px]' />
-          <div className='flex items-center gap-[13px]'>
-            <div className='flex flex-col gap-1'>
+          <div className='flex items-center justify-between gap-[13px]'>
+            <div className='flex flex-col text-white'>
+              <p className='flex items-center gap-1'>
+                Property ownership starting at <GoInfo />
+              </p>
+              <p className='font-roboto font-semibold text-3xl xl:text-5xl'>
+                $50
+              </p>
+            </div>
+
+            <Link
+              href='/campaign/payment'
+              className='bg-white rounded-[20px] py-[10px] px-5 text-navy font-inter font-medium text-sm'
+            >
+              Join now
+            </Link>
+
+            {/* <div className='flex flex-col gap-1'>
               <p className='font-roboto text-2xl'>
                 <span className='font-semibold text-5xl'>$1</span>/Unit
               </p>
@@ -104,7 +121,7 @@ export default function OwnHome() {
               className='bg-white rounded-[20px] py-[10px] px-5 text-navy font-inter font-medium text-sm'
             >
               Join now
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

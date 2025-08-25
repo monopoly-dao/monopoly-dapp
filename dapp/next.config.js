@@ -13,6 +13,12 @@ const nextConfig = {
         port: '',
         pathname: '/v0/b/monopoly-dao.appspot.com/o/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/dpoygzdfl/image/upload/**',
+      },
     ],
     // domains: [
     //   'images.pexels.com',
