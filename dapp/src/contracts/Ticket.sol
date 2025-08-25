@@ -88,7 +88,7 @@ contract SettleyTicket is ERC1155URIStorage, ERC1155Supply, Ownable {
 
     function mint(
         uint256 numberOfTickets, // the amount of tickets the user is buying.  We need to set the exchange rate on the frontend.
-        // string memory tokenURI,
+        string memory tokenURI,
         address _stableCoin
     ) external returns (uint256) {
         require(
@@ -114,7 +114,7 @@ contract SettleyTicket is ERC1155URIStorage, ERC1155Supply, Ownable {
         uint256 newTokenId = tokenCounter;
         mostRecentBlock = block.number;
 
-        _setURI(newTokenId, _baseURI);
+        _setURI(newTokenId, tokenURI);
         transferStables(_stableCoin, amountDue);
         _mint(msg.sender, newTokenId, numberOfTickets, "");
 
@@ -122,7 +122,7 @@ contract SettleyTicket is ERC1155URIStorage, ERC1155Supply, Ownable {
             newTokenId,
             msg.sender,
             numberOfTickets,
-            _baseURI,
+            tokenURI,
             _stableCoin,
             amountDue,
             block.number

@@ -1,0 +1,9 @@
+{
+  "name": "Settley Ticket #2",
+  "description": "Special event ticket NFT",
+  "image": "https://cyan-traditional-woodpecker-474.mypinata.cloud/ipfs/bafybeicohjqbgp46dpfhqf2fvncpsh7ygryncyg66vk2x3yxsuotiue7gi",
+  "attributes": [
+    { "trait_type": "Type", "value": "VIP" },
+    { "trait_type": "Event", "value": "Settley 2025" }
+  ]
+}

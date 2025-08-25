@@ -116,7 +116,7 @@ export interface SettleyTicketInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "mint",
-    values: [BigNumberish, AddressLike]
+    values: [BigNumberish, string, AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "mintAdditional",
@@ -533,7 +533,7 @@ export interface SettleyTicket extends BaseContract {
   >;
 
   mint: TypedContractMethod<
-    [numberOfTickets: BigNumberish, _stableCoin: AddressLike],
+    [numberOfTickets: BigNumberish, tokenURI: string, _stableCoin: AddressLike],
     [bigint],
     "nonpayable"
   >;
@@ -698,7 +698,7 @@ export interface SettleyTicket extends BaseContract {
   getFunction(
     nameOrSignature: "mint"
   ): TypedContractMethod<
-    [numberOfTickets: BigNumberish, _stableCoin: AddressLike],
+    [numberOfTickets: BigNumberish, tokenURI: string, _stableCoin: AddressLike],
     [bigint],
     "nonpayable"
   >;

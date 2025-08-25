@@ -64,8 +64,8 @@ export default function CryptoAddress() {
     (async () => {
       await settleyTicketer.connectWallet();
 
-      const address = (await settleyTicketer.getSignerAddress()) || '';
-      console.log(address);
+      // const address = (await settleyTicketer.getSignerAddress()) || '';
+      // console.log(address);
 
       // await settleyTicketer.setBaseURI(
       //   'https://cyan-traditional-woodpecker-474.mypinata.cloud/ipfs/bafkreido3sqpogvdk74uoraoh6wkl6crmrjt3wm7wxkwvo44o2hw5pfflu/'
@@ -77,8 +77,8 @@ export default function CryptoAddress() {
         '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9'
       );
 
-      const purchases = await settleyTicketer.getAllPurchases();
-      console.log({ purchases });
+      await settleyTicketer.getAllPurchases();
+      // console.log({ purchases });
     })();
   }, []);
 
@@ -155,8 +155,8 @@ export default function CryptoAddress() {
 
     await settleyTicketer.connectWallet();
 
-    const address = (await settleyTicketer.getSignerAddress()) || '';
-    console.log(address);
+    // const address = (await settleyTicketer.getSignerAddress()) || '';
+    // console.log(address);
 
     // await settleyTicketer.setBaseURI(
     //   'https://cyan-traditional-woodpecker-474.mypinata.cloud/ipfs/bafkreido3sqpogvdk74uoraoh6wkl6crmrjt3wm7wxkwvo44o2hw5pfflu/'
@@ -168,8 +168,8 @@ export default function CryptoAddress() {
       '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9'
     );
 
-    const purchases = await settleyTicketer.getAllPurchases();
-    console.log({ purchases });
+    await settleyTicketer.getAllPurchases();
+    // console.log({ purchases });
 
     // console.log(address);
 

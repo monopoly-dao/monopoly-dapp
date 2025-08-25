@@ -86,17 +86,14 @@ export class SettleyTicketer {
 
   /// @notice Initializes the signer from MetaMask in the browser
   private async initializeBrowserSigner() {
-    // console.log('outside');
     if (this.provider instanceof BrowserProvider) {
       try {
         await this.provider.send('eth_requestAccounts', []);
         this.signer = await this.provider.getSigner();
-        // console.log('signer', this.signer);
         this.contractWrite = this.contractWrite.connect(this.signer);
       } catch (error) {
-        // console.warn('Failed to connect to browser wallet:', error);
-        // throw new Error(`Failed to connect to browser wallet`)
         handleErrors(error);
+        // console.warn('Failed to connect to browser wallet:', error);
       }
     }
   }
@@ -202,8 +199,8 @@ export class SettleyTicketer {
         }
       }
     } catch (error) {
-      // console.error('Error getting all purchases:', error);
       handleErrors(error);
+      // console.error('Error getting all purchases:', error);
       throw error;
     }
 
@@ -246,6 +243,7 @@ export class SettleyTicketer {
    */
   async mintToken(
     numberOfTickets: number,
+    tokenURI: string,
     stableCoinAddress: string
   ): Promise<[bigint, string]> {
     if (!this.signer) throw new Error('No signer available');
@@ -269,7 +267,7 @@ export class SettleyTicketer {
       await approveTx.wait(1);
     } catch (error) {
       handleErrors(error);
-      // console.error('Error approving token: ', error);
+      // throw new Error('Error approving token:');
       throw error;
     }
 
@@ -279,6 +277,7 @@ export class SettleyTicketer {
     try {
       const mintTx = await this.contractWrite.mint(
         numberOfTickets,
+        tokenURI,
         stableCoinAddress
       );
       hash = mintTx.hash;
