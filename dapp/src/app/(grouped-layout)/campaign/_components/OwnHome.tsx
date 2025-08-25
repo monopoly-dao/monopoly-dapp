@@ -93,7 +93,7 @@ export default function OwnHome() {
             ))}
           </div>
           <div className='bg-[#E1E2E166] w-full h-[1px]' />
-          <div className='flex items-center justify-between gap-[13px]'>
+          <div className='flex flex-col md:flex-row items-start md:items-center justify-between gap-[13px]'>
             <div className='flex flex-col text-white'>
               <p className='flex items-center gap-1'>
                 Property ownership starting at <GoInfo />
