@@ -1,14 +1,13 @@
 import Image from 'next/image';
-import { FaCircleCheck } from 'react-icons/fa6';
 
 import PaymentForm from './PaymentForm';
 
-const list = [
-  "Priority access to Settley's platform",
-  'Exclusive investment opportunities',
-  'Reduced fees on transactions',
-  'Direct support from our founding team',
-];
+// const list = [
+//   "Priority access to Settley's platform",
+//   'Exclusive investment opportunities',
+//   'Reduced fees on transactions',
+//   'Direct support from our founding team',
+// ];
 
 export default function BecomeFoundingMember() {
   return (
@@ -22,14 +21,14 @@ export default function BecomeFoundingMember() {
           {/* blockchain */} platform, transforming global property buying with
           enhanced security, transparency, and efficiency.
         </p>
-        <div className='flex flex-col mt-[30px] gap-4'>
+        {/* <div className='flex flex-col mt-[30px] gap-4'>
           {list.map((item, index) => (
             <div key={index} className='flex items-center gap-3'>
               <FaCircleCheck className='text-2xl text-[#231399]' />
               <p className='font-roboto text-[#333333CC]'>{item}</p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <PaymentForm isOnHomepage />

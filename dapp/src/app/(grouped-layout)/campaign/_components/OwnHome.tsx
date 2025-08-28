@@ -32,7 +32,7 @@ const data = [
 ];
 
 const steps = [
-  'You commit funds (starting from just $10) to our pre-purchase pool by purchasing a digital collectible.',
+  'You commit funds to our pre-purchase pool by purchasing a digital collectible.',
   // 'You indicate your location and property preferences through our voting system.',
   'All contributors receive ownership tokens proportional to their investment in the acquired property.',
   'When the fundraising goal is met, Settley purchases ONE property based on community preferences and available funds.',
