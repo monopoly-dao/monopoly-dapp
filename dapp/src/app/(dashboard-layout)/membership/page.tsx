@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Page() {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <main className='flex-1 max-w-full h-full overflow-y-auto font-general-sans'>
       <header className='mb-12 md:mt-12'>
@@ -98,53 +101,67 @@ export default function Page() {
           🖼️ Your NFT Collection
         </h2>
 
-        <motion.div
-          className='w-full max-w-[350px] h-auto mx-auto'
-          animate={{ rotateY: 360 }}
-          transition={{
-            repeat: Infinity,
-            ease: 'linear',
-            duration: 13, // slower spin
-          }}
-          whileHover={{
-            rotateY: 360,
-            transition: {
-              repeat: Infinity,
-              ease: 'linear',
-              duration: 4, // faster spin on hover
-            },
-          }}
-        >
-          <Image
-            src='https://res.cloudinary.com/dpoygzdfl/image/upload/v1754416493/settley-email-confirmation_1_eoq3ll.png'
-            alt='NFT 1'
-            className='w-full max-w-[350px] h-auto object-cover rounded-xl'
-            width={350}
-            height={100}
-          />
-        </motion.div>
-        {/* <p className='text-gray-600 mb-8 relative z-10'>
-          Exclusive Settley membership NFTs — a showcase of your unique
-          ownership and community status.
-        </p>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10'>
-          
-          <div className='group relative rounded-2xl overflow-hidden shadow-lg border border-gray-200 hover:border-gray-400 hover:scale-105 transition-all duration-300 cursor-pointer'>
-            <img
-              src='https://res.cloudinary.com/dpoygzdfl/image/upload/v1754416493/settley-email-confirmation_1_eoq3ll.png'
-              alt='NFT 1'
-              className='w-full h-52 object-cover'
-            />
-            <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4'>
-              <div>
-                <h3 className='text-white font-semibold text-lg'>
-                  Settley Genesis #001
-                </h3>
-                <p className='text-gray-200 text-sm'>Minted: March 2024</p>
-              </div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+          <div
+            className='flex flex-col relative'
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            style={{ minHeight: 220 }}
+          >
+            {/* NFT 1 Image */}
+            <motion.div
+              animate={hovered ? { rotateY: 360 } : { rotateY: 0 }}
+              transition={{
+                duration: 0.7,
+                ease: 'easeInOut',
+                repeat: hovered ? Infinity : 0,
+                repeatType: 'loop',
+                repeatDelay: 0,
+              }}
+            >
+              <Image
+                src='https://res.cloudinary.com/dpoygzdfl/image/upload/v1754416493/settley-email-confirmation_1_eoq3ll.png'
+                alt='NFT 1'
+                className={`w-full h-fit object-contain rounded-b-[12px] transition-all duration-700 `}
+                width={600}
+                height={200}
+              />
+            </motion.div>
+            {/* Settley Ticket Text */}
+            <div
+              className={`p-4 border-b border-x border-medium-grey rounded-[4px] -mt-12 w-[95%] mx-auto transition-opacity duration-700 ${
+                hovered ? 'opacity-0' : 'opacity-100'
+              }`}
+            >
+              <p>Settley Ticket</p>
             </div>
+            {/* Spinning NFT 2 Image (appears on hover) */}
+            {/* <motion.div
+              className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[350px] h-auto z-20 pointer-events-none'
+              animate={
+                hovered
+                  ? { opacity: 1, scale: 1, rotateY: 360 }
+                  : { opacity: 0, scale: 0.8, rotateY: 0 }
+              }
+              transition={{
+                duration: 0.7,
+                ease: 'easeInOut',
+                repeat: hovered ? Infinity : 0,
+                repeatType: 'loop',
+                repeatDelay: 0,
+              }}
+              style={{ willChange: 'transform' }}
+            >
+              <Image
+                src='https://res.cloudinary.com/dpoygzdfl/image/upload/v1754416493/settley-email-confirmation_1_eoq3ll.png'
+                alt='NFT 2'
+                className='w-full max-w-[350px] h-auto object-cover rounded-xl shadow-2xl'
+                width={350}
+                height={100}
+              />
+            </motion.div> */}
           </div>
-        </div> */}
+        </div>
       </div>
     </main>
   );

@@ -3,6 +3,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 
+import { unauthenticatedApi } from '@/api/auth';
 import { campaignPaymentReducer } from '@/slices/campaignPaymentSlice';
 
 import storage from './customStorage';
@@ -19,18 +20,24 @@ const persistConfig = {
     GLOBAL_API_REDUCER_PATH,
     CAMPAIGN_PAYMENT_REDUCER_PATH,
     authApi.reducerPath,
+    unauthenticatedApi.reducerPath,
   ],
 };
 
 const rootReducer = combineReducers({
   [globalApi.reducerPath]: globalApi.reducer,
+  [unauthenticatedApi.reducerPath]: unauthenticatedApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [CAMPAIGN_PAYMENT_REDUCER_PATH]: campaignPaymentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const concatMiddleWare = [globalApi.middleware, authApi.middleware];
+const concatMiddleWare = [
+  globalApi.middleware,
+  authApi.middleware,
+  unauthenticatedApi.middleware,
+];
 
 // if (!isProd) {
 //   concatMiddleWare.push(logger);

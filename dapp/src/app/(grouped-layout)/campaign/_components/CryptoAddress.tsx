@@ -13,6 +13,7 @@ import IconButton from '@/components/buttons/IconButton';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 
+import { useCampaignSignupMutation } from '@/api/auth';
 import { useJoinCampaignMutation } from '@/api/campaign';
 import { SettleyTicketer } from '@/sdk/ticketSDK';
 import { setCampaignPaymentStage } from '@/slices/campaignPaymentSlice';
@@ -35,6 +36,8 @@ export default function CryptoAddress() {
     country,
   } = useAppSelector((state) => state.campaignPayment);
   const [joinCampaign, { isLoading }] = useJoinCampaignMutation();
+  const [campaignSignup, { isLoading: isCampaignSignupLoading }] =
+    useCampaignSignupMutation();
   // const [wallet] = useState<null | WalletClient>(null);
   // const { address } = useAccount();
   // const { disconnect } = useDisconnect();
@@ -99,6 +102,10 @@ export default function CryptoAddress() {
           phone,
           country,
           amount: Number(removeNonDigit(cryptoAmount)),
+        }).unwrap();
+
+        await campaignSignup({
+          email,
         }).unwrap();
 
         dispatch(setCampaignPaymentStage('success'));
@@ -286,7 +293,7 @@ export default function CryptoAddress() {
             <Button
               className='!rounded-[100px] w-full uppercase font-roboto py-3'
               type='submit'
-              isLoading={isLoading}
+              isLoading={isLoading || isCampaignSignupLoading}
             >
               I’ve completed my payment
             </Button>
