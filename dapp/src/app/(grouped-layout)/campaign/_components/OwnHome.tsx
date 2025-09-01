@@ -15,7 +15,7 @@ const data = [
     icon: card,
     title: 'Purchase a Digital Collectible',
     content:
-      "Select from our tiered Founder's Collection passes and get immediate membership benefits.",
+      "Obtain our Founder's Collection pass and get immediate membership benefits.",
   },
   {
     icon: community,

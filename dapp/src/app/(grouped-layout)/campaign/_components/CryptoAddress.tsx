@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useMemo } from 'react';
 import toast from 'react-hot-toast';
+import { FaEthereum } from 'react-icons/fa';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { IoCopyOutline } from 'react-icons/io5';
-import { LuBitcoin } from 'react-icons/lu';
 import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
@@ -244,44 +244,73 @@ export default function CryptoAddress() {
 
       {method === 'cex' && (
         <>
-          <div className='flex flex-col gap-[6px] col-span-2'>
-            <div
-              className='col-span-2 rounded-[8px] border border-[#D0D5DD] py-[10px] font-roboto px-[14px] flex items-center gap-2 text-navy'
-              style={{ boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)' }}
-            >
-              <LuBitcoin className='text-2xl text-primary-orange' /> Bitcoin
-              (BTC)
+          <div className='flex flex-col gap-4 col-span-2'>
+            <div className='flex flex-col gap-1'>
+              <p className='text-[#344054] text-sm font-medium'>Send</p>
+              <div
+                className='col-span-2 rounded-[8px] border border-[#D0D5DD] py-[10px] text-sm font-roboto px-[14px] flex items-center gap-4 justify-between text-navy'
+                style={{ boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)' }}
+              >
+                <div className='flex items-center gap-2'>
+                  <p>USDT</p>
+                  <Image
+                    src='/svg/usdt.svg'
+                    alt='usdt'
+                    width={24}
+                    height={24}
+                  />
+                </div>
+                <div className='flex items-center gap-2'>
+                  <p>USDC</p>
+                  <Image
+                    src='/svg/usdc.svg'
+                    alt='usdc'
+                    width={24}
+                    height={24}
+                  />
+                </div>
+
+                <div className='flex items-center gap-2'>
+                  <p>Ethereum</p>
+
+                  <FaEthereum className='text-2xl' />
+                </div>
+              </div>
             </div>
 
-            <p className='text-[#344054] text-sm font-medium'>
-              Send to this address
-            </p>
-            <div
-              className='rounded-[8px] border border-[#D0D5DD] py-[10px] font-roboto px-[14px] flex items-center gap-2 justify-between text-navy'
-              style={{ boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)' }}
-            >
-              <p className='w-3/4 truncate'>
-                bcajfkbkj123487djwh84rioc8usyg7u3bfiievh8wqu
+            <div className='flex flex-col gap-1'>
+              <p className='text-[#344054] text-sm font-medium flex items-center gap-2'>
+                To this address on Base{' '}
+                <Image src='/svg/base.svg' alt='base' width={20} height={20} />
               </p>
-              <IconButton
-                variant='ghost'
-                className='text-2xl'
-                icon={IoCopyOutline}
-                onClick={() =>
-                  copyWalletAddress(
-                    'bcajfkbkj123487djwh84rioc8usyg7u3bfiievh8wqu'
-                  )
-                }
-              />
+              <div
+                className='rounded-[8px] border border-[#D0D5DD] py-[10px] font-roboto px-[14px] flex items-center gap-2 justify-between text-navy'
+                style={{ boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)' }}
+              >
+                <p className='w-3/4 truncate'>
+                  0x477Dcf3e536386c34D4B3001b4210Bb27CB53552
+                </p>
+                <IconButton
+                  variant='ghost'
+                  className='text-2xl'
+                  icon={IoCopyOutline}
+                  onClick={() =>
+                    copyWalletAddress(
+                      '0x477Dcf3e536386c34D4B3001b4210Bb27CB53552'
+                    )
+                  }
+                />
+              </div>
             </div>
           </div>
 
           <div className='flex justify-center col-span-2'>
             <Image
-              src='/images/QR code.png'
+              src='/images/base-qr-code.jpg'
               alt='QR code'
               width={200}
               height={200}
+              className='rounded-[16px]'
             />
           </div>
 
