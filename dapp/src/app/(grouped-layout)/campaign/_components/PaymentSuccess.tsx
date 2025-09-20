@@ -19,11 +19,12 @@ export default function PaymentSuccess() {
         Thank You
       </p>
       <p className='font-merriweather text-sm text-[#181818CC]'>
-        Your payment has been processed successfully. Welcome to the Settley
-        early supporter program!
+        Your payment is currently being processed. Welcome to the Settley early
+        supporter program!
       </p>
       <p className='font-merriweather text-sm text-[#181818CC]'>
-        We've sent a confirmation email with more details about next steps
+        We'll send a confirmation email with more details about next steps as
+        soon as we confirm your payment.
       </p>
 
       <div className='mb-14 mt-4 col-span-2 flex flex-col items-center gap-5 w-full'>
