@@ -14,6 +14,7 @@ const campaignApi = globalApi.injectEndpoints({
         country: string;
         walletAddress?: string;
         amount: number;
+        type: string;
       }
     >({
       query: (data) => ({

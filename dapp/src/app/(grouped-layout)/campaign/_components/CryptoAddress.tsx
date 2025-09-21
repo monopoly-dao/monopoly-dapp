@@ -10,6 +10,7 @@ import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
 import IconButton from '@/components/buttons/IconButton';
+import { Input } from '@/components/input';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 
@@ -85,9 +86,9 @@ export default function CryptoAddress() {
     })();
   }, []);
 
-  const { handleSubmit } = useFormik({
+  const { handleSubmit, getFieldProps, getFieldMeta, values } = useFormik({
     initialValues,
-    onSubmit: async () => {
+    onSubmit: async (values) => {
       try {
         // await axios.post('http://localhost:8001/ticket', {
         //   stablecoinAddress: 'stablecoin',
@@ -101,6 +102,8 @@ export default function CryptoAddress() {
           email,
           phone,
           country,
+          walletAddress: values.walletAddress,
+          type: method === 'metamask' ? 'wallet' : 'transfer',
           amount: Number(removeNonDigit(cryptoAmount)),
         }).unwrap();
 
@@ -127,12 +130,12 @@ export default function CryptoAddress() {
   //   }
   // }, [address, setFieldValue]);
 
-  // const getFormikInputProps = (id: keyof typeof values) => {
-  //   return {
-  //     ...getFieldProps(id),
-  //     ...getFieldMeta(id),
-  //   };
-  // };
+  const getFormikInputProps = (id: keyof typeof values) => {
+    return {
+      ...getFieldProps(id),
+      ...getFieldMeta(id),
+    };
+  };
 
   async function connectMetamask() {
     // if (typeof window.ethereum === 'undefined') {
@@ -301,6 +304,20 @@ export default function CryptoAddress() {
                   }
                 />
               </div>
+            </div>
+
+            <div className='flex flex-col gap-1'>
+              <Input
+                id='walletAddress'
+                label='Wallet Address'
+                placeholder='0x.....'
+                {...getFormikInputProps('walletAddress')}
+                containerClassName='border-[#D0D5DD] rounded-[8px]'
+              />
+              <p className='text-[#344054] text-sm font-medium flex items-center gap-2'>
+                Please provide your wallet address to enable us confirm your
+                payment.
+              </p>
             </div>
           </div>
 
