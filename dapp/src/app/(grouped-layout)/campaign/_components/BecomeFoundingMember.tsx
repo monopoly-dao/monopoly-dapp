@@ -13,10 +13,10 @@ export default function BecomeFoundingMember() {
   return (
     <section className='grid grid-cols-1 bg-gradient-to-br from-[#F4F4F4] to-[#ECE9FF] lg:grid-cols-2 overflow-x-hidden items-center px-[5%] md:px-[10%] lg:px-[5%] gap-10 lg:gap-[7%] py-[100px] relative'>
       <div className='flex flex-col'>
-        <h1 className='text-[#333333] font-bold text-4xl font-roboto lg:text-[50px] leading-[120%]'>
+        <h1 className='text-[#333333] text-4xl font-merriweather lg:text-[50px] leading-[120%]'>
           Become a Founding Member
         </h1>
-        <p className='text-[#303030CC] text-lg mt-[10px] font-merriweather'>
+        <p className='text-[#303030CC] text-lg mt-[10px] font-roboto'>
           Be among the first to experience Settley's revolutionary
           {/* blockchain */} platform, transforming global property buying with
           enhanced security, transparency, and efficiency.

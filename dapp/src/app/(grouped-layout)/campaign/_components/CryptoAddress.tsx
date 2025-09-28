@@ -86,43 +86,44 @@ export default function CryptoAddress() {
     })();
   }, []);
 
-  const { handleSubmit, getFieldProps, getFieldMeta, values } = useFormik({
-    initialValues,
-    onSubmit: async (values) => {
-      try {
-        // await axios.post('http://localhost:8001/ticket', {
-        //   stablecoinAddress: 'stablecoin',
-        //   numberOfTickets: 5,
-        //   walletClient: wallet,
-        // });
+  const { handleSubmit, getFieldProps, getFieldMeta, values, isValid } =
+    useFormik({
+      initialValues,
+      onSubmit: async (values) => {
+        try {
+          // await axios.post('http://localhost:8001/ticket', {
+          //   stablecoinAddress: 'stablecoin',
+          //   numberOfTickets: 5,
+          //   walletClient: wallet,
+          // });
 
-        await joinCampaign({
-          firstName,
-          lastName,
-          email,
-          phone,
-          country,
-          walletAddress: values.walletAddress,
-          type: method === 'metamask' ? 'wallet' : 'transfer',
-          amount: Number(removeNonDigit(cryptoAmount)),
-        }).unwrap();
+          await joinCampaign({
+            firstName,
+            lastName,
+            email,
+            phone,
+            country,
+            walletAddress: values.walletAddress,
+            type: method === 'metamask' ? 'wallet' : 'transfer',
+            amount: Number(removeNonDigit(cryptoAmount)),
+          }).unwrap();
 
-        await campaignSignup({
-          email,
-        }).unwrap();
+          await campaignSignup({
+            email,
+          }).unwrap();
 
-        dispatch(setCampaignPaymentStage('success'));
-      } catch (e) {
-        handleErrors(e);
-      }
-    },
-    validationSchema: object({
-      walletAddress: string().optional(),
-    }),
-    validateOnMount: true,
-    validateOnBlur: true,
-    validateOnChange: true,
-  });
+          dispatch(setCampaignPaymentStage('success'));
+        } catch (e) {
+          handleErrors(e);
+        }
+      },
+      validationSchema: object({
+        walletAddress: string().required(''),
+      }),
+      validateOnMount: true,
+      validateOnBlur: true,
+      validateOnChange: true,
+    });
 
   // useEffect(() => {
   //   if (address) {
@@ -340,6 +341,7 @@ export default function CryptoAddress() {
               className='!rounded-[100px] w-full uppercase font-roboto py-3'
               type='submit'
               isLoading={isLoading || isCampaignSignupLoading}
+              disabled={!isValid}
             >
               I’ve completed my payment
             </Button>

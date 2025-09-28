@@ -34,14 +34,19 @@ export default function CampaignHeader() {
           <div className='border border-navy rounded-[16px] py-2 px-3 font-roboto text-xs font-medium'>
             Exclusive Pre-Launch Community
           </div>
-          <h1 className='font-semibold !font-roboto text-4xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
+          <h1 className='!font-merriweather text-4xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
             {/* <div>Own Real Assets,</div>
           <div>Share with Your Circle</div> */}
-            <div>Own a Property</div>
-            <div>In Minutes</div>
+            {/* <div>Own a Property</div>
+            <div>In Minutes</div> */}
+            <div>Join the Future of</div>
+            <div>Real Estate Investment</div>
           </h1>
-          <p className='text-dark-grey text-xs font-light font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
-            Real Ownership. Real Assets. Real Simple.
+          <p className='text-[#1F1B20] font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
+            {/* Real Ownership. Real Assets. Real Simple. */}
+            Join us in reshaping property ownership—building the Amazon of real
+            estate, making premium European properties accessible through
+            collective investment."
           </p>
           <div className='text-center gap-[10px] flex flex-col items-center justify-center font-roboto text-sm'>
             <Link

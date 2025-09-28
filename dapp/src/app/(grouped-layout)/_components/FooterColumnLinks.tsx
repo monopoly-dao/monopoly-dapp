@@ -14,9 +14,11 @@ type Props = {
 
 export default function FooterColumnLinks({ title, links }: Props) {
   return (
-    <div className='flex flex-col gap-6 text-black w-full'>
-      <p className='text-primary-light font-extrabold'>{title}</p>
-      <div className='flex cursor-pointer items-start gap-3 flex-col'>
+    <div className='flex flex-col text-black w-full'>
+      <p className='text-[#00000099] font-general-sans text-[13px] font-medium tracking-[2px]'>
+        {title}
+      </p>
+      <div className='flex cursor-pointer items-start flex-col'>
         {links.map((link) => {
           const { icon: Icon, openInNewTab } = link;
           return (
@@ -24,9 +26,9 @@ export default function FooterColumnLinks({ title, links }: Props) {
               href={link.href}
               key={link.label}
               target={openInNewTab ? '_blank' : '_self'}
-              className='py-2 text-sm font-medium flex items-center gap-3'
+              className='py-[10px] text-sm font-roboto flex items-center gap-3'
             >
-              {Icon && <Icon className='text-2xl' />}
+              {Icon && <Icon className='text-xl' />}
               <div>{link.label}</div>
             </Link>
           );

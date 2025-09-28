@@ -45,7 +45,7 @@ export default function OwnHome() {
         <div className='flex items-center justify-between'>
           <div className='font-medium text-3xl lg:text-4xl'>
             <p className='font-roboto'>Own a home</p>
-            <p className='font-roboto bg-clip-text text-transparent bg-gradient-to-r from-[#A035D3] to-[#7438CC]'>
+            <p className='font-roboto bg-clip-text text-transparent bg-gradient-to-r from-[#4330C8] to-[#1D1459]'>
               in 3 simple steps
             </p>
           </div>
@@ -65,6 +65,7 @@ export default function OwnHome() {
       </div>
 
       <div className='mt-20 rounded-[20px] grid grid-cols-1 lg:grid-cols-2 relative'>
+        <div className='absolute top-0 bottom-0 w-full h-full bg-[#2B216E1A] rounded-[20px] z-[1]' />
         <div className='top-0 bottom-0 z-[0] absolute lg:relative col-span-1 lg:col-span-2 w-full h-full'>
           <Image
             src={keys}
@@ -77,7 +78,7 @@ export default function OwnHome() {
           />
         </div>
         <div className='p-6 rounded-[20px] z-[1] lg:absolute col-span-1 lg:top-5 lg:bottom-5 w-full lg:right-5 lg:w-1/2 lg:p-6 flex flex-col justify-between text-white gap-8 border border-[#E0E0E0] bg-[#6C677980]'>
-          <p className='font-merriweather font-medium text-2xl md:text-3xl xl:text-5xl'>
+          <p className='font-merriweather text-2xl md:text-3xl xl:text-5xl lg:!leading-[120%]'>
             Settley brings collective power to real estate investment.
           </p>
           <div className='flex flex-col gap-5'>

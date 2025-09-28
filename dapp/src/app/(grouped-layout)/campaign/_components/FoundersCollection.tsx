@@ -24,10 +24,10 @@ export default function FoundersCollection() {
         />
       </div>
       <div className='col-span-1 w-full h-full flex flex-col justify-center gap-[30px] lg:pr-10 xl:pr-20'>
-        <p className='font-roboto font-medium text-3xl md:text-4xl lg:text-5xl'>
+        <p className='font-merriweather text-3xl md:text-4xl lg:text-5xl'>
           Settley Founder's Collection
         </p>
-        <p className='font-merriweather text-[#000000B2]'>
+        <p className='font-roboto text-[#000000B2]'>
           Exclusive digital collectibles that grant you membership benefits
           today and real property ownership tomorrow.
         </p>
@@ -44,7 +44,7 @@ export default function FoundersCollection() {
 
         <Link
           href='/campaign/payment'
-          className='rounded-[30px] bg-[#231399] text-white py-[10px] px-5 font-inter font-medium text-sm w-fit'
+          className='rounded-[30px] bg-navy text-white py-[15px] px-5 font-inter font-medium text-sm w-fit'
         >
           Get Explore Pass
         </Link>

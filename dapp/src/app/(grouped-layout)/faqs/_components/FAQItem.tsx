@@ -71,7 +71,7 @@ export default function FAQItem({ question, answer, index }: Props) {
       ref={ref}
     >
       <div className='flex w-3/4 flex-col items-start gap-3 text-start'>
-        <p className='text-xl font-semibold md:text-2xl'>{question}</p>
+        <p className='text-xl font-bold md:text-2xl font-roboto'>{question}</p>
 
         <AnimatePresence>
           {isQuestionOpen && (
@@ -82,7 +82,7 @@ export default function FAQItem({ question, answer, index }: Props) {
               animate='animate'
               key='profile-dropdown'
             >
-              <p>{answer}</p>
+              <p className='font-general-sans'>{answer}</p>
             </motion.div>
           )}
         </AnimatePresence>

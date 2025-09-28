@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { useFormik } from 'formik';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -9,7 +10,6 @@ import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
 import { Input } from '@/components/input';
-import SettleyLogo from '@/components/SettleyLogo';
 
 export default function SubscriptionForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,13 +20,19 @@ export default function SubscriptionForm() {
     getFieldProps,
     values,
     isValid,
-    dirty,
+    // dirty,
     resetForm,
+    errors,
   } = useFormik({
     initialValues: {
       email: '',
     },
     onSubmit: async (values) => {
+      if (!isValid) {
+        toast.error(errors['email'] || '');
+        return;
+      }
+
       setIsLoading(true);
 
       try {
@@ -67,10 +73,15 @@ export default function SubscriptionForm() {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
-      <SettleyLogo colour='new' />
+      <Image
+        src='/svg/Settley short logo.svg'
+        alt='settley'
+        width={48}
+        height={48}
+      />
       <p>Join our newsletter to stay up to date on new property listings</p>
 
-      <div className='flex items-start gap-4 h-[53px]'>
+      <div className='flex items-start gap-4 h-[46px] max-w-[500px] relative'>
         <Input
           id='email'
           // label='Email address'
@@ -78,14 +89,15 @@ export default function SubscriptionForm() {
           containerClassName='h-full'
           className='h-full'
           {...getFormikInputProps('email')}
+          error={undefined}
         />
 
         <Button
-          className='py-4 px-7 rounded-[6px] h-[calc(100%-8px)] sm:h-[calc(100%-2px)]'
+          className='py-[10px] px-4 rounded-[6px] h-[42px] absolute right-1 top-[6px]'
           // variant='dark'
           type='submit'
           isLoading={isLoading}
-          disabled={!isValid || !dirty}
+          // disabled={!isValid || !dirty}
         >
           Subscribe
         </Button>
