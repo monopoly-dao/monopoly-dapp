@@ -56,7 +56,7 @@ export default function CampaignHeader() {
               Join the Founding Community <FaArrowRight className='text-2xl' />
             </Link>
             <p className='font-roboto text-xs italic'>
-              Limited to first 100 members
+              Limited to first 1000 members
             </p>
           </div>
         </motion.div>
