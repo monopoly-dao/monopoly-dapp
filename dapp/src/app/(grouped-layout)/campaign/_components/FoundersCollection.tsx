@@ -1,14 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { IoMdCheckmark } from 'react-icons/io';
 
 import settleyCard from '~/images/settley-card.png';
 
-// const list = [
-//   'Unique digital collectible',
-//   'Community access',
-//   'Future property tokens allocation',
-//   'Name in founding members registry',
-// ];
+const list = [
+  '0.003-0.6% ownership (based on tier)',
+  '6.17% annual rental yilds',
+  'Founding member status',
+  'Legal deed with your name',
+  'Secondary market trading rights',
+];
 
 export default function FoundersCollection() {
   return (
@@ -28,17 +30,20 @@ export default function FoundersCollection() {
           Settley Founder's Collection
         </p>
         <p className='font-roboto text-[#000000B2]'>
-          Exclusive digital collectibles that grant you membership benefits
-          today and real property ownership tomorrow.
+          {/* Exclusive digital collectibles that grant you membership benefits
+          today and real property ownership tomorrow. */}
+          Your Founder's Pass converts to legal property ownership when we
+          purchase the Spanish property in Q1 2026.
+          <br /> What you get:
         </p>
-        {/* <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4'>
           {list.map((item) => (
             <div className='flex items-center gap-3' key={item}>
               <IoMdCheckmark className='text-base text-[#231399]' />
               <p className='text-sm font-roboto text-[#000000B2]'>{item}</p>
             </div>
           ))}
-        </div> */}
+        </div>
 
         <div className='w-full h-[1px] bg-[#E1E2E166]' />
 

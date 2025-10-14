@@ -135,7 +135,7 @@ export default function PayeeDetails({ isOnHomepage }: Props) {
         type='submit'
         disabled={!isValid}
       >
-        CONTINUE TO PAYMENT
+        {isOnHomepage ? 'SECURE MY SPOT' : 'CONTINUE TO PAYMENT'}
       </Button>
     </motion.form>
   );

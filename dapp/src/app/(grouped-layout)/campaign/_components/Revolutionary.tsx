@@ -9,22 +9,22 @@ const data = [
   {
     icon: rocket,
     title: 'Pioneer the Future',
-    body: 'Join our founding community and help shape the future of property investment. Early members gain exclusive access to our innovative platform.',
+    body: "We're not just building a platform—we're buying real property. Join the first 1,000 members and own a share of our $160,000 Spanish property. 6.17% rental yields. Legal ownership. Starting at $50.",
   },
   {
     icon: globe,
     title: 'Premium Portfolio',
-    body: "Access carefully curated properties across Europe's most promising markets—from historic Lisbon townhouses to modern Paris penthouses.",
+    body: 'Our first property: €160,000 villa in Valencia, Spain. 6.17% rental yields. Purchase closing Q1 2026. Your founding membership converts to legal ownership tokens.',
   },
   {
     icon: coin,
     title: 'Collective Power',
-    body: 'Your commitment joins a pool of like-minded investors, enabling us to acquire premium properties that appreciate over time.',
+    body: '1,000 members at $200 average = $160,000 property purchased. Each member owns their proportional share. Earn monthly rental income.',
   },
   {
     icon: shield,
     title: 'Transparent Journey',
-    body: 'Track our progress toward property acquisition milestones. Regular updates keep you informed of every step in our collective journey.',
+    body: 'Current status: 237/1,000 members (23.7% funded). Campaign closes Dec 31 → Property purchase Q1 2026 → Tokens distributed Q2 2026',
   },
 ];
 
@@ -37,9 +37,9 @@ export default function Revolutionary() {
         </h2>
         <div className='hidden xl:block' />
         <p className='font-roboto font-light text-[#0D0D0D]'>
-          We're not just building a platform—we're creating the future of
-          property ownership. Join us at the ground level and help shape this
-          transformation.
+          We're not just building a platform—we're buying real property. Join
+          the first 1,000 members and own a share of our $160,000 Spanish
+          property. 6.17% rental yields. Legal ownership. Starting at $50.
         </p>
       </div>
 

@@ -1,4 +1,4 @@
-import { faqs } from '@/constants/appConstants';
+import { campaignFAQs } from '@/constants/appConstants';
 
 import FAQItem from '../../faqs/_components/FAQItem';
 
@@ -12,7 +12,7 @@ export default function CampaignFAQs() {
       </div>
 
       <div className='grid grid-cols-1 gap-y-8 mt-10 mx-auto w-[90%] md:w-4/5 lg:w-2/3 xl:w-1/2'>
-        {faqs.map((item, id) => (
+        {campaignFAQs.map((item, id) => (
           <FAQItem key={id} index={id} {...item} />
         ))}
       </div>

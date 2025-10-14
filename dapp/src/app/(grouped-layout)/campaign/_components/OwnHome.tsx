@@ -15,19 +15,19 @@ const data = [
     icon: card,
     title: 'Purchase a Digital Collectible',
     content:
-      "Obtain our Founder's Collection pass and get immediate membership benefits.",
+      'Choose Your Membership (£50-£5,000). Join the founding 1,000. Your commitment reserves your ownership share. Get immediate founder benefits + voting rights.',
   },
   {
     icon: community,
     title: 'Join the community',
     content:
-      'Your purchase contributes to our property acquisition fund and gives you voting influence.',
+      'We Buy the Property Together. When we hit our goal, Settley purchases the Valencia property (Q2 2026). Community votes on final property selection.',
   },
   {
     icon: home,
     title: 'Receive Property Token',
     content:
-      "When we purchase the selected property, you'll receive tokens representing your ownership share.",
+      'You Own & Earn Receive legal ownership tokens. Start earning 6.17% annual rental income',
   },
 ];
 

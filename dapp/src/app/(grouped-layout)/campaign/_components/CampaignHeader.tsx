@@ -39,24 +39,28 @@ export default function CampaignHeader() {
           <div>Share with Your Circle</div> */}
             {/* <div>Own a Property</div>
             <div>In Minutes</div> */}
-            <div>Join the Future of</div>
-            <div>Real Estate Investment</div>
+            {/* <div>Join the Future of</div>
+            <div>Real Estate Investment</div> */}
+            <div>Join the First 1,000</div>
+            <div>property Owners</div>
           </h1>
           <p className='text-[#1F1B20] font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
             {/* Real Ownership. Real Assets. Real Simple. */}
-            Join us in reshaping property ownership—building the Amazon of real
+            {/* Join us in reshaping property ownership—building the Amazon of real
             estate, making premium European properties accessible through
-            collective investment."
+            collective investment. */}
+            Own Spanish Property from $50 <br /> Real estate. Real returns. Real
+            community.
           </p>
           <div className='text-center gap-[10px] flex flex-col items-center justify-center font-roboto text-sm'>
             <Link
               className='bg-navy text-white rounded-[60px] font-medium flex items-center gap-1 w-fit py-4 px-7'
               href='/campaign/payment'
             >
-              Join the Founding Community <FaArrowRight className='text-2xl' />
+              Join Now - $50+ <FaArrowRight className='text-2xl' />
             </Link>
             <p className='font-roboto text-xs italic'>
-              Limited to first 1000 members
+              {/* Limited to first 1000 members */}Closes December 31, 2025
             </p>
           </div>
         </motion.div>

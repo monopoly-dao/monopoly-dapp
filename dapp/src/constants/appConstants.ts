@@ -51,3 +51,21 @@ export const faqs = [
     answer: `All transactions are recorded, and user profiles are KYC'd at certain thresholds to ensure compliance in all regions we operate. Our records provide an accurate list of everyone involved in an asset sale or purchase.`,
   },
 ];
+
+export const campaignFAQs = [
+  {
+    question: 'What is Settley?',
+    answer:
+      "Settley lets you own real European property starting at £50. We're raising funds from our first 1,000 members to purchase a $160,000 Valencia villa. You get legal fractional ownership + 6.17% rental yields + ability to trade your shares. Real property, real returns, powered by tokenisation.",
+  },
+  {
+    question: 'How much do I need to invest?',
+    answer:
+      'Minimum $50 (0.003% ownership). Most popular is $500 (0.03% ownership). For maximum impact: $5,000+ (0.3%+ ownership) Choose based on your budget and goals.',
+  },
+  {
+    question: 'How can I own a property in minutes?',
+    answer:
+      'Settley uses smart contracts as legal entities to facilitate property purchases or ownership transfers. Once a property is tokenized, ownership is as simple as moving tokens from one wallet to another. While users hold these tokens, they are granted all rights to the property as encoded in the smart contract.',
+  },
+];
