@@ -36,11 +36,11 @@ export default function Revolutionary() {
           Be Part of Something Revolutionary
         </h2>
         <div className='hidden xl:block' />
-        <p className='font-roboto font-light text-[#0D0D0D]'>
+        {/* <p className='font-roboto font-light text-[#0D0D0D]'>
           We're not just building a platform—we're buying real property. Join
           the first 1,000 members and own a share of our $160,000 Spanish
           property. 6.17% rental yields. Legal ownership. Starting at $50.
-        </p>
+        </p> */}
       </div>
 
       <div className='grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[10px]'>

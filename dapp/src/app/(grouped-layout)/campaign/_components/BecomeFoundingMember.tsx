@@ -22,7 +22,7 @@ export default function BecomeFoundingMember() {
           {/* Be among the first to experience Settley's revolutionary
          platform, transforming global property buying with
           enhanced security, transparency, and efficiency. */}
-          237 members joined | 763 spots remaingin | Closes Dec 31
+          237 members joined | 763 spots remaining | Closes Dec 31
         </p>
         <div className='flex flex-col mt-[30px] gap-4'>
           {list.map((item, index) => (

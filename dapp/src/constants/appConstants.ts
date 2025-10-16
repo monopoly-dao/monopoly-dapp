@@ -56,7 +56,7 @@ export const campaignFAQs = [
   {
     question: 'What is Settley?',
     answer:
-      "Settley lets you own real European property starting at £50. We're raising funds from our first 1,000 members to purchase a $160,000 Valencia villa. You get legal fractional ownership + 6.17% rental yields + ability to trade your shares. Real property, real returns, powered by tokenisation.",
+      "Settley lets you own real European property starting at $50. We're raising funds from our first 1,000 members to purchase a $160,000 Valencia villa. You get legal fractional ownership + 6.17% rental yields + ability to trade your shares. Real property, real returns, powered by tokenisation.",
   },
   {
     question: 'How much do I need to invest?',

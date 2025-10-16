@@ -15,7 +15,7 @@ const data = [
     icon: card,
     title: 'Purchase a Digital Collectible',
     content:
-      'Choose Your Membership (£50-£5,000). Join the founding 1,000. Your commitment reserves your ownership share. Get immediate founder benefits + voting rights.',
+      'Choose Your Membership ($50-$5,000). Join the founding 1,000. Your commitment reserves your ownership share. Get immediate founder benefits + voting rights.',
   },
   {
     icon: community,
@@ -32,10 +32,10 @@ const data = [
 ];
 
 const steps = [
-  'You commit funds to our pre-purchase pool by purchasing a digital collectible.',
+  'Join the founding 1,000 for $50-$5,000. Your commitment reserves your ownership percentage of our first property.',
   // 'You indicate your location and property preferences through our voting system.',
-  'All contributors receive ownership tokens proportional to their investment in the acquired property.',
-  'When the fundraising goal is met, Settley purchases ONE property based on community preferences and available funds.',
+  'We purchase the $160,000 Valencia property in Q1 2026 when campaign closes December 31st.',
+  'You receive legal ownership tokens + start earning 6.17% annual rental income.',
 ];
 
 export default function OwnHome() {
