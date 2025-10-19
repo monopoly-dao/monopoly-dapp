@@ -49,8 +49,8 @@ export default function CampaignHeader() {
             {/* Join us in reshaping property ownership—building the Amazon of real
             estate, making premium European properties accessible through
             collective investment. */}
-            Own Spanish Property from $50 <br /> Real estate. Real returns. Real
-            community.
+            Own Property in Spain from $50 <br /> Real estate. Real returns.
+            Real community.
           </p>
           <div className='text-center gap-[10px] flex flex-col items-center justify-center font-roboto text-sm'>
             <Link

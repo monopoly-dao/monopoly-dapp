@@ -14,7 +14,7 @@ const data = [
   {
     icon: globe,
     title: 'Premium Portfolio',
-    body: 'Our first property: €160,000 villa in Valencia, Spain. 6.17% rental yields. Purchase closing Q1 2026. Your founding membership converts to legal ownership tokens.',
+    body: 'Our first property: $160,000 villa in Valencia, Spain. 6.17% rental yields. Purchase closing Q1 2026. Your founding membership converts to legal ownership tokens.',
   },
   {
     icon: coin,
