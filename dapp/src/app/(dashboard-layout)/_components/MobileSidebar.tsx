@@ -51,6 +51,13 @@ const MobileSidebar = () => {
       available: false,
     },
     {
+      id: 6,
+      icon: IoWalletOutline,
+      title: 'Membership',
+      href: '/membership',
+      available: false,
+    },
+    {
       id: 3,
       icon: HiOutlineCalendar,
       title: 'Transactions',

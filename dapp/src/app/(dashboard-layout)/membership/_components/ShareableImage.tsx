@@ -1,7 +1,7 @@
 // components/ShareableImage.tsx
 import html2canvas from 'html2canvas';
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
 export const ShareableImage = ({
@@ -14,22 +14,38 @@ export const ShareableImage = ({
   totalInvested: string;
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [file, setFile] = useState<File>();
+
+  useEffect(() => {
+    async function genFile() {
+      if (!cardRef.current) return;
+
+      const canvas = await html2canvas(cardRef.current);
+      const image = canvas.toDataURL('image/png');
+      const response = await fetch(image);
+      const blob = await response.blob();
+      const file = new File([blob], 'settley-membership.png', {
+        type: 'image/png',
+      });
+      setFile(file);
+    }
+
+    genFile();
+  }, [cardRef?.current]);
+
+  console.log(file);
 
   const handleShare = async () => {
     console.log('here', cardRef.current);
     if (!cardRef.current) return;
 
     try {
-      const canvas = await html2canvas(cardRef.current);
-      const image = canvas.toDataURL('image/png');
+      const canShareFiles =
+        navigator.canShare && navigator.canShare({ files: [] });
 
       // For mobile devices
-      if (navigator.share) {
+      if (navigator.share && file) {
         try {
-          const blob = await (await fetch(image)).blob();
-          const file = new File([blob], 'settley-membership.png', {
-            type: 'image/png',
-          });
           await navigator.share({
             files: [file],
             title: 'My Settley Membership',
@@ -37,22 +53,23 @@ export const ShareableImage = ({
             url: 'https://beta.settley.co/campaign',
           });
         } catch (shareError) {
-          console.error('Share failed:', shareError);
+          //   console.error('Share failed:', shareError);
+          toast.error('Error sharing, please try again');
           // Fallback to download if share fails
           const link = document.createElement('a');
           link.download = 'settley-membership.png';
-          link.href = image;
+          //   link.href = image;
           link.click();
         }
       } else {
         // For desktop - download image
         const link = document.createElement('a');
         link.download = 'settley-membership.png';
-        link.href = image;
+        // link.href = image;
         link.click();
       }
     } catch (err) {
-      console.error('Error sharing:', err);
+      //   console.error('Error sharing:', err);
       toast.error('Error sharing, please try again');
     }
   };
