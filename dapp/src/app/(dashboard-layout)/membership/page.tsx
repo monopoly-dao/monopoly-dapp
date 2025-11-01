@@ -1,11 +1,43 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import moment from 'moment';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
+
+import LoadingSkeleton from '@/components/LoadingSkeleton';
+
+import { useGetCampaignPaymentsQuery } from '@/api/campaign';
+import { formatAmount } from '@/utils/utils';
+
+import { ShareableImage } from './_components/ShareableImage';
 
 export default function Page() {
   const [hovered, setHovered] = useState(false);
+  const { data: session } = useSession();
+  const { data, isLoading } = useGetCampaignPaymentsQuery({
+    email: session?.email || '',
+  });
+
+  const payments = data?.data || [];
+  const hasPaymentBeenMade = payments.length > 0;
+
+  const earliestPayment =
+    payments.length > 0
+      ? payments.reduce((earliest, current) => {
+          return moment(current.createdAt).isBefore(moment(earliest.createdAt))
+            ? current
+            : earliest;
+        }, payments[0]).createdAt
+      : '';
+
+  const totalPayments =
+    payments.length > 0
+      ? payments.reduce((acc, current) => {
+          return Number(acc) + Number(current.amount);
+        }, 0)
+      : 0;
 
   return (
     <main className='flex-1 max-w-full h-full overflow-y-auto font-general-sans'>
@@ -19,9 +51,15 @@ export default function Page() {
             <div className='text-lg text-gray-600 font-medium mb-2'>
               Membership Status
             </div>
-            <div className='text-3xl font-semibold text-gray-800'>Premium</div>
+            <div className='text-3xl font-semibold text-gray-800'>
+              {isLoading && '...'}
+              {!isLoading && !hasPaymentBeenMade && 'Standard'}
+              {!isLoading && hasPaymentBeenMade && 'Premium'}
+            </div>
             <div className='premium-gradient inline-flex items-center text-black px-4 py-2 rounded-full font-semibold text-sm mt-2'>
-              ✨ Premium Member
+              {isLoading && '...'}
+              {!isLoading && !hasPaymentBeenMade && 'Standard Member'}
+              {!isLoading && hasPaymentBeenMade && '✨ Premium Member'}
             </div>
           </div>
         </div>
@@ -31,7 +69,11 @@ export default function Page() {
               Member Since
             </div>
             <div className='text-3xl font-semibold text-gray-800'>
-              March 2024
+              {isLoading && '...'}
+              {!isLoading && !hasPaymentBeenMade && '-'}
+              {!isLoading &&
+                hasPaymentBeenMade &&
+                moment(earliestPayment).format('MMM YYYY')}
             </div>
           </div>
         </div>
@@ -40,7 +82,10 @@ export default function Page() {
             <div className='text-lg text-gray-600 font-medium mb-2'>
               Total Invested
             </div>
-            <div className='text-3xl font-semibold text-gray-800'>$3,850</div>
+            <div className='text-3xl font-semibold text-gray-800'>
+              {isLoading && '...'}
+              {!isLoading && `$${formatAmount(totalPayments.toString())}`}
+            </div>
           </div>
         </div>
       </div>
@@ -50,46 +95,54 @@ export default function Page() {
           Membership Details
         </h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4'>
-          <div className='flex flex-col gap-2'>
+          {/* <div className='flex flex-col gap-2'>
             <div className='text-gray-500 text-sm font-medium'>Member ID</div>
             <div className='text-gray-800 text-lg font-semibold'>
               #STL-001247
             </div>
-          </div>
+          </div> */}
           <div className='flex flex-col gap-2'>
             <div className='text-gray-500 text-sm font-medium'>Join Date</div>
             <div className='text-gray-800 text-lg font-semibold'>
-              March 15, 2024
+              {isLoading && '...'}
+              {!isLoading && !hasPaymentBeenMade && 'Not a premium member'}
+              {!isLoading &&
+                hasPaymentBeenMade &&
+                moment(earliestPayment).format('MMM DD, YYYY')}
             </div>
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-gray-500 text-sm font-medium'>
               Membership Tier
             </div>
-            <div className='text-gray-800 text-lg font-semibold'>Premium</div>
+            <div className='text-gray-800 text-lg font-semibold'>
+              {isLoading && '...'}
+              {!isLoading && !hasPaymentBeenMade && 'Standard'}
+              {!isLoading && hasPaymentBeenMade && 'Premium'}
+            </div>
           </div>
-          <div className='flex flex-col gap-2'>
+          {/* <div className='flex flex-col gap-2'>
             <div className='text-gray-500 text-sm font-medium'>
               Next Renewal
             </div>
             <div className='text-gray-800 text-lg font-semibold'>
               March 15, 2025
             </div>
-          </div>
-          <div className='flex flex-col gap-2'>
+          </div> */}
+          {/* <div className='flex flex-col gap-2'>
             <div className='text-gray-500 text-sm font-medium'>
               Properties Owned
             </div>
             <div className='text-gray-800 text-lg font-semibold'>
               2 Properties
             </div>
-          </div>
-          <div className='flex flex-col gap-2'>
+          </div> */}
+          {/* <div className='flex flex-col gap-2'>
             <div className='text-gray-500 text-sm font-medium'>Tokens Held</div>
             <div className='text-gray-800 text-lg font-semibold'>
               150 Tokens
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* <!-- NFT Collection --> */}
@@ -102,41 +155,47 @@ export default function Page() {
         </h2>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          <div
-            className='flex flex-col relative'
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            style={{ minHeight: 220 }}
-          >
-            {/* NFT 1 Image */}
-            <motion.div
-              animate={hovered ? { rotateY: 360 } : { rotateY: 0 }}
-              transition={{
-                duration: 0.7,
-                ease: 'easeInOut',
-                repeat: hovered ? Infinity : 0,
-                repeatType: 'loop',
-                repeatDelay: 0,
-              }}
-            >
-              <Image
-                src='https://res.cloudinary.com/dpoygzdfl/image/upload/v1754416493/settley-email-confirmation_1_eoq3ll.png'
-                alt='NFT 1'
-                className={`w-full h-fit object-contain rounded-b-[12px] transition-all duration-700 `}
-                width={600}
-                height={200}
-              />
-            </motion.div>
-            {/* Settley Ticket Text */}
+          {isLoading && <LoadingSkeleton height={250} className='h-[250px]' />}
+
+          {!isLoading && !hasPaymentBeenMade && 'Not a premium member'}
+          {!isLoading && hasPaymentBeenMade && (
             <div
-              className={`p-4 border-b border-x border-medium-grey rounded-[4px] -mt-12 w-[95%] mx-auto transition-opacity duration-700 ${
-                hovered ? 'opacity-0' : 'opacity-100'
-              }`}
+              className='flex flex-col relative'
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              style={{ minHeight: 220 }}
             >
-              <p>Settley Ticket</p>
-            </div>
-            {/* Spinning NFT 2 Image (appears on hover) */}
-            {/* <motion.div
+              {/* NFT 1 Image */}
+              <motion.div
+                animate={hovered ? { rotateY: 360 } : { rotateY: 0 }}
+                transition={{
+                  duration: 0.7,
+                  ease: 'easeInOut',
+                  repeat: hovered ? Infinity : 0,
+                  repeatType: 'loop',
+                  repeatDelay: 0,
+                }}
+              >
+                <Image
+                  src='https://res.cloudinary.com/dpoygzdfl/image/upload/v1754416493/settley-email-confirmation_1_eoq3ll.png'
+                  alt='NFT 1'
+                  className={`w-full h-fit object-contain rounded-b-[12px] transition-all duration-700 `}
+                  width={600}
+                  height={200}
+                />
+              </motion.div>
+              {/* Settley Ticket Text */}
+
+              <div className='mt-8'>
+                <ShareableImage
+                  memberSince={moment(earliestPayment).format('MMM YYYY')}
+                  status={hasPaymentBeenMade ? 'Premium' : 'Standard'}
+                  totalInvested={`$${formatAmount(totalPayments.toString())}`}
+                />
+              </div>
+
+              {/* Spinning NFT 2 Image (appears on hover) */}
+              {/* <motion.div
               className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[350px] h-auto z-20 pointer-events-none'
               animate={
                 hovered
@@ -160,7 +219,8 @@ export default function Page() {
                 height={100}
               />
             </motion.div> */}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </main>

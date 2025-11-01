@@ -1,4 +1,7 @@
+import { INetworkSuccessResponse } from '@/@types/appTypes';
+
 import { CampaignEndpoints } from './constants';
+import { CampaignPaymentResponse } from './types';
 import { globalApi } from '..';
 
 const campaignApi = globalApi.injectEndpoints({
@@ -23,7 +26,19 @@ const campaignApi = globalApi.injectEndpoints({
         data,
       }),
     }),
+
+    getCampaignPayments: build.query<
+      INetworkSuccessResponse<CampaignPaymentResponse[]>,
+      { email: string }
+    >({
+      query: ({ email }) => ({
+        url: CampaignEndpoints.GetAllPayments.replace(':email', email),
+        method: 'GET',
+      }),
+      providesTags: ['CampaignPayments'],
+    }),
   }),
 });
 
-export const { useJoinCampaignMutation } = campaignApi;
+export const { useJoinCampaignMutation, useGetCampaignPaymentsQuery } =
+  campaignApi;

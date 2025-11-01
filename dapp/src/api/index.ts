@@ -49,7 +49,9 @@ const axiosBaseQuery =
     try {
       session = await getSession();
       const token = session && session.token;
-
+      // if (!session) {
+      //   signOut();
+      // }
       const result = await axios({
         url: url,
         method,
@@ -102,6 +104,7 @@ export const globalApi = createApi({
     'Holdings',
     'Transactions',
     'DeedDetails',
+    'CampaignPayments',
   ],
 });
 
