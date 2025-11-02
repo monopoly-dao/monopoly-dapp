@@ -99,7 +99,7 @@ export default function PayCrypto() {
           Back
         </Button>
         <p className='text-sm mt-1 text-[#121212B2] font-roboto'>
-          Minimum contribution
+          Minimum purchase
         </p>
         <p className='font-medium text-2xl text-[#121212] font-roboto'>$50</p>
       </div>
