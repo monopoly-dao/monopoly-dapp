@@ -30,13 +30,13 @@ export const payCryptoSchema = object({
       }
     )
     .test(
-      'Check if amount is greater than or equal to 10',
-      'Minimum contribution amount is $10',
+      'Check if amount is greater than or equal to 50',
+      'Minimum contribution amount is $50',
       (value, context) => {
         if (!value) return context.createError();
         const cleanAmount = value.replace(/\D/g, '');
 
-        if (Number(cleanAmount) < 10) return context.createError();
+        if (Number(cleanAmount) < 50) return context.createError();
 
         return true;
       }

@@ -101,7 +101,7 @@ export default function PayCrypto() {
         <p className='text-sm mt-1 text-[#121212B2] font-roboto'>
           Minimum contribution
         </p>
-        <p className='font-medium text-2xl text-[#121212] font-roboto'>$10</p>
+        <p className='font-medium text-2xl text-[#121212] font-roboto'>$50</p>
       </div>
 
       <div className='col-span-2'>
