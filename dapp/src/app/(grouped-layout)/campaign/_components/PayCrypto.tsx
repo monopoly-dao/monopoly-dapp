@@ -23,7 +23,7 @@ const paymentOptions = [
   { label: 'CEX transfer (e.g. from Binance)', value: 'cex' },
 ];
 
-const amounts = [10, 50, 100, 200, 500];
+const amounts = [50, 100, 200, 500];
 
 export default function PayCrypto() {
   const { cryptoAmount, method } = useAppSelector(
