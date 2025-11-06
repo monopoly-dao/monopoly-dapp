@@ -2,8 +2,21 @@
 User-agent: *
 Allow: /
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 # Host
 Host: https://beta.settley.co
 
 # Sitemaps
 Sitemap: https://beta.settley.co/sitemap.xml
+Sitemap: https://beta.settley.co/sitemap-0.xml
