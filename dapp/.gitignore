@@ -40,3 +40,5 @@ next-env.d.ts
 
 
 AllUsers.json
+
+# // "postbuild": "next-sitemap --config next-sitemap.config.js"
