@@ -4,7 +4,7 @@ import TeamCard from './_components/TeamCard';
 
 const team = [
   {
-    name: 'Temisan Agbajoh',
+    name: 'Temisan Gerrard',
     title: 'CEO',
     linkedin: 'https://www.linkedin.com/in/temisangerrard',
   },
@@ -19,7 +19,7 @@ const team = [
     linkedin: 'https://www.linkedin.com/in/naro-omo-osagie-b2a967131/',
   },
   {
-    name: 'John Osunhon',
+    name: 'Efosa John',
     title: 'COO',
     linkedin: 'https://www.linkedin.com/in/efosa-john',
   },
