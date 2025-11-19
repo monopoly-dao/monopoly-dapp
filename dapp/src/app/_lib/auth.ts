@@ -87,7 +87,7 @@ export const authOptions: NextAuthOptions = {
         httpOnly: true,
         sameSite: 'lax', // Critical for Safari
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
       },
     },
     callbackUrl: {
@@ -96,7 +96,7 @@ export const authOptions: NextAuthOptions = {
         httpOnly: true,
         sameSite: 'lax', // Critical for Safari
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
       },
     },
     csrfToken: {
@@ -105,7 +105,7 @@ export const authOptions: NextAuthOptions = {
         httpOnly: true,
         sameSite: 'lax', // Critical for Safari
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
       },
     },
     pkceCodeVerifier: {
@@ -114,7 +114,7 @@ export const authOptions: NextAuthOptions = {
         httpOnly: true,
         sameSite: 'lax', // Critical for Safari
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
         maxAge: 900, // 15 minutes
       },
     },
@@ -124,7 +124,7 @@ export const authOptions: NextAuthOptions = {
         httpOnly: true,
         sameSite: 'lax', // Critical for Safari
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
         maxAge: 900, // 15 minutes
       },
     },
@@ -134,7 +134,7 @@ export const authOptions: NextAuthOptions = {
         httpOnly: true,
         sameSite: 'lax',
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
       },
     },
   },
