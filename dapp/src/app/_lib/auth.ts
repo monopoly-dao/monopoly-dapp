@@ -87,7 +87,7 @@ export const authOptions: NextAuthOptions = {
         httpOnly: true,
         sameSite: 'lax', // Critical for Safari
         path: '/',
-        secure: true,
+        secure: false,
       },
     },
     callbackUrl: {
