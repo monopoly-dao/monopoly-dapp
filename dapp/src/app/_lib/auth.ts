@@ -140,11 +140,13 @@ export const authOptions: NextAuthOptions = {
           const r = await axios.post(`${AUTH_BASE_URL}/google-signin`, {
             email: token.email,
           });
+
           const result = r.data as {
             token: string;
             userFirebaseId: string;
             email: string;
           };
+
           token.data = result;
           return token;
         } catch (e) {

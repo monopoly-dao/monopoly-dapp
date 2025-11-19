@@ -175,7 +175,7 @@ const Navbar = () => {
       {isLoggedIn && !isLoading && !isProfileComplete && (
         <div className='bg-navy py-4 text-white w-full text-center font-mono'>
           Follow this{' '}
-          <Link href='/dashboard/settings' className='underline font-mono'>
+          <Link href='/settings' className='underline font-mono'>
             link
           </Link>{' '}
           to complete your profile and receive your test tokens
