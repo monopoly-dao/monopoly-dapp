@@ -23,6 +23,7 @@ export default function GoogleButton() {
       handleErrors(e);
     }
   }
+  //
 
   return (
     <div className='flex flex-col gap-5 w-full mb-5'>
