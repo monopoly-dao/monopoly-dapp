@@ -78,6 +78,67 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 
+  // useSecureCookies: process.env.NODE_ENV === 'production',
+
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax', // Critical for Safari
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
+    callbackUrl: {
+      name: `next-auth.callback-url`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax', // Critical for Safari
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
+    csrfToken: {
+      name: `next-auth.csrf-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax', // Critical for Safari
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
+    pkceCodeVerifier: {
+      name: `next-auth.pkce.code_verifier`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax', // Critical for Safari
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 900, // 15 minutes
+      },
+    },
+    state: {
+      name: `next-auth.state`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax', // Critical for Safari
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 900, // 15 minutes
+      },
+    },
+    nonce: {
+      name: `next-auth.nonce`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+      },
+    },
+  },
+
   pages: {
     error: '/login',
     signIn: '/login',
