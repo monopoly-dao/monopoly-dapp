@@ -31,6 +31,7 @@ export default function GoogleButton() {
         or connect with
       </p>
       <button
+        type='button'
         className='w-full flex items-center gap-2 rounded-[8px] font-roboto border border-[#D6D3D1] justify-center px-10 py-4'
         onClick={googleSignIn}
       >
