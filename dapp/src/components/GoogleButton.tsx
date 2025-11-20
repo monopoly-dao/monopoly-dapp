@@ -18,7 +18,7 @@ export default function GoogleButton() {
         callbackUrl = new URL(paramsUrl).toString();
       } else callbackUrl = '/';
 
-      await signIn('google', { redirect: true, callbackUrl });
+      await signIn('google', { callbackUrl });
     } catch (e) {
       handleErrors(e);
     }
