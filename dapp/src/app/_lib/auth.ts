@@ -62,13 +62,13 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-      authorization: {
-        params: {
-          prompt: 'consent',
-          access_type: 'offline',
-          response_type: 'code',
-        },
-      },
+      // authorization: {
+      //   params: {
+      //     prompt: 'consent',
+      //     access_type: 'offline',
+      //     response_type: 'code',
+      //   },
+      // },
     }),
 
     TwitterProvider({
@@ -147,6 +147,12 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
     maxAge: 20 * 60, // 20 minutes
+
+    // cookie: {
+    //   secure: process.env.NODE_ENV === 'production',
+    //   httpOnly: true,
+    //   sameSite: 'Strict',
+    // },
   },
   secret: `${process.env.NEXTAUTH_SECRET}`,
   callbacks: {
