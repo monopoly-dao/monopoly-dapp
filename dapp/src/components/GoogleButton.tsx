@@ -1,28 +1,25 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { FcGoogle } from 'react-icons/fc';
 
-import { handleErrors } from '@/utils/error';
-
 export default function GoogleButton() {
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
-  async function googleSignIn() {
-    try {
-      const paramsUrl = searchParams.get('callbackUrl');
-      let callbackUrl: string;
+  // async function googleSignIn() {
+  //   try {
+  //     const paramsUrl = searchParams.get('callbackUrl');
+  //     let callbackUrl: string;
 
-      if (typeof paramsUrl === 'string') {
-        callbackUrl = new URL(paramsUrl).toString();
-      } else callbackUrl = '/';
+  //     if (typeof paramsUrl === 'string') {
+  //       callbackUrl = new URL(paramsUrl).toString();
+  //     } else callbackUrl = '/';
 
-      await signIn('google', { callbackUrl });
-    } catch (e) {
-      handleErrors(e);
-    }
-  }
+  //     await signIn('google', { callbackUrl });
+  //   } catch (e) {
+  //     handleErrors(e);
+  //   }
+  // }
   //
 
   return (
@@ -33,7 +30,7 @@ export default function GoogleButton() {
       <button
         type='button'
         className='w-full flex items-center gap-2 rounded-[8px] font-roboto border border-[#D6D3D1] justify-center px-10 py-4'
-        onClick={googleSignIn}
+        onClick={async () => await signIn('google', { callbackUrl: '/' })}
       >
         Continue with Google
         <FcGoogle className='text-2xl' />
