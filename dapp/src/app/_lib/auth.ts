@@ -78,66 +78,62 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 
-  // useSecureCookies: process.env.NODE_ENV === 'production',
+  useSecureCookies: true,
 
-  // cookies: {
-  //   sessionToken: {
-  //     name: `next-auth.session-token`,
-  //     options: {
-  //       httpOnly: true,
-  //       sameSite: 'lax', // Critical for Safari
-  //       path: '/',
-  //       secure: false,
-  //     },
-  //   },
-  //   callbackUrl: {
-  //     name: `next-auth.callback-url`,
-  //     options: {
-  //       httpOnly: true,
-  //       sameSite: 'lax', // Critical for Safari
-  //       path: '/',
-  //       secure: true,
-  //     },
-  //   },
-  //   csrfToken: {
-  //     name: `next-auth.csrf-token`,
-  //     options: {
-  //       httpOnly: true,
-  //       sameSite: 'lax', // Critical for Safari
-  //       path: '/',
-  //       secure: true,
-  //     },
-  //   },
-  //   pkceCodeVerifier: {
-  //     name: `next-auth.pkce.code_verifier`,
-  //     options: {
-  //       httpOnly: true,
-  //       sameSite: 'lax', // Critical for Safari
-  //       path: '/',
-  //       secure: true,
-  //       maxAge: 900, // 15 minutes
-  //     },
-  //   },
-  //   state: {
-  //     name: `next-auth.state`,
-  //     options: {
-  //       httpOnly: true,
-  //       sameSite: 'lax', // Critical for Safari
-  //       path: '/',
-  //       secure: true,
-  //       maxAge: 900, // 15 minutes
-  //     },
-  //   },
-  //   nonce: {
-  //     name: `next-auth.nonce`,
-  //     options: {
-  //       httpOnly: true,
-  //       sameSite: 'lax',
-  //       path: '/',
-  //       secure: true,
-  //     },
-  //   },
-  // },
+  // Explicitly define all cookies for better SameSite control
+  cookies: {
+    // Standard Session Cookie
+    sessionToken: {
+      name: `${'__Secure-'}next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax', // CRITICAL for redirect compatibility
+        path: '/',
+        secure: true,
+      },
+    },
+    // CSRF Token Cookie
+    csrfToken: {
+      name: `${'__Host-'}next-auth.csrf-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax', // CRITICAL for redirect compatibility
+        path: '/',
+        secure: true,
+      },
+    },
+    // OAuth State Cookie (for state mismatch/callback errors)
+    state: {
+      name: `${'__Secure-'}next-auth.state`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax', // CRITICAL for redirect compatibility
+        path: '/',
+        secure: true,
+        maxAge: 900, // 15 minutes, standard for transient state cookies
+      },
+    },
+    // PKCE Code Verifier Cookie (for Google's security flow)
+    pkceCodeVerifier: {
+      name: `${'__Secure-'}next-auth.pkce.code_verifier`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax', // CRITICAL for redirect compatibility
+        path: '/',
+        secure: true,
+        maxAge: 900, // 15 minutes
+      },
+    },
+    // Callback URL Cookie
+    callbackUrl: {
+      name: `${'__Secure-'}next-auth.callback-url`,
+      options: {
+        sameSite: 'lax',
+        path: '/',
+        secure: true,
+      },
+    },
+  },
 
   pages: {
     error: '/login',
