@@ -93,7 +93,7 @@ export default function Page() {
         }}
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit();
+          handleSubmit(e);
         }}
         className={styles.right}
       >

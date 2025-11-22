@@ -100,7 +100,7 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
         }}
         onSubmit={(e) => {
           e.preventDefault();
-          handleSubmit();
+          handleSubmit(e);
         }}
         className={styles.right}
       >
