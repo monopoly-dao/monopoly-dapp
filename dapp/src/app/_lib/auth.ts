@@ -62,6 +62,7 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      checks: ['none']
       // authorization: {
       //   params: {
       //     prompt: 'consent',
@@ -78,62 +79,62 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
 
-  useSecureCookies: true,
+  // useSecureCookies: true,
 
-  // Explicitly define all cookies for better SameSite control
-  cookies: {
-    // Standard Session Cookie
-    sessionToken: {
-      name: `${'__Secure-'}next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax', // CRITICAL for redirect compatibility
-        path: '/',
-        secure: true,
-      },
-    },
-    // CSRF Token Cookie
-    csrfToken: {
-      name: `${'__Host-'}next-auth.csrf-token`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax', // CRITICAL for redirect compatibility
-        path: '/',
-        secure: true,
-      },
-    },
-    // OAuth State Cookie (for state mismatch/callback errors)
-    state: {
-      name: `${'__Secure-'}next-auth.state`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax', // CRITICAL for redirect compatibility
-        path: '/',
-        secure: true,
-        maxAge: 900, // 15 minutes, standard for transient state cookies
-      },
-    },
-    // PKCE Code Verifier Cookie (for Google's security flow)
-    pkceCodeVerifier: {
-      name: `${'__Secure-'}next-auth.pkce.code_verifier`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax', // CRITICAL for redirect compatibility
-        path: '/',
-        secure: true,
-        maxAge: 900, // 15 minutes
-      },
-    },
-    // Callback URL Cookie
-    callbackUrl: {
-      name: `${'__Secure-'}next-auth.callback-url`,
-      options: {
-        sameSite: 'lax',
-        path: '/',
-        secure: true,
-      },
-    },
-  },
+  // // Explicitly define all cookies for better SameSite control
+  // cookies: {
+  //   // Standard Session Cookie
+  //   sessionToken: {
+  //     name: `${'__Secure-'}next-auth.session-token`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: 'lax', // CRITICAL for redirect compatibility
+  //       path: '/',
+  //       secure: true,
+  //     },
+  //   },
+  //   // CSRF Token Cookie
+  //   csrfToken: {
+  //     name: `${'__Host-'}next-auth.csrf-token`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: 'lax', // CRITICAL for redirect compatibility
+  //       path: '/',
+  //       secure: true,
+  //     },
+  //   },
+  //   // OAuth State Cookie (for state mismatch/callback errors)
+  //   state: {
+  //     name: `${'__Secure-'}next-auth.state`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: 'lax', // CRITICAL for redirect compatibility
+  //       path: '/',
+  //       secure: true,
+  //       maxAge: 900, // 15 minutes, standard for transient state cookies
+  //     },
+  //   },
+  //   // PKCE Code Verifier Cookie (for Google's security flow)
+  //   pkceCodeVerifier: {
+  //     name: `${'__Secure-'}next-auth.pkce.code_verifier`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: 'lax', // CRITICAL for redirect compatibility
+  //       path: '/',
+  //       secure: true,
+  //       maxAge: 900, // 15 minutes
+  //     },
+  //   },
+  //   // Callback URL Cookie
+  //   callbackUrl: {
+  //     name: `${'__Secure-'}next-auth.callback-url`,
+  //     options: {
+  //       sameSite: 'lax',
+  //       path: '/',
+  //       secure: true,
+  //     },
+  //   },
+  // },
 
   pages: {
     error: '/login',
@@ -225,6 +226,13 @@ export const authOptions: NextAuthOptions = {
       session.email = token.data.email;
       session.userFirebaseId = token.data.userFirebaseId;
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
   },
 };
