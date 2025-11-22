@@ -155,6 +155,7 @@ export const authOptions: NextAuthOptions = {
     // },
   },
   secret: `${process.env.NEXTAUTH_SECRET}`,
+  debug: true,
   callbacks: {
     jwt: async ({ token, user, trigger, session, account, profile }) => {
       if (trigger === 'update') {
