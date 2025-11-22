@@ -98,7 +98,10 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
         sx={{
           '& .MuiTextField-root': { width: 'inherit' },
         }}
-        onSubmit={handleSubmit}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
         className={styles.right}
       >
         <h1 className='font-merriweather font-bold text-3xl mb-4'>Sign up</h1>
