@@ -33,7 +33,7 @@ export default function InvestmentPropertyCard({
   return (
     <div
       className={cn(
-        'h-[520px] rounded-[20px] border p-[10px] border-[#00000033] md:h-[543px]',
+        'h-[535px] rounded-[20px] border p-[10px] border-[#00000033] md:h-[543px]',
         [
           width === 'variable' && 'w-full',
           width === 'fixed' && 'w-[320px] md:w-[420px]',
