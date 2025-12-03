@@ -12,6 +12,7 @@ import Button from '@/components/buttons/Button';
 import LoadingText from '@/components/LoadingText';
 import Tooltip from '@/components/Tooltip';
 
+import { useGetWalletStatsQuery } from '@/api/profile';
 import { useGetPropertyQuery } from '@/api/properties';
 import authenticatedFuncWrapper from '@/utils/authenticatedFuncWrapper';
 import { handleErrors } from '@/utils/error';
@@ -32,6 +33,10 @@ export default function Page() {
   const session = useSession();
   const userFirebaseId = session.data?.userFirebaseId ?? '';
   const { isOpen: isBuyOpen, open: openBuy, close: closeBuy } = useDisclosure();
+
+  const { data: walletStatsResponse } = useGetWalletStatsQuery(userFirebaseId);
+  const walletStats = walletStatsResponse?.data;
+  const balance = walletStats?.walletBalance ?? 0;
 
   if (error) handleErrors(error);
 
@@ -228,6 +233,7 @@ export default function Page() {
         handleCloseModal={closeBuy}
         propertyId={propertyId as string}
         userFirebaseId={userFirebaseId}
+        balance={balance}
       />
     </div>
   );

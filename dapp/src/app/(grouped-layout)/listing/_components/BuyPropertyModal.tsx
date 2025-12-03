@@ -15,16 +15,18 @@ import { formatAmount, removeNonDigit } from '@/utils/utils';
 type Props = ModalProps & {
   userFirebaseId: string;
   propertyId: string;
+  balance: number;
 };
 
 export default function BuyPropertyModal({
   userFirebaseId,
   propertyId,
+  balance,
   ...props
 }: Props) {
   const [enterPosition, { isLoading }] = useEnterPositionMutation();
 
-  const { values, handleSubmit, getFieldMeta, getFieldProps, isValid } =
+  const { values, handleSubmit, getFieldMeta, getFieldProps, isValid, dirty } =
     useFormik({
       initialValues: {
         units: '0',
@@ -56,12 +58,26 @@ export default function BuyPropertyModal({
               if (!value) return context.createError();
               const cleanAmount = value.replace(/\D/g, '');
 
-              if (!cleanAmount.length) {
+              if (!cleanAmount.length || cleanAmount === '0') {
                 return context.createError();
               }
               const isValid = /^[0-9]+$/.test(cleanAmount);
 
               return isValid || context.createError();
+            }
+          )
+          .test(
+            'Check if amount is greater thanbalance',
+            'Amount is greater than available balance',
+            (value, context) => {
+              if (!value) return context.createError();
+              const cleanAmount = value.replace(/\D/g, '');
+
+              if (Number(cleanAmount) > balance) {
+                return context.createError();
+              }
+
+              return true;
             }
           ),
       }),
@@ -101,16 +117,14 @@ export default function BuyPropertyModal({
           <Button
             type='submit'
             isLoading={isLoading}
-            disabled={!isValid}
+            disabled={!isValid || !dirty}
             className='py-3 px-10'
           >
             Buy
           </Button>
         </div>
         {isLoading && (
-          <p className='text-red-400 text-sm my-2'>
-            One Minute⏰.
-          </p>
+          <p className='text-red-400 text-sm my-2'>One Minute⏰.</p>
         )}
       </form>
     </Modal>
