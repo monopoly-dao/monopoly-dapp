@@ -102,7 +102,7 @@ const Navbar = () => {
           [styles.navbar]
         )}
       >
-        <SettleyLogo colour='new' />
+        <SettleyLogo colour='no-beta' />
 
         {/* <InputSearch containerClassName='w-1/4 hidden sm:flex' /> */}
 

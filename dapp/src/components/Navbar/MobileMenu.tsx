@@ -110,7 +110,7 @@ export default function MobileMenu({ close }: Props) {
       </div>
 
       <div className='my-10 flex justify-center'>
-        <SettleyLogo colour='new' />
+        <SettleyLogo colour='no-beta' />
       </div>
     </div>
   );
