@@ -11,6 +11,8 @@ import { object, string } from 'yup';
 import Button from '@/components/buttons/Button';
 import { Input } from '@/components/input';
 
+import { BASE_URL } from '@/api';
+
 export default function SubscriptionForm() {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,7 +39,7 @@ export default function SubscriptionForm() {
 
       try {
         await axios.post(
-          'https://connect.mailerlite.com/api/subscribers',
+          `${BASE_URL}/subscribe`,
           { email: values.email },
           {
             headers: {
