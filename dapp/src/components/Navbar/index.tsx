@@ -42,6 +42,10 @@ export const unauthentiatedNavLinks = [
     label: 'Campaign',
     route: '/campaign',
   },
+  {
+    label: 'Articles',
+    route: '/articles',
+  },
 ];
 
 export const authenticatedNavLinks = [
@@ -65,6 +69,10 @@ export const authenticatedNavLinks = [
   {
     label: 'Campaign',
     route: '/campaign',
+  },
+  {
+    label: 'Articles',
+    route: '/articles',
   },
 ];
 

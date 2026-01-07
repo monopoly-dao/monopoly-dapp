@@ -15,6 +15,12 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+        port: '',
+        pathname: '/v0/b/settley-co.firebasestorage.app/o/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'res.cloudinary.com',
         port: '',
         pathname: '/dpoygzdfl/image/upload/**',

@@ -105,6 +105,7 @@ export const globalApi = createApi({
     'Transactions',
     'DeedDetails',
     'CampaignPayments',
+    'Articles',
   ],
 });
 
