@@ -19,6 +19,7 @@ import {
   useDeleteArticleCommentMutation,
 } from '@/api/articles';
 import { ArticleComment } from '@/api/articles/articles-types.server';
+import { useGetUserDetailsQuery } from '@/api/profile';
 import { handleErrors } from '@/utils/error';
 
 interface ArticleCommentsProps {
@@ -37,9 +38,10 @@ export default function ArticleComments({
   articleId,
   comments,
 }: ArticleCommentsProps) {
-  const session = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
-  const isLoggedIn = session.status === 'authenticated';
+  const isLoggedIn = status === 'authenticated';
+  const userFirebaseId = session?.userFirebaseId || ';';
   const [addComment, { isLoading: isAddingComment }] =
     useAddArticleCommentMutation();
   const [deleteComment, { isLoading: isDeletingComment }] =
@@ -47,6 +49,9 @@ export default function ArticleComments({
   const [deletingCommentId, setDeletingCommentId] = useState<string | null>(
     null
   );
+
+  const { data: profileData } = useGetUserDetailsQuery(userFirebaseId);
+  const userDetails = profileData?.data;
 
   function redirectToLogin() {
     router.push(`/login?redirectUrl=/articles/${articleId}`);
@@ -67,6 +72,10 @@ export default function ArticleComments({
         await addComment({
           articleId,
           content: values.content,
+          userFirebaseId,
+          author: userDetails?.firstName
+            ? `${userDetails?.firstName} ${userDetails?.lastName}`
+            : '',
         }).unwrap();
 
         toast.success('Comment added successfully!');
@@ -87,6 +96,7 @@ export default function ArticleComments({
       await deleteComment({
         articleId,
         commentId,
+        userFirebaseId,
       }).unwrap();
 
       toast.success('Comment deleted successfully!');
@@ -130,16 +140,14 @@ export default function ArticleComments({
             <div className='flex items-center gap-3 mb-4'>
               <div className='w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center'>
                 <span className='text-white font-semibold text-sm'>
-                  {session.data?.user?.name?.charAt(0) || 'U'}
+                  {session?.user?.name?.charAt(0) || 'U'}
                 </span>
               </div>
               <div>
                 <p className='font-semibold text-gray-900 text-sm'>
-                  {session.data?.user?.name || 'Anonymous'}
+                  {session?.user?.name || 'Anonymous'}
                 </p>
-                <p className='text-xs text-gray-600'>
-                  {session.data?.user?.email}
-                </p>
+                <p className='text-xs text-gray-600'>{session?.user?.email}</p>
               </div>
             </div>
 
@@ -220,7 +228,7 @@ export default function ArticleComments({
                   <div className='flex-1'>
                     <div className='flex items-center gap-2 mb-1'>
                       <p className='font-semibold text-gray-900 text-sm'>
-                        {comment.userId || 'Anonymous'}
+                        {comment?.author || 'Anonymous'}
                       </p>
                       <span className='text-blue-500 text-lg'>
                         <MdVerifiedUser />
@@ -232,17 +240,16 @@ export default function ArticleComments({
                   </div>
 
                   {/* Delete Button */}
-                  {isLoggedIn &&
-                    session.data?.user?.email === comment.userId && (
-                      <button
-                        onClick={() => handleDeleteComment(comment._id)}
-                        disabled={isDeletingComment}
-                        className='ml-2 p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
-                        title='Delete comment'
-                      >
-                        <MdDelete className='text-lg' />
-                      </button>
-                    )}
+                  {isLoggedIn && session?.userFirebaseId === comment.userId && (
+                    <button
+                      onClick={() => handleDeleteComment(comment._id)}
+                      disabled={isDeletingComment}
+                      className='ml-2 p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
+                      title='Delete comment'
+                    >
+                      <MdDelete className='text-lg' />
+                    </button>
+                  )}
                 </div>
 
                 <p className='text-gray-700 text-sm leading-relaxed whitespace-pre-wrap'>

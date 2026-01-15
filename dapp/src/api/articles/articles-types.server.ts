@@ -14,6 +14,7 @@ export type ArticleComment = {
   articleId: string;
   userId: string;
   content: string;
+  author: string;
   createdAt: string;
   updatedAt: string;
 };
