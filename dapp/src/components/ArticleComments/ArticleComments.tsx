@@ -49,7 +49,7 @@ export default function ArticleComments({
   );
 
   function redirectToLogin() {
-    router.push(`login?redirectUrl=/articles/${articleId}`);
+    router.push(`/login?redirectUrl=/articles/${articleId}`);
   }
 
   const formik = useFormik({
