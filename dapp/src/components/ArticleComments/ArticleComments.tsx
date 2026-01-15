@@ -50,7 +50,9 @@ export default function ArticleComments({
     null
   );
 
-  const { data: profileData } = useGetUserDetailsQuery(userFirebaseId);
+  const { data: profileData } = useGetUserDetailsQuery(userFirebaseId, {
+    skip: !isLoggedIn,
+  });
   const userDetails = profileData?.data;
 
   function redirectToLogin() {
