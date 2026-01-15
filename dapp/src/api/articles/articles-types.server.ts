@@ -6,4 +6,14 @@ export type ArticleResponse = {
   status: 'published' | 'draft';
   createdAt: string;
   updatedAt: string;
+  comments: ArticleComment[];
+};
+
+export type ArticleComment = {
+  _id: string;
+  articleId: string;
+  userId: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
 };

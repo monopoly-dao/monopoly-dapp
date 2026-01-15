@@ -22,6 +22,35 @@ const articleApi = globalApi.injectEndpoints({
       providesTags: ['Articles'],
     }),
 
+    addArticleComment: build.mutation<
+      PaginatedSuccessResponse<ArticleResponse[]>,
+      { articleId: string; content: string }
+    >({
+      query: (params) => ({
+        url: ArticlesEndpoints.AddArticleComment.replace(
+          ':id',
+          params.articleId
+        ),
+        method: 'POST',
+        body: { content: params.content },
+      }),
+      invalidatesTags: ['Articles'],
+    }),
+
+    deleteArticleComment: build.mutation<
+      PaginatedSuccessResponse<ArticleResponse[]>,
+      { articleId: string; commentId: string }
+    >({
+      query: (params) => ({
+        url: ArticlesEndpoints.DeleteArticleComment.replace(
+          ':id',
+          params.articleId
+        ).replace(':commentId', params.commentId),
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Articles'],
+    }),
+
     getArticle: build.query<
       INetworkSuccessResponse<ArticleResponse>,
       { articleId: string }
@@ -35,4 +64,9 @@ const articleApi = globalApi.injectEndpoints({
   }),
 });
 
-export const { useGetArticleQuery, useGetArticlesQuery } = articleApi;
+export const {
+  useGetArticleQuery,
+  useGetArticlesQuery,
+  useAddArticleCommentMutation,
+  useDeleteArticleCommentMutation,
+} = articleApi;

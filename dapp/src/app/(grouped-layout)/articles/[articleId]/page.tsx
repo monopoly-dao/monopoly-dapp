@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
+import ArticleComments from '@/components/ArticleComments';
 import Loading from '@/components/Loading';
 
 import { useGetArticleQuery } from '@/api/articles';
@@ -85,17 +86,33 @@ export default function Page() {
           </div>
         )}
 
-        <article className='prose max-w-none text-gray-800'>
+        {article && (
+          <article className='prose max-w-none text-gray-800'>
+            <div
+              className='whitespace-pre-wrap'
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            ></div>
+          </article>
+        )}
+
+        {/* <article className='prose max-w-none text-gray-800'>
           <div
             className='whitespace-pre-wrap'
             dangerouslySetInnerHTML={{ __html: article.content }}
           >
-            {/* {article.content} */}
           </div>
-        </article>
+        </article> */}
 
         {isFetching && (
           <div className='text-sm text-gray-500'>Refreshing...</div>
+        )}
+
+        {/* Comments Section */}
+        {articleId && (
+          <ArticleComments
+            articleId={articleId as string}
+            comments={article.comments || []}
+          />
         )}
       </div>
     </section>
