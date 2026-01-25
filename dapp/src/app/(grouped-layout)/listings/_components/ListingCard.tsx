@@ -33,7 +33,7 @@ export default function ListingCard({ property, wishlist }: Props) {
   };
 
   return (
-    <div className='w-full min-h-[426px] relative bg-white shadow-2xl'>
+    <div className='w-full min-h-[426px] relative bg-white shadow-lg rounded-2xl overflow-hidden hover:-translate-y-1 transition-transform duration-300'>
       <div onClick={(e) => e.stopPropagation()}>
         <WishlistButton
           propertyId={property._id}
@@ -55,8 +55,8 @@ export default function ListingCard({ property, wishlist }: Props) {
 
         <div className='py-6 px-4 w-full'>
           <div className='flex items-start justify-between gap-1'>
-            <p className='text-navy font-medium w-3/4 truncate'>{name}</p>
-            <p className='text-navy font-medium text-sm uppercase'>${symbol}</p>
+            <p className='text-navy font-bold font-inter w-3/4 truncate'>{name}</p>
+            <p className='text-navy font-bold text-sm uppercase font-inter'>${symbol}</p>
           </div>
           <div className='mt-1 flex items-center gap-3 text-sm text-gray-500'>
             {/* <IoLocationOutline className='text-lg' /> */}

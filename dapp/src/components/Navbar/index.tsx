@@ -106,7 +106,8 @@ const Navbar = () => {
         alignItems='center'
         justifyContent='space-between'
         className={cn(
-          'bg-white text-white mt-6 lg:mt-12 z-[10] pt-2 pb-5 border-y px-[5%] border-black',
+          'text-settley-primary sticky top-0 z-50 pt-5 pb-5 px-[5%] transition-all duration-300',
+          'bg-settley-bg/80 backdrop-blur-md border-b border-black/5',
           [styles.navbar]
         )}
       >
@@ -114,7 +115,7 @@ const Navbar = () => {
 
         {/* <InputSearch containerClassName='w-1/4 hidden sm:flex' /> */}
 
-        <div className='items-center hidden sm:flex gap-6 lg:gap-8'>
+        <div className='items-center hidden lg:flex gap-6 lg:gap-8'>
           {navLinks.map((link) => {
             if (link.isLinkToSection)
               return (
@@ -123,8 +124,8 @@ const Navbar = () => {
                   onClick={() => router.push(link.route)}
                   variant='ghost'
                   className={cn(
-                    'text-[#1E1E1E] bg-transparent p-0 border-none font-roboto text-xs lg:text-sm',
-                    [pathname === link.route && 'text-navy']
+                    'text-settley-text hover:text-settley-text-hover transition-colors bg-transparent p-0 border-none font-inter text-[14px] font-medium',
+                    [pathname === link.route && 'text-settley-text-hover']
                   )}
                 >
                   {link.label}
@@ -136,8 +137,8 @@ const Navbar = () => {
                   key={link.label}
                   href={link.route}
                   className={cn(
-                    'text-[#1E1E1E] text-xs lg:text-sm font-roboto',
-                    [pathname === link.route && 'text-navy']
+                    'text-settley-text hover:text-settley-text-hover transition-colors text-[14px] font-inter font-medium',
+                    [pathname === link.route && 'text-settley-text-hover']
                   )}
                 >
                   {link.label}
@@ -147,27 +148,27 @@ const Navbar = () => {
           {isLoggedIn && <LogoutDropdown />}
         </div>
 
-        <div className='items-center gap-3 hidden sm:flex whitespace-nowrap'>
+        <div className='items-center gap-3 hidden lg:flex whitespace-nowrap'>
           {isLoggedIn && (
             <Link
-              className='text-white text-xs lg:text-base bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
+              className='text-white text-[14px] bg-settley-primary rounded-full py-2.5 px-8 flex gap-2 font-medium items-center font-inter hover:bg-settley-primary/90 transition-all'
               href='/dashboard'
             >
-              <VscAccount />
+              <VscAccount className='text-base' />
               Dashboard
             </Link>
           )}
           {!isLoggedIn && (
             <>
               <Link
-                className='text-navy text-xs lg:text-sm rounded-[6px] py-2 px-4 flex gap-2 font-semibold items-center font-craftwork border border-medium-grey'
+                className='text-settley-primary hover:bg-settley-primary/5 transition-all text-[14px] rounded-full py-2 px-6 flex gap-2 font-semibold items-center font-inter border-[0.8px] border-settley-primary h-9'
                 href='/login'
               >
                 <LuLogIn className='text-base' />
                 Login
               </Link>
               <Link
-                className='text-white text-xs lg:text-sm bg-navy rounded-[6px] py-2 px-4 flex gap-2 font-semibold items-center font-craftwork'
+                className='text-[#FAFAFA] hover:bg-settley-primary/90 transition-all text-[14px] bg-settley-primary rounded-full py-2 px-6 flex gap-2 font-semibold items-center font-inter h-9 border-none'
                 href='/signup'
               >
                 <FiUserPlus className='text-base' />

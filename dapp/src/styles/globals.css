@@ -59,7 +59,7 @@ html {
 body {
   margin: 0 auto;
   min-height: 100vh;
-  @apply text-black bg-white;
+  @apply text-navy bg-settley-bg font-inter;
 }
 
 p {
@@ -76,15 +76,19 @@ a {
 }
 
 p,
+button,
+li,
+a {
+  @apply font-inter;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
-button,
-li,
-a {
-  @apply font-n-montreal;
+h6 {
+  @apply font-playfair;
 }
 h1 {
   font-size: 50px;

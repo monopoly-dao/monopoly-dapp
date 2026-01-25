@@ -2,7 +2,8 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRef } from 'react';
-import { CiMenuFries } from 'react-icons/ci';
+import { LuMenu } from 'react-icons/lu';
+import { IoMdClose } from 'react-icons/io';
 
 import useDisclosure from '@/hooks/useDisclosure';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
@@ -49,12 +50,12 @@ export default function MobileMenuContainer() {
   useOnClickOutside(ref, closeMenu);
 
   return (
-    <div className='relative block md:hidden' ref={ref}>
+    <div className='relative block lg:hidden' ref={ref}>
       <IconButton
         variant='ghost'
-        icon={CiMenuFries}
+        icon={isMenuOpen ? IoMdClose : LuMenu}
         onClick={toggleMenu}
-        className='text-3xl text-black block sm:hidden'
+        className='text-3xl text-settley-primary block lg:hidden'
       />
 
       <AnimatePresence>
@@ -66,13 +67,13 @@ export default function MobileMenuContainer() {
             animate='animate'
             key='profile-dropdown'
             onClick={closeMenu}
-            className='bg-medium-grey/50 absolute -right-[45%] -top-[40px] z-10 h-screen w-[98vw]'
+            className='absolute right-[-12px] top-[120%] z-50 w-[calc(100vw-24px)]'
           >
             <div
               onClick={(e) => {
                 e.stopPropagation();
               }}
-              className='flex w-full flex-col items-start rounded-[12px] px-[21px] py-[18px] shadow'
+              className='flex w-full flex-col items-start rounded-[12px] bg-settley-bg border border-[#E5E5E5] shadow-lg overflow-hidden'
             >
               <MobileMenu close={closeMenu} />
             </div>

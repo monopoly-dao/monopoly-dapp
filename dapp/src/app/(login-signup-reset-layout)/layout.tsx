@@ -28,10 +28,10 @@ export default function LoginSignupResetLayout({
               />
 
               <div className='flex flex-col gap-4 text-center'>
-                <p className='font-merriweather text-4xl font-light xl:text-5xl'>
+                <p className='font-playfair text-4xl font-medium xl:text-5xl text-navy'>
                   Get Started With Settley
                 </p>
-                <p className='font-roboto text-lg text-[#44403C]'>
+                <p className='font-inter text-lg text-settley-text/80'>
                   Create your account and start purchasing properties in minutes
                 </p>
               </div>

@@ -56,52 +56,46 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <>
-      <footer className='mt-24 px-[5%]' id='footer'>
-        <div className='grid grid-cols-2 lg:grid-cols-6 gap-10 justify-between mb-11 sm:mb-20'>
-          <div className='col-span-2 lg:col-span-3'>
-            <SubscriptionForm />
+    <footer className='bg-[#0B1221] pt-16 md:pt-24 pb-12 px-[5%] lg:px-[7%] text-white overflow-hidden' id='footer'>
+      <div className='max-w-7xl mx-auto'>
+        {/* Top Grid: Logo | Links | Social | Legal */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 lg:mb-24'>
+          {/* Brand / Logo */}
+          <div className='col-span-1 md:col-span-2 lg:col-span-3'>
+            <h2 className='font-playfair font-bold text-3xl text-white mb-6'>
+              S.
+            </h2>
           </div>
-          <div className='lg:col-span-1 justify-self-start lg:justify-self-center'>
+
+          {/* Links */}
+          <div className='col-span-1 lg:col-span-3 justify-self-start lg:justify-self-center w-full max-w-xs'>
             <FooterColumnLinks title='LINKS' links={aboutLinks} />
           </div>
-          {/* <div className='justify-self-center sm:justify-self-start lg:justify-self-center'>
-          <FooterColumnLinks title='Explore' links={exploreLinks} />
-        </div> */}
-          <div className='lg:col-span-1 justify-self-start lg:justify-self-center'>
+
+          {/* Social */}
+          <div className='col-span-1 lg:col-span-3 justify-self-start lg:justify-self-center w-full max-w-xs'>
             <FooterColumnLinks title='SOCIAL' links={followLinks} />
           </div>
-          <div className='lg:col-span-1 justify-self-start lg:justify-self-center'>
+
+          {/* Legal */}
+          <div className='col-span-1 lg:col-span-3 justify-self-start lg:justify-self-center w-full max-w-xs'>
             <FooterColumnLinks title='LEGAL' links={legalLinks} />
           </div>
         </div>
-        <div className='border-t pb-10 sm:pb-20 bg-white text-black border-black pt-8 flex justify-center'>
-          <p className='text-center font-general-sans text-sm text-[#1F1B20]'>
-            © 2025 Settley. All rights reserved.
-          </p>
-          {/* <div className='flex items-center text-sm gap-6'>
-          <Link href='/' className='underline'>
-            Privacy Policy
-          </Link>
-          <Link href='/' className='underline'>
-            Terms of Service
-          </Link>
-          <Link href='/' className='underline'>
-            Cookie Settings
-          </Link>
-        </div> */}
-        </div>
-      </footer>
 
-      <div className='mt-14'>
-        <Image
-          src='/svg/Settley-footer-logo.svg'
-          alt='footer'
-          width={500}
-          height={500}
-          className='w-full h-auto'
-        />
+        {/* Bottom Bar: Copyright & Newsletter */}
+        <div className='border-t border-white/10 pt-8 flex flex-col-reverse lg:flex-row items-center justify-between gap-8'>
+          <p className='text-white/60 text-sm font-inter'>
+            © {new Date().getFullYear()} Settley. All rights reserved.
+          </p>
+
+          <div className='w-full lg:w-auto min-w-[300px]'>
+            <SubscriptionForm />
+          </div>
+        </div>
+
+        {/* Bottom Badge (Optional, mimics "Made with Manus" placement if needed, or just padding) */}
       </div>
-    </>
+    </footer>
   );
 }

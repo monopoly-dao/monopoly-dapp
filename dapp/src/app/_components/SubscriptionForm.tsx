@@ -2,14 +2,11 @@
 
 import axios from 'axios';
 import { useFormik } from 'formik';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
-import { Input } from '@/components/input';
 
 import { BASE_URL } from '@/api';
 
@@ -74,44 +71,25 @@ export default function SubscriptionForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
-      <Image
-        src='/svg/Settley short logo.svg'
-        alt='settley'
-        width={48}
-        height={48}
-      />
-      <p>Join our newsletter to stay up to date on new property listings</p>
-
-      <div className='flex items-start gap-4 h-[46px] max-w-[500px] relative'>
-        <Input
+    <form onSubmit={handleSubmit} className='w-full'>
+      <div className='relative flex items-center'>
+        <input
           id='email'
-          // label='Email address'
-          placeholder='Enter your email'
-          containerClassName='h-full'
-          className='h-full'
+          placeholder='Join our newsletter'
+          className='w-full h-[48px] pl-6 pr-32 rounded-full bg-transparent border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 transition-colors text-sm font-inter'
           {...getFormikInputProps('email')}
-          error={undefined}
+          autoComplete='off'
         />
 
         <Button
-          className='py-[10px] px-4 rounded-[6px] h-[42px] absolute right-1 top-[6px]'
-          // variant='dark'
+          className='absolute right-1 top-1 bottom-1 px-6 rounded-full bg-[#E8E2D2] text-[#0B1221] hover:bg-white transition-colors text-sm font-medium h-auto'
           type='submit'
           isLoading={isLoading}
-          // disabled={!isValid || !dirty}
         >
           Subscribe
         </Button>
       </div>
-
-      <p className='-mt-2'>
-        By subscribing, you agree to our{' '}
-        <Link href='/' className='underline'>
-          Privacy Policy
-        </Link>{' '}
-        and provide consent to receive updates from Settley.
-      </p>
+      {errors.email && <p className='text-red-400 text-xs mt-2 ml-4'>{errors.email}</p>}
     </form>
   );
 }

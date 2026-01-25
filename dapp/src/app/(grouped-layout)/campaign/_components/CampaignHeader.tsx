@@ -31,36 +31,26 @@ export default function CampaignHeader() {
           }}
           className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'
         >
-          <div className='border border-navy rounded-[16px] py-2 px-3 font-roboto text-xs font-medium'>
+          <div className='border border-settley-primary/20 rounded-full py-2 px-4 font-inter text-xs font-medium text-settley-primary/60'>
             Exclusive Pre-Launch Community
           </div>
-          <h1 className='!font-merriweather text-4xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
-            {/* <div>Own Real Assets,</div>
-          <div>Share with Your Circle</div> */}
-            {/* <div>Own a Property</div>
-            <div>In Minutes</div> */}
-            {/* <div>Join the Future of</div>
-            <div>Real Estate Investment</div> */}
+          <h1 className='text-4xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
             <div>Join the First 1,000</div>
             <div>property Owners</div>
           </h1>
-          <p className='text-[#1F1B20] font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
-            {/* Real Ownership. Real Assets. Real Simple. */}
-            {/* Join us in reshaping property ownership—building the Amazon of real
-            estate, making premium European properties accessible through
-            collective investment. */}
+          <p className='text-settley-text font-inter w-[90%] sm:w-4/5 lg:w-3/5'>
             Own Property in Spain from $50 <br /> Real estate. Real returns.
             Real community.
           </p>
-          <div className='text-center gap-[10px] flex flex-col items-center justify-center font-roboto text-sm'>
+          <div className='text-center gap-[10px] flex flex-col items-center justify-center font-inter text-sm'>
             <Link
-              className='bg-navy text-white rounded-[60px] font-medium flex items-center gap-1 w-fit py-4 px-7'
+              className='bg-settley-primary text-white rounded-full font-medium flex items-center gap-2 w-fit py-4 px-8 hover:bg-settley-primary/90 transition-all'
               href='/campaign/payment'
             >
-              Join Now - $50+ <FaArrowRight className='text-2xl' />
+              Join Now - $50+ <FaArrowRight className='text-xl' />
             </Link>
-            <p className='font-roboto text-xs italic'>
-              {/* Limited to first 1000 members */}Closes December 31, 2025
+            <p className='font-inter text-xs italic text-settley-text/60'>
+              Closes December 31, 2025
             </p>
           </div>
         </motion.div>

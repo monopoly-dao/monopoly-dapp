@@ -7,7 +7,7 @@ import Navbar from '../../components/Navbar';
 
 export default function GroupedLayout({ children }: PropsWithChildren) {
   return (
-    <div className='w-full max-w-[1540px] mx-auto'>
+    <div className='w-full max-w-[1540px] mx-auto bg-settley-bg min-h-screen text-navy'>
       <Navbar />
 
       <main>{children}</main>

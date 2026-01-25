@@ -6,7 +6,6 @@ import GetStartedLink from './_components/GetStartedLink';
 import OwnProperty from './_components/OwnProperty';
 import OwnShare from './_components/OwnShare';
 
-import JMHouse from '~/images/JM_Mishref_House.png';
 import landingBanner from '~/images/landing-banner-2.png';
 
 export const metadata: Metadata = {
@@ -24,22 +23,19 @@ export default function Page() {
   return (
     <div>
       <div className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'>
-        <h1 className='font-merriweather font-semibold text-3xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
-          {/* <div>Own Real Assets,</div>
-          <div>Share with Your Circle</div> */}
+        <h1 className='font-playfair font-medium text-[48px] lg:text-[72px] leading-tight tracking-[-1.2px] lg:tracking-[-1.8px] text-settley-primary w-full text-center mb-6'>
           <div>Own a Property</div>
           <div>In Minutes</div>
         </h1>
-        <p className='text-dark-grey font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
+        <p className='text-settley-text font-inter text-[18px] lg:text-[20px] leading-[29.25px] lg:leading-[32.5px] max-w-[672px] w-full text-center mb-4'>
           Unlock genuine ownership of premium properties.
-          {/* via our blockchain protocol.  */}
           Experience shared ownership while keeping it simple, secure, and
           genuinely yours.
         </p>
-        <p className='text-dark-grey font-light text-xs font-merriweather w-[90%] sm:w-4/5 lg:w-3/5'>
+        <p className='text-settley-primary/80 font-inter font-medium text-[14px] tracking-[1.4px] uppercase text-center mb-8'>
           Real Ownership. Real Assets. Real Simple.
         </p>
-        <div className='w-full text-center gap-4 flex items-center justify-center font-inter text-sm'>
+        <div className='w-full text-center flex items-center justify-center'>
           <GetStartedLink />
 
           {/* <Link
@@ -51,17 +47,17 @@ export default function Page() {
         </div>
       </div>
 
-      <div className='relative px-[1.5%]'>
-        <Image
-          src={landingBanner}
-          alt='banner'
-          width={1000}
-          height={640}
-          quality={100}
-          placeholder='blur'
-          // priority
-          className='w-full aspect-[1403/640] object-cover rounded-[20px]'
-        />
+      <div className='mt-16 w-full max-w-6xl mx-auto px-4'>
+        <div className='relative w-full aspect-video rounded-3xl shadow-2xl overflow-hidden'>
+          <Image
+            src={landingBanner}
+            alt='Luxury Property'
+            fill
+            placeholder='blur'
+            className='object-cover'
+            priority
+          />
+        </div>
         {/* <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
           <Link href='/listings' className='flex items-center gap-5'>
             Villa in Lake Como, Italy{' '}
@@ -96,30 +92,7 @@ export default function Page() {
 
       {/* <ReimagineAssetOwnership /> */}
 
-      <div className='w-full h-[500px] relative lg:h-[700px]'>
-        <Image
-          src={JMHouse}
-          alt='jm house'
-          width={1000}
-          height={1000}
-          className='w-full h-[500px] lg:h-[700px] object-cover top-0 left-0 absolute'
-        />
-        <div className='absolute z-[3] text-white w-4/5 lg:w-3/4 font-merriweather bottom-[5%] left-[5%]'>
-          <h2 className='text-3xl sm:text-5xl mb-14 lg:mb-20'>
-            Frequently Asked Questions
-          </h2>
-        </div>
-      </div>
-
-      {/* <Partners /> */}
-
-      {/* <div className='bg-cream'>
-        <Testimonials />
-      </div> */}
-
-      <div className='px-[5%] lg:px-[7%]'>
-        <FAQ />
-      </div>
+      <FAQ />
     </div>
   );
 }

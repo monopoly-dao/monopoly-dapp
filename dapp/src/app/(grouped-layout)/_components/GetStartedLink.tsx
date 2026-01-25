@@ -10,11 +10,11 @@ export default function GetStartedLink() {
   return (
     <>
       <Link
-        className='bg-navy text-white rounded-[60px] font-medium flex items-center gap-1 w-fit py-4 px-7'
+        className='bg-settley-primary hover:bg-settley-primary/90 transition-all text-[#FAFAFA] rounded-full font-medium text-lg flex items-center gap-2 w-fit py-2 px-12 group'
         href={isLoggedIn ? '/listings' : '/signup'}
       >
         {isLoggedIn ? 'Buy Now' : 'Get Started'}
-        <FaArrowRight className='text-2xl' />
+        <FaArrowRight className='text-base group-hover:translate-x-1 transition-transform' />
       </Link>
     </>
   );

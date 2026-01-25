@@ -1,60 +1,84 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa6';
-import { VscCheckAll } from 'react-icons/vsc';
+// import { VscCheckAll } from 'react-icons/vsc';
+import { FaCheck } from 'react-icons/fa6';
 
 export default function OwnShare() {
   return (
-    <div className='flex overflow-hidden flex-col bg-[#FFFDF1] my-10 lg:my-20 lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-14 py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'>
-      <div className='flex flex-col gap-5'>
-        <h2 className='text-3xl sm:text-5xl font-merriweather'>
-          Own a share of an actual property with real rights
-        </h2>
-        <div className='w-full font-roboto text-lg lg:w-4/5 flex flex-col gap-4 mt-6'>
-          <p className='mb-2 text-xl'>Your ownership means;</p>
-          <p className='flex items-center gap-3'>
-            <div className='w-6 h-6 bg-black text-white rounded-[100%] flex items-center justify-center'>
-              <VscCheckAll />
-            </div>
-            Real legal rights backed by traditional deeds
-            {/* and blockchain deeds */}
-          </p>
-          <p className='flex items-center gap-3'>
-            <div className='w-6 h-6 bg-black text-white rounded-[100%] flex items-center justify-center'>
-              <VscCheckAll />
-            </div>
-            Share in property value and rental income
-          </p>
-          <p className='flex items-center gap-3'>
-            <div className='w-6 h-6 bg-black text-white rounded-[100%] flex items-center justify-center'>
-              <VscCheckAll />
-            </div>
-            Vote on property decisions
-          </p>
-          <p className='flex items-center gap-3'>
-            <div className='w-6 h-6 bg-black text-white rounded-[100%] flex items-center justify-center'>
-              <VscCheckAll />
-            </div>
-            Sell your share when you want (secondary market coming soon)
-          </p>
+    <div className='bg-[#FFFDF1] py-20 lg:py-28'>
+      <div className='max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center'>
+
+        {/* Text Content */}
+        <div className='flex flex-col gap-8 order-2 lg:order-1'>
+          <h2 className='font-playfair text-4xl lg:text-5xl text-settley-primary leading-tight font-medium'>
+            Own a share of an actual property with real rights
+          </h2>
+
+          <div className='flex flex-col gap-6'>
+            <p className='font-inter text-lg font-medium text-settley-text'>
+              Your ownership means;
+            </p>
+
+            <ul className='flex flex-col gap-4'>
+              <li className='flex items-start gap-4'>
+                <div className='flex-shrink-0 w-6 h-6 rounded-full bg-navy flex items-center justify-center mt-0.5'>
+                  <FaCheck className='text-white text-xs' />
+                </div>
+                <span className='font-inter text-settley-text/80 leading-relaxed'>
+                  Real legal rights backed by traditional deeds
+                </span>
+              </li>
+              <li className='flex items-start gap-4'>
+                <div className='flex-shrink-0 w-6 h-6 rounded-full bg-navy flex items-center justify-center mt-0.5'>
+                  <FaCheck className='text-white text-xs' />
+                </div>
+                <span className='font-inter text-settley-text/80 leading-relaxed'>
+                  Share in property value and rental income
+                </span>
+              </li>
+              <li className='flex items-start gap-4'>
+                <div className='flex-shrink-0 w-6 h-6 rounded-full bg-navy flex items-center justify-center mt-0.5'>
+                  <FaCheck className='text-white text-xs' />
+                </div>
+                <span className='font-inter text-settley-text/80 leading-relaxed'>
+                  Vote on property decisions
+                </span>
+              </li>
+              <li className='flex items-start gap-4'>
+                <div className='flex-shrink-0 w-6 h-6 rounded-full bg-navy flex items-center justify-center mt-0.5'>
+                  <FaCheck className='text-white text-xs' />
+                </div>
+                <span className='font-inter text-settley-text/80 leading-relaxed'>
+                  Sell your share when you want (secondary market coming soon)
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div className='mt-2'>
+            <Link
+              className='bg-settley-primary hover:bg-settley-primary/90 transition-all text-white rounded-full font-medium flex items-center gap-2 w-fit py-4 px-8 group'
+              href='/faqs'
+            >
+              Learn More
+              <FaArrowRight className='text-sm group-hover:translate-x-1 transition-transform' />
+            </Link>
+          </div>
         </div>
 
-        <Link
-          className='bg-navy text-white rounded-[60px] font-medium flex items-center gap-1 w-fit py-3 text-sm px-7'
-          href='/faqs'
-        >
-          Learn More
-          <FaArrowRight className='text-xl' />
-        </Link>
-      </div>
+        {/* Image Content */}
+        <div className='relative w-full order-1 lg:order-2 flex justify-center lg:justify-end'>
+          <Image
+            src='/svg/house sketch.svg'
+            alt='Property ownership illustration'
+            width={591}
+            height={548}
+            className='w-full max-w-[500px] lg:max-w-none h-auto object-contain'
+          />
+        </div>
 
-      <Image
-        src='/svg/house sketch.svg'
-        alt='how it works'
-        width={591}
-        height={548}
-        className='w-full lg:w-1/2 xl:w-[591px] h-auto lg:scale-[1.3] xl:scale-150 object-cover'
-      />
+      </div>
     </div>
   );
 }

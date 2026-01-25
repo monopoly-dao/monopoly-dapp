@@ -30,9 +30,9 @@ const data = [
 
 export default function Revolutionary() {
   return (
-    <div className='flex flex-col px-[5%] gap-[50px] py-20 bg-[#FDF9FF]'>
+    <div className='flex flex-col px-[5%] gap-[50px] py-20 bg-settley-bg/30'>
       <div className='grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-3'>
-        <h2 className='font-merriweather text-3xl lg:text-4xl'>
+        <h2 className='text-3xl lg:text-4xl text-navy'>
           Be Part of Something Revolutionary
         </h2>
         <div className='hidden xl:block' />

@@ -40,8 +40,8 @@ export default function RecentTransactions({
   const transactions = userTransactionsResponse?.data;
 
   return (
-    <div className='rounded-[16px] bg-white py-5 px-4'>
-      <p className='font-semibold mb-3 font-general-sans'>
+    <div className='rounded-2xl bg-white py-6 px-6 border border-settley-primary/5 shadow-sm'>
+      <p className='font-bold mb-4 font-inter text-navy uppercase text-xs tracking-widest'>
         Recent Transactions
       </p>
 

@@ -32,19 +32,8 @@ export default function MobileMenu({ close }: Props) {
   }
 
   return (
-    <div className='h-full w-full bg-white p-[22px]'>
-      <div className='flex justify-end'>
-        <button
-          onClick={close}
-          className='rounded-[100%] bg-gray-100 p-2 text-3xl'
-        >
-          <IconButton
-            variant='ghost'
-            icon={IoMdClose}
-            className='text-3xl text-black block sm:hidden'
-          />
-        </button>
-      </div>
+    <div className='h-full w-full bg-settley-bg p-4'>
+      {/* Redundant close button removed as it is handled by the container toggle */}
 
       <div
         className='text-dark mt-10 flex w-full flex-col items-center gap-6'
@@ -58,7 +47,7 @@ export default function MobileMenu({ close }: Props) {
                   key={link.label}
                   onClick={() => router.push(link.route)}
                   variant='ghost'
-                  className='text-[#1E1E1E] bg-transparent !text-base border-none font-craftwork font-bold'
+                  className='text-settley-text bg-transparent !text-[14px] border-none font-inter font-medium text-left w-full justify-start px-0'
                 >
                   {link.label}
                 </Button>
@@ -68,7 +57,7 @@ export default function MobileMenu({ close }: Props) {
                 <Link
                   key={link.label}
                   href={link.route}
-                  className='text-[#1E1E1E] font-bold font-craftwork'
+                  className='text-settley-text text-[14px] font-inter font-medium'
                 >
                   {link.label}
                 </Link>
@@ -80,10 +69,10 @@ export default function MobileMenu({ close }: Props) {
           <>
             <LogoutDropdown isMobileScreen />
             <Link
-              className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
+              className='text-white bg-settley-primary rounded-full py-3 px-8 flex gap-2 font-medium items-center font-inter justify-center w-full'
               href='/dashboard'
             >
-              <VscAccount />
+              <VscAccount className='text-lg' />
               Dashboard
             </Link>
           </>
@@ -91,14 +80,14 @@ export default function MobileMenu({ close }: Props) {
         {!isLoggedIn && (
           <>
             <Link
-              className='text-navy text-sm w-[120px] rounded-[6px] py-3 px-5 flex gap-2 font-semibold items-center font-craftwork border border-medium-grey'
+              className='text-settley-primary hover:bg-settley-primary/5 transition-all text-[14px] w-full rounded-full py-2 px-5 flex gap-2 font-semibold justify-center items-center font-inter border-[0.8px] border-settley-primary'
               href='/login'
             >
               <LuLogIn className='text-base' />
               Login
             </Link>
             <Link
-              className='text-white text-sm w-[120px] bg-navy rounded-[6px] py-3 px-5 flex gap-2 font-semibold items-center font-craftwork'
+              className='text-[#FAFAFA] hover:bg-settley-primary/90 transition-all text-[14px] w-full bg-settley-primary rounded-full py-2 px-5 flex gap-2 font-semibold justify-center items-center font-inter'
               href='/signup'
             >
               <FiUserPlus className='text-base' />

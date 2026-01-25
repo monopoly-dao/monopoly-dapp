@@ -29,7 +29,7 @@ export default function Page() {
         <p className='text-2xl sm:text-3xl mb-6'>Still have questions?</p>
         <Link
           href='mailto:temisan@settley.co'
-          className='border border-navy bg-white rounded-[4px] px-6 py-3 text-navy'
+          className='inline-flex items-center justify-center px-8 py-3 rounded-full border border-settley-primary text-settley-primary hover:bg-settley-primary hover:text-white font-medium transition-all'
         >
           Contact us
         </Link>

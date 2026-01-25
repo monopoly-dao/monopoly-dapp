@@ -11,8 +11,13 @@ module.exports = {
         roboto: ['var(--font-roboto)'],
         merriweather: ['var(--font-merriweather)'],
         'general-sans': ['var(--font-general-sans)'],
+        playfair: ['var(--font-playfair)'],
       },
       colors: {
+        'settley-bg': '#fbf8f1', // Keep this as it matches the visual beige
+        'settley-text': 'oklch(0.55 0.02 265)', // Ref Link Color
+        'settley-text-hover': 'oklch(0.2 0.02 265)', // Ref Link Hover
+        'settley-primary': 'oklch(0.2 0.05 265)', // Ref Primary (Sign Up bg, Login border)
         navy: '#272343',
         'light-grey': '#F4F4F4',
         'medium-grey': '#CBCBCB',

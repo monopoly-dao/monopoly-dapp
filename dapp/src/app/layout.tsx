@@ -3,6 +3,7 @@ import {
   Darker_Grotesque,
   Inter,
   Merriweather,
+  Playfair_Display,
   Roboto,
 } from 'next/font/google';
 import localFont from 'next/font/local';
@@ -107,6 +108,12 @@ const merriweather = Merriweather({
   weight: ['300', '400', '700', '900'],
   display: 'swap',
   variable: '--font-merriweather',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
 });
 
 const ppNeueMontreal = localFont({
@@ -214,7 +221,7 @@ export default async function RootLayout({
       lang='en'
       className={`${darkerGrotesque.variable} ${inter.variable} 
                   ${ppNeueMontreal.variable} ${craftworkGrotesk.variable} 
-                  ${roboto.variable} ${merriweather.variable} ${generalSans.variable}`}
+                  ${roboto.variable} ${merriweather.variable} ${generalSans.variable} ${playfairDisplay.variable}`}
     >
       <head>
         <Script

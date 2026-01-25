@@ -43,7 +43,7 @@ export default function Page() {
   return (
     <div>
       <div className='mt-8 sm:mb-32 px-[5%] sm:px-[7%]'>
-        <Link href='/listings' className='text-sm font-n-montreal'>
+        <Link href='/listings' className='text-sm font-inter hover:text-settley-primary transition-colors'>
           Back to search results
         </Link>
         <div className='grid mt-8 grid-cols-3 grid-rows-3 gap-4 h-[500px] sm:h-[800px]'>
@@ -76,12 +76,11 @@ export default function Page() {
         <div className='mt-12 mb-16 flex flex-col-reverse sm:flex-row w-full justify-between gap-5'>
           <div className='w-full sm:w-3/5 flex flex-col gap-7'>
             <div>
-              <p className='text-3xl font-medium'>
-                <LoadingText
-                  isLoading={isLoading}
-                  value={property?.propertyDetails.name}
-                />
-              </p>
+              <LoadingText
+                isLoading={isLoading}
+                className='text-3xl font-playfair font-bold text-navy'
+                value={property?.propertyDetails.name}
+              />
               <div className='flex items-center gap-4 mt-2 text-navy'>
                 <div className='flex items-center gap-1'>
                   <p>
@@ -141,7 +140,7 @@ export default function Page() {
                 <Tooltip caption='Click on View Title Deed to generate and download the deed document for this property.' />
               </p>
               <Link
-                className='underline w-fit'
+                className='underline w-fit text-settley-text hover:text-navy transition-colors'
                 href={`/deed/${property?._id}`}
                 target='_blank'
               >
@@ -157,7 +156,7 @@ export default function Page() {
               <Link
                 href={`https://basescan.org/address/${property?.contractAddress}`}
                 target='_blank'
-                className='text-[blue] underline break-words'
+                className='text-settley-primary underline break-words hover:text-navy transition-colors'
               >
                 <LoadingText
                   isLoading={isLoading}
@@ -213,11 +212,11 @@ export default function Page() {
               </Button>
             </div> */}
             <Button
-              variant='ghost'
+              variant='primary'
               onClick={() => {
                 authenticatedFuncWrapper(openBuy, session.status);
               }}
-              className='max-w-[258px] py-4 w-full bg-navy text-white border-navy'
+              className='max-w-[258px] py-4 w-full'
             >
               Buy Property
             </Button>

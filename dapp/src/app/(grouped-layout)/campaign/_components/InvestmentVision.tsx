@@ -59,7 +59,7 @@ export default function InvestmentVision() {
 
   return (
     <div className='py-20'>
-      <div className='flex pb-8 flex-col items-center justify-center gap-[10px] bg-white mx-auto w-[90%] md:w-2/3 lg:w-1/2 xl:w-2/5 text-center'>
+      <div className='flex pb-8 flex-col items-center justify-center gap-[10px] mx-auto w-[90%] md:w-2/3 lg:w-1/2 xl:w-2/5 text-center'>
         <p className='font-merriweather text-3xl text-[#0D0D0D] lg:text-4xl'>
           Our Investment Vision
         </p>

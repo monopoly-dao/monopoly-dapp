@@ -31,8 +31,8 @@ export default function YourAssets({ userFirebaseId, limit = 5 }: Props) {
   const assets = userAssetsResponse?.data;
 
   return (
-    <div className='rounded-[16px] bg-white py-5 px-4'>
-      <p className='font-semibold mb-3 font-general-sans'>Your Assets</p>
+    <div className='rounded-2xl bg-white py-6 px-6 border border-settley-primary/5 shadow-sm'>
+      <p className='font-bold mb-4 font-inter text-navy uppercase text-xs tracking-widest'>Your Assets</p>
 
       {assets?.length === 0 && `You don't have any assets yet`}
       <TableContainer
