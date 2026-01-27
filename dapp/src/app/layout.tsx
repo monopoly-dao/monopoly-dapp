@@ -216,6 +216,37 @@ export default async function RootLayout({
     // },
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': siteConfig.url
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'Articles',
+        'item': `${siteConfig.url}/articles`
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': 'Listings',
+        'item': `${siteConfig.url}/listings`
+      },
+      {
+        '@type': 'ListItem',
+        'position': 4,
+        'name': 'Campaign',
+        'item': `${siteConfig.url}/campaign`
+      }
+    ]
+  };
+
   return (
     <html
       lang='en'
@@ -228,6 +259,11 @@ export default async function RootLayout({
           id='structured-data'
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+        <Script
+          id='breadcrumb-data'
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </head>
       <body>

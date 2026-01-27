@@ -44,12 +44,23 @@ export default function Page() {
   const campaignSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'Settley Campaign',
-    description: 'Join our early supporter program and be a founding member.',
+    name: 'Settley Founding Member Campaign',
+    description: 'Join our early supporter program and be a founding member of the future of property ownership.',
     url: `${siteConfig.url}/campaign`,
     keywords: metadata.keywords,
     image: [`${siteConfig.url}/images/campaign-og.png`],
-    // Additional properties can be added based on the content of the page
+    mainEntity: {
+      '@type': 'Product',
+      'name': 'Settley Founding Membership',
+      'description': 'Early access program to own shares in premium Spanish real estate.',
+      'image': [`${siteConfig.url}/images/campaign-og.png`],
+      'offers': {
+        '@type': 'Offer',
+        'price': '50',
+        'priceCurrency': 'USD',
+        'availability': 'https://schema.org/InStore'
+      }
+    }
   };
 
   return (

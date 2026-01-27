@@ -29,12 +29,13 @@ export default function LandingPropertyCard({
     };
 
     return (
-        <div
+        <article
             onClick={handleRouting}
             className={cn(
                 'group relative flex flex-col bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 transition-transform duration-300 w-[300px] md:w-[350px] shrink-0',
                 className
             )}
+            itemScope itemType='https://schema.org/RealEstateListing'
         >
             {/* Image Container */}
             <div className='relative w-full aspect-[4/3] overflow-hidden'>
@@ -48,6 +49,7 @@ export default function LandingPropertyCard({
                     alt={property.propertyDetails.name}
                     fill
                     className='object-cover transition-transform duration-500 group-hover:scale-110'
+                    itemProp='image'
                 />
             </div>
 
@@ -58,7 +60,7 @@ export default function LandingPropertyCard({
                     <p className='text-xs text-muted-foreground'>
                         Added on {new Date().toLocaleDateString()} by Rothmore Property
                     </p>
-                    <h3 className='font-merriweather font-bold text-xl text-navy line-clamp-1'>
+                    <h3 className='font-merriweather font-bold text-xl text-navy line-clamp-1' itemProp='name'>
                         {property.propertyDetails.name}
                     </h3>
                     <p className='text-muted-foreground text-sm line-clamp-1'>
@@ -106,6 +108,6 @@ export default function LandingPropertyCard({
                     </button>
                 </div>
             </div>
-        </div>
+        </article>
     );
 }

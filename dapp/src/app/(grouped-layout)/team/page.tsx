@@ -25,23 +25,45 @@ const team = [
   },
 ];
 
+import { siteConfig } from '@/constants/config';
+import Script from 'next/script';
+
 export const metadata: Metadata = {
-  title: 'The Team',
+  title: 'The Team | Settley',
+  description: 'Meet the visionaries behind Settley—shaping the future of fractional property ownership.',
   keywords: [
-    'Settley',
-    'Team',
-    'Members',
     'Settley Team',
-    'Settley Team',
-    'SettleyCo Team',
-    'Settley co',
+    'Temisan Gerrard',
+    'Gbenga Ajiboye',
+    'Naro Omo-Osagie',
+    'Efosa John',
   ],
 };
 
 export default function Page() {
+  const teamSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    'mainEntity': team.map((member) => ({
+      '@type': 'Person',
+      'name': member.name,
+      'jobTitle': member.title,
+      'url': member.linkedin,
+      'worksFor': {
+        '@type': 'Organization',
+        'name': 'Settley'
+      }
+    }))
+  };
+
   return (
     <div className='px-[5%] lg:px-[7%] mt-20 mb-24'>
-      <h1 className='text-[45px] w-full leading-[55px] text-center sm:leading-[75px] sm:text-[48px] mb-14 lg:mb-20'>
+      <Script
+        id='team-schema'
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(teamSchema) }}
+      />
+      <h1 className='text-[45px] w-full leading-[55px] text-center sm:leading-[75px] sm:text-[48px] mb-14 lg:mb-20 font-playfair font-bold text-navy'>
         The Team
       </h1>
 

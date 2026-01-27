@@ -1,120 +1,104 @@
-'use client';
+import { Metadata, ResolvingMetadata } from 'next';
+import Script from 'next/script';
+import axios from 'axios';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useParams } from 'next/navigation';
-
-import ArticleComments from '@/components/ArticleComments';
-import Loading from '@/components/Loading';
-
-import { useGetArticleQuery } from '@/api/articles';
+import { BASE_URL } from '@/api';
+import { ArticlesEndpoints } from '@/api/articles/articles-constants.server';
 import { ArticleResponse } from '@/api/articles/articles-types.server';
+import { siteConfig } from '@/constants/config';
 
-export default function Page() {
-  const params = useParams();
-  const articleId = params?.articleId as string | undefined;
+import ArticleDetailClient from './ArticleDetailClient';
 
-  const {
-    data: res,
-    isLoading,
-    isFetching,
-    isError,
-  } = useGetArticleQuery({ articleId: articleId || '' }, { skip: !articleId });
+type Props = {
+  params: { articleId: string };
+};
 
-  const article: ArticleResponse | undefined = res?.data;
+async function getArticle(id: string): Promise<ArticleResponse | null> {
+  try {
+    const res = await axios.get(`${BASE_URL}${ArticlesEndpoints.GetArticle.replace(':id', id)}`);
+    return res.data?.data || null;
+  } catch (error) {
+    return null;
+  }
+}
 
-  if (isLoading) return <Loading />;
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const article = await getArticle(params.articleId);
 
-  if (isError || !article) {
+  if (!article) {
+    return {
+      title: 'Article Not Found | Settley',
+    };
+  }
+
+  // Sanitize description from HTML content
+  const description = article.content
+    .replace(/<[^>]*>?/gm, '') // Remove HTML tags
+    .substring(0, 160);
+
+  return {
+    title: `${article.title} | Settley`,
+    description: description,
+    openGraph: {
+      title: article.title,
+      description: description,
+      url: `${siteConfig.url}/articles/${params.articleId}`,
+      images: article.coverImage ? [article.coverImage] : [],
+      type: 'article',
+      publishedTime: article.createdAt,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: description,
+      images: article.coverImage ? [article.coverImage] : [],
+    },
+  };
+}
+
+export default async function Page({ params }: Props) {
+  const article = await getArticle(params.articleId);
+
+  if (!article) {
     return (
-      <section className='h-full overflow-y-auto px-[5%] lg:px-10 xl:px-20'>
-        <div className='lg:col-span-2 flex flex-col gap-6 w-full bg-white p-6 rounded-xl shadow-sm border'>
-          <div className='mb-4'>
-            <p className='font-medium'>Article</p>
-            <p className='text-xs text-gray-500'>Unable to load article.</p>
-          </div>
-          <Link
-            href='/articles'
-            className='text-sm text-blue-600 hover:underline'
-          >
-            ← Back to articles
-          </Link>
-        </div>
-      </section>
+      <ArticleDetailClient />
     );
   }
 
-  const formattedDate = new Date(article.createdAt).toLocaleDateString(
-    'en-US',
-    {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': article.title,
+    'description': article.content.replace(/<[^>]*>?/gm, '').substring(0, 160),
+    'image': article.coverImage ? [article.coverImage] : [],
+    'datePublished': article.createdAt,
+    'dateModified': article.updatedAt,
+    'author': [{
+      '@type': 'Organization',
+      'name': 'Settley',
+      'url': siteConfig.url
+    }],
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Settley',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': `${siteConfig.url}/favicon/apple-touch-icon.png`
+      }
     }
-  );
+  };
 
   return (
-    <section className='h-full overflow-y-auto px-[5%] lg:px-10 xl:px-20'>
-      <div className='lg:col-span-2 flex flex-col gap-6 mt-6 w-full bg-white p-6 rounded-xl shadow-sm border'>
-        <div className='mb-2 flex items-start justify-between'>
-          <div>
-            <h1 className='text-3xl font-serif tracking-tight font-bold text-gray-900 mb-2'>
-              {article.title}
-            </h1>
-            <time className='text-xs text-gray-600'>{formattedDate}</time>
-          </div>
-          <Link
-            href='/articles'
-            className='text-sm text-blue-600 hover:underline'
-          >
-            ← Back
-          </Link>
-        </div>
-
-        {article.coverImage && (
-          <div className='w-full rounded-md overflow-hidden border border-gray-200 mb-4'>
-            <div className='relative w-full h-[320px] md:h-[420px] bg-gray-100'>
-              <Image
-                src={article.coverImage}
-                alt={article.title}
-                fill
-                className='object-cover'
-                sizes='(max-width: 768px) 100vw, 1200px'
-                priority={false}
-              />
-            </div>
-          </div>
-        )}
-
-        {article && (
-          <article className='prose max-w-none text-gray-800'>
-            <div
-              className='whitespace-pre-wrap'
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            ></div>
-          </article>
-        )}
-
-        {/* <article className='prose max-w-none text-gray-800'>
-          <div
-            className='whitespace-pre-wrap'
-            dangerouslySetInnerHTML={{ __html: article.content }}
-          >
-          </div>
-        </article> */}
-
-        {isFetching && (
-          <div className='text-sm text-gray-500'>Refreshing...</div>
-        )}
-
-        {/* Comments Section */}
-        {articleId && (
-          <ArticleComments
-            articleId={articleId as string}
-            comments={article.comments || []}
-          />
-        )}
-      </div>
-    </section>
+    <>
+      <Script
+        id='article-schema'
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <ArticleDetailClient initialData={article} />
+    </>
   );
 }

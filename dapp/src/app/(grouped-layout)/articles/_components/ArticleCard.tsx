@@ -28,7 +28,7 @@ export default function ArticleCard({
   });
 
   const cardContent = (
-    <div className='w-full h-[320px] rounded-lg border border-gray-300 bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300'>
+    <article className='w-full h-[320px] rounded-lg border border-gray-300 bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300' itemScope itemType='https://schema.org/Article'>
       {/* Background Image */}
       {coverImage && (
         <div className='relative w-full h-[60%] bg-gray-200'>
@@ -39,6 +39,7 @@ export default function ArticleCard({
             quality={100}
             loading='lazy'
             className='object-cover'
+            itemProp='image'
           />
         </div>
       )}
@@ -46,17 +47,19 @@ export default function ArticleCard({
       {/* Content Section */}
       <div className='flex flex-col gap-3 p-4 h-[40%]'>
         {/* Title */}
-        <h3 className='font-bold text-lg line-clamp-2 text-gray-900'>
+        <h3 className='font-bold text-lg line-clamp-2 text-gray-900' itemProp='headline'>
           {title}
         </h3>
 
         {/* Date Created */}
-        <time className='text-xs text-gray-600'>{formattedDate}</time>
+        <time className='text-xs text-gray-600' dateTime={new Date(dateCreated).toISOString()} itemProp='datePublished'>
+          {formattedDate}
+        </time>
 
         {/* Optional Children */}
         {children && <div className='text-sm text-gray-700'>{children}</div>}
       </div>
-    </div>
+    </article>
   );
 
   if (href) {

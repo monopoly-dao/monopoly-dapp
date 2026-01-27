@@ -5,14 +5,36 @@ import { faqs } from '@/constants/appConstants';
 
 import FAQItem from './_components/FAQItem';
 
+import { siteConfig } from '@/constants/config';
+import Script from 'next/script';
+
 export const metadata: Metadata = {
-  title: 'Frequently Asked Questions',
+  title: 'FAQs | Settley',
+  description: 'Frequently asked questions about shared property ownership, legal framework, and the Settley platform.',
 };
 
 export default function Page() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map((faq) => ({
+      '@type': 'Question',
+      'name': faq.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': faq.answer
+      }
+    }))
+  };
+
   return (
     <div className='px-[5%] lg:px-[7%] mt-20 mb-24'>
-      <h1 className='text-[45px] w-full leading-[55px] text-center sm:leading-[75px] sm:text-[48px] mb-14 lg:mb-20'>
+      <Script
+        id='faq-schema'
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <h1 className='text-[45px] w-full leading-[55px] text-center sm:leading-[75px] sm:text-[48px] mb-14 lg:mb-20 font-playfair font-bold text-navy'>
         FAQs
       </h1>
 
