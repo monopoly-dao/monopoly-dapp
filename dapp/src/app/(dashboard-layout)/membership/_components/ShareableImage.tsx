@@ -50,7 +50,7 @@ export const ShareableImage = ({
             files: [file],
             title: 'My Settley Membership',
             text: 'Join the Settley Campaign!',
-            url: 'https://beta.settley.co/campaign',
+            url: 'https://settley.co/campaign',
           });
         } catch (shareError) {
           //   console.error('Share failed:', shareError);
