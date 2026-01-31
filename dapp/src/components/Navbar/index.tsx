@@ -106,7 +106,7 @@ const Navbar = () => {
         alignItems='center'
         justifyContent='space-between'
         className={cn(
-          'text-settley-primary sticky top-0 z-50 pt-5 pb-5 px-[5%] transition-all duration-300',
+          'text-navy sticky top-0 z-50 pt-5 pb-5 px-[5%] transition-all duration-300',
           'bg-settley-bg/80 backdrop-blur-md border-b border-black/5',
           [styles.navbar]
         )}
@@ -151,7 +151,7 @@ const Navbar = () => {
         <div className='items-center gap-3 hidden lg:flex whitespace-nowrap'>
           {isLoggedIn && (
             <Link
-              className='text-white text-[14px] bg-settley-primary rounded-full py-2.5 px-8 flex gap-2 font-medium items-center font-inter hover:bg-settley-primary/90 transition-all'
+              className='text-white text-[14px] bg-navy rounded-full py-2.5 px-8 flex gap-2 font-medium items-center font-inter hover:bg-navy/90 transition-all'
               href='/dashboard'
             >
               <VscAccount className='text-base' />
@@ -161,14 +161,14 @@ const Navbar = () => {
           {!isLoggedIn && (
             <>
               <Link
-                className='text-settley-primary hover:bg-settley-primary/5 transition-all text-[14px] rounded-full py-2 px-6 flex gap-2 font-semibold items-center font-inter border-[0.8px] border-settley-primary h-9'
+                className='text-navy hover:bg-navy/5 transition-all text-[14px] rounded-full py-2 px-6 flex gap-2 font-semibold items-center font-inter border-[0.8px] border-settley-primary h-9'
                 href='/login'
               >
                 <LuLogIn className='text-base' />
                 Login
               </Link>
               <Link
-                className='text-[#FAFAFA] hover:bg-settley-primary/90 transition-all text-[14px] bg-settley-primary rounded-full py-2 px-6 flex gap-2 font-semibold items-center font-inter h-9 border-none'
+                className='text-[#FAFAFA] hover:bg-navy/90 transition-all text-[14px] bg-navy rounded-full py-2 px-6 flex gap-2 font-semibold items-center font-inter h-9 border-none'
                 href='/signup'
               >
                 <FiUserPlus className='text-base' />

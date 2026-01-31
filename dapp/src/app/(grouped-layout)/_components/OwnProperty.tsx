@@ -12,7 +12,6 @@ import LoadingSkeleton from '@/components/LoadingSkeleton';
 import { useGetPropertiesQuery } from '@/api/properties';
 import LandingPropertyCard from './LandingPropertyCard';
 
-
 export default function InvestmentVision() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isLeftVisible, setIsLeftVisible] = useState(true);
@@ -33,7 +32,8 @@ export default function InvestmentVision() {
     const updateVisibility = () => {
       setIsLeftVisible(container.scrollLeft <= 0);
       setIsRightVisible(
-        Math.ceil(container.scrollLeft + container.clientWidth) >= container.scrollWidth
+        Math.ceil(container.scrollLeft + container.clientWidth) >=
+          container.scrollWidth
       );
     };
 
@@ -48,21 +48,21 @@ export default function InvestmentVision() {
     const scrollAmount = 370; // Card width + gap
     containerRef.current.scrollBy({
       left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 
   return (
     <div className='py-20 lg:py-28'>
       <div className='max-w-7xl mx-auto px-4 lg:px-8'>
-
         {/* Header */}
         <div className='flex flex-col items-center text-center gap-4 mb-16 max-w-3xl mx-auto'>
-          <h2 className='font-playfair text-4xl lg:text-5xl text-settley-primary leading-tight font-medium text-navy'>
+          <h2 className='font-playfair text-4xl lg:text-5xl text-navy leading-tight font-medium text-navy'>
             With Settley, you can own a property in minutes
           </h2>
           <p className='font-inter text-lg text-settley-text/80'>
-            Settley simplifies real world property transactions using automated title management.
+            Settley simplifies real world property transactions using automated
+            title management.
           </p>
         </div>
 
@@ -74,10 +74,14 @@ export default function InvestmentVision() {
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {isLoading &&
-              Array(3).fill('').map((_, id) => (
-                <div key={id} className='w-[300px] md:w-[350px] shrink-0 h-[450px] bg-gray-100 rounded-2xl animate-pulse' />
-              ))
-            }
+              Array(3)
+                .fill('')
+                .map((_, id) => (
+                  <div
+                    key={id}
+                    className='w-[300px] md:w-[350px] shrink-0 h-[450px] bg-gray-100 rounded-2xl animate-pulse'
+                  />
+                ))}
 
             {properties?.map((property, idx) => (
               <div key={property._id} className='snap-start'>
@@ -96,20 +100,19 @@ export default function InvestmentVision() {
             <button
               onClick={() => scroll('left')}
               disabled={isLeftVisible}
-              className='w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-white hover:text-settley-primary hover:border-settley-primary transition-all disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:border-gray-300'
+              className='w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-white hover:text-navy hover:border-settley-primary transition-all disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:border-gray-300'
             >
               <FaArrowLeft className='text-lg' />
             </button>
             <button
               onClick={() => scroll('right')}
               disabled={isRightVisible}
-              className='w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-white hover:text-settley-primary hover:border-settley-primary transition-all disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:border-gray-300'
+              className='w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-white hover:text-navy hover:border-settley-primary transition-all disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:border-gray-300'
             >
               <FaArrowRight className='text-lg' />
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -69,16 +69,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'disabled:bg-gray-200',
             ],
             variant === 'primary' && [
-              'bg-settley-primary border-settley-primary text-white',
-              'hover:bg-settley-primary/90',
-              'active:bg-settley-primary',
-              'disabled:bg-settley-primary/20 disabled:border-settley-primary/10 disabled:text-white/90',
+              'bg-navy border-settley-primary text-white',
+              'hover:bg-navy/90',
+              'active:bg-navy',
+              'disabled:bg-navy/20 disabled:border-settley-primary/10 disabled:text-white/90',
             ],
             variant === 'primary-ghost' && [
-              'bg-settley-primary/10 text-settley-primary border-settley-primary/10',
-              'hover:bg-settley-primary/20',
-              'active:bg-settley-primary/10',
-              'disabled:bg-settley-primary/5',
+              'bg-navy/10 text-navy border-settley-primary/10',
+              'hover:bg-navy/20',
+              'active:bg-navy/10',
+              'disabled:bg-navy/5',
             ],
             variant === 'warning' && [
               'bg-warning-700 border-warning-700 text-white',
@@ -91,9 +91,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'disabled:bg-warning-100',
             ],
             variant === 'outline-primary' && [
-              'text-settley-primary border-settley-primary bg-transparent',
-              'hover:bg-settley-primary/5',
-              'active:bg-settley-primary/10',
+              'text-navy border-settley-primary bg-transparent',
+              'hover:bg-navy/5',
+              'active:bg-navy/10',
               'disabled:bg-white',
             ],
             variant === 'outline' && [

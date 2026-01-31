@@ -54,7 +54,7 @@ const SidebarLinkItem = ({
   icon: Icon,
   title,
 }: // available,
-  SidebarLinkItemProps) => {
+SidebarLinkItemProps) => {
   const isActive = useCheckLinkActive(href);
   const ref = useRef<HTMLSpanElement | null>(null);
   const isHovering = useHover(ref);
@@ -68,10 +68,13 @@ const SidebarLinkItem = ({
       <span className={cn('relative inline-block w-full cursor-pointer')}>
         <p
           onClick={handleNavigate}
-          className={cn('inline-block w-full rounded-full px-5 py-2.5 text-navy transition-all duration-200', [
-            isActive && 'bg-settley-primary text-white shadow-md',
-            !isActive && 'hover:bg-settley-primary/5'
-          ])}
+          className={cn(
+            'inline-block w-full rounded-full px-5 py-2.5 text-navy transition-all duration-200',
+            [
+              isActive && 'bg-navy text-white shadow-md',
+              !isActive && 'hover:bg-navy/5',
+            ]
+          )}
         >
           <span
             className={cn(

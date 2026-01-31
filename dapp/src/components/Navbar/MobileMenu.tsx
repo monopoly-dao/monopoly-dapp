@@ -69,7 +69,7 @@ export default function MobileMenu({ close }: Props) {
           <>
             <LogoutDropdown isMobileScreen />
             <Link
-              className='text-white bg-settley-primary rounded-full py-3 px-8 flex gap-2 font-medium items-center font-inter justify-center w-full'
+              className='text-white bg-navy rounded-full py-3 px-8 flex gap-2 font-medium items-center font-inter justify-center w-full'
               href='/dashboard'
             >
               <VscAccount className='text-lg' />
@@ -80,14 +80,14 @@ export default function MobileMenu({ close }: Props) {
         {!isLoggedIn && (
           <>
             <Link
-              className='text-settley-primary hover:bg-settley-primary/5 transition-all text-[14px] w-full rounded-full py-2 px-5 flex gap-2 font-semibold justify-center items-center font-inter border-[0.8px] border-settley-primary'
+              className='text-navy hover:bg-navy/5 transition-all text-[14px] w-full rounded-full py-2 px-5 flex gap-2 font-semibold justify-center items-center font-inter border-[0.8px] border-settley-primary'
               href='/login'
             >
               <LuLogIn className='text-base' />
               Login
             </Link>
             <Link
-              className='text-[#FAFAFA] hover:bg-settley-primary/90 transition-all text-[14px] w-full bg-settley-primary rounded-full py-2 px-5 flex gap-2 font-semibold justify-center items-center font-inter'
+              className='text-[#FAFAFA] hover:bg-navy/90 transition-all text-[14px] w-full bg-navy rounded-full py-2 px-5 flex gap-2 font-semibold justify-center items-center font-inter'
               href='/signup'
             >
               <FiUserPlus className='text-base' />

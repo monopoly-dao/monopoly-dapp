@@ -10,21 +10,22 @@ import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'FAQs | Settley',
-  description: 'Frequently asked questions about shared property ownership, legal framework, and the Settley platform.',
+  description:
+    'Frequently asked questions about shared property ownership, legal framework, and the Settley platform.',
 };
 
 export default function Page() {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    'mainEntity': faqs.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
-      'name': faq.question,
-      'acceptedAnswer': {
+      name: faq.question,
+      acceptedAnswer: {
         '@type': 'Answer',
-        'text': faq.answer
-      }
-    }))
+        text: faq.answer,
+      },
+    })),
   };
 
   return (
@@ -51,7 +52,7 @@ export default function Page() {
         <p className='text-2xl sm:text-3xl mb-6'>Still have questions?</p>
         <Link
           href='mailto:temisan@settley.co'
-          className='inline-flex items-center justify-center px-8 py-3 rounded-full border border-settley-primary text-settley-primary hover:bg-settley-primary hover:text-white font-medium transition-all'
+          className='inline-flex items-center justify-center px-8 py-3 rounded-full border border-settley-primary text-navy hover:bg-navy hover:text-white font-medium transition-all'
         >
           Contact us
         </Link>

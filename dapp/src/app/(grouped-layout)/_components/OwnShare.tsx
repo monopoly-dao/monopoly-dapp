@@ -8,10 +8,9 @@ export default function OwnShare() {
   return (
     <div className='bg-[#FFFDF1] py-20 lg:py-28'>
       <div className='max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center'>
-
         {/* Text Content */}
         <div className='flex flex-col gap-8 order-2 lg:order-1'>
-          <h2 className='font-playfair text-4xl lg:text-5xl text-settley-primary leading-tight font-medium'>
+          <h2 className='font-playfair text-4xl lg:text-5xl text-navy leading-tight font-medium'>
             Own a share of an actual property with real rights
           </h2>
 
@@ -58,7 +57,7 @@ export default function OwnShare() {
 
           <div className='mt-2'>
             <Link
-              className='bg-settley-primary hover:bg-settley-primary/90 transition-all text-white rounded-full font-medium flex items-center gap-2 w-fit py-4 px-8 group'
+              className='bg-navy hover:bg-navy/90 transition-all text-white rounded-full font-medium flex items-center gap-2 w-fit py-4 px-8 group'
               href='/faqs'
             >
               Learn More
@@ -77,7 +76,6 @@ export default function OwnShare() {
             className='w-full max-w-[500px] lg:max-w-none h-auto object-contain'
           />
         </div>
-
       </div>
     </div>
   );

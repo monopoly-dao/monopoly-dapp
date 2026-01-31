@@ -55,7 +55,7 @@ export default function MobileMenuContainer() {
         variant='ghost'
         icon={isMenuOpen ? IoMdClose : LuMenu}
         onClick={toggleMenu}
-        className='text-3xl text-settley-primary block lg:hidden'
+        className='text-3xl text-navy block lg:hidden'
       />
 
       <AnimatePresence>

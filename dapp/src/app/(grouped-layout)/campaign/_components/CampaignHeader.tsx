@@ -31,7 +31,7 @@ export default function CampaignHeader() {
           }}
           className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'
         >
-          <div className='border border-settley-primary/20 rounded-full py-2 px-4 font-inter text-xs font-medium text-settley-primary/60'>
+          <div className='border border-settley-primary/20 rounded-full py-2 px-4 font-inter text-xs font-medium text-navy/60'>
             Exclusive Pre-Launch Community
           </div>
           <h1 className='text-4xl w-full leading-[35px] sm:leading-[45px] lg:leading-[60px] sm:text-[34px] lg:text-[54px]'>
@@ -44,7 +44,7 @@ export default function CampaignHeader() {
           </p>
           <div className='text-center gap-[10px] flex flex-col items-center justify-center font-inter text-sm'>
             <Link
-              className='bg-settley-primary text-white rounded-full font-medium flex items-center gap-2 w-fit py-4 px-8 hover:bg-settley-primary/90 transition-all'
+              className='bg-navy text-white rounded-full font-medium flex items-center gap-2 w-fit py-4 px-8 hover:bg-navy/90 transition-all'
               href='/campaign/payment'
             >
               Join Now - $50+ <FaArrowRight className='text-xl' />

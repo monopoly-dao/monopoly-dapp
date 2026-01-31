@@ -18,8 +18,8 @@ User-agent: Google-Extended
 Allow: /
 
 # Host
-Host: https://beta.settley.co
+Host: https://settley.co
 
 # Sitemaps
-Sitemap: https://beta.settley.co/sitemap.xml
-Sitemap: https://beta.settley.co/sitemap-0.xml
+Sitemap: https://settley.co/sitemap.xml
+Sitemap: https://settley.co/sitemap-0.xml

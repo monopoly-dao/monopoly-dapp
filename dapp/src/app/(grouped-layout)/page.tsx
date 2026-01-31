@@ -23,16 +23,15 @@ export default function Page() {
   return (
     <div>
       <div className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'>
-        <h1 className='font-playfair font-medium text-[48px] lg:text-[72px] leading-tight tracking-[-1.2px] lg:tracking-[-1.8px] text-settley-primary w-full text-center mb-6'>
+        <h1 className='font-playfair font-medium text-[48px] lg:text-[72px] leading-tight tracking-[-1.2px] lg:tracking-[-1.8px] text-navy w-full text-center mb-6'>
           <div>Own a Property</div>
           <div>In Minutes</div>
         </h1>
         <p className='text-settley-text font-inter text-[18px] lg:text-[20px] leading-[29.25px] lg:leading-[32.5px] max-w-[672px] w-full text-center mb-4'>
-          Unlock genuine ownership of premium properties.
-          Experience shared ownership while keeping it simple, secure, and
-          genuinely yours.
+          Unlock genuine ownership of premium properties. Experience shared
+          ownership while keeping it simple, secure, and genuinely yours.
         </p>
-        <p className='text-settley-primary/80 font-inter font-medium text-[14px] tracking-[1.4px] uppercase text-center mb-8'>
+        <p className='text-navy/80 font-inter font-medium text-[14px] tracking-[1.4px] uppercase text-center mb-8'>
           Real Ownership. Real Assets. Real Simple.
         </p>
         <div className='w-full text-center flex items-center justify-center'>
