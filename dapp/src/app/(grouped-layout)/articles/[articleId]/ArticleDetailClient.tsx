@@ -6,9 +6,11 @@ import { useParams } from 'next/navigation';
 
 import ArticleComments from '@/components/ArticleComments';
 import Loading from '@/components/Loading';
+import ShareButton from '@/components/ShareButton';
 
 import { useGetArticleQuery } from '@/api/articles';
 import { ArticleResponse } from '@/api/articles/articles-types.server';
+import { siteConfig } from '@/constants/config';
 
 export default function ArticleDetailClient({ initialData }: { initialData?: ArticleResponse }) {
     const params = useParams();
@@ -59,19 +61,27 @@ export default function ArticleDetailClient({ initialData }: { initialData?: Art
     return (
         <section className='h-full overflow-y-auto px-[5%] lg:px-10 xl:px-20'>
             <div className='lg:col-span-2 flex flex-col gap-6 mt-6 w-full bg-white p-6 rounded-xl shadow-sm border'>
-                <div className='mb-2 flex items-start justify-between'>
-                    <div>
+                <div className='flex flex-col-reverse md:flex-row md:items-start md:justify-between gap-4 mb-6'>
+                    <div className='flex-1'>
                         <h1 className='text-3xl font-serif tracking-tight font-bold text-gray-900 mb-2'>
                             {article.title}
                         </h1>
                         <time className='text-xs text-gray-600' dateTime={article.createdAt}>{formattedDate}</time>
                     </div>
-                    <Link
-                        href='/articles'
-                        className='text-sm text-blue-600 hover:underline'
-                    >
-                        ← Back
-                    </Link>
+
+                    <div className="flex items-center justify-between w-full md:w-auto md:justify-end gap-4 border-b md:border-none pb-4 md:pb-0 border-gray-100">
+                        <Link
+                            href='/articles'
+                            className='text-sm text-blue-600 hover:underline whitespace-nowrap md:order-2'
+                        >
+                            ← Back
+                        </Link>
+                        <ShareButton
+                            title={article.title}
+                            url={`${siteConfig.url}/articles/${article._id}/`}
+                            className="md:order-1"
+                        />
+                    </div>
                 </div>
 
                 {article.coverImage && (
