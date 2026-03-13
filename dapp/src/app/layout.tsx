@@ -219,32 +219,32 @@ export default async function RootLayout({
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    'itemListElement': [
+    itemListElement: [
       {
         '@type': 'ListItem',
-        'position': 1,
-        'name': 'Home',
-        'item': siteConfig.url
+        position: 1,
+        name: 'Home',
+        item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
-        'position': 2,
-        'name': 'Articles',
-        'item': `${siteConfig.url}/articles`
+        position: 2,
+        name: 'Articles',
+        item: `${siteConfig.url}/articles`,
       },
       {
         '@type': 'ListItem',
-        'position': 3,
-        'name': 'Listings',
-        'item': `${siteConfig.url}/listings`
+        position: 3,
+        name: 'Listings',
+        item: `${siteConfig.url}/listings`,
       },
       {
         '@type': 'ListItem',
-        'position': 4,
-        'name': 'Campaign',
-        'item': `${siteConfig.url}/campaign`
-      }
-    ]
+        position: 4,
+        name: 'Campaign',
+        item: `${siteConfig.url}/campaign`,
+      },
+    ],
   };
 
   return (
@@ -255,6 +255,18 @@ export default async function RootLayout({
                   ${roboto.variable} ${merriweather.variable} ${generalSans.variable} ${playfairDisplay.variable}`}
     >
       <head>
+        <Script
+          async
+          src='https://www.googletagmanager.com/gtag/js?id=G-6KTMP46N1M'
+        />
+        <Script id='gtag-init' strategy='afterInteractive'>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6KTMP46N1M');
+          `}
+        </Script>
         <Script
           id='structured-data'
           type='application/ld+json'
