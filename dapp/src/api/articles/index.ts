@@ -25,7 +25,7 @@ const articleApi = globalApi.injectEndpoints({
     addArticleComment: build.mutation<
       PaginatedSuccessResponse<ArticleResponse[]>,
       {
-        articleId: string;
+        slug: string;
         content: string;
         userFirebaseId: string;
         author: string;
@@ -33,8 +33,8 @@ const articleApi = globalApi.injectEndpoints({
     >({
       query: (params) => ({
         url: ArticlesEndpoints.AddArticleComment.replace(
-          ':id',
-          params.articleId
+          ':slug',
+          params.slug
         ),
         method: 'POST',
         data: {
@@ -48,12 +48,12 @@ const articleApi = globalApi.injectEndpoints({
 
     deleteArticleComment: build.mutation<
       PaginatedSuccessResponse<ArticleResponse[]>,
-      { articleId: string; commentId: string; userFirebaseId: string }
+      { slug: string; commentId: string; userFirebaseId: string }
     >({
       query: (params) => ({
         url: ArticlesEndpoints.DeleteArticleComment.replace(
-          ':id',
-          params.articleId
+          ':slug',
+          params.slug
         ).replace(':commentId', params.commentId),
         method: 'DELETE',
         params: { userFirebaseId: params.userFirebaseId },
@@ -63,13 +63,13 @@ const articleApi = globalApi.injectEndpoints({
 
     getArticle: build.query<
       INetworkSuccessResponse<ArticleResponse>,
-      { articleId: string }
+      { slug: string }
     >({
-      query: ({ articleId }) => ({
-        url: ArticlesEndpoints.GetArticle.replace(':id', articleId),
+      query: ({ slug }) => ({
+        url: ArticlesEndpoints.GetArticle.replace(':slug', slug),
         method: 'GET',
       }),
-      providesTags: (_r, _e, arg) => [{ type: 'Articles', id: arg.articleId }],
+      providesTags: (_r, _e, arg) => [{ type: 'Articles', id: arg.slug }],
     }),
   }),
 });

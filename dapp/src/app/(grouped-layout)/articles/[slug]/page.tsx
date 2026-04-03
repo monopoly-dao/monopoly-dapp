@@ -6,16 +6,17 @@ import { BASE_URL } from '@/api';
 import { ArticlesEndpoints } from '@/api/articles/articles-constants.server';
 import { ArticleResponse } from '@/api/articles/articles-types.server';
 import { siteConfig } from '@/constants/config';
+import { truncateText } from '@/lib/utils';
 
 import ArticleDetailClient from './ArticleDetailClient';
 
 type Props = {
-  params: { articleId: string };
+  params: { slug: string };
 };
 
-async function getArticle(id: string): Promise<ArticleResponse | null> {
+async function getArticle(slug: string): Promise<ArticleResponse | null> {
   try {
-    const res = await axios.get(`${BASE_URL}${ArticlesEndpoints.GetArticle.replace(':id', id)}`);
+    const res = await axios.get(`${BASE_URL}${ArticlesEndpoints.GetArticle.replace(':slug', slug)}`);
     return res.data?.data || null;
   } catch (error) {
     return null;
@@ -26,7 +27,7 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const article = await getArticle(params.articleId);
+  const article = await getArticle(params.slug);
 
   if (!article) {
     return {
@@ -34,10 +35,9 @@ export async function generateMetadata(
     };
   }
 
-  // Sanitize description from HTML content
-  const description = article.content
-    .replace(/<[^>]*>?/gm, '') // Remove HTML tags
-    .substring(0, 160);
+  // Use metaDescription if available, otherwise extract plain text from content
+  const description = article.metaDescription ||
+    truncateText(article.content || '', 160);
 
   return {
     title: `${article.title} | Settley`,
@@ -45,7 +45,7 @@ export async function generateMetadata(
     openGraph: {
       title: article.title,
       description: description,
-      url: `${siteConfig.url}/articles/${params.articleId}`,
+      url: `${siteConfig.url}/articles/${params.slug}`,
       images: article.coverImage ? [article.coverImage] : [],
       type: 'article',
       publishedTime: article.createdAt,
@@ -60,7 +60,7 @@ export async function generateMetadata(
 }
 
 export default async function Page({ params }: Props) {
-  const article = await getArticle(params.articleId);
+  const article = await getArticle(params.slug);
 
   if (!article) {
     return (
@@ -68,19 +68,19 @@ export default async function Page({ params }: Props) {
     );
   }
 
-  const articleSchema = {
+  // Use metaDescription if available, otherwise extract plain text from content
+  const descriptionForSchema = article.metaDescription ||
+    truncateText(article.content || '', 160);
+
+  // Build structured data with author as Person if available
+  const articleSchema: any = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     'headline': article.title,
-    'description': article.content.replace(/<[^>]*>?/gm, '').substring(0, 160),
+    'description': descriptionForSchema,
     'image': article.coverImage ? [article.coverImage] : [],
     'datePublished': article.createdAt,
     'dateModified': article.updatedAt,
-    'author': [{
-      '@type': 'Organization',
-      'name': 'Settley',
-      'url': siteConfig.url
-    }],
     'publisher': {
       '@type': 'Organization',
       'name': 'Settley',
@@ -90,6 +90,25 @@ export default async function Page({ params }: Props) {
       }
     }
   };
+
+  // Add author as Person if available, otherwise default to Organization
+  if (article.author) {
+    articleSchema.author = {
+      '@type': 'Person',
+      'name': article.author
+    };
+  } else {
+    articleSchema.author = [{
+      '@type': 'Organization',
+      'name': 'Settley',
+      'url': siteConfig.url
+    }];
+  }
+
+  // Add tags if available
+  if (article.tags && article.tags.length > 0) {
+    articleSchema.keywords = article.tags.join(', ');
+  }
 
   return (
     <>

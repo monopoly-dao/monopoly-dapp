@@ -2,14 +2,14 @@
 
 import { useSearchParams } from 'next/navigation';
 
+import { truncateText } from '@/lib/utils';
+
 import CardPaginationContainer from '@/components/CardPaginationContainer';
 import Skeleton from '@/components/Skeleton';
 
 import { useGetArticlesQuery } from '@/api/articles';
 
 import ArticleCard from './_components/ArticleCard';
-
-// Adjust API path as needed
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -66,16 +66,24 @@ export default function Page() {
 
           {!isLoading && articles.length > 0 && (
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-              {articles.map((article) => (
-                <ArticleCard
-                  key={article._id}
-                  id={article._id}
-                  title={article.title}
-                  dateCreated={article.createdAt}
-                  coverImage={article.coverImage}
-                  href={`/articles/${article._id}`}
-                />
-              ))}
+              {articles.map((article) => {
+                // Use excerpt if provided, otherwise truncate plain text from content
+                const displayExcerpt =
+                  article.excerpt || truncateText(article.content || '', 150);
+
+                return (
+                  <ArticleCard
+                    key={article._id}
+                    slug={article.slug}
+                    title={article.title}
+                    dateCreated={article.createdAt}
+                    coverImage={article.coverImage}
+                    excerpt={displayExcerpt}
+                    author={article.author || 'Settley Team'}
+                    tags={article.tags}
+                  />
+                );
+              })}
             </div>
           )}
         </CardPaginationContainer>

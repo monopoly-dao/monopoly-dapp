@@ -6,21 +6,21 @@ import Modal, { ModalProps } from '@/components/modal';
 import { handleErrors } from '@/utils/error';
 
 type Props = ModalProps & {
-  articleId?: string | null;
-  onConfirm: (id: string) => Promise<void> | void;
+  slug?: string | null;
+  onConfirm: (slug: string) => Promise<void> | void;
   isLoading?: boolean;
 };
 
 export default function DeleteArticleModal({
-  articleId,
+  slug,
   onConfirm,
   isLoading,
   ...props
 }: Props) {
   async function handleDelete() {
-    if (!articleId) return;
+    if (!slug) return;
     try {
-      await onConfirm(articleId);
+      await onConfirm(slug);
       // props.handleCloseModal();
     } catch (e) {
       handleErrors(e);

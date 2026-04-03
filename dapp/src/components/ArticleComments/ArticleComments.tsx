@@ -23,7 +23,7 @@ import { useGetUserDetailsQuery } from '@/api/profile';
 import { handleErrors } from '@/utils/error';
 
 interface ArticleCommentsProps {
-  articleId: string;
+  slug: string;
   comments: ArticleComment[];
 }
 
@@ -35,7 +35,7 @@ const commentValidationSchema = Yup.object({
 });
 
 export default function ArticleComments({
-  articleId,
+  slug,
   comments,
 }: ArticleCommentsProps) {
   const { data: session, status } = useSession();
@@ -56,7 +56,7 @@ export default function ArticleComments({
   const userDetails = profileData?.data;
 
   function redirectToLogin() {
-    router.push(`/login?redirectUrl=/articles/${articleId}`);
+    router.push(`/login?redirectUrl=/articles/${slug}`);
   }
 
   const formik = useFormik({
@@ -72,7 +72,7 @@ export default function ArticleComments({
 
       try {
         await addComment({
-          articleId,
+          slug,
           content: values.content,
           userFirebaseId,
           author: userDetails?.firstName
@@ -96,7 +96,7 @@ export default function ArticleComments({
     setDeletingCommentId(commentId);
     try {
       await deleteComment({
-        articleId,
+        slug,
         commentId,
         userFirebaseId,
       }).unwrap();

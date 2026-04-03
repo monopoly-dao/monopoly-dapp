@@ -14,15 +14,15 @@ import { siteConfig } from '@/constants/config';
 
 export default function ArticleDetailClient({ initialData }: { initialData?: ArticleResponse }) {
     const params = useParams();
-    const articleId = params?.articleId as string | undefined;
+    const slug = params?.slug as string | undefined;
 
     const {
         data: res,
         isLoading,
         isFetching,
         isError,
-    } = useGetArticleQuery({ articleId: articleId || '' }, {
-        skip: !articleId,
+    } = useGetArticleQuery({ slug: slug || '' }, {
+        skip: !slug,
         // initialData: initialData ? { data: initialData, message: '', success: true } : undefined
     });
 
@@ -61,26 +61,16 @@ export default function ArticleDetailClient({ initialData }: { initialData?: Art
     return (
         <section className='h-full overflow-y-auto px-[5%] lg:px-10 xl:px-20'>
             <div className='lg:col-span-2 flex flex-col gap-6 mt-6 w-full bg-white p-6 rounded-xl shadow-sm border'>
-                <div className='flex flex-col-reverse md:flex-row md:items-start md:justify-between gap-4 mb-6'>
-                    <div className='flex-1'>
-                        <h1 className='text-3xl font-serif tracking-tight font-bold text-gray-900 mb-2'>
-                            {article.title}
-                        </h1>
-                        <time className='text-xs text-gray-600' dateTime={article.createdAt}>{formattedDate}</time>
-                    </div>
-
-                    <div className="flex items-center justify-between w-full md:w-auto md:justify-end gap-4 border-b md:border-none pb-4 md:pb-0 border-gray-100">
-                        <Link
-                            href='/articles'
-                            className='text-sm text-blue-600 hover:underline whitespace-nowrap md:order-2'
-                        >
-                            ← Back
-                        </Link>
-                        <ShareButton
-                            title={article.title}
-                            url={`${siteConfig.url}/articles/${article._id}/`}
-                            className="md:order-1"
-                        />
+                <div className='flex flex-col gap-4 mb-6'>
+                    <h1 className='text-3xl font-serif tracking-tight font-bold text-gray-900'>
+                        {article.title}
+                    </h1>
+                    <div className='flex flex-wrap items-center gap-3 text-sm text-gray-600'>
+                        <time dateTime={article.createdAt}>{formattedDate}</time>
+                        <span className='text-gray-300'>•</span>
+                        <span className='author-name' itemScope itemType='https://schema.org/Person'>
+                            <span itemProp='name'>{article.author || 'Settley Team'}</span>
+                        </span>
                     </div>
                 </div>
 
@@ -99,6 +89,21 @@ export default function ArticleDetailClient({ initialData }: { initialData?: Art
                     </div>
                 )}
 
+                {/* Tags */}
+                {article.tags && article.tags.length > 0 && (
+                    <div className='flex flex-wrap gap-2 mb-6'>
+                        {article.tags.map((tag, index) => (
+                            <Link
+                                key={index}
+                                href={`/tags/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}`}
+                                className='text-sm bg-blue-50 text-blue-700 px-3 py-1 rounded-full hover:bg-blue-100 transition-colors'
+                            >
+                                {tag}
+                            </Link>
+                        ))}
+                    </div>
+                )}
+
                 {article && (
                     <article className='prose max-w-none text-gray-800' itemProp='articleBody'>
                         <div
@@ -113,9 +118,9 @@ export default function ArticleDetailClient({ initialData }: { initialData?: Art
                 )}
 
                 {/* Comments Section */}
-                {articleId && (
+                {slug && (
                     <ArticleComments
-                        articleId={articleId as string}
+                        slug={slug as string}
                         comments={article.comments || []}
                     />
                 )}
