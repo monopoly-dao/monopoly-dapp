@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { GoArrowRight } from 'react-icons/go';
 import { object, string } from 'yup';
 
 import styles from '../../../../styles/Signup.module.css';
@@ -89,29 +90,36 @@ export default function ResetPasswordForm({ setIsFormSubmitted }: Props) {
       onSubmit={handleSubmit}
       className={styles.right}
     >
-      <h1 className='font-merriweather font-bold text-3xl mb-4'>
-        Forgot your password?
-      </h1>
+      <header className='mb-6'>
+        <h2 className='font-headline-lg text-[32px] font-playfair text-headline-lg font-bold text-on-surface'>
+          Reset Your Password
+        </h2>
+        <p className='font-body-md font-inter text-body-md text-on-surface-variant'>
+          Enter your email address and we'll send you a link to reset your
+          password.
+        </p>
+      </header>
 
-      <p className='text-sm font-roboto text-[#1C1917]/80'>
+      {/* <p className='text-sm font-roboto text-[#1C1917]/80'>
         Please enter the email address associated with your Settley account, and
         we'll send you instructions to reset your password securely.
-      </p>
+      </p> */}
       <div className={styles.form}>
         <Input
           id='email'
           label='Email address'
           {...getFormikInputProps('email')}
-          labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
         />
 
         <Button
           type='submit'
-          className='py-3 px-10 mt-6 rounded-[8px] font-roboto'
-          isLoading={isLoading}
+          className='w-full bg-navy !text-on-primary py-4 px-[24px] rounded-lg font-label-md text-label-md shadow-sm hover:bg-navy/90 transition-all duration-300 flex items-center justify-center gap-[8px] mt-[48px]'
           disabled={!isValid || !dirty}
+          aria-label='Reset Password'
         >
-          Request password reset
+          Request Password Reset
+          <GoArrowRight />
         </Button>
         <Link
           href='/login'

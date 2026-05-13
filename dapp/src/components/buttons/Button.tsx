@@ -58,7 +58,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         className={cn(
           'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200',
-          'rounded-full border disabled:cursor-not-allowed',
+          'rounded-lg border disabled:cursor-not-allowed',
           [
             size === 'lg' && ['px-10 py-3', 'text-sm md:text-base'],
             size === 'base' && ['px-6 py-2', 'text-sm'],

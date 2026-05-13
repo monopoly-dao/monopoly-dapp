@@ -14,9 +14,10 @@ const InputLabel = ({ id, label, className }: InputLabelProps) => {
   return (
     <label
       htmlFor={id}
-      className={cn('text-xs font-medium md:text-sm lg:text-base', [
-        className && className,
-      ])}
+      className={cn(
+        'text-xs font-medium uppercase tracking-wider text-on-surface-variant font-inter',
+        [className && className]
+      )}
     >
       {label}
     </label>

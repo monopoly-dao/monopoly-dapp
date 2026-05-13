@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { GoArrowRight } from 'react-icons/go';
 
 import styles from '../../../../styles/Signup.module.css';
 
@@ -81,8 +81,9 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
       initial='initial'
       exit='exit'
       animate='animate'
+      className='md:mt-40'
     >
-      <div className='absolute flex items-center top-5 right-[5%] sm:right-10 gap-4'>
+      {/* <div className='absolute flex items-center top-5 right-[5%] sm:right-10 gap-4'>
         <p className='font-roboto hidden sm:block text-sm text-[#57534E]'>
           Already have an account?
         </p>
@@ -92,7 +93,17 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
         >
           Log in
         </Link>
-      </div>
+      </div> */}
+
+      <header className='mb-6'>
+        <h2 className='font-headline-lg text-[32px] font-playfair text-headline-lg font-bold text-on-surface'>
+          Create Your Account
+        </h2>
+        <p className='font-body-md font-inter text-body-md text-on-surface-variant'>
+          Start your journey with Settley today.
+        </p>
+      </header>
+
       <Box
         component='form'
         sx={{
@@ -104,21 +115,19 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
         }}
         className={styles.right}
       >
-        <h1 className='font-merriweather font-bold text-3xl mb-4'>Sign up</h1>
-
         <div className={styles.form}>
           <Input
             label='Email address'
             id={SignupIds.Email}
             {...getFormikInputProps(SignupIds.Email)}
-            labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <Input
             label='Password'
             id={SignupIds.Password}
             {...getFormikInputProps(SignupIds.Password)}
             type='password'
-            labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <Input
             label='Confirm Password'
@@ -126,7 +135,7 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
             {...getFormikInputProps(SignupIds.ConfirmPassword)}
             type='password'
             onPaste={(e) => e.preventDefault()}
-            labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <div className='flex flex-col gap-3'>
             <PasswordChecklist
@@ -151,11 +160,12 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
           </div>
           <Button
             type='submit'
-            className='py-3 px-10 mt-6 rounded-[8px] font-roboto'
-            isLoading={isLoading}
+            className='w-full bg-navy !text-on-primary py-4 px-[24px] rounded-lg font-label-md text-label-md shadow-sm hover:bg-navy/90 transition-all duration-300 flex items-center justify-center gap-[8px] mt-[48px]'
             disabled={!isValid || !dirty}
+            aria-label='Sign up'
           >
             Sign up
+            <GoArrowRight />
           </Button>
         </div>
         <p className='text-center font-roboto text-xs text-[#78716C] my-4'>

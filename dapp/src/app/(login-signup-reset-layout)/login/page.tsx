@@ -7,8 +7,11 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { GoArrowRight } from 'react-icons/go';
 
 import styles from '../../../styles/Signup.module.css';
+
+import { cn } from '@/lib/utils';
 
 import Button from '@/components/buttons/Button';
 import GoogleButton from '@/components/GoogleButton';
@@ -74,18 +77,15 @@ export default function Page() {
   };
 
   return (
-    <>
-      <div className='absolute flex items-center top-5 right-[5%] sm:right-10 gap-4'>
-        <p className='font-roboto hidden sm:block text-sm text-[#57534E]'>
-          Need to create an account?
+    <main className='w-full'>
+      <header className=''>
+        <h2 className='font-headline-lg text-[32px] font-playfair text-headline-lg font-bold text-on-surface'>
+          Welcome Back!
+        </h2>
+        <p className='font-body-md font-inter text-body-md text-on-surface-variant'>
+          Please enter your details to access your account.
         </p>
-        <Link
-          href='/signup'
-          className='rounded-[8px] text-black px-4 py-3 border border-black font-roboto text-sm'
-        >
-          Sign Up
-        </Link>
-      </div>
+      </header>
       <Box
         component='form'
         sx={{
@@ -97,16 +97,12 @@ export default function Page() {
         }}
         className={styles.right}
       >
-        <h1 className='font-merriweather font-bold text-3xl mb-4'>
-          Welcome Back!
-        </h1>
-
-        <div className={styles.form}>
+        <div className={cn(styles.form, 'mt-6 space-y-4')}>
           <Input
             id={LoginIds.Email}
             label='Email address'
             {...getFormikInputProps(LoginIds.Email)}
-            labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <div>
             <Input
@@ -114,7 +110,7 @@ export default function Page() {
               label='Password'
               {...getFormikInputProps(LoginIds.Password)}
               type='password'
-              labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+              // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
             />
             <Link
               href='/reset-password'
@@ -125,11 +121,12 @@ export default function Page() {
           </div>
           <Button
             type='submit'
-            className='py-3 px-10 mt-6 rounded-[8px] font-roboto'
-            isLoading={isLoading}
+            className='w-full bg-navy !text-on-primary py-4 px-[24px] rounded-lg font-label-md text-label-md shadow-sm hover:bg-navy/90 transition-all duration-300 flex items-center justify-center gap-[8px] mt-[48px]'
             disabled={!isValid || !dirty}
+            aria-label='Log in'
           >
             Log In
+            <GoArrowRight />
           </Button>
           {/* <h4 className={styles.h5}>
             Don&apos;t have an account?{' '}
@@ -142,6 +139,6 @@ export default function Page() {
       <div className='mt-3'>
         <GoogleButton />
       </div>
-    </>
+    </main>
   );
 }

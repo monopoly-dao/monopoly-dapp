@@ -10,13 +10,13 @@ export default function Page() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   return (
-    <>
+    <main className='w-full'>
       <AnimatePresence>
         {isFormSubmitted && <ResetSuccess />}
         {!isFormSubmitted && (
           <ResetPasswordForm setIsFormSubmitted={setIsFormSubmitted} />
         )}
       </AnimatePresence>
-    </>
+    </main>
   );
 }

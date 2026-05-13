@@ -11,7 +11,7 @@ export default function Page() {
   const [email, setEmail] = useState('');
 
   return (
-    <>
+    <main className='md:pt-10'>
       <AnimatePresence>
         {isFormSubmitted && <SignupSuccess email={email} />}
         {!isFormSubmitted && (
@@ -21,6 +21,6 @@ export default function Page() {
           />
         )}
       </AnimatePresence>
-    </>
+    </main>
   );
 }

@@ -46,7 +46,7 @@ export default function Input({
         {type === 'password' && (
           <div
             className={cn(
-              'focus-within:border-navy rounded-[6px] relative flex w-full flex-row items-center border border-gray-500 text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
+              'focus-within:border-navy rounded-[3px] relative flex w-full flex-row items-center border border-[#C6C6CD] text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
               // [
               //   variant === 'primary' && 'bg-secondary-bg border-secondary-bg',
               //   variant === 'secondary' && 'bg-tertiary-bg border-tertiary-bg',
@@ -65,8 +65,8 @@ export default function Input({
               id={id}
               {...rest}
               className={cn(
-                'w-full border-0 bg-transparent py-2.5 pl-2 pr-[20%] text-sm shadow-none outline-none ring-0 placeholder:text-xs placeholder:text-gray-600',
-                'focus:ring-0 md:py-3 md:pl-4 md:pr-[15%] md:text-sm md:placeholder:text-sm lg:pr-[8.33%] lg:text-base lg:placeholder:text-base',
+                'w-full border-0 bg-transparent py-3 pl-3 pr-[20%] text-sm shadow-none outline-none ring-0 placeholder:text-xs placeholder:text-gray-600',
+                'focus:ring-0 md:py-3 md:pl-3 md:pr-[15%] md:text-sm md:placeholder:text-sm lg:pr-[8.33%] lg:text-base lg:placeholder:text-base',
                 [className && className],
                 [inputClassName && inputClassName]
               )}
@@ -100,7 +100,7 @@ export default function Input({
           type === 'text') && (
           <div
             className={cn(
-              'focus-within:border-navy rounded-[6px] flex w-full flex-row items-center border border-gray-500 text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
+              'focus-within:border-navy rounded-[6px] flex w-full flex-row items-center border border-[#C6C6CD] text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
               // [
               //   variant === 'primary' && 'bg-secondary-bg border-secondary-bg',
               //   variant === 'secondary' && 'bg-tertiary-bg border-tertiary-bg',
@@ -118,7 +118,7 @@ export default function Input({
               id={id}
               {...rest}
               className={cn(
-                'text-primary-bg-contrast placeholder:text-primary-bg-contrast placeholder:text-xs9 w-full border-0 bg-transparent px-2 py-2.5 text-sm shadow-none outline-none ring-0 focus:ring-0 md:px-4 md:py-3 md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base',
+                'text-primary-bg-contrast placeholder:text-primary-bg-contrast placeholder:text-xs w-full border-0 bg-transparent px-3 py-3 text-sm shadow-none outline-none ring-0 focus:ring-0 md:px-3 md:py-3 md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base',
                 [className && className],
                 [inputClassName && inputClassName]
               )}
