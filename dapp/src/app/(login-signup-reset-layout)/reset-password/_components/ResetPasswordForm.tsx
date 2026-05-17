@@ -109,7 +109,8 @@ export default function ResetPasswordForm({ setIsFormSubmitted }: Props) {
           id='email'
           label='Email address'
           {...getFormikInputProps('email')}
-          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+          error='ignore'
+        // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
         />
 
         <Button

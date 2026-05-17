@@ -102,7 +102,8 @@ export default function Page() {
             id={LoginIds.Email}
             label='Email address'
             {...getFormikInputProps(LoginIds.Email)}
-            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            error='ignore'
+          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <div>
             <Input
@@ -110,7 +111,8 @@ export default function Page() {
               label='Password'
               {...getFormikInputProps(LoginIds.Password)}
               type='password'
-              // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+              error='ignore'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
             />
             <Link
               href='/reset-password'

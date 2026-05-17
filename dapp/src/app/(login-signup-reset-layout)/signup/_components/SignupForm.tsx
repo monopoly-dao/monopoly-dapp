@@ -120,6 +120,7 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
             label='Email address'
             id={SignupIds.Email}
             {...getFormikInputProps(SignupIds.Email)}
+            error='ignore'
           // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <Input
@@ -127,6 +128,7 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
             id={SignupIds.Password}
             {...getFormikInputProps(SignupIds.Password)}
             type='password'
+            error='ignore'
           // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <Input
@@ -134,6 +136,7 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
             id={SignupIds.ConfirmPassword}
             {...getFormikInputProps(SignupIds.ConfirmPassword)}
             type='password'
+            error='ignore'
             onPaste={(e) => e.preventDefault()}
           // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
