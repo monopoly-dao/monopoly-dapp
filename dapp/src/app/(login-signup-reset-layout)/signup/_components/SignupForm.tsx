@@ -120,14 +120,14 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
             label='Email address'
             id={SignupIds.Email}
             {...getFormikInputProps(SignupIds.Email)}
-            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <Input
             label='Password'
             id={SignupIds.Password}
             {...getFormikInputProps(SignupIds.Password)}
             type='password'
-            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <Input
             label='Confirm Password'
@@ -135,9 +135,9 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
             {...getFormikInputProps(SignupIds.ConfirmPassword)}
             type='password'
             onPaste={(e) => e.preventDefault()}
-            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
-          <div className='flex flex-col gap-3'>
+          <div className='grid grid-cols-2 gap-1'>
             <PasswordChecklist
               label='At least 8 characters'
               checked={testPassword('length', values.password, 8)}

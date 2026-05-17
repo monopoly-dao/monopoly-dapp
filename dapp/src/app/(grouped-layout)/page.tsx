@@ -1,10 +1,13 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
+import { FaHome, FaHeart, FaKey, FaBuilding, FaArrowRight } from 'react-icons/fa';
 
-import FAQ from './_components/FAQ';
+import ExpandableFAQ from './_components/ExpandableFAQ';
 import GetStartedLink from './_components/GetStartedLink';
 import OwnProperty from './_components/OwnProperty';
 import OwnShare from './_components/OwnShare';
+import { faqs } from '@/constants/appConstants';
 
 import landingBanner from '~/images/landing-banner-2.png';
 
@@ -36,13 +39,6 @@ export default function Page() {
         </p>
         <div className='w-full text-center flex items-center justify-center'>
           <GetStartedLink />
-
-          {/* <Link
-            className='text-navy outline outline-1 outline-navy bg-white rounded-[6px] font-normal w-full max-w-[140px] py-2 px-5'
-            href='#footer'
-          >
-            Stay Updated
-          </Link> */}
         </div>
       </div>
 
@@ -57,18 +53,86 @@ export default function Page() {
             priority
           />
         </div>
-        {/* <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
-          <Link href='/listings' className='flex items-center gap-5'>
-            Villa in Lake Como, Italy{' '}
-            <Image
-              src='/icons/white arrow.png'
-              alt='arrow'
-              width={33}
-              height={1}
-            />
-          </Link>
-        </div> */}
       </div>
+
+      {/* "Who are you?" Audience Router */}
+      <section className='mt-20 py-16 px-4 md:px-8 bg-cream/30 border-y border-[#C6C6CD]/15'>
+        <div className='max-w-6xl mx-auto text-center'>
+          <h2 className='font-playfair text-3xl sm:text-4xl text-navy font-bold mb-4'>
+            Who are you?
+          </h2>
+          <p className='text-[#8E8E93] font-light text-sm sm:text-base mb-12 max-w-lg mx-auto'>
+            Choose the pathway that matches your goals and discover how Settley makes it simple, fast, and completely secure.
+          </p>
+
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+            {/* Card 1: Homeowner */}
+            <div className='bg-white p-8 rounded-3xl border border-[#C6C6CD]/25 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-5 group'>
+              <div className='relative flex items-center justify-center w-16 h-16 rounded-2xl bg-[#272342]/5 text-[#272342] group-hover:bg-[#272342] group-hover:text-white transition-all duration-300'>
+                <FaHome className='text-2xl' />
+                <FaHeart className='absolute bottom-3 right-3 text-xs text-rose-500 bg-white rounded-full p-0.5 group-hover:bg-[#272342] transition-colors duration-300' />
+              </div>
+              <div className='flex flex-col gap-2'>
+                <h3 className='font-playfair font-bold text-xl text-navy'>
+                  I own a home
+                </h3>
+                <p className='text-[#8E8E93] text-sm font-light leading-relaxed min-h-[40px]'>
+                  Unlock cash from your home without selling it.
+                </p>
+              </div>
+              <Link
+                href='/homeowners'
+                className='inline-flex items-center gap-2 text-sm font-semibold text-navy group-hover:text-[#272342]/85 transition-colors mt-2 font-inter'
+              >
+                For Homeowners <FaArrowRight className='text-xs' />
+              </Link>
+            </div>
+
+            {/* Card 2: Seller */}
+            <div className='bg-white p-8 rounded-3xl border border-[#C6C6CD]/25 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-5 group'>
+              <div className='relative flex items-center justify-center w-16 h-16 rounded-2xl bg-[#272342]/5 text-[#272342] group-hover:bg-[#272342] group-hover:text-white transition-all duration-300'>
+                <FaHome className='text-2xl' />
+                <FaKey className='absolute bottom-3 right-3 text-xs text-[#272342] bg-white rounded-full p-0.5 group-hover:bg-[#272342] group-hover:text-white transition-all duration-300' />
+              </div>
+              <div className='flex flex-col gap-2'>
+                <h3 className='font-playfair font-bold text-xl text-navy'>
+                  I want to sell
+                </h3>
+                <p className='text-[#8E8E93] text-sm font-light leading-relaxed min-h-[40px]'>
+                  Sell your home to a global investor network, faster than traditional routes.
+                </p>
+              </div>
+              <Link
+                href='/sellers'
+                className='inline-flex items-center gap-2 text-sm font-semibold text-navy group-hover:text-[#272342]/85 transition-colors mt-2 font-inter'
+              >
+                For Sellers <FaArrowRight className='text-xs' />
+              </Link>
+            </div>
+
+            {/* Card 3: Developer */}
+            <div className='bg-white p-8 rounded-3xl border border-[#C6C6CD]/25 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-5 group'>
+              <div className='flex items-center justify-center w-16 h-16 rounded-2xl bg-[#272342]/5 text-[#272342] group-hover:bg-[#272342] group-hover:text-white transition-all duration-300'>
+                <FaBuilding className='text-2xl' />
+              </div>
+              <div className='flex flex-col gap-2'>
+                <h3 className='font-playfair font-bold text-xl text-navy'>
+                  I build property
+                </h3>
+                <p className='text-[#8E8E93] text-sm font-light leading-relaxed min-h-[40px]'>
+                  Move inventory faster and reach investors globally.
+                </p>
+              </div>
+              <Link
+                href='/developers'
+                className='inline-flex items-center gap-2 text-sm font-semibold text-navy group-hover:text-[#272342]/85 transition-colors mt-2 font-inter'
+              >
+                For Developers <FaArrowRight className='text-xs' />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <OwnShare />
 
@@ -91,7 +155,9 @@ export default function Page() {
 
       {/* <ReimagineAssetOwnership /> */}
 
-      <FAQ />
+      <section className='px-[5%] lg:px-[7%] pb-24 max-w-5xl mx-auto'>
+        <ExpandableFAQ items={faqs} title='Frequently Asked Questions' />
+      </section>
     </div>
   );
 }

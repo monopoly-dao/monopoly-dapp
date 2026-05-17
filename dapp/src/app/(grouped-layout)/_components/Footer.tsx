@@ -6,10 +6,14 @@ import SubscriptionForm from '@/app/_components/SubscriptionForm';
 
 import FooterColumnLinks from './FooterColumnLinks';
 
-const aboutLinks = [
-  { label: 'The Team', href: '/team' },
-  { label: 'How it works', href: '/faqs' },
-  { label: 'Game', href: 'https://game.settley.co' },
+const primaryLinks = [
+  { label: 'How it Works', href: '/#how-it-works' },
+  { label: 'For Homeowners', href: '/homeowners' },
+  { label: 'For Sellers', href: '/sellers' },
+  { label: 'For Developers', href: '/developers' },
+  { label: 'For Investors', href: '/investors' },
+  { label: 'FAQs', href: '/faqs' },
+  { label: 'Contact', href: 'mailto:temisan@settley.co' },
 ];
 
 // const exploreLinks = [
@@ -48,10 +52,11 @@ const followLinks = [
   },
 ];
 
-const legalLinks = [
-  { label: 'Privacy Policy', href: '/' },
-  { label: 'Terms of Service', href: '/' },
-  { label: 'Cookie Settings', href: '/' },
+const secondaryLinks = [
+  { label: 'For Agents', href: '/agents' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
+  { label: 'Cookie Settings', href: '/cookie-settings' },
 ];
 
 export default function Footer() {
@@ -69,7 +74,7 @@ export default function Footer() {
 
           {/* Links */}
           <div className='col-span-1 lg:col-span-3 justify-self-start lg:justify-self-center w-full max-w-xs'>
-            <FooterColumnLinks title='LINKS' links={aboutLinks} />
+            <FooterColumnLinks title='PRIMARY' links={primaryLinks} />
           </div>
 
           {/* Social */}
@@ -79,7 +84,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div className='col-span-1 lg:col-span-3 justify-self-start lg:justify-self-center w-full max-w-xs'>
-            <FooterColumnLinks title='LEGAL' links={legalLinks} />
+            <FooterColumnLinks title='SECONDARY' links={secondaryLinks} />
           </div>
         </div>
 

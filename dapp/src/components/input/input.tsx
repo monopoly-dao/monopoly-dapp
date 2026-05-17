@@ -20,8 +20,8 @@ export default function Input({
   error,
   type = 'text',
   value,
-  // variant = 'primary',
   required,
+  labelBg = 'bg-[#F8F9FF] md:bg-[#F8F9FF] max-md:bg-white',
   ...rest
 }: InputProps) {
   const [hidden, setHidden] = useState<boolean>(true);
@@ -37,27 +37,28 @@ export default function Input({
   return (
     <div className='w-full'>
       <div className='flex flex-col gap-1'>
-        <div className='flex items-center gap-1'>
-          {label && (
-            <InputLabel className={labelClassName} id={id} label={label} />
-          )}
-          {required && <span className='text-danger'>*</span>}
-        </div>
         {type === 'password' && (
           <div
             className={cn(
-              'focus-within:border-navy rounded-[3px] relative flex w-full flex-row items-center border border-[#C6C6CD] text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
-              // [
-              //   variant === 'primary' && 'bg-secondary-bg border-secondary-bg',
-              //   variant === 'secondary' && 'bg-tertiary-bg border-tertiary-bg',
-              //   variant === 'dark' && 'border-secondary-grey bg-primary-grey',
-              //   variant === 'light' &&
-              //     'border-secondary-grey bg-secondary-grey',
-              // ],
-              [touched && error && 'bg-[red]/10 border-[red]'],
+              'focus-within:border-black focus-within:ring-1 focus-within:ring-black rounded-full relative flex w-full h-[56px] flex-row items-center border border-[#C6C6CD] bg-white transition-all duration-300 ease-linear',
+              [touched && error && 'bg-[red]/5 border-[red] focus-within:border-[red] focus-within:ring-[red]'],
               [containerClassName && containerClassName]
             )}
           >
+            {label && (
+              <label
+                htmlFor={id}
+                className={cn(
+                  'absolute left-6 top-0 -translate-y-1/2 px-2 text-xs font-normal text-[#8E8E93] transition-all font-inter pointer-events-none select-none z-10',
+                  labelBg,
+                  [touched && error && 'text-[red]'],
+                  [labelClassName && labelClassName]
+                )}
+              >
+                {label}
+                {required && <span className='text-danger ml-0.5'>*</span>}
+              </label>
+            )}
             <input
               type={hidden ? 'password' : 'text'}
               value={value}
@@ -65,30 +66,18 @@ export default function Input({
               id={id}
               {...rest}
               className={cn(
-                'w-full border-0 bg-transparent py-3 pl-3 pr-[20%] text-sm shadow-none outline-none ring-0 placeholder:text-xs placeholder:text-gray-600',
-                'focus:ring-0 md:py-3 md:pl-3 md:pr-[15%] md:text-sm md:placeholder:text-sm lg:pr-[8.33%] lg:text-base lg:placeholder:text-base',
+                'w-full border-0 bg-transparent py-4 pl-6 pr-12 text-sm text-slate-900 outline-none ring-0 placeholder:text-sm placeholder:text-slate-400',
+                'focus:ring-0 md:text-sm lg:text-base',
                 [className && className],
                 [inputClassName && inputClassName]
               )}
               required={required}
             />
 
-            <span className='absolute right-0 -translate-x-1/2 cursor-pointer'>
-              {!hidden ? (
-                <span
-                  onClick={toggleVisibility}
-                  className='text-tertiary-grey select-none text-xl font-medium'
-                >
-                  <RxEyeClosed />
-                </span>
-              ) : (
-                <span
-                  onClick={toggleVisibility}
-                  className='text-tertiary-grey select-none text-xl font-medium'
-                >
-                  <RxEyeOpen />
-                </span>
-              )}
+            <span className='absolute right-5 cursor-pointer select-none flex items-center justify-center text-xl text-slate-400 hover:text-slate-950 transition-colors duration-200'>
+              <span onClick={toggleVisibility}>
+                {!hidden ? <RxEyeClosed /> : <RxEyeOpen />}
+              </span>
             </span>
           </div>
         )}
@@ -100,25 +89,32 @@ export default function Input({
           type === 'text') && (
           <div
             className={cn(
-              'focus-within:border-navy rounded-[6px] flex w-full flex-row items-center border border-[#C6C6CD] text-xs transition-all duration-300 ease-linear md:text-sm lg:text-base',
-              // [
-              //   variant === 'primary' && 'bg-secondary-bg border-secondary-bg',
-              //   variant === 'secondary' && 'bg-tertiary-bg border-tertiary-bg',
-              //   variant === 'dark' && 'border-secondary-grey bg-primary-grey ',
-              //   variant === 'light' &&
-              //     'border-secondary-grey bg-secondary-grey',
-              // ],
-              [touched && error && 'bg-[red]/10 border-[red]'],
+              'focus-within:border-black focus-within:ring-1 focus-within:ring-black rounded-full relative flex w-full h-[56px] flex-row items-center border border-[#C6C6CD] bg-white transition-all duration-300 ease-linear',
+              [touched && error && 'bg-[red]/5 border-[red] focus-within:border-[red] focus-within:ring-[red]'],
               [containerClassName && containerClassName]
             )}
           >
+            {label && (
+              <label
+                htmlFor={id}
+                className={cn(
+                  'absolute left-6 top-0 -translate-y-1/2 px-2 text-xs font-normal text-[#8E8E93] transition-all font-inter pointer-events-none select-none z-10',
+                  labelBg,
+                  [touched && error && 'text-[red]'],
+                  [labelClassName && labelClassName]
+                )}
+              >
+                {label}
+                {required && <span className='text-danger ml-0.5'>*</span>}
+              </label>
+            )}
             <input
               type={type}
               value={value}
               id={id}
               {...rest}
               className={cn(
-                'text-primary-bg-contrast placeholder:text-primary-bg-contrast placeholder:text-xs w-full border-0 bg-transparent px-3 py-3 text-sm shadow-none outline-none ring-0 focus:ring-0 md:px-3 md:py-3 md:text-sm md:placeholder:text-sm lg:text-base lg:placeholder:text-base',
+                'text-slate-900 placeholder:text-slate-400 placeholder:text-sm w-full border-0 bg-transparent py-4 px-6 text-sm shadow-none outline-none ring-0 focus:ring-0 md:text-sm lg:text-base lg:placeholder:text-base',
                 [className && className],
                 [inputClassName && inputClassName]
               )}
@@ -134,7 +130,7 @@ export default function Input({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ ease: 'easeOut', duration: 0.5 }}
-            className='pl-1 pt-1 text-xs font-semibold text-red-700'
+            className='pl-6 pt-1 text-xs font-semibold text-red-600'
           >
             {error}
           </motion.div>

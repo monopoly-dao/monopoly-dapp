@@ -22,16 +22,20 @@ import SettleyLogo from '../SettleyLogo';
 
 export const unauthentiatedNavLinks = [
   {
-    label: 'FAQs',
-    route: '/faqs',
+    label: 'For Homeowners',
+    route: '/homeowners',
   },
   {
-    label: 'Listings',
-    route: '/listings',
+    label: 'For Sellers',
+    route: '/sellers',
   },
   {
-    label: 'Docs',
-    route: 'https://settley.gitbook.io/settley/',
+    label: 'For Developers',
+    route: '/developers',
+  },
+  {
+    label: 'For Investors',
+    route: '/investors',
   },
   {
     label: 'How it Works',
@@ -39,27 +43,27 @@ export const unauthentiatedNavLinks = [
     isLinkToSection: true,
   },
   {
-    label: 'Campaign',
-    route: '/campaign',
-  },
-  {
-    label: 'Articles',
-    route: '/articles',
+    label: 'FAQs',
+    route: '/faqs',
   },
 ];
 
 export const authenticatedNavLinks = [
   {
-    label: 'FAQs',
-    route: '/faqs',
+    label: 'For Homeowners',
+    route: '/homeowners',
   },
   {
-    label: 'Listings',
-    route: '/listings',
+    label: 'For Sellers',
+    route: '/sellers',
   },
   {
-    label: 'Docs',
-    route: 'https://settley.gitbook.io/settley/',
+    label: 'For Developers',
+    route: '/developers',
+  },
+  {
+    label: 'For Investors',
+    route: '/investors',
   },
   {
     label: 'How it Works',
@@ -67,12 +71,8 @@ export const authenticatedNavLinks = [
     isLinkToSection: true,
   },
   {
-    label: 'Campaign',
-    route: '/campaign',
-  },
-  {
-    label: 'Articles',
-    route: '/articles',
+    label: 'FAQs',
+    route: '/faqs',
   },
 ];
 
@@ -115,7 +115,7 @@ const Navbar = () => {
 
         {/* <InputSearch containerClassName='w-1/4 hidden sm:flex' /> */}
 
-        <div className='items-center hidden lg:flex gap-6 lg:gap-8'>
+        <div className='items-center hidden lg:flex gap-[clamp(10px,1.6vw,32px)]'>
           {navLinks.map((link) => {
             if (link.isLinkToSection)
               return (
@@ -124,7 +124,7 @@ const Navbar = () => {
                   onClick={() => router.push(link.route)}
                   variant='ghost'
                   className={cn(
-                    'text-settley-text hover:text-settley-text-hover transition-colors bg-transparent p-0 border-none font-inter text-[14px] font-medium',
+                    'text-settley-text hover:text-settley-text-hover transition-colors bg-transparent p-0 border-none font-inter text-[clamp(12px,1.1vw,14px)] font-medium whitespace-nowrap',
                     [pathname === link.route && 'text-settley-text-hover']
                   )}
                 >
@@ -137,7 +137,7 @@ const Navbar = () => {
                   key={link.label}
                   href={link.route}
                   className={cn(
-                    'text-settley-text hover:text-settley-text-hover transition-colors text-[14px] font-inter font-medium',
+                    'text-settley-text hover:text-settley-text-hover transition-colors text-[clamp(12px,1.1vw,14px)] font-inter font-medium whitespace-nowrap',
                     [pathname === link.route && 'text-settley-text-hover']
                   )}
                 >
@@ -148,10 +148,10 @@ const Navbar = () => {
           {isLoggedIn && <LogoutDropdown />}
         </div>
 
-        <div className='items-center gap-3 hidden lg:flex whitespace-nowrap'>
+        <div className='items-center gap-[clamp(8px,1vw,12px)] hidden lg:flex whitespace-nowrap'>
           {isLoggedIn && (
             <Link
-              className='text-white text-[14px] bg-navy rounded-full py-2.5 px-8 flex gap-2 font-medium items-center font-inter hover:bg-navy/90 transition-all'
+              className='text-white text-[clamp(12px,1.1vw,14px)] bg-navy rounded-full py-2 xl:py-2.5 px-[clamp(12px,1.8vw,32px)] flex gap-2 font-medium items-center font-inter hover:bg-navy/90 transition-all'
               href='/dashboard'
             >
               <VscAccount className='text-base' />
@@ -161,14 +161,14 @@ const Navbar = () => {
           {!isLoggedIn && (
             <>
               <Link
-                className='text-navy hover:bg-navy/5 transition-all text-[14px] rounded-full py-2 px-6 flex gap-2 font-semibold items-center font-inter border-[0.8px] border-settley-primary h-9'
+                className='text-navy hover:bg-navy/5 transition-all text-[clamp(12px,1.1vw,14px)] rounded-full py-2 px-[clamp(10px,1.5vw,24px)] flex gap-1.5 xl:gap-2 font-semibold items-center font-inter border-[0.8px] border-settley-primary h-9'
                 href='/login'
               >
                 <LuLogIn className='text-base' />
                 Login
               </Link>
               <Link
-                className='text-[#FAFAFA] hover:bg-navy/90 transition-all text-[14px] bg-navy rounded-full py-2 px-6 flex gap-2 font-semibold items-center font-inter h-9 border-none'
+                className='text-[#FAFAFA] hover:bg-navy/90 transition-all text-[clamp(12px,1.1vw,14px)] bg-navy rounded-full py-2 px-[clamp(10px,1.5vw,24px)] flex gap-1.5 xl:gap-2 font-semibold items-center font-inter h-9 border-none'
                 href='/signup'
               >
                 <FiUserPlus className='text-base' />

@@ -50,7 +50,7 @@ export default function LoginSignupResetLayout({
               </span>
               <Link
                 href='/signup'
-                className='font-label-md text-label-md text-primary hover:underline'
+                className='font-label-md rounded-full text-label-md text-primary hover:underline'
               >
                 Sign Up
               </Link>
@@ -62,7 +62,7 @@ export default function LoginSignupResetLayout({
               </span>
               <Link
                 href='/signup'
-                className='font-label-md text-sm font-semibold px-6 py-2 border border-outline-variant hover:bg-surface-container-low transition-colors duration-300'
+                className='font-label-md rounded-full text-sm font-semibold px-6 py-2 border border-outline-variant hover:bg-surface-container-low transition-colors duration-300'
               >
                 Sign Up
               </Link>

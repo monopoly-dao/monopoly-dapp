@@ -26,5 +26,8 @@ module.exports = {
     await config.transform(config, '/faqs'),
     await config.transform(config, '/campaign'),
     await config.transform(config, '/articles'),
+    await config.transform(config, '/homeowners'),
+    await config.transform(config, '/sellers'),
+    await config.transform(config, '/developers'),
   ],
 };

@@ -11,7 +11,7 @@ const PasswordChecklist = ({ checked, label }: Props) => {
     <div className='flex items-center gap-2'>
       {checked && <FaCircleCheck className='text-navy text-xl' />}
       {!checked && <MdCancel className='text-xl text-[red]/50' />}
-      <p className='text-sm font-plus-jakarta-sans text-[#3B3C4A]'>{label}</p>
+      <p className='text-xs font-plus-jakarta-sans text-[#3B3C4A]'>{label}</p>
     </div>
   );
 };
