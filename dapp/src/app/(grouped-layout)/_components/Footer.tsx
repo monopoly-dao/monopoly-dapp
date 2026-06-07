@@ -11,8 +11,7 @@ const aboutLinks = [
   { label: 'Assets', href: '/listings' },
   {
     label: 'Protocol Paper',
-    href: '/papers/settley-conditional-liquidity-infrastructure.pdf',
-    openInNewTab: true,
+    href: '/protocol',
   },
 ];
 
