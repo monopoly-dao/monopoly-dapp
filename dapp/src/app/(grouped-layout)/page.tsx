@@ -27,13 +27,13 @@ const pathways = [
     copy: 'Turn eligible property into tokens and raise money without selling the whole asset.',
     next: 'See how an owner can list a property, set terms, and receive capital.',
     cta: 'Raise from my property',
-    href: '#vault-flow',
+    href: '/vaults#owners',
   },
   {
     title: 'I want to invest',
     copy: 'Browse properties and buy tokens tied to real ownership.',
     next: 'Go straight to available tokenized property opportunities.',
-    cta: 'Explore Opportunities',
+    cta: 'Browse Properties',
     href: '/listings',
   },
   {
@@ -41,14 +41,14 @@ const pathways = [
     copy: 'Bring property inventory to buyers and lenders with the right records in place.',
     next: 'See how documentation, ownership records, and market access fit together.',
     cta: 'List an Asset',
-    href: '#infrastructure',
+    href: '/vaults',
   },
   {
     title: 'I want to lend',
     copy: 'Fund property-backed loans with clear collateral, rates, and repayment dates.',
     next: 'See what a lender reviews before funding a loan.',
     cta: 'See lending path',
-    href: '#lending-path',
+    href: '/vaults#lenders',
   },
 ];
 
@@ -68,13 +68,13 @@ export default function Page() {
         </p>
         <div className='flex flex-col sm:flex-row gap-4'>
           <Link
-            href='#opportunities'
+            href='/listings'
             className='bg-navy text-white rounded-[6px] py-4 px-6 w-fit font-medium'
           >
-            Explore Opportunities
+            Browse Properties
           </Link>
           <Link
-            href='#vault-flow'
+            href='/vaults#owners'
             className='border border-navy text-navy rounded-[6px] py-4 px-6 w-fit font-medium'
           >
             Raise from my property
@@ -92,7 +92,7 @@ export default function Page() {
           className='w-full h-[250px] sm:h-[400px] lg:h-[595px] object-cover'
         />
         <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
-          <Link href='#vault-flow' className='flex items-center gap-5'>
+          <Link href='/vaults#how-vaults-work' className='flex items-center gap-5'>
             See how the vault works{' '}
             <Image
               src='/icons/white arrow.png'

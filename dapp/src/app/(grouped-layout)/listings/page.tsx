@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
@@ -53,9 +54,44 @@ export default function Page() {
       <ListingsHeader />
 
       <div className='mt-16 sm:mt-28 mb-16 sm:mb-32 px-[5%]'>
+        <section className='mb-12 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 border border-[#D6D3D1] rounded-[8px] p-6 sm:p-8 bg-white'>
+          <div>
+            <p className='text-sm uppercase tracking-[0.14em] text-[#57534E] mb-3'>
+              What you are looking at
+            </p>
+            <h2 className='font-medium text-2xl sm:text-3xl text-[#1C1917]'>
+              Each listing starts with a property. The opportunity depends on
+              the structure.
+            </h2>
+            <p className='mt-5 text-[#44403C]'>
+              Some listings are for buying property tokens. Some may support a
+              vault where lenders fund a loan backed by pledged property tokens.
+              The property page is where you review the asset, documents, tokens
+              available, and terms.
+            </p>
+          </div>
+          <div className='bg-cream rounded-[8px] p-5 flex flex-col justify-between gap-5'>
+            <div>
+              <h3 className='font-medium text-xl text-[#1C1917]'>
+                New to Settley vaults?
+              </h3>
+              <p className='mt-3 text-[#44403C]'>
+                Learn how owners raise, buyers buy tokens, and lenders review
+                collateral before funding.
+              </p>
+            </div>
+            <Link
+              href='/vaults'
+              className='text-navy font-medium underline underline-offset-4'
+            >
+              See how vaults work
+            </Link>
+          </div>
+        </section>
+
         <div className='flex flex-col lg:flex-row gap-3 justify-between items-start mb-16'>
           <h2 className='font-medium text-3xl sm:text-4xl'>
-            Tokenized Property Opportunities
+            Available Property Opportunities
           </h2>
           <PropertiesFilter />
         </div>

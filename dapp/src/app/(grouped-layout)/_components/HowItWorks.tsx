@@ -63,7 +63,7 @@ export default function HowItWorks() {
           onClick={() => router.push('/listings')}
           className='py-4 px-6 bg-navy text-white w-fit font-medium'
         >
-          View Opportunities
+          Browse Properties
           <Image
             src='/icons/white arrow.png'
             alt='arrow'

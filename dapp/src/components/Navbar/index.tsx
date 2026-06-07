@@ -2,7 +2,6 @@
 
 import { Stack } from '@mui/material';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { VscAccount } from 'react-icons/vsc';
@@ -12,27 +11,23 @@ import styles from './Navbar.module.scss';
 import { cn } from '@/lib/utils';
 
 import MobileMenuContainer from './MobileMenuContainer';
-import Button from '../buttons/Button';
 import SettleyLogo from '../SettleyLogo';
 
 export const unauthentiatedNavLinks = [
   {
     label: 'For Owners',
-    route: '/#pathways',
-    isLinkToSection: true,
+    route: '/vaults#owners',
   },
   {
     label: 'For Lenders',
-    route: '/#opportunities',
-    isLinkToSection: true,
+    route: '/vaults#lenders',
   },
   {
     label: 'How Vaults Work',
-    route: '/#vault-flow',
-    isLinkToSection: true,
+    route: '/vaults#how-vaults-work',
   },
   {
-    label: 'Opportunities',
+    label: 'Browse Properties',
     route: '/listings',
   },
   {
@@ -44,21 +39,18 @@ export const unauthentiatedNavLinks = [
 export const authenticatedNavLinks = [
   {
     label: 'For Owners',
-    route: '/#pathways',
-    isLinkToSection: true,
+    route: '/vaults#owners',
   },
   {
     label: 'For Lenders',
-    route: '/#opportunities',
-    isLinkToSection: true,
+    route: '/vaults#lenders',
   },
   {
     label: 'How Vaults Work',
-    route: '/#vault-flow',
-    isLinkToSection: true,
+    route: '/vaults#how-vaults-work',
   },
   {
-    label: 'Opportunities',
+    label: 'Browse Properties',
     route: '/listings',
   },
   {
@@ -71,8 +63,6 @@ const Navbar = () => {
   const session = useSession();
   const isLoggedIn = session.data;
   const navLinks = isLoggedIn ? authenticatedNavLinks : unauthentiatedNavLinks;
-
-  const router = useRouter();
 
   return (
     <Stack
@@ -98,29 +88,15 @@ const Navbar = () => {
           Sign in
         </Link> */}
         <div className='items-center hidden sm:flex gap-11'>
-          {navLinks.map((link) => {
-            if (link.isLinkToSection)
-              return (
-                <Button
-                  key={link.label}
-                  onClick={() => router.push(link.route)}
-                  variant='ghost'
-                  className='text-[#1E1E1E] bg-transparent border-none font-craftwork text-base font-light'
-                >
-                  {link.label}
-                </Button>
-              );
-            else
-              return (
-                <Link
-                  key={link.label}
-                  href={link.route}
-                  className='text-[#1E1E1E] font-light font-craftwork'
-                >
-                  {link.label}
-                </Link>
-              );
-          })}
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.route}
+              className='text-[#1E1E1E] font-light font-craftwork'
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
         {isLoggedIn && (
           <Link
