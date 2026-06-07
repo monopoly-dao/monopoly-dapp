@@ -174,15 +174,15 @@ export default function Page() {
             </div>
           </div>
           <div className='flex flex-col gap-2 w-full sm:w-2/5 lg:w-1/4'>
-            <p className='text-3xl '>$1</p>
+            <p className='text-3xl '>$1/token</p>
             <div className=' text-sm'>
-              {formatAmount(property?.propertyDetails.unitsLeft)} Units left.{' '}
+              {formatAmount(property?.propertyDetails.unitsLeft)} tokens left.{' '}
               <LoadingText
                 isLoading={isLoading}
                 className='w-10'
                 value={property?.propertyDetails.owners.length}
               />{' '}
-              owners
+              token holders
             </div>
             {/* <div className='flex items-center gap-4'>
               <Button
@@ -207,7 +207,7 @@ export default function Page() {
               }}
               className='max-w-[258px] py-4 w-full bg-navy text-white border-navy'
             >
-              Buy Property
+              Buy Property Tokens
             </Button>
           </div>
         </div>

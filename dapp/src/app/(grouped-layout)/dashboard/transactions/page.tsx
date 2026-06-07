@@ -14,7 +14,7 @@ const headers = [
   'Asset Symbol',
   'Date',
   'Price',
-  'Quantity',
+  'Tokens',
   'Status',
 ];
 

@@ -20,11 +20,14 @@ The broader vision is conditional liquidity infrastructure for tokenized real as
 ## Approved Plain-Language Patterns
 
 - `Own part of a property.`
+- `Buy property tokens.`
+- `Buy tokens that represent property ownership.`
 - `Lend against a property and accept the asset as collateral.`
 - `Raise money without selling the whole asset.`
 - `Bring eligible assets onchain.`
 - `Infrastructure for tokenized real assets, starting with real estate.`
 - `Buy ownership, fund a loan, or raise against collateral.`
+- `Own property through tokens.`
 
 ## Technical Language That Is Allowed In Deeper Copy
 

@@ -51,12 +51,12 @@ export const metadata: Metadata = {
     'MonopolyDAO',
     'Monopoly DAO',
     'MDAO',
-    'Properties',
-    'Fractions',
-    'Property Ownership',
+    'Real Assets',
+    'Tokenized Property',
+    'Property Tokens',
     'Ownership',
-    'Property Fractions',
-    'Settley Properties',
+    'Real Asset Infrastructure',
+    'Settley Property Tokens',
   ],
   authors: [
     {

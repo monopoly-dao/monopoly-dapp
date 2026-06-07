@@ -32,7 +32,7 @@ export default function Page() {
           icon={TbWheel}
         />
         <DashboardCard
-          title='Total Portfolio Volume'
+          title='Token Positions'
           amount={walletStats?.totalProperties}
           isLoading={isLoading}
           percentChange={-100}

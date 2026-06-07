@@ -35,7 +35,7 @@ export default function BookmarkSection() {
         </Link>
       </div>
 
-      {wishlistProperties?.length === 0 && 'You have no bookmarked properties'}
+      {wishlistProperties?.length === 0 && 'You have no bookmarked assets'}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'>
         <ListingCardLoader cardNumber={3} isLoading={isLoading} />
         {wishlistProperties?.map((property) => (

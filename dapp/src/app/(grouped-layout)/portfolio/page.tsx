@@ -7,7 +7,7 @@ export default function Page() {
       <h1 className='leading-[50px] text-4xl'>Portfolio Overview</h1>
 
       <div className='flex flex-col gap-8'>
-        <h2 className='text-2xl'>Real Estate</h2>
+        <h2 className='text-2xl'>Real-Asset Positions</h2>
         <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-8'>
           <RealEstateCard /> <RealEstateCard /> <RealEstateCard />{' '}
           <RealEstateCard /> <RealEstateCard /> <RealEstateCard />

@@ -55,7 +55,7 @@ export default function Page() {
       <div className='mt-16 sm:mt-28 mb-16 sm:mb-32 px-[5%]'>
         <div className='flex flex-col lg:flex-row gap-3 justify-between items-start mb-16'>
           <h2 className='font-medium text-3xl sm:text-4xl'>
-            Popular Properties
+            Tokenized Property Opportunities
           </h2>
           <PropertiesFilter />
         </div>

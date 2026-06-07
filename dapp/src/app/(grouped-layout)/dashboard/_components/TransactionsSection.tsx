@@ -4,10 +4,10 @@ import TableContainer from '@/components/table';
 
 const headers = [
   'Transaction ID',
-  'Property ID',
+  'Asset Symbol',
   'Date',
   'Price',
-  'Quantity',
+  'Tokens',
   'Status',
 ];
 

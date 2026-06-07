@@ -75,9 +75,11 @@ export default function ListingCard({ property, wishlist }: Props) {
           <div className='mt-4 flex items-end justify-between'>
             <div className='flex items-end'>
               <p className='font-bold text-2xl'>$1</p>
-              <p>/unit</p>
+              <p>/token</p>
             </div>
-            <p className='text-navy/40'>{formatAmount(unitsLeft)} units left</p>
+            <p className='text-navy/40'>
+              {formatAmount(unitsLeft)} tokens left
+            </p>
           </div>
         </div>
       </Link>

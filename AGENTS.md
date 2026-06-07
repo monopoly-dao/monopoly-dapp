@@ -8,6 +8,7 @@ This repo is for Settley, maintained under the Monopoly DAO GitHub organization.
 - The current user-facing wedge is real estate/property, but the long-term category is conditional liquidity infrastructure for tokenized real assets.
 - Settley exists to make eligible assets easier to own, finance, collateralize, and settle onchain.
 - Public copy should stay simple: own part of an asset, lend against one, raise against collateral.
+- Use `property` for the asset users care about and `tokens` for what investors buy or hold.
 - Technical pages and internal docs may use tokenization, lending vaults, compliance, collateral, onchain/offchain settlement, repayment, and enforcement language.
 - Do not reduce Settley to "just real estate" in FAQs, metadata, docs, authenticated investor flows, or future landing copy.
 - Use `onchain` and `offchain` spelling.
@@ -25,6 +26,8 @@ This repo is for Settley, maintained under the Monopoly DAO GitHub organization.
 - FAQs and deeper copy should preserve the broader infrastructure story.
 - Good public wording:
   - `Own part of a property or asset.`
+  - `Buy property tokens.`
+  - `Buy tokens that represent property ownership.`
   - `Lend against real-asset collateral.`
   - `Raise money without selling the whole asset.`
   - `Infrastructure for tokenized real assets, starting with real estate.`

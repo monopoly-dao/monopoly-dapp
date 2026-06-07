@@ -6,7 +6,7 @@ import { useGetUserAssetsQuery } from '@/api/profile';
 
 import AssetTableItem from './AssetTableItem';
 
-const headers = ['Token', 'Amount', 'USD Value'];
+const headers = ['Token', 'Tokens', 'USD Value'];
 
 type Props = {
   userFirebaseId: string;
@@ -27,10 +27,10 @@ export default function AssetsSection({ userFirebaseId }: Props) {
   return (
     <div>
       <div className='flex justify-between items-start mb-6'>
-        <h2 className='text-3xl font-inter'>Wallet</h2>
+        <h2 className='text-3xl font-inter'>Token Holdings</h2>
       </div>
 
-      {assets?.length === 0 && `You don't have any assets yet`}
+      {assets?.length === 0 && `You don't have any token holdings yet`}
       <TableContainer
         tableHeadClass='last:text-right [&:nth-child(2)]:text-center'
         isLoading={isLoading}
