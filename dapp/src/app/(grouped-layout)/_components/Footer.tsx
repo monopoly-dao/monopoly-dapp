@@ -7,7 +7,6 @@ import SubscriptionForm from '@/app/_components/SubscriptionForm';
 import FooterColumnLinks from './FooterColumnLinks';
 
 const aboutLinks = [
-  { label: 'The Team', href: '/' },
   { label: 'How it works', href: '/#how-it-works' },
   { label: 'Assets', href: '/listings' },
 ];

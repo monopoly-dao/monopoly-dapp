@@ -8,23 +8,23 @@ import Button from '@/components/buttons/Button';
 const steps = [
   {
     title: 'Tokenize an eligible asset',
-    copy: 'Owners or deployers submit a property or income-producing asset for compliance, documentation, and tokenized ownership setup.',
+    copy: 'Owners or deployers submit a property for checks, documents, and ownership structuring.',
   },
   {
     title: 'Create a lending vault',
-    copy: 'An asset-specific vault is created alongside the tokenized asset, with rules tied to that asset only.',
+    copy: 'An asset-specific vault can sit beside the ownership structure, with terms tied to that asset only.',
   },
   {
-    title: 'Configure the request',
-    copy: 'The owner proposes the liquidity amount, advance rate, repayment date, pricing, and pledged ownership tokens.',
+    title: 'Set the opportunity',
+    copy: 'The structure defines what investors can do: own part of the property, lend against it, or both.',
   },
   {
-    title: 'LPs fund accepted terms',
-    copy: 'Eligible liquidity providers review the collateral and fund accepted requests in stablecoins.',
+    title: 'Capital chooses its path',
+    copy: 'Buyers can purchase ownership. Lenders can provide stablecoins and accept the property tokens as collateral.',
   },
   {
-    title: 'Repay or enforce collateral',
-    copy: 'Borrowers repay principal plus agreed interest. If they do not, pledged tokens enter the compliant enforcement path.',
+    title: 'Track rights and outcomes',
+    copy: 'Ownership, distributions, repayment, and collateral enforcement events are tracked against the asset structure.',
   },
 ];
 
@@ -36,17 +36,15 @@ export default function HowItWorks() {
       id='vault-flow'
       className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 sm:gap-14 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'
     >
-      <span id='how-it-works' className='sr-only'>
-        How it works
-      </span>
+      <span id='how-it-works' className='sr-only' />
       <div className='flex flex-col gap-6 lg:w-1/2'>
         <h2 className='font-medium text-3xl sm:text-5xl'>
-          How an asset-specific vault works
+          How one property can support buyers and lenders
         </h2>
         <p className='w-full lg:w-4/5 text-[#44403C]'>
-          Settley gives owners a path to unlock capital without a full sale,
-          while giving liquidity providers clear collateral, configurable
-          terms, repayment dates, and enforcement rules.
+          One property can support two clear actions: people can own part of it,
+          or lend money against it. Lenders see the collateral, interest rate,
+          repayment date, and what happens if the loan is not repaid.
         </p>
         <div className='grid grid-cols-1 gap-4'>
           {steps.map((step, index) => (
@@ -65,7 +63,7 @@ export default function HowItWorks() {
           onClick={() => router.push('/listings')}
           className='py-4 px-6 bg-navy text-white w-fit font-medium'
         >
-          View Vault Examples
+          View Opportunities
           <Image
             src='/icons/white arrow.png'
             alt='arrow'

@@ -10,17 +10,6 @@ import TrendingPropertyCard from './TrendingPropertyCard';
 
 const fallbackOpportunities = [
   {
-    _id: 'asset-vienna-vault',
-    propertyDetails: {
-      name: 'Vienna Imperial Residence',
-      photos: [{ url: '/images/apartment.png' }],
-    },
-    opportunity: {
-      tag: 'Lending Vault',
-      terms: 'Owner request with configurable advance rate, pricing, repayment date, and pledged tokens.',
-    },
-  },
-  {
     _id: 'asset-lisbon-loft',
     propertyDetails: {
       name: 'Lisbon Loft Apartments',
@@ -28,7 +17,7 @@ const fallbackOpportunities = [
     },
     opportunity: {
       tag: 'Ownership Access',
-      terms: 'Tokenized ownership structure with compliance checks and investor access.',
+      terms: 'Buyers can own part of the property with clear documents and rights.',
     },
   },
   {
@@ -38,8 +27,19 @@ const fallbackOpportunities = [
       photos: [{ url: '/images/Montenegro.png' }],
     },
     opportunity: {
-      tag: 'Vault Funding',
-      terms: 'LPs review collateral, funding terms, repayment date, and enforcement path.',
+      tag: 'Property Loan',
+      terms: 'Lenders can fund a loan and accept the property tokens as collateral.',
+    },
+  },
+  {
+    _id: 'asset-vienna-vault',
+    propertyDetails: {
+      name: 'Vienna Imperial Residence',
+      photos: [{ url: '/images/apartment.png' }],
+    },
+    opportunity: {
+      tag: 'Owner Borrowing',
+      terms: 'Owners can choose how much to borrow, the rate, and repayment date.',
     },
   },
 ];
@@ -62,10 +62,10 @@ export default function TrendingProperties() {
     <div className='flex flex-col gap-6 sm:gap-12 bg-white py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'>
       <div id='opportunities' className='flex justify-between items-start'>
         <div>
-          <h2 className='text-3xl sm:text-4xl'>Active liquidity structures</h2>
+          <h2 className='text-3xl sm:text-4xl'>Ways to participate</h2>
           <p className='mt-5 max-w-2xl text-[#44403C]'>
-            Review examples of how assets can be structured for ownership,
-            liquidity requests, and vault funding.
+            Own part of a property, lend against one, or bring a property to
+            market for buyers and lenders.
           </p>
         </div>
         <Link

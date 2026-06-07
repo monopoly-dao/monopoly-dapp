@@ -9,9 +9,9 @@ import TrendingProperties from './_components/TrendingProperties';
 import WhoAreWe from './_components/WhoAreWe';
 
 export const metadata: Metadata = {
-  title: 'Unlock liquidity and ownership from real assets',
+  title: 'Buy, fund, or borrow against real estate',
   description:
-    'Settley helps asset owners tokenize real assets, create liquidity structures, and connect with buyers, investors, and liquidity providers.',
+    'Settley lets investors own part of a house or lend against one, while owners can raise money using property as collateral.',
   keywords: [
     'Settley',
     'Real asset liquidity',
@@ -24,26 +24,26 @@ export const metadata: Metadata = {
 const pathways = [
   {
     title: 'I own an asset',
-    copy: 'Tokenize eligible property and request liquidity on terms configured for that asset.',
-    cta: 'Request Liquidity',
+    copy: 'Bring eligible property onchain and raise money against it without forcing a full sale.',
+    cta: 'Raise Against My Asset',
     href: '#vault-flow',
   },
   {
     title: 'I want to invest',
-    copy: 'Access real-asset opportunities through ownership or asset-backed liquidity vaults.',
+    copy: 'Own part of a property or lend money against real estate collateral.',
     cta: 'Explore Opportunities',
     href: '#opportunities',
   },
   {
     title: 'I deploy assets',
-    copy: 'Bring property, developments, or income-producing assets into a compliant tokenized structure.',
-    cta: 'Deploy Assets',
+    copy: 'Package property inventory for buyers and lenders.',
+    cta: 'List an Asset',
     href: '#how-it-works',
   },
   {
-    title: 'I provide liquidity',
-    copy: 'Fund asset-specific vaults with clear collateral, terms, repayment dates, and enforcement paths.',
-    cta: 'Fund Vaults',
+    title: 'I want to lend',
+    copy: 'Lend stablecoins against property collateral with agreed rates and repayment dates.',
+    cta: 'Lend Against Property',
     href: '#opportunities',
   },
 ];
@@ -53,27 +53,28 @@ export default function Page() {
     <div>
       <div className='mt-20 mb-24 flex flex-col gap-11 px-[5%] sm:px-[7%]'>
         <h1 className='font-medium text-[45px] w-full leading-[55px] sm:leading-[75px] lg:leading-[96px] sm:text-[60px] lg:text-[80px]'>
-          <div>Request liquidity</div>
-          <div>from tokenized</div>
-          <div>real assets</div>
+          <div>Buy, fund, or</div>
+          <div>borrow against</div>
+          <div>real estate</div>
         </h1>
         <p className='max-w-3xl text-lg sm:text-xl text-[#44403C]'>
-          Tokenize eligible property, create an asset-specific lending vault,
-          configure liquidity terms, and connect with investors and liquidity
-          providers through one compliant real-asset platform.
+          Settley helps people invest in real estate in two simple ways: own
+          part of a property, or lend against one and accept the house as
+          collateral. Asset owners can raise money without selling the whole
+          property.
         </p>
         <div className='flex flex-col sm:flex-row gap-4'>
           <Link
-            href='#vault-flow'
+            href='#opportunities'
             className='bg-navy text-white rounded-[6px] py-4 px-6 w-fit font-medium'
           >
-            Request Liquidity
+            Explore Opportunities
           </Link>
           <Link
-            href='#opportunities'
+            href='#vault-flow'
             className='border border-navy text-navy rounded-[6px] py-4 px-6 w-fit font-medium'
           >
-            Fund a Vault
+            Raise Against My Asset
           </Link>
         </div>
       </div>
@@ -89,7 +90,7 @@ export default function Page() {
         />
         <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
           <Link href='#vault-flow' className='flex items-center gap-5'>
-            See how asset-backed liquidity works{' '}
+            See how the vault works{' '}
             <Image
               src='/icons/white arrow.png'
               alt='arrow'
@@ -107,8 +108,9 @@ export default function Page() {
         <div className='max-w-3xl'>
           <h2 className='font-medium text-3xl sm:text-5xl'>Who are you?</h2>
           <p className='mt-5 text-[#44403C]'>
-            Settley is built for both sides of real-asset liquidity: people
-            bringing assets on-chain and people allocating capital to them.
+            Choose what you want to do: own part of a property, lend against a
+            house, raise money against your asset, or bring property inventory
+            to market.
           </p>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5'>

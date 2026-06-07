@@ -18,7 +18,7 @@ export default function Header() {
         </h1>
         <p className='text-xl'>
           Settley helps eligible asset owners structure tokenized ownership and
-          connect with buyers, investors, and liquidity providers.
+          connect with buyers and lenders.
         </p>
       </div>
     </div>

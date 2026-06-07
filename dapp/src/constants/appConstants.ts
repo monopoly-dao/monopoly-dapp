@@ -15,12 +15,12 @@ export const faqs = [
   {
     question: 'What is Settley?',
     answer:
-      'Settley is a real-asset liquidity platform. It helps eligible asset owners tokenize property, structure ownership, and connect with buyers, investors, and liquidity providers.',
+      'Settley is infrastructure for tokenized real assets, starting with real estate. It helps assets become easier to own, finance, and settle onchain.',
   },
   {
     question: 'How does Settley work?',
     answer:
-      'An eligible asset is linked to compliance checks, legal documentation, and tokenized ownership records. From there, the asset can support ownership access, liquidity requests, and asset-specific capital structures.',
+      'An eligible asset goes through checks, legal documentation, and onchain ownership structuring. For the first use case, that means property owners can raise against real estate while investors can buy ownership or lend against the asset tokens.',
   },
   {
     question: 'Can I unlock liquidity without selling the whole asset?',
@@ -30,20 +30,20 @@ export const faqs = [
   {
     question: 'How does an asset-specific lending vault work?',
     answer:
-      'A vault is created for a specific tokenized asset. The owner requests liquidity, proposes a rate and repayment date, and pledges ownership tokens as collateral. Eligible liquidity providers can fund the request in stablecoins if they accept the terms.',
+      'A vault is created for a specific tokenized asset. The owner requests liquidity, proposes a rate and repayment date, and pledges ownership tokens as collateral. Eligible lenders can fund the request in stablecoins if they accept the terms.',
   },
   {
     question: 'What happens if a borrower does not repay?',
     answer:
-      'If repayment fails, pledged tokens enter a collateral enforcement path for compliant liquidity providers. Live enforcement depends on the legal wrapper, transfer restrictions, and jurisdiction-specific requirements.',
+      'If repayment fails, pledged tokens enter a collateral enforcement path for compliant lenders. Live enforcement depends on the legal wrapper, transfer restrictions, and jurisdiction-specific requirements.',
   },
   {
     question: 'Can investors buy ownership as well as fund vaults?',
     answer:
-      'Yes. Settley is built for multiple capital paths: buyers can access ownership opportunities, while eligible liquidity providers can fund asset-backed requests with clear terms.',
+      'Yes. Buyers can own part of an asset. Lenders can provide stablecoins for a loan and accept tokenized ownership as collateral. Today the clearest example is real estate, but the infrastructure is not limited to property.',
   },
   {
     question: 'How does Settley ensure compliance with legal regulations?',
-    answer: `Settley uses eligibility checks, KYC where required, jurisdiction-aware access rules, and legal documentation around each asset. Private compliance documents stay off-chain while ownership and transaction events can be tracked transparently.`,
+    answer: `Settley uses eligibility checks, KYC where required, jurisdiction-aware access rules, and legal documentation around each asset. Private compliance documents stay offchain while ownership and transaction events can be tracked transparently.`,
   },
 ];

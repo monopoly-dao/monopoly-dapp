@@ -22,7 +22,7 @@ export const unauthentiatedNavLinks = [
     isLinkToSection: true,
   },
   {
-    label: 'For LPs',
+    label: 'For Lenders',
     route: '/#opportunities',
     isLinkToSection: true,
   },
@@ -44,7 +44,7 @@ export const authenticatedNavLinks = [
     isLinkToSection: true,
   },
   {
-    label: 'For LPs',
+    label: 'For Lenders',
     route: '/#opportunities',
     isLinkToSection: true,
   },

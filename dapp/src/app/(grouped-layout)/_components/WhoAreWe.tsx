@@ -4,8 +4,8 @@ import Button from '@/components/buttons/Button';
 
 const possibilities = [
   'Tokenize eligible real assets with clear documentation and compliance checks',
-  'Request liquidity against tokenized ownership without selling the whole asset',
-  'Open asset-backed opportunities to buyers, investors, and liquidity providers',
+  'Own part of a property with clearer rights and records',
+  'Request or fund loans backed by property collateral on configurable terms',
   'Track ownership, repayment, distributions, and enforcement paths in one place',
 ];
 
@@ -17,24 +17,27 @@ export default function WhoAreWe() {
       </h2>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-24'>
         <p className='col-span-1 w-full sm:w-[90%]'>
-          Real assets are valuable, but they are often slow to sell, hard to
-          borrow against, and difficult for new investors to access. Settley
-          turns eligible assets into structured ownership records and liquidity
-          opportunities that can be understood by both owners and capital
-          providers.
+          Real assets are valuable, but they are hard to divide, slow to sell,
+          and difficult for new investors to access. Settley makes it easier to
+          own part of a property or lend against one.
         </p>
         <p className='col-span-1 w-full sm:w-[90%]'>
-          Asset owners can unlock capital without a full sale. Investors can
-          access real-asset opportunities. Liquidity providers can fund
-          asset-specific requests with clear collateral, terms, repayment dates,
-          and enforcement paths.
+          Owners can raise money without a full sale. Buyers can own property
+          exposure. Lenders can provide stablecoins against clear collateral,
+          rates, repayment dates, and enforcement paths.
         </p>
       </div>
 
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-        {possibilities.map((item) => (
-          <div key={item} className='border border-black/10 rounded-[8px] p-5'>
-            <p>{item}</p>
+        {possibilities.map((item, index) => (
+          <div
+            key={item}
+            className='border border-[#D6D3D1] bg-white rounded-[8px] p-5 shadow-sm flex gap-4 items-start'
+          >
+            <span className='h-8 w-8 shrink-0 rounded-full bg-navy text-white flex items-center justify-center text-sm font-medium'>
+              {index + 1}
+            </span>
+            <p className='text-[#1C1917] font-medium leading-relaxed'>{item}</p>
           </div>
         ))}
       </div>
