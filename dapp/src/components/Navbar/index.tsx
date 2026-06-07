@@ -17,33 +17,45 @@ import SettleyLogo from '../SettleyLogo';
 
 export const unauthentiatedNavLinks = [
   {
-    label: 'FAQs',
-    route: '/faqs',
-  },
-  {
-    label: 'Assets',
-    route: '/listings',
-  },
-  {
-    label: 'How it Works',
-    route: '/#how-it-works',
+    label: 'For Owners',
+    route: '/#pathways',
     isLinkToSection: true,
+  },
+  {
+    label: 'For LPs',
+    route: '/#opportunities',
+    isLinkToSection: true,
+  },
+  {
+    label: 'How Vaults Work',
+    route: '/#vault-flow',
+    isLinkToSection: true,
+  },
+  {
+    label: 'Opportunities',
+    route: '/listings',
   },
 ];
 
 export const authenticatedNavLinks = [
   {
-    label: 'FAQs',
-    route: '/faqs',
-  },
-  {
-    label: 'Assets',
-    route: '/listings',
-  },
-  {
-    label: 'How it Works',
-    route: '/#how-it-works',
+    label: 'For Owners',
+    route: '/#pathways',
     isLinkToSection: true,
+  },
+  {
+    label: 'For LPs',
+    route: '/#opportunities',
+    isLinkToSection: true,
+  },
+  {
+    label: 'How Vaults Work',
+    route: '/#vault-flow',
+    isLinkToSection: true,
+  },
+  {
+    label: 'Opportunities',
+    route: '/listings',
   },
 ];
 

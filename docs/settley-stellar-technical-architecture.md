@@ -17,7 +17,7 @@ The MVP wedge is intentionally narrow:
 - one asset or controlled asset cohort;
 - one compliance-gated asset-token flow;
 - one asset-specific lending vault;
-- one controlled loan request for up to 30% of eligible asset value;
+- one controlled loan request with configurable advance-rate / LTV terms;
 - one embedded or abstracted Stellar wallet path;
 - one stablecoin settlement path;
 - one end-to-end user journey from tokenization to loan request, LP funding, stablecoin disbursement, repayment, and collateral enforcement path.
@@ -176,7 +176,7 @@ Core logic:
 
 - asset owner tokenizes an eligible asset or controlled asset interest;
 - system creates an asset-specific lending vault linked to the asset registry entry;
-- owner requests liquidity up to 30% of eligible asset value;
+- owner requests liquidity against eligible asset value, subject to configurable advance-rate / LTV limits;
 - owner proposes loan terms, including rate they are willing to pay, repayment date, and pledged token amount;
 - eligible LPs fund the vault in Stellar stablecoins if the terms match their risk appetite;
 - pledged ownership tokens are locked or escrowed as collateral;
@@ -204,7 +204,7 @@ Completion criteria:
 - support asset tokenization reference, vault creation, loan request, LP funding, collateral lock, disbursement, repayment, and overdue/default state transitions;
 - process a testnet borrow and repayment flow;
 - demonstrate the collateral enforcement path with controlled test tokens;
-- enforce 30% maximum LTV, NAV freshness, compliance status, repayment date, and pause states.
+- enforce configured LTV limits, NAV freshness, compliance status, repayment date, and pause states.
 
 ### 5.7 Bridge / Stellar Stablecoin Settlement
 
@@ -256,7 +256,7 @@ Completion criteria:
 5. User receives or purchases compliant asset tokens.
 6. NAV oracle publishes verified valuation data.
 7. Asset-specific lending vault is created alongside the tokenized asset.
-8. Holder requests up to 30% liquidity against the asset-token interest and proposes rate, repayment date, and pledged token amount.
+8. Holder requests liquidity against the asset-token interest and proposes advance rate, pricing, repayment date, and pledged token amount.
 9. Lending module checks compliance credential, NAV freshness, collateral eligibility, maximum LTV, proposed terms, and protocol state.
 10. Eligible LPs fund the vault in Stellar stablecoins if they accept the terms.
 11. If valid, Blend v2 / Stellar lending flow is initiated for a controlled testnet loan.
@@ -343,7 +343,7 @@ Verification:
 
 - Implement asset-specific lending vault.
 - Add Bridge / Stellar stablecoin vault funding, disbursement, and repayment flows.
-- Implement loan request terms, LP funding logic, 30% LTV cap, repayment date, collateral enforcement state, pause states, and event emissions.
+- Implement loan request terms, LP funding logic, configurable LTV limits, repayment date, collateral enforcement state, pause states, and event emissions.
 - Demonstrate end-to-end testnet borrow, repayment, and enforcement-state simulation against a controlled asset-token position.
 
 ### Month 4: Product Integration and Launch Readiness

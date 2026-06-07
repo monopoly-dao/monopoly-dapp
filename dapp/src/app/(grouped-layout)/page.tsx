@@ -24,23 +24,27 @@ export const metadata: Metadata = {
 const pathways = [
   {
     title: 'I own an asset',
-    copy: 'Tokenize eligible property and request liquidity without selling the whole asset.',
-    cta: 'Unlock Liquidity',
+    copy: 'Tokenize eligible property and request liquidity on terms configured for that asset.',
+    cta: 'Request Liquidity',
+    href: '#vault-flow',
   },
   {
     title: 'I want to invest',
     copy: 'Access real-asset opportunities through ownership or asset-backed liquidity vaults.',
-    cta: 'Explore Assets',
+    cta: 'Explore Opportunities',
+    href: '#opportunities',
   },
   {
     title: 'I deploy assets',
     copy: 'Bring property, developments, or income-producing assets into a compliant tokenized structure.',
     cta: 'Deploy Assets',
+    href: '#how-it-works',
   },
   {
     title: 'I provide liquidity',
     copy: 'Fund asset-specific vaults with clear collateral, terms, repayment dates, and enforcement paths.',
     cta: 'Fund Vaults',
+    href: '#opportunities',
   },
 ];
 
@@ -49,27 +53,27 @@ export default function Page() {
     <div>
       <div className='mt-20 mb-24 flex flex-col gap-11 px-[5%] sm:px-[7%]'>
         <h1 className='font-medium text-[45px] w-full leading-[55px] sm:leading-[75px] lg:leading-[96px] sm:text-[60px] lg:text-[80px]'>
-          <div>Unlock liquidity</div>
-          <div>and ownership</div>
-          <div>from real assets</div>
+          <div>Request liquidity</div>
+          <div>from tokenized</div>
+          <div>real assets</div>
         </h1>
         <p className='max-w-3xl text-lg sm:text-xl text-[#44403C]'>
-          Tokenize eligible property, create asset-specific liquidity
-          structures, and connect with buyers, investors, and liquidity
+          Tokenize eligible property, create an asset-specific lending vault,
+          configure liquidity terms, and connect with investors and liquidity
           providers through one compliant real-asset platform.
         </p>
         <div className='flex flex-col sm:flex-row gap-4'>
           <Link
-            href='/listings'
+            href='#vault-flow'
             className='bg-navy text-white rounded-[6px] py-4 px-6 w-fit font-medium'
           >
-            Explore Assets
+            Request Liquidity
           </Link>
           <Link
-            href='#pathways'
+            href='#opportunities'
             className='border border-navy text-navy rounded-[6px] py-4 px-6 w-fit font-medium'
           >
-            Find Your Path
+            Fund a Vault
           </Link>
         </div>
       </div>
@@ -84,8 +88,8 @@ export default function Page() {
           className='w-full h-[250px] sm:h-[400px] lg:h-[595px] object-cover'
         />
         <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
-          <Link href='/listings' className='flex items-center gap-5'>
-            View real-asset opportunities{' '}
+          <Link href='#vault-flow' className='flex items-center gap-5'>
+            See how asset-backed liquidity works{' '}
             <Image
               src='/icons/white arrow.png'
               alt='arrow'
@@ -120,7 +124,7 @@ export default function Page() {
                 <p className='mt-5 text-lg text-black'>{pathway.copy}</p>
               </div>
               <Link
-                href='/listings'
+                href={pathway.href}
                 className='font-medium text-navy underline underline-offset-4'
               >
                 {pathway.cta}

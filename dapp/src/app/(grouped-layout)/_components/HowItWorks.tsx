@@ -7,24 +7,24 @@ import Button from '@/components/buttons/Button';
 
 const steps = [
   {
-    title: 'Bring an asset',
-    copy: 'Owners, developers, or partners submit an eligible property or income-producing asset.',
+    title: 'Tokenize an eligible asset',
+    copy: 'Owners or deployers submit a property or income-producing asset for compliance, documentation, and tokenized ownership setup.',
   },
   {
-    title: 'Structure ownership',
-    copy: 'Settley links the asset to compliance checks, legal documentation, and tokenized ownership records.',
+    title: 'Create a lending vault',
+    copy: 'An asset-specific vault is created alongside the tokenized asset, with rules tied to that asset only.',
   },
   {
-    title: 'Create liquidity options',
-    copy: 'The asset can support ownership access, lending vaults, or future exit mechanisms.',
+    title: 'Configure the request',
+    copy: 'The owner proposes the liquidity amount, advance rate, repayment date, pricing, and pledged ownership tokens.',
   },
   {
-    title: 'Match with capital',
-    copy: 'Buyers can access ownership, while eligible liquidity providers can fund asset-backed requests.',
+    title: 'LPs fund accepted terms',
+    copy: 'Eligible liquidity providers review the collateral and fund accepted requests in stablecoins.',
   },
   {
-    title: 'Settle and manage',
-    copy: 'Payments, repayments, distributions, and enforcement events are tracked transparently.',
+    title: 'Repay or enforce collateral',
+    copy: 'Borrowers repay principal plus agreed interest. If they do not, pledged tokens enter the compliant enforcement path.',
   },
 ];
 
@@ -33,17 +33,20 @@ export default function HowItWorks() {
 
   return (
     <div
-      id='how-it-works'
+      id='vault-flow'
       className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 sm:gap-14 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'
     >
+      <span id='how-it-works' className='sr-only'>
+        How it works
+      </span>
       <div className='flex flex-col gap-6 lg:w-1/2'>
         <h2 className='font-medium text-3xl sm:text-5xl'>
-          How Settley turns real assets into liquidity
+          How an asset-specific vault works
         </h2>
         <p className='w-full lg:w-4/5 text-[#44403C]'>
-          Settley gives owners a path to unlock capital, gives investors access
-          to real-asset opportunities, and keeps the rules around ownership,
-          repayment, and enforcement clear.
+          Settley gives owners a path to unlock capital without a full sale,
+          while giving liquidity providers clear collateral, configurable
+          terms, repayment dates, and enforcement rules.
         </p>
         <div className='grid grid-cols-1 gap-4'>
           {steps.map((step, index) => (
@@ -62,7 +65,7 @@ export default function HowItWorks() {
           onClick={() => router.push('/listings')}
           className='py-4 px-6 bg-navy text-white w-fit font-medium'
         >
-          Explore Opportunities
+          View Vault Examples
           <Image
             src='/icons/white arrow.png'
             alt='arrow'
