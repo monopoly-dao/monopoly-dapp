@@ -10,18 +10,18 @@ This document should be read as the technical architecture for the product layer
 
 ## 2. Product to Be Added on Stellar
 
-Settley will add a Stellar-native system that lets compliant holders of tokenized real-estate interests request conditional exit liquidity from an asset-specific vault. Users should not need to understand Stellar wallet mechanics to use the product; Settley will abstract wallet stress while using Stellar infrastructure underneath.
+Settley will add a Stellar-native system that lets compliant holders of tokenized real-estate interests access ownership-backed liquidity through a controlled lending-first MVP. Users should not need to understand Stellar wallet mechanics to use the product; Settley will abstract wallet stress while using Stellar infrastructure underneath.
 
 The MVP wedge is intentionally narrow:
 
 - one asset or controlled asset cohort;
 - one compliance-gated asset-token flow;
-- one asset-specific liquidity vault;
+- one Blend-compatible collateral and lending prototype;
 - one embedded or abstracted Stellar wallet path;
 - one stablecoin settlement path;
-- one end-to-end user journey from embedded wallet access to exit quote to testnet settlement.
+- one end-to-end user journey from embedded wallet access to collateral registration, borrow quote, and testnet settlement.
 
-Ownership-backed credit, Blend integration, and broader secondary-market routing are future extensions. The first build proves the core sell-to-vault liquidity mechanism.
+The first Stellar build validates the lending path because Blend v2 gives Settley a clearer Stellar-native integration route for collateral, borrowing, repayment, and liquidity flows. Sell-to-vault exits remain part of Settley's broader conditional liquidity thesis, but they are not the first Stellar MVP.
 
 ## 3. SCF Integration Track Fit
 
@@ -29,30 +29,31 @@ This proposal is intended for the SCF Build Integration Track because Settley is
 
 Selected Integration List building blocks:
 
+- Blend v2: primary DeFi lending integration for controlled ownership-backed liquidity.
 - DFNS: primary embedded wallet / Wallets-as-a-Service path for abstracted user onboarding, wallet management, and recovery.
 - Stellar Wallets Kit: direct wallet connection layer for admin, testing, and advanced user flows.
 - Freighter Connect: SDF-maintained browser wallet fallback for Soroban token interaction, QA, and reviewer-verifiable testnet flows.
-- Bridge: stablecoin treasury and payment movement layer for deposits, vault funding, and payout workflows where applicable.
+- Bridge: stablecoin treasury and payment movement layer for loan disbursement and repayment workflows where applicable.
 
-Soroban smart contracts are the application-specific layer that coordinates asset registry, compliance, token, NAV, and vault logic around these integrations. The Integration Track budget should therefore be framed around these integrations plus the connective Soroban/backend/frontend work required to make them usable in Settley's product.
+Soroban smart contracts are the application-specific layer that coordinates asset registry, compliance, token, NAV, collateral eligibility, and loan lifecycle logic around these integrations. The Integration Track budget should therefore be framed around these integrations plus the connective Soroban/backend/frontend work required to make them usable in Settley's product.
 
 Not selected for MVP:
 
-- Blend v2: excluded from the first build because the MVP is conditional sell-to-vault liquidity, not lending.
 - Soroswap, Aquarius, and Stellar Broker: excluded from the first build because the MVP does not require open-market swap routing or speculative trading.
-- SDP: excluded from the first build because the initial payout workflow is asset-vault settlement, not bulk payroll or mass-disbursement operations.
+- SDP: excluded from the first build because the initial payout workflow is controlled loan settlement, not bulk payroll or mass-disbursement operations.
+- Sell-to-vault exit module: deferred until the lending path proves wallet abstraction, compliance, NAV, collateral, and settlement flows on Stellar.
 
 ## 4. Why Stellar
 
 Settley is designed for regulated real-world asset workflows where payments, compliance, settlement, and user access matter as much as token issuance. Stellar is a strong fit because it provides:
 
 - low-cost settlement for high-frequency operational actions;
-- stablecoin rails for subscriptions, distributions, and vault payouts;
+- stablecoin rails for subscriptions, distributions, loan disbursements, and repayments;
 - Soroban smart contracts for asset-specific financial logic;
 - wallet tooling suitable for user-facing onboarding;
 - an ecosystem focused on payments, tokenization, and real-world utility.
 
-The Stellar implementation will not be a cosmetic chain port. It will use Stellar for embedded or abstracted wallet onboarding, Soroban execution, stablecoin settlement, and auditable asset-specific contract events.
+The Stellar implementation will not be a cosmetic chain port. It will use Stellar for embedded or abstracted wallet onboarding, Soroban execution, Blend-compatible lending flows, stablecoin settlement, and auditable asset-specific contract events.
 
 ## 5. Stellar Components to Build
 
@@ -65,7 +66,7 @@ Likely integration path:
 - DFNS as the primary embedded wallet / Wallets-as-a-Service integration;
 - Stellar Wallets Kit and Freighter Connect support for advanced users, admins, testing, and direct wallet paths;
 - wallet creation, linking, recovery, and session state inside the Settley frontend;
-- signed Soroban transactions for asset, vault, and compliance actions;
+- signed Soroban transactions for asset, lending, and compliance actions;
 - transaction status, failure messages, and hash display in the UI.
 
 Completion criteria:
@@ -87,7 +88,8 @@ Stores:
 - property/SPV metadata hash;
 - associated asset-token contract;
 - NAV oracle reference;
-- liquidity vault reference;
+- lending module reference;
+- future liquidity vault reference where applicable;
 - lifecycle status: proposed, active, paused, wind-down, closed.
 
 Completion criteria:
@@ -115,8 +117,9 @@ Used by:
 
 - asset-token minting;
 - peer transfer where enabled;
-- vault exit requests;
-- LP vault deposits;
+- collateral registration;
+- borrow quote requests;
+- loan repayment;
 - distribution claims.
 
 Completion criteria:
@@ -133,7 +136,7 @@ Capabilities:
 
 - mint to eligible wallets;
 - restrict transfers to compliant wallets;
-- escrow or burn tokens during a vault exit;
+- lock or escrow tokens during a controlled collateralized borrow flow;
 - expose balances for portfolio, distribution, and quote logic.
 
 Completion criteria:
@@ -162,50 +165,52 @@ Completion criteria:
 - flag stale NAV;
 - emit events for normal updates and emergency impairment updates.
 
-### 5.6 Asset-Specific Liquidity Vault Contract on Soroban
+### 5.6 Blend-Compatible Collateral and Lending Module
 
-Purpose: provide conditional sell-to-vault exit liquidity for a specific asset.
+Purpose: validate ownership-backed liquidity through a controlled lending-first Stellar MVP.
 
 Core logic:
 
-- LP deposits stablecoin capacity into an asset-specific vault;
-- eligible holder requests an exit quote;
-- quote is based on NAV minus discount factors;
-- discount factors include base discount, vault utilization discount, and stale NAV discount;
-- exit executes only if the vault has available capacity and compliance checks pass;
-- vault state changes as utilization and risk conditions change.
+- eligible holder registers asset-token interest as potential collateral;
+- system checks compliance credential, asset status, NAV freshness, and collateral eligibility;
+- user receives a borrow quote based on controlled loan-to-value rules;
+- Blend v2 integration path is used to prototype borrowing, repayment, and loan state where feasible;
+- settlement executes only if compliance, collateral, and risk checks pass;
+- loan state changes as repayment, impairment, or default events occur.
 
-Vault states:
+Loan states:
 
-- normal;
-- stressed;
-- circuit breaker;
-- paused;
-- wind-down.
+- quoted;
+- active;
+- repaid;
+- impaired;
+- default review;
+- closed.
 
 Completion criteria:
 
-- deploy vault contract to Stellar testnet;
-- support LP deposit and holder exit quote;
-- process a testnet exit from asset token into stablecoin payout;
-- enforce reserve limits, utilization thresholds, and pause states.
+- deploy collateral/lending coordination contract to Stellar testnet;
+- complete a controlled Blend v2 integration spike;
+- support collateral eligibility check and borrow quote;
+- process a testnet borrow and repayment flow where feasible;
+- enforce LTV limits, NAV freshness, compliance status, and pause states.
 
 ### 5.7 Bridge / Stellar Stablecoin Settlement
 
-Purpose: settle vault deposits, subscriptions, and controlled test payouts over Stellar stablecoin rails, using Bridge where appropriate for treasury/payment movement.
+Purpose: settle loan disbursement, repayment, subscriptions, and controlled test payouts over Stellar stablecoin rails, using Bridge where appropriate for treasury/payment movement.
 
 Initial settlement scope:
 
-- testnet stablecoin flow for vault deposit;
-- testnet stablecoin flow for holder payout;
+- testnet stablecoin flow for loan disbursement;
+- testnet stablecoin flow for repayment;
 - Bridge integration assessment and implementation path for payment movement;
 - admin-visible settlement status;
-- event trail tying settlement to asset ID, vault ID, and wallet address.
+- event trail tying settlement to asset ID, loan ID, and wallet address.
 
 Completion criteria:
 
-- LP vault deposit settles on Stellar testnet;
-- holder payout settles on Stellar testnet;
+- loan disbursement settles on Stellar testnet;
+- repayment settles on Stellar testnet;
 - Bridge-based payment movement is implemented or documented with a clear integration decision if product constraints require a narrower first release;
 - settlement events are indexed for dashboard display.
 
@@ -219,8 +224,8 @@ Admin workflows:
 - update asset metadata;
 - issue or revoke compliance credential;
 - push NAV update;
-- monitor vault utilization;
-- pause vault;
+- monitor collateral, LTV, and loan state;
+- pause lending actions;
 - view Stellar transaction hashes and contract events.
 
 Completion criteria:
@@ -237,10 +242,10 @@ Completion criteria:
 4. Admin or compliance service issues a minimal compliance credential.
 5. User receives or purchases compliant asset tokens.
 6. NAV oracle publishes verified valuation data.
-7. LP deposits stablecoin into the asset-specific vault.
-8. Holder requests an exit quote.
-9. Vault checks compliance credential, NAV freshness, utilization, available capacity, and vault state.
-10. If valid, asset tokens are escrowed or burned and the holder receives stablecoin payout.
+7. Holder requests a borrow quote against eligible asset-token interest.
+8. Lending module checks compliance credential, NAV freshness, collateral eligibility, LTV limits, and protocol state.
+9. If valid, Blend v2 / Stellar lending flow is initiated for a controlled testnet loan.
+10. Holder receives stablecoin disbursement and later repays through the Stellar settlement path.
 11. Events are indexed for admin and user dashboards.
 
 ## 7. SCF Tranche Structure and Four-Month Build Plan
@@ -257,6 +262,7 @@ Deliverables:
 - Stellar Wallets Kit / Freighter direct-wallet fallback implemented for admin and reviewer-verifiable testnet transactions.
 - Asset Registry and Compliance Credential Soroban contracts deployed to Stellar testnet.
 - Basic admin flow can create an asset record and issue or revoke a compliance credential.
+- Blend v2 technical integration spike completed with implementation notes.
 
 Verification:
 
@@ -271,15 +277,15 @@ Target timing: Months 2-3.
 Deliverables:
 
 - Asset Token and NAV Oracle contracts deployed to Stellar testnet.
-- Asset-Specific Liquidity Vault contract deployed to Stellar testnet.
-- Bridge / Stellar stablecoin deposit and payout path implemented or documented with a specific product constraint and fallback settlement path.
-- End-to-end testnet flow: eligible wallet, token balance, NAV update, vault quote, and conditional exit settlement.
+- Blend-compatible collateral and lending coordination module deployed to Stellar testnet.
+- Bridge / Stellar stablecoin disbursement and repayment path implemented or documented with a specific product constraint and fallback settlement path.
+- End-to-end testnet flow: eligible wallet, token balance, NAV update, borrow quote, controlled loan disbursement, and repayment.
 
 Verification:
 
 - reviewer can inspect testnet contract events;
 - reviewer can run or view an end-to-end demo;
-- quote and settlement logic are covered by unit/integration tests.
+- quote, collateral, settlement, and repayment logic are covered by unit/integration tests.
 
 ### Tranche 3: Mainnet Launch Readiness
 
@@ -307,6 +313,7 @@ Verification:
 - Implement DFNS embedded wallet flow in the Settley frontend.
 - Implement Stellar Wallets Kit / Freighter fallback for admin and reviewer-verifiable direct wallet flows.
 - Build initial asset registry and compliance credential contracts.
+- Complete Blend v2 integration spike and document constraints.
 - Deploy first contracts to Stellar testnet.
 
 ### Month 2: Asset and NAV Logic
@@ -316,12 +323,12 @@ Verification:
 - Connect token balance and NAV state to frontend/admin views.
 - Run unit and integration tests for restricted asset flows.
 
-### Month 3: Liquidity Vault and Settlement
+### Month 3: Lending Module and Settlement
 
-- Implement asset-specific vault contract.
-- Add Bridge / Stellar stablecoin deposit and payout flows.
-- Implement quote logic, utilization limits, pause states, and event emissions.
-- Demonstrate end-to-end testnet exit from asset token to stablecoin payout.
+- Implement Blend-compatible collateral and lending coordination module.
+- Add Bridge / Stellar stablecoin disbursement and repayment flows.
+- Implement borrow quote logic, LTV limits, pause states, and event emissions.
+- Demonstrate end-to-end testnet borrow and repayment against a controlled asset-token position.
 
 ### Month 4: Product Integration and Launch Readiness
 
@@ -350,7 +357,8 @@ The four-month MVP will not:
 - hold live property title on-chain;
 - automate all legal enforcement;
 - support unrestricted secondary trading;
-- require Blend lending integration for the first build;
+- provide production lending against live real estate before legal, credit, and audit readiness;
+- launch the sell-to-vault exit module in the first Stellar MVP;
 - require Soroswap or Aquarius routing for the first build;
 - use SCF funds for marketing or promotion.
 
