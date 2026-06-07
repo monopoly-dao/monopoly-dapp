@@ -23,7 +23,26 @@ The MVP wedge is intentionally narrow:
 
 Ownership-backed credit, Blend integration, and broader secondary-market routing are future extensions. The first build proves the core sell-to-vault liquidity mechanism.
 
-## 3. Why Stellar
+## 3. SCF Integration Track Fit
+
+This proposal is intended for the SCF Build Integration Track because Settley is an existing product direction with off-chain/product work already underway, and the funded work is to integrate existing Stellar ecosystem building blocks into Settley's real-world asset liquidity workflow.
+
+Selected Integration List building blocks:
+
+- DFNS: primary embedded wallet / Wallets-as-a-Service path for abstracted user onboarding, wallet management, and recovery.
+- Stellar Wallets Kit: direct wallet connection layer for admin, testing, and advanced user flows.
+- Freighter Connect: SDF-maintained browser wallet fallback for Soroban token interaction, QA, and reviewer-verifiable testnet flows.
+- Bridge: stablecoin treasury and payment movement layer for deposits, vault funding, and payout workflows where applicable.
+
+Soroban smart contracts are the application-specific layer that coordinates asset registry, compliance, token, NAV, and vault logic around these integrations. The Integration Track budget should therefore be framed around these integrations plus the connective Soroban/backend/frontend work required to make them usable in Settley's product.
+
+Not selected for MVP:
+
+- Blend v2: excluded from the first build because the MVP is conditional sell-to-vault liquidity, not lending.
+- Soroswap, Aquarius, and Stellar Broker: excluded from the first build because the MVP does not require open-market swap routing or speculative trading.
+- SDP: excluded from the first build because the initial payout workflow is asset-vault settlement, not bulk payroll or mass-disbursement operations.
+
+## 4. Why Stellar
 
 Settley is designed for regulated real-world asset workflows where payments, compliance, settlement, and user access matter as much as token issuance. Stellar is a strong fit because it provides:
 
@@ -35,16 +54,16 @@ Settley is designed for regulated real-world asset workflows where payments, com
 
 The Stellar implementation will not be a cosmetic chain port. It will use Stellar for embedded or abstracted wallet onboarding, Soroban execution, stablecoin settlement, and auditable asset-specific contract events.
 
-## 4. Stellar Components to Build
+## 5. Stellar Components to Build
 
-### 4.1 Embedded / Abstracted Stellar Wallet Integration
+### 5.1 Embedded / Abstracted Stellar Wallet Integration
 
 Purpose: let investors, LPs, and admins use Stellar-backed asset and settlement flows without forcing them to manage wallet complexity as a first-class product burden.
 
 Likely integration path:
 
-- embedded wallet or wallet-abstraction provider compatible with Stellar user flows;
-- Stellar Wallets Kit and/or Freighter support for advanced users, admins, testing, and direct wallet paths;
+- DFNS as the primary embedded wallet / Wallets-as-a-Service integration;
+- Stellar Wallets Kit and Freighter Connect support for advanced users, admins, testing, and direct wallet paths;
 - wallet creation, linking, recovery, and session state inside the Settley frontend;
 - signed Soroban transactions for asset, vault, and compliance actions;
 - transaction status, failure messages, and hash display in the UI.
@@ -57,7 +76,7 @@ Completion criteria:
 - advanced users and admins can use direct wallet connection where appropriate;
 - transaction history is visible in the Settley interface.
 
-### 4.2 Asset Registry Contract on Soroban
+### 5.2 Asset Registry Contract on Soroban
 
 Purpose: register each supported tokenized asset or asset cohort.
 
@@ -78,7 +97,7 @@ Completion criteria:
 - emit auditable events for privileged changes;
 - expose asset state to the admin console and user dashboard.
 
-### 4.3 Compliance Credential Contract on Soroban
+### 5.3 Compliance Credential Contract on Soroban
 
 Purpose: gate regulated asset actions without putting private KYC documents on-chain.
 
@@ -106,7 +125,7 @@ Completion criteria:
 - reject invalid or revoked wallets from restricted actions;
 - expose compliance status to the app without exposing underlying KYC files.
 
-### 4.4 Asset Token Contract on Soroban
+### 5.4 Asset Token Contract on Soroban
 
 Purpose: represent the economic interest in a specific tokenized asset or controlled asset cohort.
 
@@ -123,7 +142,7 @@ Completion criteria:
 - test minting, restricted transfers, blocked transfers, and exit-related escrow/burn;
 - connect token balances to the Settley frontend.
 
-### 4.5 NAV Oracle Contract on Soroban
+### 5.5 NAV Oracle Contract on Soroban
 
 Purpose: publish controlled asset valuation data used by quote logic.
 
@@ -143,7 +162,7 @@ Completion criteria:
 - flag stale NAV;
 - emit events for normal updates and emergency impairment updates.
 
-### 4.6 Asset-Specific Liquidity Vault Contract on Soroban
+### 5.6 Asset-Specific Liquidity Vault Contract on Soroban
 
 Purpose: provide conditional sell-to-vault exit liquidity for a specific asset.
 
@@ -171,14 +190,15 @@ Completion criteria:
 - process a testnet exit from asset token into stablecoin payout;
 - enforce reserve limits, utilization thresholds, and pause states.
 
-### 4.7 Stellar Stablecoin Settlement
+### 5.7 Bridge / Stellar Stablecoin Settlement
 
-Purpose: settle vault payouts, subscriptions, and controlled test distributions over Stellar stablecoin rails.
+Purpose: settle vault deposits, subscriptions, and controlled test payouts over Stellar stablecoin rails, using Bridge where appropriate for treasury/payment movement.
 
 Initial settlement scope:
 
 - testnet stablecoin flow for vault deposit;
 - testnet stablecoin flow for holder payout;
+- Bridge integration assessment and implementation path for payment movement;
 - admin-visible settlement status;
 - event trail tying settlement to asset ID, vault ID, and wallet address.
 
@@ -186,9 +206,10 @@ Completion criteria:
 
 - LP vault deposit settles on Stellar testnet;
 - holder payout settles on Stellar testnet;
+- Bridge-based payment movement is implemented or documented with a clear integration decision if product constraints require a narrower first release;
 - settlement events are indexed for dashboard display.
 
-### 4.8 Event Indexing and Admin Console
+### 5.8 Event Indexing and Admin Console
 
 Purpose: connect existing Settley admin workflows to Stellar contract actions.
 
@@ -208,7 +229,7 @@ Completion criteria:
 - contract events appear in the admin console;
 - privileged actions show status, transaction hash, and failure messages.
 
-## 5. End-to-End Data Flow
+## 6. End-to-End Data Flow
 
 1. Admin creates an asset record in Settley.
 2. Soroban asset registry stores asset metadata references.
@@ -222,12 +243,69 @@ Completion criteria:
 10. If valid, asset tokens are escrowed or burned and the holder receives stablecoin payout.
 11. Events are indexed for admin and user dashboards.
 
-## 6. Four-Month Build Plan
+## 7. SCF Tranche Structure and Four-Month Build Plan
+
+SCF Build requires three deliverable tranches, with the final tranche tied to mainnet launch or an equivalent production-ready release. Settley's four-month plan should be submitted as three tranches:
+
+### Tranche 1: MVP on Testnet Foundation
+
+Target timing: Month 1.
+
+Deliverables:
+
+- DFNS embedded wallet integration spike completed and connected to Settley frontend account state.
+- Stellar Wallets Kit / Freighter direct-wallet fallback implemented for admin and reviewer-verifiable testnet transactions.
+- Asset Registry and Compliance Credential Soroban contracts deployed to Stellar testnet.
+- Basic admin flow can create an asset record and issue or revoke a compliance credential.
+
+Verification:
+
+- reviewer can connect or access a Stellar-backed account;
+- reviewer can see a testnet transaction hash;
+- contract source is available in the repo or linked Stellar/Soroban implementation repo.
+
+### Tranche 2: Testnet Expansion
+
+Target timing: Months 2-3.
+
+Deliverables:
+
+- Asset Token and NAV Oracle contracts deployed to Stellar testnet.
+- Asset-Specific Liquidity Vault contract deployed to Stellar testnet.
+- Bridge / Stellar stablecoin deposit and payout path implemented or documented with a specific product constraint and fallback settlement path.
+- End-to-end testnet flow: eligible wallet, token balance, NAV update, vault quote, and conditional exit settlement.
+
+Verification:
+
+- reviewer can inspect testnet contract events;
+- reviewer can run or view an end-to-end demo;
+- quote and settlement logic are covered by unit/integration tests.
+
+### Tranche 3: Mainnet Launch Readiness
+
+Target timing: Month 4.
+
+Deliverables:
+
+- Core contracts prepared for Stellar mainnet or equivalent controlled production launch.
+- Event indexing and admin dashboard integration completed.
+- User-facing disclosures completed: liquidity is conditional, not guaranteed.
+- Developer documentation, test coverage, and audit handoff materials published.
+- Dedicated Stellar/Soroban implementation path created under this repo or a linked `settley-stellar` repository.
+
+Verification:
+
+- reviewer can view the production-ready architecture, deployment documentation, and demo;
+- reviewer can verify source code, tests, and integration documentation;
+- mainnet launch checklist is complete.
+
+## 8. Internal Month-by-Month Plan
 
 ### Month 1: Stellar Foundation
 
 - Finalize Soroban contract specifications.
-- Implement embedded or abstracted Stellar wallet flow in the Settley frontend.
+- Implement DFNS embedded wallet flow in the Settley frontend.
+- Implement Stellar Wallets Kit / Freighter fallback for admin and reviewer-verifiable direct wallet flows.
 - Build initial asset registry and compliance credential contracts.
 - Deploy first contracts to Stellar testnet.
 
@@ -241,7 +319,7 @@ Completion criteria:
 ### Month 3: Liquidity Vault and Settlement
 
 - Implement asset-specific vault contract.
-- Add stablecoin deposit and payout flows.
+- Add Bridge / Stellar stablecoin deposit and payout flows.
 - Implement quote logic, utilization limits, pause states, and event emissions.
 - Demonstrate end-to-end testnet exit from asset token to stablecoin payout.
 
@@ -253,15 +331,17 @@ Completion criteria:
 - Prepare audit handoff materials.
 - Publish developer documentation and controlled demo.
 
-## 7. Security and Compliance Assumptions
+## 9. Security and Compliance Assumptions
 
 - KYC files remain off-chain with regulated partners or internal systems.
 - On-chain compliance credentials store only minimal eligibility state.
 - Privileged operations use role-based controls and should move toward multi-sig administration before production launch.
 - Mainnet readiness requires test coverage, peer review, and audit support.
 - The product will not market guaranteed yield, guaranteed liquidity, or appreciation of XLM or any Stellar-based asset.
+- The product will not use SCF funding for XLM promotion, market manipulation, investment advice, or public claims about token profitability.
+- Compliance controls must reject sanctioned users, sanctioned jurisdictions, and users who fail required eligibility checks.
 
-## 8. MVP Non-Goals
+## 10. MVP Non-Goals
 
 The four-month MVP will not:
 
@@ -274,7 +354,7 @@ The four-month MVP will not:
 - require Soroswap or Aquarius routing for the first build;
 - use SCF funds for marketing or promotion.
 
-## 9. Relevant GitHub URL
+## 11. Relevant GitHub URL
 
 Current organization:
 
