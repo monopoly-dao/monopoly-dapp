@@ -9,9 +9,9 @@ import TrendingProperties from './_components/TrendingProperties';
 import WhoAreWe from './_components/WhoAreWe';
 
 export const metadata: Metadata = {
-  title: 'Buy property tokens, lend, or borrow against real estate',
+  title: 'Buy, lend, or raise with property tokens',
   description:
-    'Settley lets investors buy property tokens or lend against real estate collateral, while owners can raise money without selling the whole asset.',
+    'Settley lets people buy property tokens, lend against property collateral, or raise money from a property without selling the whole asset.',
   keywords: [
     'Settley',
     'Real asset liquidity',
@@ -23,31 +23,31 @@ export const metadata: Metadata = {
 
 const pathways = [
   {
-    title: 'I own an asset',
-    copy: 'Bring eligible property onchain and raise money against it without forcing a full sale.',
-    next: 'You will see how a property can be tokenized, placed beside a lending vault, and used as collateral.',
-    cta: 'Raise Against My Asset',
+    title: 'I own property',
+    copy: 'Turn eligible property into tokens and raise money without selling the whole asset.',
+    next: 'See how an owner can list a property, set terms, and receive capital.',
+    cta: 'Raise from my property',
     href: '#vault-flow',
   },
   {
     title: 'I want to invest',
-    copy: 'Browse properties and buy tokens that represent ownership.',
-    next: 'You will go to available tokenized property opportunities.',
+    copy: 'Browse properties and buy tokens tied to real ownership.',
+    next: 'Go straight to available tokenized property opportunities.',
     cta: 'Explore Opportunities',
     href: '/listings',
   },
   {
     title: 'I deploy assets',
-    copy: 'Package property inventory for buyers and lenders.',
-    next: 'You will see how documentation, ownership records, and market access fit together.',
+    copy: 'Bring property inventory to buyers and lenders with the right records in place.',
+    next: 'See how documentation, ownership records, and market access fit together.',
     cta: 'List an Asset',
     href: '#infrastructure',
   },
   {
     title: 'I want to lend',
-    copy: 'Lend stablecoins against property collateral with agreed rates and repayment dates.',
-    next: 'You will see what a lender reviews: collateral, rate, repayment date, and enforcement path.',
-    cta: 'See Lending Path',
+    copy: 'Fund property-backed loans with clear collateral, rates, and repayment dates.',
+    next: 'See what a lender reviews before funding a loan.',
+    cta: 'See lending path',
     href: '#lending-path',
   },
 ];
@@ -57,14 +57,14 @@ export default function Page() {
     <div>
       <div className='mt-20 mb-24 flex flex-col gap-11 px-[5%] sm:px-[7%]'>
         <h1 className='font-medium text-[45px] w-full leading-[55px] sm:leading-[75px] lg:leading-[96px] sm:text-[60px] lg:text-[80px]'>
-          <div>Buy property tokens,</div>
-          <div>lend, or borrow</div>
-          <div>against real estate</div>
+          <div>Buy property.</div>
+          <div>Lend against it.</div>
+          <div>Raise without selling.</div>
         </h1>
         <p className='max-w-3xl text-lg sm:text-xl text-[#44403C]'>
-          Settley helps people own property through tokens, lend against real
-          estate collateral, or raise money from a property without selling the
-          whole asset.
+          Settley turns eligible property into tokens so buyers can own a
+          share, lenders can fund property-backed loans, and owners can access
+          capital without selling the whole asset.
         </p>
         <div className='flex flex-col sm:flex-row gap-4'>
           <Link
@@ -77,7 +77,7 @@ export default function Page() {
             href='#vault-flow'
             className='border border-navy text-navy rounded-[6px] py-4 px-6 w-fit font-medium'
           >
-            Raise Against My Asset
+            Raise from my property
           </Link>
         </div>
       </div>
@@ -111,9 +111,8 @@ export default function Page() {
         <div className='max-w-3xl'>
           <h2 className='font-medium text-3xl sm:text-5xl'>Who are you?</h2>
           <p className='mt-5 text-[#44403C]'>
-            Pick the role that matches your job. Each path tells you what
-            happens next, so buyers, owners, lenders, and deployers do not have
-            to decode protocol language first.
+            Pick the path that matches what you want to do with property:
+            buy it, lend against it, list it, or raise from it.
           </p>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5'>

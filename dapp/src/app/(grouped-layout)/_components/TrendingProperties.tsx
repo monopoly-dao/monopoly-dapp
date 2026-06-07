@@ -17,7 +17,7 @@ const fallbackOpportunities = [
     },
     opportunity: {
       tag: 'Ownership Access',
-      terms: 'Buyers can buy property tokens with clear documents and rights.',
+      terms: 'Buy tokens tied to this property opportunity.',
     },
   },
   {
@@ -28,7 +28,7 @@ const fallbackOpportunities = [
     },
     opportunity: {
       tag: 'Property Loan',
-      terms: 'Lenders can fund a loan and accept the property tokens as collateral.',
+      terms: 'Fund a loan backed by pledged property tokens.',
     },
   },
   {
@@ -39,7 +39,7 @@ const fallbackOpportunities = [
     },
     opportunity: {
       tag: 'Owner Borrowing',
-      terms: 'Owners can choose how much to borrow, the rate, and repayment date.',
+      terms: 'Raise from the property with configurable loan terms.',
     },
   },
 ];
@@ -64,9 +64,8 @@ export default function TrendingProperties() {
         <div>
           <h2 className='text-3xl sm:text-4xl'>Ways to participate</h2>
           <p className='mt-5 max-w-2xl text-[#44403C]'>
-            A new user can follow the path that matches them: buy property
-            tokens, lend against property collateral, or bring a property to
-            market.
+            Buy property tokens, fund a property-backed loan, or bring a
+            property to market.
           </p>
         </div>
         <Link

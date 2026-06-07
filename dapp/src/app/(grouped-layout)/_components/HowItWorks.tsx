@@ -7,24 +7,24 @@ import Button from '@/components/buttons/Button';
 
 const steps = [
   {
-    title: 'Tokenize an eligible asset',
-    copy: 'Owners or deployers submit a property for checks, documents, and ownership structuring.',
+    title: 'List the property',
+    copy: 'An owner or deployer submits the property, documents, and ownership records for review.',
   },
   {
-    title: 'Create a lending vault',
-    copy: 'A property-specific lending vault can sit beside the ownership structure, with terms tied to that property only.',
+    title: 'Create the tokens',
+    copy: 'The property is structured into tokens that buyers can purchase and holders can track.',
   },
   {
-    title: 'Set the opportunity',
-    copy: 'The structure defines what investors can do: own part of the property, lend against it, or both.',
+    title: 'Choose the capital path',
+    copy: 'The owner can sell tokens, request a property-backed loan, or support both paths.',
   },
   {
-    title: 'Capital chooses its path',
-    copy: 'Buyers purchase property tokens. Lenders provide stablecoins and accept the property tokens as collateral.',
+    title: 'Buyers and lenders participate',
+    copy: 'Buyers buy property tokens. Lenders fund loans against pledged property tokens.',
   },
   {
-    title: 'Track rights and outcomes',
-    copy: 'Ownership, distributions, repayment, and collateral enforcement events are tracked against the asset structure.',
+    title: 'Track what happens next',
+    copy: 'Holdings, repayments, documents, and key updates stay tied to the property.',
   },
 ];
 
@@ -39,13 +39,12 @@ export default function HowItWorks() {
       <span id='how-it-works' className='sr-only' />
       <div className='flex flex-col gap-6 lg:w-1/2'>
         <h2 className='font-medium text-3xl sm:text-5xl'>
-          What each user sees after they click
+          How Settley works
         </h2>
         <p className='w-full lg:w-4/5 text-[#44403C]'>
-          A property can support multiple user paths without changing what the
-          asset is. Buyers see property tokens. Owners see a way to raise
-          without a full sale. Lenders see collateral, interest rate, repayment
-          date, and what happens if the loan is not repaid.
+          Start with a property. Settley helps turn it into tokens, then gives
+          people simple ways to participate: buy tokens, lend against them, or
+          raise capital from the property.
         </p>
         <div className='grid grid-cols-1 gap-4'>
           {steps.map((step, index) => (
