@@ -4,14 +4,14 @@ import Button from '@/components/buttons/Button';
 
 const possibilities = [
   'Tokenize eligible real assets with clear documentation and compliance checks',
-  'Own part of a property with clearer rights and records',
+  'Buy property tokens with clearer rights and records',
   'Request or fund loans backed by property collateral on configurable terms',
   'Track ownership, repayment, distributions, and enforcement paths in one place',
 ];
 
 export default function WhoAreWe() {
   return (
-    <div className='flex flex-col gap-9'>
+    <div id='infrastructure' className='flex flex-col gap-9'>
       <h2 className='font-medium text-3xl sm:text-5xl'>
         What Settley makes possible
       </h2>
@@ -19,7 +19,7 @@ export default function WhoAreWe() {
         <p className='col-span-1 w-full sm:w-[90%]'>
           Real assets are valuable, but they are hard to divide, slow to sell,
           and difficult for new investors to access. Settley makes it easier to
-          own part of a property or lend against one.
+          buy property tokens or lend against real estate collateral.
         </p>
         <p className='col-span-1 w-full sm:w-[90%]'>
           Owners can raise money without a full sale. Buyers can own property

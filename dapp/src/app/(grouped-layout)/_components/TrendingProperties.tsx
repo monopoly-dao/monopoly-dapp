@@ -17,7 +17,7 @@ const fallbackOpportunities = [
     },
     opportunity: {
       tag: 'Ownership Access',
-      terms: 'Buyers can own part of the property with clear documents and rights.',
+      terms: 'Buyers can buy property tokens with clear documents and rights.',
     },
   },
   {
@@ -64,8 +64,9 @@ export default function TrendingProperties() {
         <div>
           <h2 className='text-3xl sm:text-4xl'>Ways to participate</h2>
           <p className='mt-5 max-w-2xl text-[#44403C]'>
-            Own part of a property, lend against one, or bring a property to
-            market for buyers and lenders.
+            A new user can follow the path that matches them: buy property
+            tokens, lend against property collateral, or bring a property to
+            market.
           </p>
         </div>
         <Link
@@ -83,16 +84,27 @@ export default function TrendingProperties() {
           cardNumber={3}
         />
         {properties?.map((property) => (
-          <TrendingPropertyCard
-            key={property._id}
-            image={property.propertyDetails.photos[0].url}
-            caption={property.propertyDetails.name}
-            propertyId={property._id}
-            tag={'opportunity' in property ? property.opportunity.tag : undefined}
-            terms={
-              'opportunity' in property ? property.opportunity.terms : undefined
+          <div
+            id={
+              'opportunity' in property &&
+              property.opportunity.tag === 'Property Loan'
+                ? 'lending-path'
+                : undefined
             }
-          />
+            key={property._id}
+          >
+            <TrendingPropertyCard
+              image={property.propertyDetails.photos[0].url}
+              caption={property.propertyDetails.name}
+              propertyId={property._id}
+              tag={
+                'opportunity' in property ? property.opportunity.tag : undefined
+              }
+              terms={
+                'opportunity' in property ? property.opportunity.terms : undefined
+              }
+            />
+          </div>
         ))}
       </div>
     </div>

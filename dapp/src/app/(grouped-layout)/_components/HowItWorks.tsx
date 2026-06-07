@@ -12,7 +12,7 @@ const steps = [
   },
   {
     title: 'Create a lending vault',
-    copy: 'An asset-specific vault can sit beside the ownership structure, with terms tied to that asset only.',
+    copy: 'A property-specific lending vault can sit beside the ownership structure, with terms tied to that property only.',
   },
   {
     title: 'Set the opportunity',
@@ -20,7 +20,7 @@ const steps = [
   },
   {
     title: 'Capital chooses its path',
-    copy: 'Buyers can purchase ownership. Lenders can provide stablecoins and accept the property tokens as collateral.',
+    copy: 'Buyers purchase property tokens. Lenders provide stablecoins and accept the property tokens as collateral.',
   },
   {
     title: 'Track rights and outcomes',
@@ -39,12 +39,13 @@ export default function HowItWorks() {
       <span id='how-it-works' className='sr-only' />
       <div className='flex flex-col gap-6 lg:w-1/2'>
         <h2 className='font-medium text-3xl sm:text-5xl'>
-          How one property can support buyers and lenders
+          What each user sees after they click
         </h2>
         <p className='w-full lg:w-4/5 text-[#44403C]'>
-          One property can support two clear actions: people can own part of it,
-          or lend money against it. Lenders see the collateral, interest rate,
-          repayment date, and what happens if the loan is not repaid.
+          A property can support multiple user paths without changing what the
+          asset is. Buyers see property tokens. Owners see a way to raise
+          without a full sale. Lenders see collateral, interest rate, repayment
+          date, and what happens if the loan is not repaid.
         </p>
         <div className='grid grid-cols-1 gap-4'>
           {steps.map((step, index) => (

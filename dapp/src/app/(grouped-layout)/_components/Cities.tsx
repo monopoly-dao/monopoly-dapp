@@ -56,7 +56,7 @@ export default function Cities() {
           <h2 className='text-3xl sm:text-4xl'>Where assets meet capital</h2>
           <p className='mt-5 w-full sm:w-4/5'>
             Discover markets where asset owners, buyers, and lenders can meet
-            around real estate.
+            around tokenized property.
           </p>
         </div>
         <Link
