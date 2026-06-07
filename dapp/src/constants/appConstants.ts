@@ -15,35 +15,35 @@ export const faqs = [
   {
     question: 'What is Settley?',
     answer:
-      'Settley is a platform designed to streamline and modernize property ownership processes, making transactions easier, faster, and more secure.',
+      'Settley is a real-asset liquidity platform. It helps eligible asset owners tokenize property, structure ownership, and connect with buyers, investors, and liquidity providers.',
   },
   {
     question: 'How does Settley work?',
     answer:
-      'Settley uses a mix of blockchain technology and boots on the ground to facilitate property transactions. Users can buy, sell, and manage properties through our user-friendly interface.',
+      'An eligible asset is linked to compliance checks, legal documentation, and tokenized ownership records. From there, the asset can support ownership access, liquidity requests, and asset-specific capital structures.',
   },
   {
-    question: 'How can I own a property in minutes with Settley?',
+    question: 'Can I unlock liquidity without selling the whole asset?',
     answer:
-      'Settley uses smart contracts as legal entities to facilitate property purchases or ownership transfers. Once a property is tokenized, ownership is as simple as moving tokens from one wallet to another. While users hold these tokens, they are granted all rights to the property as encoded in the smart contract.',
+      'That is the goal. Asset owners can request controlled liquidity against eligible tokenized ownership while keeping the wider asset structure intact, subject to compliance, valuation, and risk checks.',
   },
   {
-    question: 'Is Settley secure?',
+    question: 'How does an asset-specific lending vault work?',
     answer:
-      'Yes, Settley employs advanced encryption and data protection protocols to ensure the security and privacy of your transactions and personal information.',
+      'A vault is created for a specific tokenized asset. The owner requests liquidity, proposes a rate and repayment date, and pledges ownership tokens as collateral. Eligible liquidity providers can fund the request in stablecoins if they accept the terms.',
   },
   {
-    question: 'What types of properties can I own on Settley?',
+    question: 'What happens if a borrower does not repay?',
     answer:
-      'Settley supports a variety of property types, including residential, commercial, and rental properties.',
+      'If repayment fails, pledged tokens enter a collateral enforcement path for compliant liquidity providers. Live enforcement depends on the legal wrapper, transfer restrictions, and jurisdiction-specific requirements.',
   },
   {
-    question: 'How do I get started with Settley?',
+    question: 'Can investors buy ownership as well as fund vaults?',
     answer:
-      'Simply sign up on our website, complete your profile, and follow the guided steps to start managing your properties.',
+      'Yes. Settley is built for multiple capital paths: buyers can access ownership opportunities, while eligible liquidity providers can fund asset-backed requests with clear terms.',
   },
   {
     question: 'How does Settley ensure compliance with legal regulations?',
-    answer: `All transactions are recorded, and user profiles are KYC'd at certain thresholds to ensure compliance in all regions we operate. Our blockchain records provide an accurate list of everyone involved in an asset sale or purchase.`,
+    answer: `Settley uses eligibility checks, KYC where required, jurisdiction-aware access rules, and legal documentation around each asset. Private compliance documents stay off-chain while ownership and transaction events can be tracked transparently.`,
   },
 ];

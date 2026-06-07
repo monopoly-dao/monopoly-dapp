@@ -21,7 +21,7 @@ export const unauthentiatedNavLinks = [
     route: '/faqs',
   },
   {
-    label: 'Listings',
+    label: 'Assets',
     route: '/listings',
   },
   {
@@ -37,7 +37,7 @@ export const authenticatedNavLinks = [
     route: '/faqs',
   },
   {
-    label: 'Listings',
+    label: 'Assets',
     route: '/listings',
   },
   {

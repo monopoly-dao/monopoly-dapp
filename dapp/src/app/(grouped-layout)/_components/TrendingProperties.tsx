@@ -19,7 +19,13 @@ export default function TrendingProperties() {
   return (
     <div className='flex flex-col gap-6 sm:gap-12 bg-white py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'>
       <div className='flex justify-between items-start'>
-        <h2 className='text-3xl sm:text-4xl'>Trending Properties</h2>
+        <div>
+          <h2 className='text-3xl sm:text-4xl'>Real-asset opportunities</h2>
+          <p className='mt-5 max-w-2xl text-[#44403C]'>
+            Explore assets that can support ownership access, liquidity vaults,
+            or future capital structures on Settley.
+          </p>
+        </div>
         <Link
           href='/listings'
           className='text-black flex font-medium items-center gap-2 underline'

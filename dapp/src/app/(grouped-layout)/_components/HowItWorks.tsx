@@ -5,37 +5,64 @@ import { useRouter } from 'next/navigation';
 
 import Button from '@/components/buttons/Button';
 
+const steps = [
+  {
+    title: 'Bring an asset',
+    copy: 'Owners, developers, or partners submit an eligible property or income-producing asset.',
+  },
+  {
+    title: 'Structure ownership',
+    copy: 'Settley links the asset to compliance checks, legal documentation, and tokenized ownership records.',
+  },
+  {
+    title: 'Create liquidity options',
+    copy: 'The asset can support ownership access, lending vaults, or future exit mechanisms.',
+  },
+  {
+    title: 'Match with capital',
+    copy: 'Buyers can access ownership, while eligible liquidity providers can fund asset-backed requests.',
+  },
+  {
+    title: 'Settle and manage',
+    copy: 'Payments, repayments, distributions, and enforcement events are tracked transparently.',
+  },
+];
+
 export default function HowItWorks() {
   const router = useRouter();
 
   return (
     <div
       id='how-it-works'
-      className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-14 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'
+      className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 sm:gap-14 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'
     >
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col gap-6 lg:w-1/2'>
         <h2 className='font-medium text-3xl sm:text-5xl'>
-          With Settley, you can own a property in minutes
+          How Settley turns real assets into liquidity
         </h2>
-        <div className='w-full lg:w-4/5 flex flex-col gap-[2px]'>
-          <p>
-            Our blockchain technology lets you buy property anywhere in the
-            world in an instant, whole or fractionalised.
-          </p>
-          <p>
-            Settley simplifies real world property transactions using automated
-            title management and trustless blockchain powered services.
-          </p>
-          {/* <p>
-            Our local entity acts as an escrow agent on your behalf when you buy
-            property.
-          </p> */}
+        <p className='w-full lg:w-4/5 text-[#44403C]'>
+          Settley gives owners a path to unlock capital, gives investors access
+          to real-asset opportunities, and keeps the rules around ownership,
+          repayment, and enforcement clear.
+        </p>
+        <div className='grid grid-cols-1 gap-4'>
+          {steps.map((step, index) => (
+            <div key={step.title} className='flex gap-4'>
+              <div className='h-9 w-9 shrink-0 rounded-full bg-navy text-white flex items-center justify-center font-medium'>
+                {index + 1}
+              </div>
+              <div>
+                <p className='font-medium text-black'>{step.title}</p>
+                <p className='text-[#44403C]'>{step.copy}</p>
+              </div>
+            </div>
+          ))}
         </div>
         <Button
           onClick={() => router.push('/listings')}
           className='py-4 px-6 bg-navy text-white w-fit font-medium'
         >
-          Explore Properties
+          Explore Opportunities
           <Image
             src='/icons/white arrow.png'
             alt='arrow'
