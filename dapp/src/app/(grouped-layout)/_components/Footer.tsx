@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaDiscord } from 'react-icons/fa';
+import { FaDiscord, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
 import SubscriptionForm from '@/app/_components/SubscriptionForm';
@@ -9,6 +9,11 @@ import FooterColumnLinks from './FooterColumnLinks';
 const aboutLinks = [
   { label: 'How it works', href: '/#how-it-works' },
   { label: 'Assets', href: '/listings' },
+  {
+    label: 'Protocol Paper',
+    href: '/papers/settley-conditional-liquidity-infrastructure.pdf',
+    openInNewTab: true,
+  },
 ];
 
 // const exploreLinks = [
@@ -31,6 +36,12 @@ const followLinks = [
     label: 'Discord',
     href: 'https://discord.gg/x54J7un2 ',
     icon: FaDiscord,
+    openInNewTab: true,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/settleyco/?viewAsMember=true',
+    icon: FaLinkedin,
     openInNewTab: true,
   },
 ];
