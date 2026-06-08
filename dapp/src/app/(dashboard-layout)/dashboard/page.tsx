@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
 import Button from '@/components/buttons/Button';
@@ -42,24 +43,55 @@ export default function Page() {
 
   return (
     <section className='h-full overflow-y-auto'>
-      <h1 className='font-merriweather font-light text-3xl'>Dashboard</h1>
+      <div className='rounded-2xl border border-settley-primary/5 bg-white p-6 shadow-sm'>
+        <p className='mb-3 font-inter text-xs font-bold uppercase tracking-widest text-navy/70'>
+          Your Settley account
+        </p>
+        <div className='flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
+          <div>
+            <h1 className='font-merriweather text-3xl font-light text-navy'>
+              Track property tokens and vault activity.
+            </h1>
+            <p className='mt-4 max-w-3xl font-inter text-sm leading-relaxed text-[#3B3C4A]'>
+              This is where your property token holdings, bookmarked assets, and
+              purchase activity live. When vault activity is available, this is
+              also where loan requests, collateral, and repayment updates should
+              become visible.
+            </p>
+          </div>
+          <div className='flex flex-col gap-3 sm:flex-row'>
+            <Link
+              href='/listings'
+              className='w-fit rounded-full bg-navy px-5 py-3 font-inter text-sm font-medium text-white transition hover:bg-navy/90'
+            >
+              Browse Properties
+            </Link>
+            <Link
+              href='/vaults#playground'
+              className='w-fit rounded-full border border-navy px-5 py-3 font-inter text-sm font-medium text-navy transition hover:bg-navy/5'
+            >
+              Try a Vault
+            </Link>
+          </div>
+        </div>
+      </div>
 
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6'>
         <DashboardCard
-          title='Total Portfolio Value'
+          title='Token Holding Value'
           amount={walletStats?.totalValue}
           isLoading={isLoading}
           isMoney
           percentChange={100}
         />
         <DashboardCard
-          title='Properties Owned'
+          title='Token Positions'
           amount={walletStats?.totalProperties}
           isLoading={isLoading}
           percentChange={-100}
         />
         <DashboardCard
-          title='Wallet Balance'
+          title='Available Balance'
           amount={walletStats?.walletBalance}
           isLoading={isLoading}
           isMoney

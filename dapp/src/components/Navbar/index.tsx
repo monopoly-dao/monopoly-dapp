@@ -2,7 +2,7 @@
 
 import { Stack } from '@mui/material';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 // import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { FiUserPlus } from 'react-icons/fi';
@@ -17,7 +17,6 @@ import { useGetUserDetailsQuery } from '@/api/profile';
 
 import LogoutDropdown from './LogoutDropdown';
 import MobileMenuContainer from './MobileMenuContainer';
-import Button from '../buttons/Button';
 import SettleyLogo from '../SettleyLogo';
 
 export const unauthentiatedNavLinks = [
@@ -34,13 +33,16 @@ export const unauthentiatedNavLinks = [
     route: '/developers',
   },
   {
-    label: 'For Investors',
-    route: '/investors',
+    label: 'Browse Properties',
+    route: '/listings',
   },
   {
-    label: 'How it Works',
-    route: '/#how-it-works',
-    isLinkToSection: true,
+    label: 'How Vaults Work',
+    route: '/vaults',
+  },
+  {
+    label: 'Protocol',
+    route: '/protocol',
   },
   {
     label: 'FAQs',
@@ -62,13 +64,16 @@ export const authenticatedNavLinks = [
     route: '/developers',
   },
   {
-    label: 'For Investors',
-    route: '/investors',
+    label: 'Browse Properties',
+    route: '/listings',
   },
   {
-    label: 'How it Works',
-    route: '/#how-it-works',
-    isLinkToSection: true,
+    label: 'How Vaults Work',
+    route: '/vaults',
+  },
+  {
+    label: 'Protocol',
+    route: '/protocol',
   },
   {
     label: 'FAQs',
@@ -81,8 +86,6 @@ const Navbar = () => {
   const isLoggedIn = session.data;
   const navLinks = isLoggedIn ? authenticatedNavLinks : unauthentiatedNavLinks;
   const pathname = usePathname();
-
-  const router = useRouter();
 
   const userFirebaseId = session.data?.userFirebaseId ?? '';
 
@@ -116,35 +119,18 @@ const Navbar = () => {
         {/* <InputSearch containerClassName='w-1/4 hidden sm:flex' /> */}
 
         <div className='items-center hidden lg:flex gap-[clamp(10px,1.6vw,32px)]'>
-          {navLinks.map((link) => {
-            if (link.isLinkToSection)
-              return (
-                <Button
-                  key={link.label}
-                  onClick={() => router.push(link.route)}
-                  variant='ghost'
-                  className={cn(
-                    'text-settley-text hover:text-settley-text-hover transition-colors bg-transparent p-0 border-none font-inter text-[clamp(12px,1.1vw,14px)] font-medium whitespace-nowrap',
-                    [pathname === link.route && 'text-settley-text-hover']
-                  )}
-                >
-                  {link.label}
-                </Button>
-              );
-            else
-              return (
-                <Link
-                  key={link.label}
-                  href={link.route}
-                  className={cn(
-                    'text-settley-text hover:text-settley-text-hover transition-colors text-[clamp(12px,1.1vw,14px)] font-inter font-medium whitespace-nowrap',
-                    [pathname === link.route && 'text-settley-text-hover']
-                  )}
-                >
-                  {link.label}
-                </Link>
-              );
-          })}
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.route}
+              className={cn(
+                'text-settley-text hover:text-settley-text-hover transition-colors text-[clamp(12px,1.1vw,14px)] font-inter font-medium whitespace-nowrap',
+                [pathname === link.route && 'text-settley-text-hover']
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
           {isLoggedIn && <LogoutDropdown />}
         </div>
 

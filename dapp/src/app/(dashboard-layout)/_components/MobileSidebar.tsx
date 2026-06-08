@@ -46,7 +46,7 @@ const MobileSidebar = () => {
     {
       id: 2,
       icon: IoWalletOutline,
-      title: 'My Properties',
+      title: 'Token Holdings',
       href: '/my-properties',
       available: false,
     },
@@ -60,14 +60,14 @@ const MobileSidebar = () => {
     {
       id: 3,
       icon: HiOutlineCalendar,
-      title: 'Transactions',
+      title: 'Activity',
       href: '/transactions',
       available: false,
     },
     {
       id: 4,
       icon: NotebookPen,
-      title: 'Wishlist',
+      title: 'Bookmarked Assets',
       href: '/wishlist',
       available: true,
     },

@@ -18,18 +18,17 @@ export const faqs = [
   {
     question: 'What is Settley?',
     answer:
-      'Settley is a platform designed to streamline and modernize property ownership processes, making transactions easier, faster, and more secure.',
+      'Settley is real-asset infrastructure that starts with property. People can buy property tokens, owners can raise against property, and lenders can review property-backed vaults.',
   },
   {
     question: 'How does Settley work?',
-    // blockchain
     answer:
-      'Settley uses a mix of technology and boots on the ground to facilitate property transactions. Users can buy, sell, and manage properties through our user-friendly interface.',
+      'Settley starts with a real property, structures it into tokens, and creates clear paths for buyers, owners, and lenders. Buyers can buy tokens, owners can raise capital, and lenders can review collateral and repayment terms.',
   },
   {
-    question: 'How can I own a property in minutes with Settley?',
+    question: 'What am I buying on Settley?',
     answer:
-      'Settley uses smart contracts as legal entities to facilitate property purchases or ownership transfers. Once a property is tokenized, ownership is as simple as moving tokens from one wallet to another. While users hold these tokens, they are granted all rights to the property as encoded in the smart contract.',
+      'You buy property tokens. Those tokens are tied to a structured property opportunity, so the app shows the asset, documents, tokens available, and the rights connected to that structure.',
   },
   {
     question: 'Is Settley secure?',
@@ -39,16 +38,16 @@ export const faqs = [
   {
     question: 'What types of properties can I own on Settley?',
     answer:
-      'Settley supports a variety of property types, including residential, commercial, and rental properties.',
+      'Settley can support different real-asset types over time. Today the user-facing wedge is property, including residential, commercial, and rental opportunities.',
   },
   {
     question: 'How do I get started with Settley?',
     answer:
-      'Simply sign up on our website, complete your profile, and follow the guided steps to start managing your properties.',
+      'Start by browsing available properties or trying the vault playground. When you sign up, your dashboard tracks property token holdings, bookmarked assets, and transaction activity.',
   },
   {
     question: 'How does Settley ensure compliance with legal regulations?', // blockchain records
-    answer: `All transactions are recorded, and user profiles are KYC'd at certain thresholds to ensure compliance in all regions we operate. Our records provide an accurate list of everyone involved in an asset sale or purchase.`,
+    answer: `Settley combines legal documentation, user checks, and ownership records so each property token or vault can be reviewed in context. Requirements depend on asset structure, jurisdiction, and user activity.`,
   },
 ];
 

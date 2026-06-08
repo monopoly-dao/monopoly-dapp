@@ -202,11 +202,11 @@ export default function PropertyDetailClient({
               <p className='text-4xl font-bold text-navy'>
                 $1{' '}
                 <span className='text-sm font-medium text-settley-text/60'>
-                  / UNIT
+                  / TOKEN
                 </span>
               </p>
               <div className='text-sm font-medium text-settley-text/60 bg-navy/5 py-1 px-3 rounded-full w-fit'>
-                {formatAmount(displayProperty?.propertyDetails.unitsLeft)} Units
+                {formatAmount(displayProperty?.propertyDetails.unitsLeft)} tokens
                 left
               </div>
             </div>
@@ -227,7 +227,7 @@ export default function PropertyDetailClient({
               }}
               className='py-4 w-full text-lg shadow-lg shadow-settley-primary/20'
             >
-              Buy Property
+              Buy Property Tokens
             </Button>
           </div>
         </div>

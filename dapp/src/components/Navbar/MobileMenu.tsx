@@ -1,17 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { FiUserPlus } from 'react-icons/fi';
-import { IoMdClose } from 'react-icons/io';
 import { LuLogIn } from 'react-icons/lu';
 import { VscAccount } from 'react-icons/vsc';
 
 import { authenticatedNavLinks, unauthentiatedNavLinks } from '.';
 import LogoutDropdown from './LogoutDropdown';
-import Button from '../buttons/Button';
-import IconButton from '../buttons/IconButton';
 import SettleyLogo from '../SettleyLogo';
 
 type Props = {
@@ -22,8 +18,6 @@ export default function MobileMenu({ close }: Props) {
   const session = useSession();
   const isLoggedIn = session.data;
   const navLinks = isLoggedIn ? authenticatedNavLinks : unauthentiatedNavLinks;
-
-  const router = useRouter();
 
   function closeAfterAnyAction() {
     setTimeout(() => {
@@ -40,29 +34,15 @@ export default function MobileMenu({ close }: Props) {
         onClick={closeAfterAnyAction}
       >
         <div className='items-center flex flex-col gap-6'>
-          {navLinks.map((link) => {
-            if (link.isLinkToSection)
-              return (
-                <Button
-                  key={link.label}
-                  onClick={() => router.push(link.route)}
-                  variant='ghost'
-                  className='text-settley-text bg-transparent !text-[14px] border-none font-inter font-medium text-left w-full justify-start px-0'
-                >
-                  {link.label}
-                </Button>
-              );
-            else
-              return (
-                <Link
-                  key={link.label}
-                  href={link.route}
-                  className='text-settley-text text-[14px] font-inter font-medium'
-                >
-                  {link.label}
-                </Link>
-              );
-          })}
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.route}
+              className='text-settley-text text-[14px] font-inter font-medium'
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
         <div className='bg-medium-grey h-[0.5px] w-full' />
         {isLoggedIn && (

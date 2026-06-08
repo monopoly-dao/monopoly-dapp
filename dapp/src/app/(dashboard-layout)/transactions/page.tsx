@@ -33,7 +33,12 @@ export default function Page() {
 
   return (
     <section className='h-full overflow-y-auto'>
-      <h1 className='font-merriweather font-light text-3xl'>Transactions</h1>
+      <h1 className='font-merriweather font-light text-3xl'>Activity</h1>
+      <p className='mt-3 max-w-2xl font-inter text-sm leading-relaxed text-[#3B3C4A]'>
+        Your token purchases and sales will appear here. Future vault activity
+        should make loan funding, collateral, and repayment events just as easy
+        to review.
+      </p>
 
       <div className='my-5 flex flex-col md:flex-row gap-1 md:gap-4'>
         <p className='font-roboto'>Wallet Address:</p>

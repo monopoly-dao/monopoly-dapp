@@ -10,7 +10,7 @@ export default function StepsToBuy() {
     <section className='flex flex-col gap-6 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'>
       <div className='flex flex-col gap-5'>
         <h2 className='font-medium text-3xl'>
-          Seamless Property Ownership: How It All Comes Together
+          How Property Tokens Come Together
         </h2>
       </div>
 
@@ -64,15 +64,15 @@ export default function StepsToBuy() {
           {/* <GoLaw className='text-3xl' /> */}
           <Image
             src={buyProperty}
-            alt='Buy Property'
+            alt='Buy Property Tokens'
             width={100}
             height={100}
             placeholder='blur'
             className='w-full max-h-[150px] object-cover rounded-[16px]'
           />
           <div className='flex flex-col gap-2'>
-            <p className='text-2xl'>Buy Property</p>
-            <p>Start investing in real estate assets.</p>
+            <p className='text-2xl'>Buy Property Tokens</p>
+            <p>Start with tokens tied to real property.</p>
           </div>
         </div>
       </div>

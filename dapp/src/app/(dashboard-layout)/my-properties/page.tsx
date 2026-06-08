@@ -33,7 +33,13 @@ export default function Page() {
 
   return (
     <section className='h-full overflow-y-auto'>
-      <h1 className='font-merriweather font-light text-3xl'>My Properties</h1>
+      <h1 className='font-merriweather font-light text-3xl'>
+        Property Token Holdings
+      </h1>
+      <p className='mt-3 max-w-2xl font-inter text-sm leading-relaxed text-[#3B3C4A]'>
+        Review the property tokens you hold and the wallet connected to your
+        Settley account.
+      </p>
 
       <div className='my-5 flex flex-col md:flex-row gap-1 md:gap-4'>
         <p className='font-roboto'>Wallet Address:</p>

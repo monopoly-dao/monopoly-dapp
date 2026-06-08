@@ -1,22 +1,31 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaHome, FaHeart, FaKey, FaBuilding, FaArrowRight } from 'react-icons/fa';
+import {
+  FaArrowRight,
+  FaBuilding,
+  FaHeart,
+  FaHome,
+  FaKey,
+  FaRegHandshake,
+} from 'react-icons/fa';
+
+import { faqs } from '@/constants/appConstants';
 
 import ExpandableFAQ from './_components/ExpandableFAQ';
 import GetStartedLink from './_components/GetStartedLink';
 import OwnProperty from './_components/OwnProperty';
 import OwnShare from './_components/OwnShare';
-import { faqs } from '@/constants/appConstants';
 
 import landingBanner from '~/images/landing-banner-2.png';
 
 export const metadata: Metadata = {
-  title: 'Join the future of property ownership',
-  description: 'Settley allows you to buy and own a home in minutes.', // enabled by blockchain technology.',
+  title: 'Buy, lend, or raise with property tokens',
+  description:
+    'Settley lets people buy property tokens, lend against property collateral, or raise money from a property without selling the whole asset.',
   keywords: [
     'Settley',
-    'Join the future of property ownership',
+    'Tokenized property',
     'SettleyCo',
     'Settley co',
   ],
@@ -27,15 +36,17 @@ export default function Page() {
     <div>
       <div className='mt-10 mb-20 flex flex-col gap-6 px-[5%] sm:px-[7%] text-center items-center'>
         <h1 className='font-playfair font-medium text-[48px] lg:text-[72px] leading-tight tracking-[-1.2px] lg:tracking-[-1.8px] text-navy w-full text-center mb-6'>
-          <div>Own a Property</div>
-          <div>In Minutes</div>
+          <div>Buy Property.</div>
+          <div>Lend Against It.</div>
+          <div>Raise Without Selling.</div>
         </h1>
         <p className='text-settley-text font-inter text-[18px] lg:text-[20px] leading-[29.25px] lg:leading-[32.5px] max-w-[672px] w-full text-center mb-4'>
-          Unlock genuine ownership of premium properties. Experience shared
-          ownership while keeping it simple, secure, and genuinely yours.
+          Settley turns eligible property into tokens so buyers can own a
+          share, lenders can fund property-backed loans, and owners can access
+          capital without selling the whole asset.
         </p>
         <p className='text-navy/80 font-inter font-medium text-[14px] tracking-[1.4px] uppercase text-center mb-8'>
-          Real Ownership. Real Assets. Real Simple.
+          Property Tokens. Vaults. Clearer Capital Paths.
         </p>
         <div className='w-full text-center flex items-center justify-center'>
           <GetStartedLink />
@@ -62,10 +73,11 @@ export default function Page() {
             Who are you?
           </h2>
           <p className='text-[#8E8E93] font-light text-sm sm:text-base mb-12 max-w-lg mx-auto'>
-            Choose the pathway that matches your goals and discover how Settley makes it simple, fast, and completely secure.
+            Choose the path that matches what you want to do with property:
+            buy it, lend against it, list it, or raise from it.
           </p>
 
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+          <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8'>
             {/* Card 1: Homeowner */}
             <div className='bg-white p-8 rounded-3xl border border-[#C6C6CD]/25 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-5 group'>
               <div className='relative flex items-center justify-center w-16 h-16 rounded-2xl bg-[#272342]/5 text-[#272342] group-hover:bg-[#272342] group-hover:text-white transition-all duration-300'>
@@ -74,21 +86,21 @@ export default function Page() {
               </div>
               <div className='flex flex-col gap-2'>
                 <h3 className='font-playfair font-bold text-xl text-navy'>
-                  I own a home
+                  I own property
                 </h3>
                 <p className='text-[#8E8E93] text-sm font-light leading-relaxed min-h-[40px]'>
-                  Unlock cash from your home without selling it.
+                  Turn eligible property into tokens and raise without selling the whole asset.
                 </p>
               </div>
               <Link
                 href='/homeowners'
                 className='inline-flex items-center gap-2 text-sm font-semibold text-navy group-hover:text-[#272342]/85 transition-colors mt-2 font-inter'
               >
-                For Homeowners <FaArrowRight className='text-xs' />
+                For Owners <FaArrowRight className='text-xs' />
               </Link>
             </div>
 
-            {/* Card 2: Seller */}
+            {/* Card 2: Buyer */}
             <div className='bg-white p-8 rounded-3xl border border-[#C6C6CD]/25 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-5 group'>
               <div className='relative flex items-center justify-center w-16 h-16 rounded-2xl bg-[#272342]/5 text-[#272342] group-hover:bg-[#272342] group-hover:text-white transition-all duration-300'>
                 <FaHome className='text-2xl' />
@@ -96,31 +108,52 @@ export default function Page() {
               </div>
               <div className='flex flex-col gap-2'>
                 <h3 className='font-playfair font-bold text-xl text-navy'>
-                  I want to sell
+                  I want to buy
                 </h3>
                 <p className='text-[#8E8E93] text-sm font-light leading-relaxed min-h-[40px]'>
-                  Sell your home to a global investor network, faster than traditional routes.
+                  Browse properties and buy tokens tied to real ownership.
                 </p>
               </div>
               <Link
-                href='/sellers'
+                href='/listings'
                 className='inline-flex items-center gap-2 text-sm font-semibold text-navy group-hover:text-[#272342]/85 transition-colors mt-2 font-inter'
               >
-                For Sellers <FaArrowRight className='text-xs' />
+                Browse Properties <FaArrowRight className='text-xs' />
               </Link>
             </div>
 
-            {/* Card 3: Developer */}
+            {/* Card 3: Lender */}
+            <div className='bg-white p-8 rounded-3xl border border-[#C6C6CD]/25 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-5 group'>
+              <div className='flex items-center justify-center w-16 h-16 rounded-2xl bg-[#272342]/5 text-[#272342] group-hover:bg-[#272342] group-hover:text-white transition-all duration-300'>
+                <FaRegHandshake className='text-2xl' />
+              </div>
+              <div className='flex flex-col gap-2'>
+                <h3 className='font-playfair font-bold text-xl text-navy'>
+                  I want to lend
+                </h3>
+                <p className='text-[#8E8E93] text-sm font-light leading-relaxed min-h-[40px]'>
+                  Review collateral, rates, and repayment before funding a property-backed loan.
+                </p>
+              </div>
+              <Link
+                href='/vaults#lenders'
+                className='inline-flex items-center gap-2 text-sm font-semibold text-navy group-hover:text-[#272342]/85 transition-colors mt-2 font-inter'
+              >
+                For Lenders <FaArrowRight className='text-xs' />
+              </Link>
+            </div>
+
+            {/* Card 4: Developer */}
             <div className='bg-white p-8 rounded-3xl border border-[#C6C6CD]/25 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center gap-5 group'>
               <div className='flex items-center justify-center w-16 h-16 rounded-2xl bg-[#272342]/5 text-[#272342] group-hover:bg-[#272342] group-hover:text-white transition-all duration-300'>
                 <FaBuilding className='text-2xl' />
               </div>
               <div className='flex flex-col gap-2'>
                 <h3 className='font-playfair font-bold text-xl text-navy'>
-                  I build property
+                  I deploy assets
                 </h3>
                 <p className='text-[#8E8E93] text-sm font-light leading-relaxed min-h-[40px]'>
-                  Move inventory faster and reach investors globally.
+                  Bring property inventory to buyers and lenders with the right records in place.
                 </p>
               </div>
               <Link

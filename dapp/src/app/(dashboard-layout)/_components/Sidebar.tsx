@@ -41,7 +41,7 @@ const sideBarLinks: SidebarLinksType[] = [
   {
     id: 2,
     icon: IoWalletOutline,
-    title: 'My Properties',
+    title: 'Token Holdings',
     href: '/my-properties',
     available: false,
   },
@@ -55,14 +55,14 @@ const sideBarLinks: SidebarLinksType[] = [
   {
     id: 4,
     icon: HiOutlineCalendar,
-    title: 'Transactions',
+    title: 'Activity',
     href: '/transactions',
     available: false,
   },
   {
     id: 5,
     icon: NotebookPen,
-    title: 'Wishlist',
+    title: 'Bookmarked Assets',
     href: '/wishlist',
     available: true,
   },

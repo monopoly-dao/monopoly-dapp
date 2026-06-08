@@ -15,6 +15,8 @@ type Props = {
 
 export default function TransactionTableItem({ transaction }: Props) {
   const tableClass = 'px-5 py-3 text-sm font-roboto text-[#353434]';
+  const actionLabel =
+    transaction.type === 'bought' ? 'Tokens bought' : 'Tokens sold';
 
   return (
     <tr>
@@ -46,7 +48,7 @@ export default function TransactionTableItem({ transaction }: Props) {
       </td>
       <td className={cn([tableClass])}>
         <div className='w-fit font-general-sans font-medium py-1 px-[6px] text-[#16A34A] bg-[#DCFCE7] rounded-[4px] text-[10px]'>
-          Complete
+          {actionLabel}
         </div>
       </td>
     </tr>

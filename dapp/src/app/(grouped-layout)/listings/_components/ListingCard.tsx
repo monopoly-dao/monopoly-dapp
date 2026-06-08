@@ -82,14 +82,14 @@ export default function ListingCard({ property, wishlist }: Props) {
             <div className='flex flex-col gap-1'>
               <div className='flex items-end'>
                 <p className='font-bold text-2xl'>$1</p>
-                <p>/unit</p>
+                <p>/token</p>
               </div>
               <p className='text-navy/40 font-inter text-xs'>
-                {formatAmount(unitsLeft)}/{formatAmount(units)} units left
+                {formatAmount(unitsLeft)}/{formatAmount(units)} tokens left
               </p>
             </div>
             <div className='flex flex-col gap-1 items-center'>
-              <p className='font-inter text-gray-500'>Buy Now</p>
+              <p className='font-inter text-gray-500'>Buy Tokens</p>
               <RatePercentageIndicator amount={`${generateRandomNumbers()}`} />
             </div>
           </div>

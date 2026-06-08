@@ -1,5 +1,6 @@
 export const siteConfig = {
   title: 'Settley',
-  description: 'Join the future of property ownership',
+  description:
+    'Real-asset infrastructure for property tokens, vaults, and property-backed capital.',
   url: 'https://settley.co',
 };

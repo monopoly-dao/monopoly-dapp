@@ -1,22 +1,25 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
+
 import { siteConfig } from '@/constants/config';
+
 import ListingsClient from './ListingsClient';
 
 export const metadata: Metadata = {
-  title: 'Real Estate Listings | Buy Shared Property Fractions',
-  description: 'Browse available properties from around the world. Start owning high-yield real estate fractions for as low as $1.',
+  title: 'Available Properties | Buy Property Tokens',
+  description:
+    'Browse properties where you may be able to buy tokens, track ownership exposure, or understand the collateral behind a future vault.',
   keywords: [
     'Settley',
     'Listings',
     'Real Estate',
-    'Property Fractions',
+    'Property Tokens',
     'Asset Ownership',
     'Invest in Property',
   ],
   openGraph: {
-    title: 'Settley Property Listings',
-    description: 'Explore premium real estate opportunities globally.',
+    title: 'Settley Available Properties',
+    description: 'Explore tokenized property opportunities globally.',
     url: `${siteConfig.url}/listings`,
     type: 'website',
   },
@@ -26,8 +29,9 @@ export default function Page() {
   const listingsSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Settley Property Listings',
-    description: 'A collection of real estate properties available for fractional ownership.',
+    name: 'Settley Available Properties',
+    description:
+      'A collection of properties available for tokenized ownership and future vault context.',
     url: `${siteConfig.url}/listings`,
     mainEntity: {
       '@type': 'ItemList',

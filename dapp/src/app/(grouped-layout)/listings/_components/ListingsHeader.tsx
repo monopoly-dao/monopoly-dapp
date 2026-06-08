@@ -19,8 +19,12 @@ export default function ListingsHeader() {
       </div>
       <div className='z-[2] w-full flex flex-col gap-16 items-center text-white'>
         <h1 className='text-center text-3xl sm:text-4xl lg:text-6xl w-full sm:w-1/2'>
-          Discover properties from around the world
+          Browse available properties
         </h1>
+        <p className='text-center text-lg sm:text-xl w-full sm:w-3/5'>
+          Review properties where you may be able to buy tokens, track ownership
+          exposure, or understand the collateral behind a future vault.
+        </p>
         {/* <PropertiesSearch /> */}
       </div>
     </div>

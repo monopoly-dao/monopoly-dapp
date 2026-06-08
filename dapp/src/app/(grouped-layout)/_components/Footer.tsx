@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
@@ -7,11 +6,12 @@ import SubscriptionForm from '@/app/_components/SubscriptionForm';
 import FooterColumnLinks from './FooterColumnLinks';
 
 const primaryLinks = [
-  { label: 'How it Works', href: '/#how-it-works' },
+  { label: 'How Vaults Work', href: '/vaults' },
   { label: 'For Homeowners', href: '/homeowners' },
   { label: 'For Sellers', href: '/sellers' },
   { label: 'For Developers', href: '/developers' },
-  { label: 'For Investors', href: '/investors' },
+  { label: 'Browse Properties', href: '/listings' },
+  { label: 'Protocol', href: '/protocol' },
   { label: 'FAQs', href: '/faqs' },
   { label: 'Contact', href: 'mailto:temisan@settley.co' },
 ];
@@ -53,6 +53,11 @@ const followLinks = [
 ];
 
 const secondaryLinks = [
+  {
+    label: 'Protocol Paper',
+    href: '/papers/settley-conditional-liquidity-infrastructure.pdf',
+    openInNewTab: true,
+  },
   { label: 'For Agents', href: '/agents' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Terms of Service', href: '/terms-of-service' },
