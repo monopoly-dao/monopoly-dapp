@@ -7,11 +7,12 @@ import TableContainer from '@/components/table';
 
 import { useGetUserTransactionsQuery } from '@/api/profile';
 
+import DashboardEmptyState from '../_components/DashboardEmptyState';
 import TransactionTableItem from '../_components/TransactionTableItem';
 
 const headers = [
   'Transaction ID',
-  'Asset Symbol',
+  'Property Token',
   'Date',
   'Price',
   'Tokens',
@@ -33,24 +34,43 @@ export default function Page() {
     });
 
   const transactions = userTransactionsResponse?.data;
+  const hasTransactions = !!transactions?.length;
 
   return (
     <div>
-      <h2 className='text-3xl mt-12 font-inter mb-6'>Transaction History</h2>
+      <div className='mt-12 mb-6'>
+        <h2 className='text-3xl font-inter'>Transaction History</h2>
+        <p className='mt-3 max-w-2xl text-[#44403C]'>
+          Your token purchases and sales will appear here. Future vault activity
+          should make loan funding, collateral, and repayment events just as
+          easy to review.
+        </p>
+      </div>
 
-      {transactions?.length === 0 && `You don't have any transactions yet`}
-      <TableContainer
-        headers={headers}
-        isLoading={isLoading}
-        totalPages={userTransactionsResponse?.meta.totalPages}
-      >
-        {transactions?.map((transaction) => (
-          <TransactionTableItem
-            key={transaction._id}
-            transaction={transaction}
-          />
-        ))}
-      </TableContainer>
+      {!hasTransactions && !isLoading && (
+        <DashboardEmptyState
+          title='No token activity yet'
+          body='Once you buy or sell property tokens, each transaction will show here with the property token, date, amount, and status.'
+          primaryLabel='Browse Properties'
+          primaryHref='/listings'
+          secondaryLabel='See How Vaults Work'
+          secondaryHref='/vaults'
+        />
+      )}
+      {(hasTransactions || isLoading) && (
+        <TableContainer
+          headers={headers}
+          isLoading={isLoading}
+          totalPages={userTransactionsResponse?.meta.totalPages}
+        >
+          {transactions?.map((transaction) => (
+            <TransactionTableItem
+              key={transaction._id}
+              transaction={transaction}
+            />
+          ))}
+        </TableContainer>
+      )}
     </div>
   );
 }

@@ -12,6 +12,8 @@ type Props = {
 
 export default function TransactionTableItem({ transaction }: Props) {
   const tableClass = 'px-5 border-b border-medium-grey py-3';
+  const actionLabel =
+    transaction.type === 'bought' ? 'Tokens bought' : 'Tokens sold';
 
   return (
     <tr>
@@ -29,7 +31,7 @@ export default function TransactionTableItem({ transaction }: Props) {
         {formatAmount(transaction.amount.$numberDecimal)}
       </td>
       <td className={cn([tableClass])}>
-        <div>Complete</div>
+        <div>{actionLabel}</div>
       </td>
     </tr>
   );

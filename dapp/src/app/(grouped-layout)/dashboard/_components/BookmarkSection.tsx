@@ -25,7 +25,7 @@ export default function BookmarkSection() {
   return (
     <div>
       <div className='flex justify-between items-start'>
-        <h2 className='text-3xl font-inter'>Bookmarks</h2>
+        <h2 className='text-3xl font-inter'>Bookmarked Assets</h2>
         <Link
           href='/dashboard/bookmarks'
           className='text-black flex font-medium items-center gap-2 underline'
@@ -35,7 +35,7 @@ export default function BookmarkSection() {
         </Link>
       </div>
 
-      {wishlistProperties?.length === 0 && 'You have no bookmarked assets'}
+      {wishlistProperties?.length === 0 && 'No bookmarked assets yet'}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'>
         <ListingCardLoader cardNumber={3} isLoading={isLoading} />
         {wishlistProperties?.map((property) => (

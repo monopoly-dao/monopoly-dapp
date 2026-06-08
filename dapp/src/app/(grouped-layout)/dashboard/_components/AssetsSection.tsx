@@ -5,6 +5,7 @@ import TableContainer from '@/components/table';
 import { useGetUserAssetsQuery } from '@/api/profile';
 
 import AssetTableItem from './AssetTableItem';
+import DashboardEmptyState from './DashboardEmptyState';
 
 const headers = ['Token', 'Tokens', 'USD Value'];
 
@@ -23,6 +24,7 @@ export default function AssetsSection({ userFirebaseId }: Props) {
   });
 
   const assets = userAssetsResponse?.data;
+  const hasAssets = !!assets?.length;
 
   return (
     <div>
@@ -30,17 +32,28 @@ export default function AssetsSection({ userFirebaseId }: Props) {
         <h2 className='text-3xl font-inter'>Token Holdings</h2>
       </div>
 
-      {assets?.length === 0 && `You don't have any token holdings yet`}
-      <TableContainer
-        tableHeadClass='last:text-right [&:nth-child(2)]:text-center'
-        isLoading={isLoading}
-        headers={headers}
-        totalPages={userAssetsResponse?.meta.totalPages}
-      >
-        {assets?.map((asset) => (
-          <AssetTableItem key={asset._id} asset={asset} />
-        ))}
-      </TableContainer>
+      {!hasAssets && !isLoading && (
+        <DashboardEmptyState
+          title='No property tokens yet'
+          body='When you buy property tokens, they will appear here with the number of tokens held and their current displayed value.'
+          primaryLabel='Browse Properties'
+          primaryHref='/listings'
+          secondaryLabel='See How Vaults Work'
+          secondaryHref='/vaults'
+        />
+      )}
+      {(hasAssets || isLoading) && (
+        <TableContainer
+          tableHeadClass='last:text-right [&:nth-child(2)]:text-center'
+          isLoading={isLoading}
+          headers={headers}
+          totalPages={userAssetsResponse?.meta.totalPages}
+        >
+          {assets?.map((asset) => (
+            <AssetTableItem key={asset._id} asset={asset} />
+          ))}
+        </TableContainer>
+      )}
     </div>
   );
 }

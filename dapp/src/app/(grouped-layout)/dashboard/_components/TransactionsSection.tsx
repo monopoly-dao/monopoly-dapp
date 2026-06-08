@@ -4,7 +4,7 @@ import TableContainer from '@/components/table';
 
 const headers = [
   'Transaction ID',
-  'Asset Symbol',
+  'Property Token',
   'Date',
   'Price',
   'Tokens',
@@ -15,7 +15,7 @@ export default function TransactionsSection() {
   return (
     <div className=''>
       <div className='flex justify-between items-start mb-6'>
-        <h2 className='text-3xl font-inter'>Recent Transactions</h2>
+        <h2 className='text-3xl font-inter'>Recent Activity</h2>
         <Link
           href='/dashboard/transactions'
           className='text-black flex font-medium items-center gap-2 underline whitespace-nowrap'

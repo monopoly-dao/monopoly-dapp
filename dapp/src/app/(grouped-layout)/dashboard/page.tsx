@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { PiHouseLine } from 'react-icons/pi';
 import { PiCubeFill } from 'react-icons/pi';
@@ -20,11 +21,42 @@ export default function Page() {
 
   return (
     <div>
-      <h2 className='text-3xl mt-12 font-inter mb-2'>Dashboard</h2>
+      <section className='mt-12 rounded-[8px] border border-[#D6D3D1] bg-cream p-6 sm:p-8'>
+        <p className='mb-3 text-sm uppercase tracking-[0.14em] text-[#57534E]'>
+          Your Settley account
+        </p>
+        <div className='flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between'>
+          <div>
+            <h2 className='font-inter text-3xl font-medium text-[#1C1917]'>
+              Track property tokens and vault activity.
+            </h2>
+            <p className='mt-4 max-w-3xl text-[#44403C]'>
+              This is where your property token holdings, bookmarked assets, and
+              purchase activity live. When vault activity is available, this is
+              also where loan requests, collateral, and repayment updates should
+              become visible.
+            </p>
+          </div>
+          <div className='flex flex-col gap-3 sm:flex-row'>
+            <Link
+              href='/listings'
+              className='w-fit rounded-[6px] bg-navy px-5 py-3 font-medium text-white'
+            >
+              Browse Properties
+            </Link>
+            <Link
+              href='/vaults#playground'
+              className='w-fit rounded-[6px] border border-navy px-5 py-3 font-medium text-navy'
+            >
+              Try a Vault
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6'>
         <DashboardCard
-          title='Total Portfolio Value'
+          title='Token Holding Value'
           amount={walletStats?.totalValue}
           isLoading={isLoading}
           isMoney
@@ -39,7 +71,7 @@ export default function Page() {
           icon={PiHouseLine}
         />
         <DashboardCard
-          title='Wallet Balance'
+          title='Available Balance'
           amount={walletStats?.walletBalance}
           isLoading={isLoading}
           isMoney
