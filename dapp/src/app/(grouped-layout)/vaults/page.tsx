@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import VaultPlayground from './_components/VaultPlayground';
+
 export const metadata: Metadata = {
   title: 'How Settley Vaults Work',
   description:
@@ -71,20 +73,22 @@ export default function VaultsPage() {
           </p>
           <div className='mt-10 flex flex-col sm:flex-row gap-4'>
             <Link
-              href='/listings'
+              href='#playground'
               className='bg-navy text-white rounded-[6px] py-4 px-6 w-fit font-medium'
             >
-              Browse Properties
+              Try the Vault
             </Link>
             <Link
-              href='#owners'
+              href='/listings'
               className='border border-navy text-navy rounded-[6px] py-4 px-6 w-fit font-medium'
             >
-              Raise from a Property
+              Browse Properties
             </Link>
           </div>
         </div>
       </section>
+
+      <VaultPlayground />
 
       <section className='px-[5%] lg:px-[7%] py-16 sm:py-24 bg-cream'>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
