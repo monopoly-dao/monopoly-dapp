@@ -80,7 +80,7 @@ export default function Page() {
     >
       <div className={styles.title}>
         <h1>Welcome back!</h1>
-        <p>Log in to your account to manage your assets</p>
+        <p>Log in to manage your assets, bookmarks, and token holdings</p>
       </div>
       <div className={styles.form}>
         <Input

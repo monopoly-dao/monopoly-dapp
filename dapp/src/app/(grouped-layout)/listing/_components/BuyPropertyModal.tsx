@@ -37,9 +37,7 @@ export default function BuyPropertyModal({
             units: Number(removeNonDigit(values.units)),
           }).unwrap();
 
-          toast.success(
-            `You have successfully bought ${values.units} units of this property`
-          );
+          toast.success(`You bought ${values.units} property tokens`);
           props.handleCloseModal();
         } catch (e) {
           handleErrors(e);
@@ -83,7 +81,7 @@ export default function BuyPropertyModal({
         className='h-full w-full bg-white p-10 flex flex-col gap-4'
       >
         <Input
-          label='Number of units'
+          label='Number of tokens'
           id='units'
           {...getFormikInputProps('units')}
           value={formatAmount(values.units)}
@@ -103,12 +101,12 @@ export default function BuyPropertyModal({
             disabled={!isValid}
             className='py-3 px-10'
           >
-            Buy
+            Buy Tokens
           </Button>
         </div>
         {isLoading && (
           <p className='text-red-400 text-sm my-2'>
-            Buying a property could take some time, please hold on
+            Buying property tokens could take some time, please hold on
           </p>
         )}
       </form>

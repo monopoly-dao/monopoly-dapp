@@ -11,12 +11,12 @@ export default function Jumbotron() {
     <div className={styles.main}>
       <div className={styles.herotext}>
         <h1>
-          Own property.
+          Own property through tokens.
           <br /> Pay in fractions.
         </h1>
         <p>
-          Join a community of people crowd-funding to own great property around
-          the world. Connect, review deals, interact with property owners, and{' '}
+          Join a community of people buying tokens that represent property
+          ownership. Review deals and track assets before you buy.
         </p>
         <Button>connect wallet</Button>
       </div>
