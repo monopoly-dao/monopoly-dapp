@@ -26,7 +26,7 @@ The first Stellar build validates the lending path because Blend v2 gives Settle
 
 ## 3. SCF Integration Track Fit
 
-This proposal is intended for the SCF Build Integration Track because Settley is an existing product direction with off-chain/product work already underway, and the funded work is to integrate existing Stellar ecosystem building blocks into Settley's real-world asset liquidity workflow.
+This proposal is intended for the SCF Build Integration Track because Settley is an existing product direction with offchain/product work already underway, and the funded work is to integrate existing Stellar ecosystem building blocks into Settley's real-world asset liquidity workflow.
 
 Selected Integration List building blocks:
 
@@ -60,7 +60,7 @@ The Stellar implementation will not be a cosmetic chain port. It will use Stella
 
 ### 5.1 Embedded / Abstracted Stellar Wallet Integration
 
-Purpose: let investors, LPs, and admins use Stellar-backed asset and settlement flows without forcing them to manage wallet complexity as a first-class product burden.
+Purpose: let investors, liquidity providers, and admins use Stellar-backed asset and settlement flows without forcing them to manage wallet complexity as a first-class product burden.
 
 Likely integration path:
 
@@ -102,7 +102,7 @@ Completion criteria:
 
 ### 5.3 Compliance Credential Contract on Soroban
 
-Purpose: gate regulated asset actions without putting private KYC documents on-chain.
+Purpose: gate regulated asset actions without putting private KYC documents onchain.
 
 Stores minimal eligibility state:
 
@@ -178,12 +178,12 @@ Core logic:
 - system creates an asset-specific lending vault linked to the asset registry entry;
 - owner requests liquidity against eligible asset value, subject to configurable advance-rate / LTV limits;
 - owner proposes loan terms, including rate they are willing to pay, repayment date, and pledged token amount;
-- eligible LPs fund the vault in Stellar stablecoins if the terms match their risk appetite;
+- eligible liquidity providers fund the vault in Stellar stablecoins if the terms match their risk appetite;
 - pledged ownership tokens are locked or escrowed as collateral;
 - Blend v2 integration path is used to prototype lending, repayment, and loan state where feasible;
 - settlement executes only if compliance, collateral, and risk checks pass;
 - borrower repays principal and agreed interest by the agreed date;
-- if repayment fails, pledged tokens move into a collateral enforcement path for compliant LPs, subject to the legal wrapper, transfer restrictions, and any required off-chain enforcement steps.
+- if repayment fails, pledged tokens move into a collateral enforcement path for compliant liquidity providers, subject to the legal wrapper, transfer restrictions, and any required offchain enforcement steps.
 
 Loan states:
 
@@ -258,10 +258,10 @@ Completion criteria:
 7. Asset-specific lending vault is created alongside the tokenized asset.
 8. Holder requests liquidity against the asset-token interest and proposes advance rate, pricing, repayment date, and pledged token amount.
 9. Lending module checks compliance credential, NAV freshness, collateral eligibility, maximum LTV, proposed terms, and protocol state.
-10. Eligible LPs fund the vault in Stellar stablecoins if they accept the terms.
+10. Eligible liquidity providers fund the vault in Stellar stablecoins if they accept the terms.
 11. If valid, Blend v2 / Stellar lending flow is initiated for a controlled testnet loan.
 12. Holder receives stablecoin disbursement and repays principal plus agreed interest by the agreed date.
-13. If repayment fails, pledged tokens enter a collateral enforcement path for compliant LPs, subject to legal-wrapper and transfer rules.
+13. If repayment fails, pledged tokens enter a collateral enforcement path for compliant liquidity providers, subject to legal-wrapper and transfer rules.
 14. Events are indexed for admin and user dashboards.
 
 ## 7. SCF Tranche Structure and Four-Month Build Plan
@@ -356,7 +356,7 @@ Verification:
 
 ## 9. Security and Compliance Assumptions
 
-- KYC files remain off-chain with regulated partners or internal systems.
+- KYC files remain offchain with regulated partners or internal systems.
 - On-chain compliance credentials store only minimal eligibility state.
 - Privileged operations use role-based controls and should move toward multi-sig administration before production launch.
 - Mainnet readiness requires test coverage, peer review, and audit support.
@@ -370,7 +370,7 @@ The four-month MVP will not:
 
 - launch a public securities offering;
 - promise universal liquidity;
-- hold live property title on-chain;
+- hold live property title onchain;
 - automate all legal enforcement;
 - support unrestricted secondary trading;
 - provide production lending against live real estate before legal, credit, and audit readiness;

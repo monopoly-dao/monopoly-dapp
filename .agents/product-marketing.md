@@ -50,6 +50,15 @@ The broader vision is conditional liquidity infrastructure for tokenized real as
 - Do not use abstract copy like `opened to capital`.
 - Do not use `on-chain` or `off-chain`; use `onchain` and `offchain`.
 
+## Brand Presentation Rules
+
+- Use the shared `SettleyLogo` component for visible Settley branding.
+- Default to `SettleyLogo colour='new'`, which renders the canonical `dapp/public/svg/Settley.svg` brand mark.
+- Treat `Logo DARK.svg` and `Logo WHITE.svg` as compact legacy marks, not the default Settley logo.
+- Do not write `Settley.` as styled text to imitate the logo.
+- Keep the logo separate from editorial headings. `font-playfair` can be used for headings, but not for the brand wordmark.
+- Auth, dashboard, and marketing surfaces should share the same brand system: logo component, existing color tokens, and simple property-token copy.
+
 ## Source Material
 
 - Protocol paper: `dapp/public/papers/settley-conditional-liquidity-infrastructure.pdf`

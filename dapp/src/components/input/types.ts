@@ -28,6 +28,7 @@ export interface InputProps
   initialValue?: string;
   initialTouched?: boolean;
   initialError?: string;
+  labelBg?: string;
 }
 export type SelectProps = React.SelectHTMLAttributes<
   HTMLSelectElement | HTMLInputElement

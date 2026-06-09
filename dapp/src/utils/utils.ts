@@ -46,3 +46,19 @@ export function formatISODatetoDashSeparatedDateString(
       : parsedDate.getMonth() + 1
   }-${parsedDate.getFullYear()}`;
 }
+
+export function testPassword(
+  test: 'uppercase' | 'lowercase' | 'special' | 'number' | 'length',
+  password: string,
+  length?: number
+) {
+  const tests = {
+    length: password.length >= (length || 8),
+    lowercase: /[a-z]/.test(password),
+    number: /\d/.test(password),
+    special: /[^A-Za-z0-9]/.test(password),
+    uppercase: /[A-Z]/.test(password),
+  };
+
+  return tests[test];
+}

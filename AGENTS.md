@@ -37,3 +37,16 @@ This repo is for Settley, maintained under the Monopoly DAO GitHub organization.
   - `opened to capital`
   - unexplained `LPs`
   - `on-chain` or `off-chain`
+
+## Brand And UI Rules
+
+- Use the shared `SettleyLogo` component for visible Settley wordmarks. Do not recreate the logo with typed text such as `Settley.` or a page-specific font class.
+- The canonical public brand mark is `SettleyLogo colour='new'`, which renders `dapp/public/svg/Settley.svg`. Use this by default for auth, landing, and dashboard brand placement.
+- `Logo DARK.svg` and `Logo WHITE.svg` are compact legacy marks. Do not use them for new brand placements unless the user explicitly asks for the compact mark.
+- Brand logo assets live in `dapp/public/svg/` and are exposed through `dapp/src/components/SettleyLogo.tsx`.
+- Use existing font tokens instead of inventing page-local brand typography:
+  - `font-n-montreal` for the core product UI where the existing app uses it.
+  - `font-inter` for dense body copy, forms, captions, and dashboard text.
+  - `font-playfair` only for editorial/section headings where the current design already uses that treatment, never for the Settley wordmark.
+- Public pages and authenticated pages should feel like the same product. When porting UI from another branch, preserve the shared logo, color tokens, button style, and copy rules before changing layout.
+- Do not hard-code one-off logo text, brand colors, or new font families in individual pages unless a design-system file or shared component is updated at the same time.
