@@ -65,6 +65,8 @@ export default function MobileMenu({ close }: Props) {
                 <Link
                   key={link.label}
                   href={link.route}
+                  target={link.openInNewTab ? '_blank' : '_self'}
+                  rel={link.openInNewTab ? 'noreferrer' : undefined}
                   className='text-[#1E1E1E] font-light font-craftwork'
                 >
                   {link.label}

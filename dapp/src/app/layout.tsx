@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { Darker_Grotesque, Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import { getServerSession } from 'next-auth';
 import { Toaster } from 'react-hot-toast';
@@ -53,6 +52,9 @@ export const metadata: Metadata = {
     'MDAO',
     'Properties',
     'Fractions',
+    'Fractional Property Ownership',
+    'Property Investment',
+    'Raise Against Property',
     'Property Ownership',
     'Ownership',
     'Property Fractions',
@@ -66,16 +68,18 @@ export const metadata: Metadata = {
   ],
 };
 
-const darkerGrotesque = Darker_Grotesque({
-  subsets: ['latin'],
-  display: 'swap',
+const darkerGrotesque = localFont({
+  src: '../../public/fonts/CraftworkGrotesk-Regular.woff',
   variable: '--font-dark-grotesk',
+  display: 'swap',
+  preload: true,
 });
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
+const inter = localFont({
+  src: '../../public/fonts/AktivGrotesk_Trial_Md.ttf',
   variable: '--font-inter',
+  display: 'swap',
+  preload: true,
 });
 
 const ppNeueMontreal = localFont({

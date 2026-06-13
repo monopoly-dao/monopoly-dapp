@@ -13,37 +13,38 @@ export const DELETE_METHOD = 'DELETE';
 
 export const faqs = [
   {
+    question: 'Is Settley legally safe?',
+    answer:
+      'Every property is legally structured before it goes live. Ownership terms, documents, and participant records are prepared so buyers, owners, and lenders understand what they are entering before they commit.',
+  },
+  {
     question: 'What is Settley?',
     answer:
-      'Settley is a platform designed to streamline and modernize property ownership processes, making transactions easier, faster, and more secure.',
+      'Settley helps people own a share of property, fund property-backed opportunities, or raise capital from property without forcing a whole-asset sale.',
   },
   {
     question: 'How does Settley work?',
     answer:
-      'Settley uses a mix of blockchain technology and boots on the ground to facilitate property transactions. Users can buy, sell, and manage properties through our user-friendly interface.',
+      'Owners list a property and set terms. Settley structures the ownership records. Buyers can secure a documented ownership stake, and lenders can fund property-backed positions where available.',
   },
   {
-    question: 'How can I own a property in minutes with Settley?',
+    question: 'How is ownership documented?',
     answer:
-      'Settley uses smart contracts as legal entities to facilitate property purchases or ownership transfers. Once a property is tokenized, ownership is as simple as moving tokens from one wallet to another. While users hold these tokens, they are granted all rights to the property as encoded in the smart contract.',
+      'Ownership is tied to the legal structure and records prepared for each property. The property page explains what the ownership stake represents before a buyer participates.',
   },
   {
-    question: 'Is Settley secure?',
+    question: 'Can owners raise capital without selling the whole asset?',
     answer:
-      'Yes, Settley employs advanced encryption and data protection protocols to ensure the security and privacy of your transactions and personal information.',
+      'Yes. Owners can set raise terms and make part of the property available to buyers or lenders while keeping the rest of the asset intact.',
   },
   {
-    question: 'What types of properties can I own on Settley?',
+    question: 'What is the minimum investment?',
     answer:
-      'Settley supports a variety of property types, including residential, commercial, and rental properties.',
-  },
-  {
-    question: 'How do I get started with Settley?',
-    answer:
-      'Simply sign up on our website, complete your profile, and follow the guided steps to start managing your properties.',
+      'Minimums can vary by property, structure, and jurisdiction. Each property page should show the participation terms before you make a decision.',
   },
   {
     question: 'How does Settley ensure compliance with legal regulations?',
-    answer: `All transactions are recorded, and user profiles are KYC'd at certain thresholds to ensure compliance in all regions we operate. Our blockchain records provide an accurate list of everyone involved in an asset sale or purchase.`,
+    answer:
+      'Settley uses eligibility checks, identity verification where required, jurisdiction-aware access rules, and documented ownership records. Private compliance documents stay protected and are not shown publicly.',
   },
 ];

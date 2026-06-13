@@ -15,31 +15,40 @@ import { formatAmount, removeNonDigit } from '@/utils/utils';
 type Props = ModalProps & {
   userFirebaseId: string;
   propertyId: string;
+  propertyName?: string;
+  propertySymbol?: string;
+  tokensLeft?: string;
+  pricePerToken?: number;
 };
 
 export default function BuyPropertyModal({
   userFirebaseId,
   propertyId,
+  propertyName,
+  propertySymbol,
+  tokensLeft,
+  pricePerToken = 1,
   ...props
 }: Props) {
   const [enterPosition, { isLoading }] = useEnterPositionMutation();
+  const availableTokens = Number(removeNonDigit(tokensLeft ?? '0'));
 
   const { values, handleSubmit, getFieldMeta, getFieldProps, isValid } =
     useFormik({
       initialValues: {
-        units: '0',
+        units: '',
       },
       onSubmit: async (values) => {
+        const tokenCount = Number(removeNonDigit(values.units));
+
         try {
           await enterPosition({
             userFirebaseId,
             propertyId,
-            units: Number(removeNonDigit(values.units)),
+            units: tokenCount,
           }).unwrap();
 
-          toast.success(
-            `You have successfully bought ${values.units} units of this property`
-          );
+          toast.success(`You bought ${formatAmount(tokenCount)} property tokens`);
           props.handleCloseModal();
         } catch (e) {
           handleErrors(e);
@@ -60,7 +69,23 @@ export default function BuyPropertyModal({
               }
               const isValid = /^[0-9]+$/.test(cleanAmount);
 
-              return isValid || context.createError();
+              if (!isValid) return context.createError();
+
+              const tokenCount = Number(cleanAmount);
+
+              if (tokenCount < 1) {
+                return context.createError({
+                  message: 'Enter at least 1 token',
+                });
+              }
+
+              if (availableTokens && tokenCount > availableTokens) {
+                return context.createError({
+                  message: `Only ${formatAmount(availableTokens)} tokens are available`,
+                });
+              }
+
+              return true;
             }
           ),
       }),
@@ -76,24 +101,77 @@ export default function BuyPropertyModal({
     };
   }
 
+  const tokenCount = Number(removeNonDigit(values.units));
+  const estimatedTotal = tokenCount * pricePerToken;
+  const hasTokenCount = tokenCount > 0;
+
   return (
-    <Modal {...props} className='h-auto w-4/5 lg:w-2/5'>
+    <Modal {...props} className='h-auto w-[92%] max-w-[560px]'>
       <form
         onSubmit={handleSubmit}
-        className='h-full w-full bg-white p-10 flex flex-col gap-4'
+        className='h-full w-full bg-white p-6 sm:p-10 flex flex-col gap-6'
       >
+        <div>
+          <p className='text-2xl font-medium'>Buy Property Tokens</p>
+          <p className='mt-2 text-sm text-dark-grey'>
+            Choose how many property tokens you want to buy. Tokens represent
+            your documented stake in this property.
+          </p>
+        </div>
+
         <Input
-          label='Number of units'
+          label='Number of tokens'
           id='units'
+          placeholder='Enter token amount'
           {...getFormikInputProps('units')}
-          value={formatAmount(values.units)}
+          value={values.units ? formatAmount(values.units) : ''}
         />
 
-        <div className='flex items-center gap-5'>
+        <div className='rounded-[8px] border border-[#D6D3D1] bg-light-grey/60 p-4'>
+          <div className='flex items-start justify-between gap-4 border-b border-[#D6D3D1] pb-3'>
+            <div>
+              <p className='text-sm text-dark-grey'>Property</p>
+              <p className='font-medium'>{propertyName ?? 'Selected property'}</p>
+            </div>
+            {propertySymbol && (
+              <p className='rounded-full border border-[#D6D3D1] px-3 py-1 text-xs font-medium text-dark-grey'>
+                ${propertySymbol}
+              </p>
+            )}
+          </div>
+
+          <div className='mt-4 flex flex-col gap-3 text-sm'>
+            <div className='flex justify-between gap-4'>
+              <span className='text-dark-grey'>Price per token</span>
+              <span className='font-medium'>{formatAmount(pricePerToken, '$')}</span>
+            </div>
+            <div className='flex justify-between gap-4'>
+              <span className='text-dark-grey'>Tokens selected</span>
+              <span className='font-medium'>
+                {hasTokenCount ? formatAmount(tokenCount) : '0'}
+              </span>
+            </div>
+            <div className='flex justify-between gap-4'>
+              <span className='text-dark-grey'>Tokens left</span>
+              <span className='font-medium'>
+                {availableTokens ? formatAmount(availableTokens) : 'Not available'}
+              </span>
+            </div>
+            <div className='flex justify-between gap-4 border-t border-[#D6D3D1] pt-3 text-base'>
+              <span className='font-medium'>Estimated total</span>
+              <span className='font-semibold text-navy'>
+                {hasTokenCount ? formatAmount(estimatedTotal, '$') : '$ 0'}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className='flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:gap-5'>
           <Button
             className='py-3 px-10'
             variant='outline'
             onClick={props.handleCloseModal}
+            fullWidth
           >
             Close
           </Button>
@@ -102,13 +180,14 @@ export default function BuyPropertyModal({
             isLoading={isLoading}
             disabled={!isValid}
             className='py-3 px-10'
+            fullWidth
           >
-            Buy
+            Buy Tokens
           </Button>
         </div>
         {isLoading && (
           <p className='text-red-400 text-sm my-2'>
-            Buying a property could take some time, please hold on
+            Buying property tokens could take some time, please hold on
           </p>
         )}
       </form>

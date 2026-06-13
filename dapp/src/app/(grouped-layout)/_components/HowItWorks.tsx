@@ -15,27 +15,36 @@ export default function HowItWorks() {
     >
       <div className='flex flex-col gap-5'>
         <h2 className='font-medium text-3xl sm:text-5xl'>
-          With Settley, you can own a property in minutes
+          How Settley works
         </h2>
-        <div className='w-full lg:w-4/5 flex flex-col gap-[2px]'>
-          <p>
-            Our blockchain technology lets you buy property anywhere in the
-            world in an instant, whole or fractionalised.
-          </p>
-          <p>
-            Settley simplifies real world property transactions using automated
-            title management and trustless blockchain powered services.
-          </p>
-          {/* <p>
-            Our local entity acts as an escrow agent on your behalf when you buy
-            property.
-          </p> */}
+        <div className='w-full lg:w-4/5 flex flex-col gap-5'>
+          <div>
+            <p className='font-semibold'>1. List or browse</p>
+            <p className='text-dark-grey'>
+              Owners list a property and set raise terms. Buyers browse
+              opportunities with clear ownership terms attached.
+            </p>
+          </div>
+          <div>
+            <p className='font-semibold'>2. Structure and verify</p>
+            <p className='text-dark-grey'>
+              Settley handles the legal structure and ownership records for
+              every property before it goes live.
+            </p>
+          </div>
+          <div>
+            <p className='font-semibold'>3. Own, lend, or raise</p>
+            <p className='text-dark-grey'>
+              Buyers receive a documented ownership stake. Lenders fund
+              property-backed positions. Owners access capital without selling.
+            </p>
+          </div>
         </div>
         <Button
           onClick={() => router.push('/listings')}
           className='py-4 px-6 bg-navy text-white w-fit font-medium'
         >
-          Explore Properties
+          Browse Properties
           <Image
             src='/icons/white arrow.png'
             alt='arrow'
@@ -51,24 +60,8 @@ export default function HowItWorks() {
         width={591}
         height={548}
         className='w-full lg:w-[500px] xl:w-[591px] h-auto object-cover'
+        loading='eager'
       />
-
-      {/* <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-center gap-8 text-xl font-semibold'>
-        <div className='shadow-2xl rounded-[10px] py-10 px-5 sm:px-10 bg-white flex flex-col items-center gap-7'>
-          <PiHouseLineBold className='text-4xl' />
-          Buy property instantly on the blockchain, whole or fractionalized.
-        </div>
-        <div className='shadow-2xl rounded-[10px] py-10 px-5 sm:px-10 bg-white flex items-center flex-col gap-7'>
-          <TiClipboard className='text-4xl' />
-          Simplify real-world property transactions with automated title
-          management.
-        </div>
-        <div className='shadow-2xl rounded-[10px] py-10 px-5 sm:px-10 bg-white items-center flex flex-col gap-7'>
-          <MdOutlinePerson className='text-4xl' />
-          Our local entity acts as an escrow agent on your behalf when you buy
-          property.
-        </div>
-      </div> */}
     </div>
   );
 }

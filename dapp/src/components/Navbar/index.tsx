@@ -17,33 +17,43 @@ import SettleyLogo from '../SettleyLogo';
 
 export const unauthentiatedNavLinks = [
   {
-    label: 'FAQs',
-    route: '/faqs',
+    label: 'How it works',
+    route: '/#how-it-works',
+    isLinkToSection: true,
   },
   {
-    label: 'Listings',
+    label: 'Browse Properties',
     route: '/listings',
   },
   {
-    label: 'How it Works',
-    route: '/#how-it-works',
-    isLinkToSection: true,
+    label: 'Protocol',
+    route: '/protocol',
+  },
+  {
+    label: 'Developers',
+    route: 'https://settley.gitbook.io/settley',
+    openInNewTab: true,
   },
 ];
 
 export const authenticatedNavLinks = [
   {
-    label: 'FAQs',
-    route: '/faqs',
+    label: 'How it works',
+    route: '/#how-it-works',
+    isLinkToSection: true,
   },
   {
-    label: 'Listings',
+    label: 'Browse Properties',
     route: '/listings',
   },
   {
-    label: 'How it Works',
-    route: '/#how-it-works',
-    isLinkToSection: true,
+    label: 'Protocol',
+    route: '/protocol',
+  },
+  {
+    label: 'Developers',
+    route: 'https://settley.gitbook.io/settley',
+    openInNewTab: true,
   },
 ];
 
@@ -95,6 +105,8 @@ const Navbar = () => {
                 <Link
                   key={link.label}
                   href={link.route}
+                  target={link.openInNewTab ? '_blank' : '_self'}
+                  rel={link.openInNewTab ? 'noreferrer' : undefined}
                   className='text-[#1E1E1E] font-light font-craftwork'
                 >
                   {link.label}

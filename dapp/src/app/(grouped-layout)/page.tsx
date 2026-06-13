@@ -2,19 +2,25 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Cities from './_components/Cities';
 import FAQ from './_components/FAQ';
 import HowItWorks from './_components/HowItWorks';
+import PersonaSelector from './_components/PersonaSelector';
 import TrendingProperties from './_components/TrendingProperties';
-import WhoAreWe from './_components/WhoAreWe';
 
 export const metadata: Metadata = {
-  title: 'Join the future of property ownership',
+  title: 'Buy a share in property. Raise without selling.',
   description:
-    'Settley allows you to buy and own a home in minutes enabled by blockchain technology.',
+    'Own a stake in real property, lend against it, or raise capital from it without buying or selling the whole asset.',
+  openGraph: {
+    title: 'Settley | Own property differently.',
+    description:
+      'Own a share. Fund property-backed opportunities. Raise capital. Settley makes property accessible from both sides.',
+  },
   keywords: [
     'Settley',
-    'Join the future of property ownership',
+    'fractional property ownership',
+    'property investment',
+    'raise against property',
     'SettleyCo',
     'Settley co',
   ],
@@ -23,15 +29,32 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div>
-      <div className='mt-20 mb-24 flex flex-col gap-11 px-[5%] sm:px-[7%]'>
-        <h1 className='font-medium text-[45px] w-full leading-[55px] sm:leading-[75px] lg:leading-[96px] sm:text-[60px] lg:text-[80px]'>
-          <div>Join the future of </div>
-          <div>property ownership</div>
+      <section className='mt-16 mb-14 flex flex-col gap-8 px-[5%] sm:px-[7%] lg:mt-24 lg:mb-20'>
+        <h1 className='font-medium text-[38px] w-full leading-[44px] sm:leading-[62px] lg:leading-[88px] sm:text-[56px] lg:text-[78px] max-w-[900px]'>
+          <div>Buy property.</div>
+          <div>Lend against it.</div>
+          <div>Raise without selling.</div>
         </h1>
-        <p>
-          Settley allows you to buy and own a home in minutes.
+        <p className='max-w-[680px] text-base sm:text-lg text-dark-grey'>
+          Settley gives owners a way to raise capital, buyers a way to own a
+          share, and lenders a way to fund property-backed opportunities without
+          anyone buying or selling the whole asset.
         </p>
-      </div>
+        <div className='flex flex-col gap-3 sm:flex-row'>
+          <Link
+            href='/listings'
+            className='rounded-md border border-navy bg-navy px-6 py-3 text-center text-white'
+          >
+            Browse Properties
+          </Link>
+          <Link
+            href='mailto:hello@settley.co?subject=Raise%20from%20my%20property'
+            className='rounded-md border border-navy px-6 py-3 text-center text-navy'
+          >
+            Raise from my property
+          </Link>
+        </div>
+      </section>
 
       <div className='relative'>
         <Image
@@ -44,7 +67,7 @@ export default function Page() {
         />
         <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>
           <Link href='/listings' className='flex items-center gap-5'>
-            Villa in Lake Como, Italy{' '}
+            See available properties{' '}
             <Image
               src='/icons/white arrow.png'
               alt='arrow'
@@ -55,14 +78,16 @@ export default function Page() {
         </div>
       </div>
 
+      <p className='px-[5%] py-8 text-center text-xs font-semibold uppercase tracking-[0.18em] text-dark-grey sm:px-[7%]'>
+        Every property on Settley is legally structured before it goes live on
+        the platform.
+      </p>
+
+      <PersonaSelector />
+
       <HowItWorks />
 
       <TrendingProperties />
-
-      <div className='bg-cream px-[5%] lg:px-[7%] py-12 sm:py-20 lg:py-28 flex flex-col gap-28'>
-        <WhoAreWe />
-        <Cities />
-      </div>
 
       <div className='px-[5%] lg:px-[7%]'>
         <FAQ />
