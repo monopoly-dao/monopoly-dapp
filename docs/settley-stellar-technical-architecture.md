@@ -44,6 +44,28 @@ Not selected for MVP:
 - SDP: excluded from the first build because the initial payout workflow is controlled loan settlement, not bulk payroll or mass-disbursement operations.
 - Sell-to-vault exit module: deferred until the lending path proves wallet abstraction, compliance, NAV, collateral, vault funding, repayment, and enforcement flows on Stellar.
 
+## 3.1 Findings from `kaankacar/stellar-build`
+
+The `kaankacar/stellar-build` repository is not a competing protocol. It is a Stellar builder toolkit: project skills, Soroban guides, SCF workflows, ecosystem datasets, and competitive-research prompts. Its value for Settley is as a checklist and ecosystem reference, not as product architecture.
+
+Relevant findings to carry into implementation:
+
+- Stellar-native token design should be reviewed before defaulting to a custom Soroban token. For fungible asset interests, Stellar Assets with Stellar Asset Contracts (SACs) may provide better wallet support, lower transaction cost, trustline-based authorization, revocation, and clawback controls. A custom Soroban token should be used only if pledge, escrow, transfer restriction, or enforcement logic cannot be cleanly handled through Stellar Asset controls plus Settley vault contracts.
+- Blend is a strong primitive for lending, but Settley should validate whether Blend v2 can support the permissioned, asset-specific collateral flow directly. If not, the first build should implement a Settley-controlled lending vault on Soroban and keep Blend as an integration spike or later liquidity primitive.
+- Stellar ecosystem overlap exists in RWA issuance, real-estate marketplaces, lending, and vault infrastructure. Settley should differentiate as conditional liquidity infrastructure for tokenized real assets, starting with property, rather than presenting as another property marketplace or generic RWA tokenization tool.
+
+Ecosystem projects worth reviewing during build planning:
+
+- Blend: lending primitive and permissionless lending pool reference.
+- Mystic and Legasi: RWA-backed borrowing / Lombard lending overlap.
+- Airswift: stablecoin loans against tokenized receivables.
+- Amber, Blade, Spydra, Bitbond: RWA issuance and tokenization tooling.
+- Tauvlo, Nauta Land, Verseprop, RedSwan: real-estate tokenization / marketplace positioning.
+- DeFindex, OrbitCDP, YieldBlox: vault, yield, and borrowing patterns.
+- Trustless Work: escrow and milestone-based settlement patterns that may inform recovery or enforcement workflows.
+
+Gbenga review point: before implementation starts, decide whether the MVP asset token is (1) a Stellar Asset plus SAC with issuer authorization controls, or (2) a custom SEP-41 Soroban token. This decision affects wallet support, compliance controls, vault escrow design, and Blend integration depth.
+
 ## 4. Why Stellar
 
 Settley is designed for regulated real-world asset workflows where payments, compliance, settlement, and user access matter as much as token issuance. Stellar is a strong fit because it provides:
@@ -130,9 +152,20 @@ Completion criteria:
 - reject invalid or revoked wallets from restricted actions;
 - expose compliance status to the app without exposing underlying KYC files.
 
-### 5.4 Asset Token Contract on Soroban
+### 5.4 Asset Token Design
 
 Purpose: represent the economic interest in a specific tokenized asset or controlled asset cohort.
+
+Preferred first design to evaluate:
+
+- issue the asset interest as a Stellar Asset where possible;
+- use Stellar Asset authorization flags for compliant trustlines and restricted holding;
+- expose the asset to Soroban contracts through its Stellar Asset Contract (SAC);
+- use Settley Soroban contracts for registry, compliance credentials, vault state, collateral lock or escrow, NAV checks, loan terms, repayment state, and enforcement state.
+
+Fallback design:
+
+- use a custom SEP-41 Soroban token if Stellar Asset plus SAC cannot support the required pledge, escrow, transfer restriction, or enforcement mechanics.
 
 Capabilities:
 
@@ -144,7 +177,8 @@ Capabilities:
 
 Completion criteria:
 
-- deploy asset-token contract to Stellar testnet;
+- document the Stellar Asset plus SAC vs custom Soroban token decision, including compliance, wallet, vault, and Blend integration tradeoffs;
+- deploy the selected asset-token design to Stellar testnet;
 - test minting, restricted transfers, blocked transfers, collateral lock, and enforcement-state transfer cases;
 - connect token balances to the Settley frontend.
 
@@ -293,6 +327,7 @@ Target timing: Months 2-3.
 Deliverables:
 
 - Asset Token and NAV Oracle contracts deployed to Stellar testnet.
+- Stellar Asset plus SAC vs custom Soroban token decision documented with reviewer-visible rationale.
 - Asset-specific lending vault deployed to Stellar testnet.
 - Bridge / Stellar stablecoin vault funding, disbursement, and repayment path implemented or documented with a specific product constraint and fallback settlement path.
 - End-to-end testnet flow: eligible wallet, token balance, NAV update, vault creation, loan request, LP funding, collateral lock, controlled loan disbursement, repayment, and enforcement-state simulation.
