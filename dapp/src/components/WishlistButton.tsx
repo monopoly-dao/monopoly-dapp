@@ -32,7 +32,7 @@ export default function WishlistButton({
 
   async function addToWishlistFn() {
     if (!isLoggedIn) {
-      toast.error('Sign in before you can add a property to bookmarks');
+      toast.error('Sign in before you can add an asset to bookmarks');
       return;
     }
 
@@ -50,7 +50,7 @@ export default function WishlistButton({
 
   async function removeFromWishlistFn() {
     if (!isLoggedIn) {
-      toast.error('Sign in before you can remove a property from bookmarks');
+      toast.error('Sign in before you can remove an asset from bookmarks');
       return;
     }
 

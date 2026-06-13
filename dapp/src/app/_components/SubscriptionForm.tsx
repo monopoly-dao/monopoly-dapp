@@ -68,7 +68,10 @@ export default function SubscriptionForm() {
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
       <SettleyLogo colour='new' />
-      <p>Join our newsletter to stay up to date on new property listings</p>
+      <p>
+        Join our newsletter for new ownership opportunities, vault openings, and
+        asset updates.
+      </p>
 
       <div className='flex items-start gap-4 h-[53px]'>
         <Input

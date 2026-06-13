@@ -1,5 +1,10 @@
 import { Metadata } from 'next';
-import { Darker_Grotesque, Inter } from 'next/font/google';
+import {
+  Darker_Grotesque,
+  Inter,
+  Playfair_Display,
+  Roboto,
+} from 'next/font/google';
 import localFont from 'next/font/local';
 import { getServerSession } from 'next-auth';
 import { Toaster } from 'react-hot-toast';
@@ -51,12 +56,12 @@ export const metadata: Metadata = {
     'MonopolyDAO',
     'Monopoly DAO',
     'MDAO',
-    'Properties',
-    'Fractions',
-    'Property Ownership',
+    'Real Assets',
+    'Tokenized Property',
+    'Property Tokens',
     'Ownership',
-    'Property Fractions',
-    'Settley Properties',
+    'Real Asset Infrastructure',
+    'Settley Property Tokens',
   ],
   authors: [
     {
@@ -76,6 +81,19 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+});
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700', '900'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
 });
 
 const ppNeueMontreal = localFont({
@@ -129,7 +147,7 @@ export default async function RootLayout({
   return (
     <html
       lang='en'
-      className={`${darkerGrotesque.variable} ${inter.variable} ${ppNeueMontreal.variable} ${craftworkGrotesk.variable}`}
+      className={`${darkerGrotesque.variable} ${inter.variable} ${roboto.variable} ${playfairDisplay.variable} ${ppNeueMontreal.variable} ${craftworkGrotesk.variable}`}
     >
       <body>
         <NextAuthProvider session={session}>

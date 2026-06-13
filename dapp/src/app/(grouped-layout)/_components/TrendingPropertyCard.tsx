@@ -5,28 +5,40 @@ type Props = {
   image: string;
   caption: string;
   propertyId: string;
+  tag?: string;
+  terms?: string;
 };
 
 export default function TrendingPropertyCard({
   image,
   caption,
   propertyId,
+  tag = 'Asset Opportunity',
+  terms = 'Configurable collateral, pricing, repayment, and enforcement terms.',
 }: Props) {
   return (
     <Link
       href={`/listing/${propertyId}`}
       className='w-full flex flex-col gap-5'
     >
-      <Image
-        src={image}
-        alt={caption}
-        width={304}
-        height={171}
-        quality={100}
-        className='w-full h-[297px] object-cover'
-        unoptimized
-      />
-      <p className='text-black'>{caption}</p>
+      <div className='relative'>
+        <Image
+          src={image}
+          alt={caption}
+          width={304}
+          height={171}
+          quality={100}
+          className='w-full h-[297px] object-cover'
+          unoptimized
+        />
+        <span className='absolute left-4 top-4 bg-white text-navy rounded-[4px] px-3 py-2 text-xs font-medium uppercase tracking-[0.08em]'>
+          {tag}
+        </span>
+      </div>
+      <div className='flex flex-col gap-2'>
+        <p className='text-black font-medium'>{caption}</p>
+        <p className='text-[#44403C]'>{terms}</p>
+      </div>
     </Link>
   );
 }

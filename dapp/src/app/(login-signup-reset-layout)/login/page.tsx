@@ -7,10 +7,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { GoArrowRight } from 'react-icons/go';
 
 import styles from '../../../styles/Signup.module.css';
 
+import { cn } from '@/lib/utils';
+
 import Button from '@/components/buttons/Button';
+import GoogleButton from '@/components/GoogleButton';
 import { Input } from '@/components/input';
 
 import { handleErrors } from '@/utils/error';
@@ -47,10 +51,13 @@ export default function Page() {
           const callbackUrl = searchParams.get('callbackUrl');
 
           if (typeof callbackUrl === 'string') {
-            return router.replace(new URL(callbackUrl).toString());
+            router.replace(new URL(callbackUrl).toString());
+
+            return (window.location.href = new URL(callbackUrl).toString());
           }
 
           router.replace('/');
+          window.location.href = `${window.location.origin}/`;
         } catch (error) {
           setIsLoading(false);
           handleErrors(error);
@@ -70,68 +77,73 @@ export default function Page() {
   };
 
   return (
-    <Box
-      component='form'
-      sx={{
-        '& .MuiTextField-root': { width: 'inherit' },
-      }}
-      onSubmit={handleSubmit}
-      className={styles.right}
-    >
-      <div className={styles.title}>
-        <h1>Welcome back!</h1>
-        <p>Log in to your account to manage your assets</p>
+    <main className='w-full'>
+      <header className=''>
+        <h2 className='font-headline-lg text-[32px] font-playfair text-headline-lg font-bold text-on-surface'>
+          Welcome Back!
+        </h2>
+        <p className='font-body-md font-inter text-body-md text-on-surface-variant'>
+          Manage your property tokens, bookmarks, and Settley activity.
+        </p>
+      </header>
+      <Box
+        component='form'
+        sx={{
+          '& .MuiTextField-root': { width: 'inherit' },
+        }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit(e);
+        }}
+        className={styles.right}
+      >
+        <div className={cn(styles.form, 'mt-6 space-y-4')}>
+          <Input
+            id={LoginIds.Email}
+            label='Email address'
+            {...getFormikInputProps(LoginIds.Email)}
+            error='ignore'
+          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+          />
+          <div>
+            <Input
+              id={LoginIds.Password}
+              label='Password'
+              {...getFormikInputProps(LoginIds.Password)}
+              type='password'
+              error='ignore'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            />
+            <Link
+              href='/reset-password'
+              className='mt-1 font-semibold text-sm font-inter flex justify-end w-full'
+            >
+              Forgot password?
+            </Link>
+          </div>
+          <Button
+            type='submit'
+            className='w-full bg-navy !text-on-primary py-4 px-[24px] rounded-lg font-label-md text-label-md shadow-sm hover:bg-navy/90 transition-all duration-300 flex items-center justify-center gap-[8px] mt-[48px]'
+            isLoading={isLoading}
+            disabled={!isValid || !dirty}
+            aria-label='Log in'
+          >
+            Log In
+            <GoArrowRight />
+          </Button>
+          {/* <h4 className={styles.h5}>
+            Don&apos;t have an account?{' '}
+            <Link href='/signup' className='underline'>
+              Sign up
+            </Link>
+          </h4> */}
+        </div>
+      </Box>
+      <div className='mt-3'>
+        <GoogleButton type='outlined' handleClick={() => signIn('google')}>
+          Continue with Google
+        </GoogleButton>
       </div>
-      <div className={styles.form}>
-        <Input
-          id={LoginIds.Email}
-          required
-          label='Email address'
-          {...getFormikInputProps(LoginIds.Email)}
-        />
-        <Input
-          id={LoginIds.Email}
-          required
-          label='Password'
-          {...getFormikInputProps(LoginIds.Password)}
-          type='password'
-        />
-        <Button
-          type='submit'
-          className='py-4 px-10'
-          isLoading={isLoading}
-          disabled={!isValid || !dirty}
-        >
-          Log in
-        </Button>
-        <h4 className={styles.h5}>
-          Don&apos;t have an account?{' '}
-          <Link href='/signup' className='underline'>
-            Sign up
-          </Link>
-        </h4>
-        <h4 className={styles.h5}>
-          Forgotten your password?{' '}
-          <Link href='/reset-password' className='underline'>
-            Reset your password
-          </Link>
-        </h4>
-      </div>
-      {/* <div className={styles.divider}>
-            <Divider>OR</Divider>
-          </div> */}
-      {/* <GoogleButton type='contained'>
-            <Image src={google} alt='google icon' width={35} height={35} />
-            &nbsp; &nbsp; Continue with Google
-          </GoogleButton> */}
-
-      {/* <Snackbar
-            open={!!error}
-            autoHideDuration={3000}
-            onClose={handleClose}
-            message={error}
-            // action={action}
-          /> */}
-    </Box>
+    </main>
   );
 }

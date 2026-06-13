@@ -8,18 +8,66 @@ import { useGetPropertiesQuery } from '@/api/properties';
 
 import TrendingPropertyCard from './TrendingPropertyCard';
 
+const fallbackOpportunities = [
+  {
+    _id: 'asset-lisbon-loft',
+    propertyDetails: {
+      name: 'Lisbon Loft Apartments',
+      photos: [{ url: '/images/interior1.png' }],
+    },
+    opportunity: {
+      tag: 'Ownership Access',
+      terms: 'Buy tokens tied to this property opportunity.',
+    },
+  },
+  {
+    _id: 'asset-montenegro-lodge',
+    propertyDetails: {
+      name: 'Montenegro Mountain Lodge',
+      photos: [{ url: '/images/Montenegro.png' }],
+    },
+    opportunity: {
+      tag: 'Property Loan',
+      terms: 'Fund a loan backed by pledged property tokens.',
+    },
+  },
+  {
+    _id: 'asset-vienna-vault',
+    propertyDetails: {
+      name: 'Vienna Imperial Residence',
+      photos: [{ url: '/images/apartment.png' }],
+    },
+    opportunity: {
+      tag: 'Owner Borrowing',
+      terms: 'Raise from the property with configurable loan terms.',
+    },
+  },
+];
+
 export default function TrendingProperties() {
-  const { data: propertiesResponse, isLoading } = useGetPropertiesQuery({
+  const {
+    data: propertiesResponse,
+    isLoading,
+    isError,
+  } = useGetPropertiesQuery({
     limit: 3,
     page: 1,
   });
 
-  const properties = propertiesResponse?.data;
+  const apiProperties = propertiesResponse?.data ?? [];
+  const shouldUseFallback = isError || apiProperties.length === 0;
+  const properties = shouldUseFallback ? fallbackOpportunities : apiProperties;
 
   return (
     <div className='flex flex-col gap-6 sm:gap-12 bg-white py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'>
-      <div className='flex justify-between items-start'>
-        <h2 className='text-3xl sm:text-4xl'>Trending Properties</h2>
+      <div id='opportunities' className='flex justify-between items-start'>
+        <div>
+          <h2 className='text-3xl sm:text-4xl'>Ways to participate</h2>
+          <p className='mt-5 max-w-2xl text-[#44403C]'>
+            Buy property tokens, fund a property-backed loan, or bring a
+            property to market.
+          </p>
+        </div>
         <Link
           href='/listings'
           className='text-black flex font-medium items-center gap-2 underline'
@@ -30,14 +78,32 @@ export default function TrendingProperties() {
       </div>
 
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-5'>
-        <ListingCardLoader isLoading={isLoading} cardNumber={3} />
+        <ListingCardLoader
+          isLoading={isLoading && !shouldUseFallback}
+          cardNumber={3}
+        />
         {properties?.map((property) => (
-          <TrendingPropertyCard
+          <div
+            id={
+              'opportunity' in property &&
+              property.opportunity.tag === 'Property Loan'
+                ? 'lending-path'
+                : undefined
+            }
             key={property._id}
-            image={property.propertyDetails.photos[0].url}
-            caption={property.propertyDetails.name}
-            propertyId={property._id}
-          />
+          >
+            <TrendingPropertyCard
+              image={property.propertyDetails.photos[0].url}
+              caption={property.propertyDetails.name}
+              propertyId={property._id}
+              tag={
+                'opportunity' in property ? property.opportunity.tag : undefined
+              }
+              terms={
+                'opportunity' in property ? property.opportunity.terms : undefined
+              }
+            />
+          </div>
         ))}
       </div>
     </div>
