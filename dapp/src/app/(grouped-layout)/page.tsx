@@ -62,7 +62,9 @@ export default function Page() {
           alt='banner'
           width={1000}
           height={595}
-          quality={100}
+          quality={82}
+          priority
+          sizes='100vw'
           className='w-full h-[250px] sm:h-[400px] lg:h-[595px] object-cover'
         />
         <div className='absolute bottom-0 bg-black/50 z-[2] py-8 text-white w-full flex justify-end pr-[10%]'>

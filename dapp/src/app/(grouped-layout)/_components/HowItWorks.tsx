@@ -59,8 +59,9 @@ export default function HowItWorks() {
         alt='own a property'
         width={591}
         height={548}
+        quality={80}
+        sizes='(min-width: 1280px) 591px, (min-width: 1024px) 500px, 100vw'
         className='w-full lg:w-[500px] xl:w-[591px] h-auto object-cover'
-        loading='eager'
       />
     </div>
   );

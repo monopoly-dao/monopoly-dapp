@@ -24,7 +24,8 @@ export default function PropertyCard({
         width={200}
         height={200}
         alt={propertyDetails.name}
-        quality={100}
+        quality={75}
+        sizes='(min-width: 1024px) 33vw, 100vw'
         loading='lazy'
         className='w-full h-[250px] object-cover'
       />

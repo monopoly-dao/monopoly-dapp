@@ -9,9 +9,10 @@ export default function ListingsHeader() {
           alt='building'
           width={400}
           height={360}
-          quality={100}
+          quality={80}
+          priority
+          sizes='100vw'
           className='w-full h-full min-h-[360px] object-cover'
-          unoptimized
         />
       </div>
       <div className='z-[2] w-full flex flex-col gap-16 items-center text-white'>

@@ -27,11 +27,11 @@ export default function ListingImage({ src, alt }: Props) {
         alt={alt}
         width={200}
         height={200}
-        quality={100}
+        quality={80}
+        sizes='(min-width: 1024px) 33vw, 100vw'
         className={cn('w-full h-full object-cover', [
           isImageFetching ? 'hidden' : 'block',
         ])}
-        unoptimized
         onLoad={() => {
           setIsImageFetching(false);
         }}

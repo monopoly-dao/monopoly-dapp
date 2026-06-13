@@ -24,10 +24,9 @@ export default function TrendingPropertyCard({
         alt={caption}
         width={304}
         height={171}
-        quality={100}
+        quality={75}
+        sizes='(min-width: 1024px) 31vw, (min-width: 640px) 50vw, 100vw'
         className='w-full h-[297px] object-cover'
-        loading='eager'
-        unoptimized
       />
       <div className='flex flex-col gap-2 px-1 pb-2'>
         <div className='flex items-start justify-between gap-3'>
