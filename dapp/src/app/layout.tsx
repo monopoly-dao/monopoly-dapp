@@ -1,9 +1,14 @@
 import { Metadata } from 'next';
+import { Merriweather, Playfair_Display, Roboto } from 'next/font/google';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import { getServerSession } from 'next-auth';
+import NextTopLoader from 'nextjs-toploader';
 import { Toaster } from 'react-hot-toast';
 
 import '../styles/globals.css';
+
+import TopScrollProvider from '@/components/scroll-provider';
 
 import { siteConfig } from '@/constants/config';
 
@@ -46,6 +51,14 @@ export const metadata: Metadata = {
     'Settley',
     'SettleyCo',
     'settleyco',
+    'settle',
+    'Settle',
+    'settle co',
+    'setley',
+    'settleco',
+    'settley beta',
+    'buy property on the blockchain',
+    'buy property',
     'Settley Co',
     'MonopolyDAO',
     'Monopoly DAO',
@@ -80,6 +93,26 @@ const inter = localFont({
   variable: '--font-inter',
   display: 'swap',
   preload: true,
+});
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700', '900'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
+
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  display: 'swap',
+  variable: '--font-merriweather',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
 });
 
 const ppNeueMontreal = localFont({
@@ -123,6 +156,44 @@ const craftworkGrotesk = localFont({
   preload: true,
 });
 
+const generalSans = localFont({
+  src: [
+    {
+      path: '../../public/fonts/GeneralSans-Extralight.otf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/GeneralSans-Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/GeneralSans-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/GeneralSans-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/GeneralSans-Semibold.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/GeneralSans-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-general-sans',
+  display: 'swap',
+  preload: true,
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -130,15 +201,87 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
 
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteConfig.title,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    keywords: metadata.keywords,
+    // potentialAction: {
+    //   '@type': 'SearchAction',
+    //   target: `${siteConfig.url}/listings?q={search_term_string}`,
+    //   'query-input': 'required name=search_term_string',
+    // },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.url,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Articles',
+        item: `${siteConfig.url}/articles`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Listings',
+        item: `${siteConfig.url}/listings`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: 'Campaign',
+        item: `${siteConfig.url}/campaign`,
+      },
+    ],
+  };
+
   return (
     <html
       lang='en'
-      className={`${darkerGrotesque.variable} ${inter.variable} ${ppNeueMontreal.variable} ${craftworkGrotesk.variable}`}
+      className={`${darkerGrotesque.variable} ${inter.variable} 
+                  ${ppNeueMontreal.variable} ${craftworkGrotesk.variable} 
+                  ${roboto.variable} ${merriweather.variable} ${generalSans.variable} ${playfairDisplay.variable}`}
     >
+      <head>
+        <Script
+          async
+          src='https://www.googletagmanager.com/gtag/js?id=G-6KTMP46N1M'
+        />
+        <Script id='gtag-init' strategy='afterInteractive'>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6KTMP46N1M');
+          `}
+        </Script>
+        <Script
+          id='structured-data'
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+        <Script
+          id='breadcrumb-data'
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      </head>
       <body>
         <NextAuthProvider session={session}>
           <ReduxProvider>
-            {children}
+            <NextTopLoader color='#272343' />
+            <TopScrollProvider>{children}</TopScrollProvider>
             <Toaster position='top-right' />
           </ReduxProvider>
         </NextAuthProvider>

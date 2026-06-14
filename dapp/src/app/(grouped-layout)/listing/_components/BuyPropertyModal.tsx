@@ -19,6 +19,7 @@ type Props = ModalProps & {
   propertySymbol?: string;
   tokensLeft?: string;
   pricePerToken?: number;
+  balance?: number;
 };
 
 export default function BuyPropertyModal({
@@ -28,12 +29,13 @@ export default function BuyPropertyModal({
   propertySymbol,
   tokensLeft,
   pricePerToken = 1,
+  balance = 0,
   ...props
 }: Props) {
   const [enterPosition, { isLoading }] = useEnterPositionMutation();
   const availableTokens = Number(removeNonDigit(tokensLeft ?? '0'));
 
-  const { values, handleSubmit, getFieldMeta, getFieldProps, isValid } =
+  const { values, handleSubmit, getFieldMeta, getFieldProps, isValid, dirty } =
     useFormik({
       initialValues: {
         units: '',
@@ -48,7 +50,9 @@ export default function BuyPropertyModal({
             units: tokenCount,
           }).unwrap();
 
-          toast.success(`You bought ${formatAmount(tokenCount)} property tokens`);
+          toast.success(
+            `You bought ${formatAmount(tokenCount)} property tokens`
+          );
           props.handleCloseModal();
         } catch (e) {
           handleErrors(e);
@@ -64,7 +68,7 @@ export default function BuyPropertyModal({
               if (!value) return context.createError();
               const cleanAmount = value.replace(/\D/g, '');
 
-              if (!cleanAmount.length) {
+              if (!cleanAmount.length || cleanAmount === '0') {
                 return context.createError();
               }
               const isValid = /^[0-9]+$/.test(cleanAmount);
@@ -81,8 +85,25 @@ export default function BuyPropertyModal({
 
               if (availableTokens && tokenCount > availableTokens) {
                 return context.createError({
-                  message: `Only ${formatAmount(availableTokens)} tokens are available`,
+                  message: `Only ${formatAmount(
+                    availableTokens
+                  )} tokens are available`,
                 });
+              }
+
+              return true;
+            }
+          )
+          .test(
+            'Check if total cost is greater than balance',
+            'Amount is greater than available balance',
+            (value, context) => {
+              if (!value) return context.createError();
+              const cleanAmount = value.replace(/\D/g, '');
+              const totalCost = Number(cleanAmount) * pricePerToken;
+
+              if (totalCost > balance) {
+                return context.createError();
               }
 
               return true;
@@ -131,7 +152,9 @@ export default function BuyPropertyModal({
           <div className='flex items-start justify-between gap-4 border-b border-[#D6D3D1] pb-3'>
             <div>
               <p className='text-sm text-dark-grey'>Property</p>
-              <p className='font-medium'>{propertyName ?? 'Selected property'}</p>
+              <p className='font-medium'>
+                {propertyName ?? 'Selected property'}
+              </p>
             </div>
             {propertySymbol && (
               <p className='rounded-full border border-[#D6D3D1] px-3 py-1 text-xs font-medium text-dark-grey'>
@@ -143,7 +166,9 @@ export default function BuyPropertyModal({
           <div className='mt-4 flex flex-col gap-3 text-sm'>
             <div className='flex justify-between gap-4'>
               <span className='text-dark-grey'>Price per token</span>
-              <span className='font-medium'>{formatAmount(pricePerToken, '$')}</span>
+              <span className='font-medium'>
+                {formatAmount(pricePerToken, '$')}
+              </span>
             </div>
             <div className='flex justify-between gap-4'>
               <span className='text-dark-grey'>Tokens selected</span>
@@ -154,7 +179,9 @@ export default function BuyPropertyModal({
             <div className='flex justify-between gap-4'>
               <span className='text-dark-grey'>Tokens left</span>
               <span className='font-medium'>
-                {availableTokens ? formatAmount(availableTokens) : 'Not available'}
+                {availableTokens
+                  ? formatAmount(availableTokens)
+                  : 'Not available'}
               </span>
             </div>
             <div className='flex justify-between gap-4 border-t border-[#D6D3D1] pt-3 text-base'>
@@ -168,7 +195,7 @@ export default function BuyPropertyModal({
 
         <div className='flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:gap-5'>
           <Button
-            className='py-3 px-10'
+            className='py-3 text-center px-2 w-full'
             variant='outline'
             onClick={props.handleCloseModal}
             fullWidth

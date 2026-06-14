@@ -26,6 +26,37 @@ export const metadata: Metadata = {
   ],
 };
 
+const pathways = [
+  {
+    title: 'I own property',
+    copy: 'Turn eligible property into tokens and raise money without selling the whole asset.',
+    next: 'See how an owner can list a property, set terms, and receive capital.',
+    cta: 'Raise from my property',
+    href: '/vaults#owners',
+  },
+  {
+    title: 'I want to invest',
+    copy: 'Browse properties and buy tokens tied to real ownership.',
+    next: 'Go straight to available tokenized property opportunities.',
+    cta: 'Browse Properties',
+    href: '/listings',
+  },
+  {
+    title: 'I deploy assets',
+    copy: 'Bring property inventory to buyers and lenders with the right records in place.',
+    next: 'See how documentation, ownership records, and market access fit together.',
+    cta: 'List an Asset',
+    href: '/vaults',
+  },
+  {
+    title: 'I want to lend',
+    copy: 'Fund property-backed loans with clear collateral, rates, and repayment dates.',
+    next: 'See what a lender reviews before funding a loan.',
+    cta: 'See lending path',
+    href: '/vaults#lenders',
+  },
+];
+
 export default function Page() {
   return (
     <div>

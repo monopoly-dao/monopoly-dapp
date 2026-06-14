@@ -1,13 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { IoMdClose } from 'react-icons/io';
 import { VscAccount } from 'react-icons/vsc';
 
 import { authenticatedNavLinks, unauthentiatedNavLinks } from '.';
-import Button from '../buttons/Button';
 import IconButton from '../buttons/IconButton';
 import SettleyLogo from '../SettleyLogo';
 
@@ -19,8 +17,6 @@ export default function MobileMenu({ close }: Props) {
   const session = useSession();
   const isLoggedIn = session.data;
   const navLinks = isLoggedIn ? authenticatedNavLinks : unauthentiatedNavLinks;
-
-  const router = useRouter();
 
   function closeAfterAnyAction() {
     setTimeout(() => {
@@ -48,31 +44,15 @@ export default function MobileMenu({ close }: Props) {
         onClick={closeAfterAnyAction}
       >
         <div className='items-center flex flex-col gap-6'>
-          {navLinks.map((link) => {
-            if (link.isLinkToSection)
-              return (
-                <Button
-                  key={link.label}
-                  onClick={() => router.push(link.route)}
-                  variant='ghost'
-                  className='text-[#1E1E1E] bg-transparent border-none font-craftwork text-base font-light'
-                >
-                  {link.label}
-                </Button>
-              );
-            else
-              return (
-                <Link
-                  key={link.label}
-                  href={link.route}
-                  target={link.openInNewTab ? '_blank' : '_self'}
-                  rel={link.openInNewTab ? 'noreferrer' : undefined}
-                  className='text-[#1E1E1E] font-light font-craftwork'
-                >
-                  {link.label}
-                </Link>
-              );
-          })}
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.route}
+              className='text-[#1E1E1E] font-light font-craftwork'
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
         <div className='bg-medium-grey h-[0.5px] w-full' />
         {isLoggedIn && (

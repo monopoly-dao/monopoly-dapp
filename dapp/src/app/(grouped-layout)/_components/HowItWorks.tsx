@@ -5,18 +5,40 @@ import { useRouter } from 'next/navigation';
 
 import Button from '@/components/buttons/Button';
 
+const steps = [
+  {
+    title: 'List the property',
+    copy: 'An owner or deployer submits the property, documents, and ownership records for review.',
+  },
+  {
+    title: 'Create the tokens',
+    copy: 'The property is structured into tokens that buyers can purchase and holders can track.',
+  },
+  {
+    title: 'Choose the capital path',
+    copy: 'The owner can sell tokens, request a property-backed loan, or support both paths.',
+  },
+  {
+    title: 'Buyers and lenders participate',
+    copy: 'Buyers buy property tokens. Lenders fund loans against pledged property tokens.',
+  },
+  {
+    title: 'Track what happens next',
+    copy: 'Holdings, repayments, documents, and key updates stay tied to the property.',
+  },
+];
+
 export default function HowItWorks() {
   const router = useRouter();
 
   return (
     <div
-      id='how-it-works'
-      className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-14 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'
+      id='vault-flow'
+      className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 sm:gap-14 bg-cream py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'
     >
-      <div className='flex flex-col gap-5'>
-        <h2 className='font-medium text-3xl sm:text-5xl'>
-          How Settley works
-        </h2>
+      <span id='how-it-works' className='sr-only' />
+      <div className='flex flex-col gap-6 lg:w-1/2'>
+        <h2 className='font-medium text-3xl sm:text-5xl'>How Settley works</h2>
         <div className='w-full lg:w-4/5 flex flex-col gap-5'>
           <div>
             <p className='font-semibold'>1. List or browse</p>

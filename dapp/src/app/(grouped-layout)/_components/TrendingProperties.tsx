@@ -27,7 +27,11 @@ const fallbackProperties = [
 ];
 
 export default function TrendingProperties() {
-  const { data: propertiesResponse, isLoading } = useGetPropertiesQuery({
+  const {
+    data: propertiesResponse,
+    isLoading,
+    isError,
+  } = useGetPropertiesQuery({
     limit: 3,
     page: 1,
   });

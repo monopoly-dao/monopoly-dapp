@@ -14,11 +14,11 @@ export default function Header() {
       </div>
       <div className='z-[2] w-full sm:w-3/5 flex gap-4 flex-col text-white'>
         <h1 className='font-bold text-3xl sm:text-5xl'>
-          JOIN THE FUTURE OF PROPERTY OWNERSHIP
+          UNLOCK LIQUIDITY FROM REAL ASSETS
         </h1>
         <p className='text-xl'>
-          Settley is redefining property ownership by leveraging decentralized
-          finance.
+          Settley helps eligible asset owners structure tokenized ownership and
+          connect with buyers and lenders.
         </p>
       </div>
     </div>

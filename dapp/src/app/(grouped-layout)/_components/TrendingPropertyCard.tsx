@@ -13,7 +13,9 @@ export default function TrendingPropertyCard({
   caption,
   location,
   propertyId,
-}: Props) {
+}: // tag = 'Asset Opportunity',
+// terms = 'Configurable collateral, pricing, repayment, and enforcement terms.',
+Props) {
   return (
     <Link
       href={propertyId ? `/listing/${propertyId}` : '/listings'}
