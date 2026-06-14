@@ -34,7 +34,7 @@ export default function ArchitecturalShowcase() {
       </div>
       {/* Settley Logo (Anchor) */}
       <div className='absolute top-[64px] left-[64px] z-20 rounded-full bg-white/95 px-5 py-3 shadow-sm backdrop-blur'>
-        <SettleyLogo colour='new' />
+        <SettleyLogo colour='no-beta' />
       </div>
     </section>
   );

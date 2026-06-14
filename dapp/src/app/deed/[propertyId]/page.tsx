@@ -25,7 +25,7 @@ export default function Page() {
   const deedDetails = deedResponse?.data;
 
   const handlePrint = useReactToPrint({
-    content: () => pageRef.current,
+    contentRef: pageRef,
   });
 
   useEffect(() => {
