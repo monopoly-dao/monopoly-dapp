@@ -1,9 +1,12 @@
 import axios, { AxiosError } from 'axios';
-import { NextAuthOptions, User } from 'next-auth';
+import { getServerSession, NextAuthOptions, Session, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import TwitterProvider from 'next-auth/providers/twitter';
+import 'firebase/firestore';
 
 import { INetworkSuccessResponse } from '../../@types/appTypes';
-import { AUTH_BASE_URL } from '../../api';
+import { AUTH_BASE_URL, BASE_URL } from '../../api';
 import { AuthEndpoints } from '../../api/auth/authApiConstants';
 import logger from '../../utils/logger';
 
@@ -55,7 +58,84 @@ export const authOptions: NextAuthOptions = {
         return null;
       },
     }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      checks: ['none'],
+      // authorization: {
+      //   params: {
+      //     prompt: 'consent',
+      //     access_type: 'offline',
+      //     response_type: 'code',
+      //   },
+      // },
+    }),
+
+    TwitterProvider({
+      clientId: process.env.TWITTER_CLIENT_ID as string,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
+      version: '2.0', // opt-in to Twitter OAuth 2.0
+    }),
   ],
+
+  // useSecureCookies: true,
+
+  // // Explicitly define all cookies for better SameSite control
+  // cookies: {
+  //   // Standard Session Cookie
+  //   sessionToken: {
+  //     name: `${'__Secure-'}next-auth.session-token`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: 'lax', // CRITICAL for redirect compatibility
+  //       path: '/',
+  //       secure: true,
+  //     },
+  //   },
+  //   // CSRF Token Cookie
+  //   csrfToken: {
+  //     name: `${'__Host-'}next-auth.csrf-token`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: 'lax', // CRITICAL for redirect compatibility
+  //       path: '/',
+  //       secure: true,
+  //     },
+  //   },
+  //   // OAuth State Cookie (for state mismatch/callback errors)
+  //   state: {
+  //     name: `${'__Secure-'}next-auth.state`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: 'lax', // CRITICAL for redirect compatibility
+  //       path: '/',
+  //       secure: true,
+  //       maxAge: 900, // 15 minutes, standard for transient state cookies
+  //     },
+  //   },
+  //   // PKCE Code Verifier Cookie (for Google's security flow)
+  //   pkceCodeVerifier: {
+  //     name: `${'__Secure-'}next-auth.pkce.code_verifier`,
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: 'lax', // CRITICAL for redirect compatibility
+  //       path: '/',
+  //       secure: true,
+  //       maxAge: 900, // 15 minutes
+  //     },
+  //   },
+  //   // Callback URL Cookie
+  //   callbackUrl: {
+  //     name: `${'__Secure-'}next-auth.callback-url`,
+  //     options: {
+  //       sameSite: 'lax',
+  //       path: '/',
+  //       secure: true,
+  //     },
+  //   },
+  // },
+
   pages: {
     error: '/login',
     signIn: '/login',
@@ -64,10 +144,17 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
     maxAge: 20 * 60, // 20 minutes
+
+    // cookie: {
+    //   secure: process.env.NODE_ENV === 'production',
+    //   httpOnly: true,
+    //   sameSite: 'Strict',
+    // },
   },
   secret: `${process.env.NEXTAUTH_SECRET}`,
+  debug: true,
   callbacks: {
-    jwt: ({ token, user, trigger, session }) => {
+    jwt: async ({ token, user, trigger, session, account, profile }) => {
       if (trigger === 'update') {
         const updatedToken = token;
 
@@ -76,16 +163,76 @@ export const authOptions: NextAuthOptions = {
         return updatedToken;
       }
 
+      if (account?.provider === 'twitter' && profile) {
+        if (
+          'data' in profile &&
+          typeof profile.data === 'object' &&
+          profile.data &&
+          'username' in profile.data &&
+          typeof profile.data.username === 'string'
+        ) {
+          const credentialsSession = (await getServerSession(
+            authOptions
+          )) as Session;
+          const newToken = {
+            data: {
+              token: credentialsSession.token,
+              email: credentialsSession.email,
+              userFirebaseId: credentialsSession.userFirebaseId,
+            },
+          };
+
+          await axios.post(
+            `${BASE_URL}/profile/connect-twitter/${newToken.data.userFirebaseId}`,
+            {
+              twitterUsername: profile.data.username,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${newToken.data.token}`,
+              },
+            }
+          );
+          return newToken;
+        }
+      }
+
       user && (token.data = user);
+
+      // google sign in handler
+      if (!('userFirebaseId' in token.data)) {
+        try {
+          const r = await axios.post(`${AUTH_BASE_URL}/google-signin`, {
+            email: token.email,
+          });
+
+          const result = r.data as {
+            token: string;
+            userFirebaseId: string;
+            email: string;
+          };
+
+          token.data = result;
+          return token;
+        } catch (e) {
+          return token;
+        }
+      }
 
       return token;
     },
-    session: ({ session, token }) => {
+    session: async ({ session, token }) => {
       session.token = token.data.token;
       session.email = token.data.email;
       session.userFirebaseId = token.data.userFirebaseId;
-
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
   },
 };

@@ -49,12 +49,12 @@ export default function MobileMenuContainer() {
   useOnClickOutside(ref, closeMenu);
 
   return (
-    <div className='relative block md:hidden' ref={ref}>
+    <div className='relative block lg:hidden' ref={ref}>
       <button onClick={toggleMenu}>
         <IconButton
           variant='ghost'
           icon={CiMenuFries}
-          className='text-3xl text-black block sm:hidden'
+          className='text-3xl text-black block lg:hidden'
         />
       </button>
 

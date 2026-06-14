@@ -2,12 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = {
-  colour: 'white' | 'dark' | 'new';
+  colour: 'white' | 'dark' | 'new' | 'no-beta';
 };
 
 export default function SettleyLogo({ colour }: Props) {
   return (
-    <Link href='/'>
+    <Link
+      href='/'
+      className={colour === 'new' ? 'block w-[132px] overflow-hidden' : ''}
+    >
       {colour === 'dark' && (
         <Image
           src='/svg/Logo DARK.svg'
@@ -35,7 +38,18 @@ export default function SettleyLogo({ colour }: Props) {
           width={200}
           height={44}
           quality={100}
-          className='w-[200px] h-auto'
+          className='w-[140px] lg:w-[170px] xl:w-[200px] h-auto'
+          priority
+        />
+      )}
+      {colour === 'no-beta' && (
+        <Image
+          src='/svg/Settley.  no beta.svg'
+          alt='settley logo'
+          width={200}
+          height={44}
+          quality={100}
+          className='w-full max-w-[140px] lg:max-w-[170px] xl:max-w-[200px] h-auto'
           priority
         />
       )}

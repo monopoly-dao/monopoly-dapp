@@ -2,14 +2,14 @@
 
 import axios from 'axios';
 import { useFormik } from 'formik';
-import Link from 'next/link';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { object, string } from 'yup';
 
 import Button from '@/components/buttons/Button';
-import { Input } from '@/components/input';
 import SettleyLogo from '@/components/SettleyLogo';
+
+import { BASE_URL } from '@/api';
 
 export default function SubscriptionForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,18 +20,24 @@ export default function SubscriptionForm() {
     getFieldProps,
     values,
     isValid,
-    dirty,
+    // dirty,
     resetForm,
+    errors,
   } = useFormik({
     initialValues: {
       email: '',
     },
     onSubmit: async (values) => {
+      if (!isValid) {
+        toast.error(errors['email'] || '');
+        return;
+      }
+
       setIsLoading(true);
 
       try {
         await axios.post(
-          'https://connect.mailerlite.com/api/subscribers',
+          `${BASE_URL}/subscribe`,
           { email: values.email },
           {
             headers: {
@@ -66,38 +72,33 @@ export default function SubscriptionForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
-      <SettleyLogo colour='new' />
-      <p>Join our newsletter to stay up to date on new property listings</p>
+    <form onSubmit={handleSubmit} className='w-full flex flex-col gap-5'>
+      <SettleyLogo colour='no-beta' />
+      <p>
+        Join our newsletter for new ownership opportunities, vault openings, and
+        asset updates.
+      </p>
 
-      <div className='flex items-start gap-4 h-[53px]'>
-        <Input
+      <div className='relative flex items-center'>
+        <input
           id='email'
-          // label='Email address'
-          placeholder='Enter your email'
-          containerClassName='h-full'
-          className='h-full'
+          placeholder='Join our newsletter'
+          className='w-full h-[48px] pl-6 pr-32 rounded-full border border-navy focus:outline-none /focus:border-2 transition-colors text-sm font-inter'
           {...getFormikInputProps('email')}
+          autoComplete='off'
         />
 
         <Button
-          className='py-4 px-7 rounded-[6px] h-[calc(100%-8px)] sm:h-[calc(100%-2px)]'
-          // variant='dark'
+          className='absolute right-1 top-1 bottom-1 px-6 rounded-full bg-navy text-white hover:bg-white transition-colors text-sm font-medium h-auto'
           type='submit'
           isLoading={isLoading}
-          disabled={!isValid || !dirty}
         >
           Subscribe
         </Button>
       </div>
-
-      <p className='-mt-2'>
-        By subscribing, you agree to our{' '}
-        <Link href='/' className='underline'>
-          Privacy Policy
-        </Link>{' '}
-        and provide consent to receive updates from Settley.
-      </p>
+      {/* {errors.email && (
+        <p className='text-red-400 text-xs mt-2 ml-4'>{errors.email}</p>
+      )} */}
     </form>
   );
 }

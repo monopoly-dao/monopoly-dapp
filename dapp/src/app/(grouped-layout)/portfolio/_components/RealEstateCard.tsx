@@ -7,16 +7,17 @@ export default function RealEstateCard() {
       <div className='w-full rounded-[10px]'>
         <Image
           src='/svg/auction houses.svg'
-          alt='real estate'
+          alt='tokenized property'
           width={300}
           height={200}
-          quality={100}
+          quality={80}
+          sizes='(min-width: 1024px) 33vw, 100vw'
           className='w-full h-[200px] object-cover rounded-[10px]'
         />
       </div>
       <div>
         <p>Miami Beach House</p>
-        <p className='text-sm text-light-grey'>Miami, Florida</p>
+        <p className='text-sm text-light-grey'>Property tokens · Miami</p>
       </div>
     </Link>
   );

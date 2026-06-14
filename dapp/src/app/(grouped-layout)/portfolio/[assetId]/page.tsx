@@ -14,7 +14,8 @@ export default function Page() {
             alt='real estate'
             width={300}
             height={200}
-            quality={100}
+            quality={80}
+            sizes='(min-width: 640px) 75vw, 100vw'
             className='w-full h-[400px] object-cover rounded-[10px]'
           />
         </div>
