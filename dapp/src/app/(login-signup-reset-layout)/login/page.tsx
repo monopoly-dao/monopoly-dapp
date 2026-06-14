@@ -103,7 +103,7 @@ export default function Page() {
             label='Email address'
             {...getFormikInputProps(LoginIds.Email)}
             error='ignore'
-          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <div>
             <Input
@@ -112,7 +112,7 @@ export default function Page() {
               {...getFormikInputProps(LoginIds.Password)}
               type='password'
               error='ignore'
-            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+              // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
             />
             <Link
               href='/reset-password'
@@ -140,9 +140,7 @@ export default function Page() {
         </div>
       </Box>
       <div className='mt-3'>
-        <GoogleButton type='outlined' handleClick={() => signIn('google')}>
-          Continue with Google
-        </GoogleButton>
+        <GoogleButton />
       </div>
     </main>
   );

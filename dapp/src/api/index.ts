@@ -99,5 +99,6 @@ export const globalApi = createApi({
     'WalletStats',
     'Holdings',
     'Transactions',
+    'DeedDetails',
   ],
 });

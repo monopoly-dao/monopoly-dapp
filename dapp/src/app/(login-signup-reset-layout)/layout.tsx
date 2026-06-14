@@ -47,7 +47,7 @@ export default function LoginSignupResetLayout({
 
           <section className='flex flex-col flex-1 py-[24px] h-full overflow-y-auto justify-center items-center'>
             <div className='md:hidden w-full flex justify-between items-center mb-[20px] md:px-[64px] px-[16px]'>
-              <SettleyLogo colour='new' />
+              <SettleyLogo colour='no-beta' />
               <Link
                 href='/signup'
                 className='font-label-md rounded-full text-label-md text-primary hover:underline'

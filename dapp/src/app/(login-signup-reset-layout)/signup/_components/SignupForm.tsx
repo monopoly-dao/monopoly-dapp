@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
-import { signIn } from 'next-auth/react';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { GoArrowRight } from 'react-icons/go';
 
@@ -123,7 +122,7 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
             id={SignupIds.Email}
             {...getFormikInputProps(SignupIds.Email)}
             error='ignore'
-          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <Input
             label='Password'
@@ -131,7 +130,7 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
             {...getFormikInputProps(SignupIds.Password)}
             type='password'
             error='ignore'
-          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <Input
             label='Confirm Password'
@@ -140,7 +139,7 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
             type='password'
             error='ignore'
             onPaste={(e) => e.preventDefault()}
-          // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
+            // labelClassName='font-roboto font-medium !text-xs text-[#A8A29E]'
           />
           <div className='grid grid-cols-2 gap-1'>
             <PasswordChecklist
@@ -179,9 +178,7 @@ export default function SignupForm({ setIsFormSubmitted, setEmail }: Props) {
           agree with the Privacy Policy & Terms of Use
         </p>
       </Box>
-      <GoogleButton type='outlined' handleClick={() => signIn('google')}>
-        Continue with Google
-      </GoogleButton>
+      <GoogleButton />
     </motion.div>
   );
 }

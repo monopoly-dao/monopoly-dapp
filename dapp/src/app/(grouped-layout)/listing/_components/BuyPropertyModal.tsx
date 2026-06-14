@@ -15,16 +15,20 @@ import { formatAmount, removeNonDigit } from '@/utils/utils';
 type Props = ModalProps & {
   userFirebaseId: string;
   propertyId: string;
+  balance: number;
+  pricePerToken?: number;
 };
 
 export default function BuyPropertyModal({
   userFirebaseId,
   propertyId,
+  balance,
+  pricePerToken = 1,
   ...props
 }: Props) {
   const [enterPosition, { isLoading }] = useEnterPositionMutation();
 
-  const { values, handleSubmit, getFieldMeta, getFieldProps, isValid } =
+  const { values, handleSubmit, getFieldMeta, getFieldProps, isValid, dirty } =
     useFormik({
       initialValues: {
         units: '0',
@@ -37,7 +41,10 @@ export default function BuyPropertyModal({
             units: Number(removeNonDigit(values.units)),
           }).unwrap();
 
-          toast.success(`You bought ${values.units} property tokens`);
+          toast.success(
+            // `You have successfully bought ${values.units} units of this property`
+            `Transaction successful.`
+          );
           props.handleCloseModal();
         } catch (e) {
           handleErrors(e);
@@ -53,12 +60,27 @@ export default function BuyPropertyModal({
               if (!value) return context.createError();
               const cleanAmount = value.replace(/\D/g, '');
 
-              if (!cleanAmount.length) {
+              if (!cleanAmount.length || cleanAmount === '0') {
                 return context.createError();
               }
               const isValid = /^[0-9]+$/.test(cleanAmount);
 
               return isValid || context.createError();
+            }
+          )
+          .test(
+            'Check if total cost is greater than balance',
+            'Amount is greater than available balance',
+            (value, context) => {
+              if (!value) return context.createError();
+              const cleanAmount = value.replace(/\D/g, '');
+              const totalCost = Number(cleanAmount) * pricePerToken;
+
+              if (totalCost > balance) {
+                return context.createError();
+              }
+
+              return true;
             }
           ),
       }),
@@ -74,22 +96,44 @@ export default function BuyPropertyModal({
     };
   }
 
+  const unitsValue = Number(removeNonDigit(values.units)) || 0;
+  const totalCost = unitsValue * pricePerToken;
+
   return (
     <Modal {...props} className='h-auto w-4/5 lg:w-2/5'>
       <form
         onSubmit={handleSubmit}
-        className='h-full w-full bg-white p-10 flex flex-col gap-4'
+        className='h-full w-full bg-white p-5 lg:p-10 flex flex-col gap-4'
       >
         <Input
-          label='Number of tokens'
+          label='Number of units'
           id='units'
           {...getFormikInputProps('units')}
-          value={formatAmount(values.units)}
+          value={formatAmount(values.units) ?? ''}
         />
+
+        <div className='border-t pt-4 mt-2'>
+          <div className='flex justify-between items-center py-2'>
+            <span className='text-settley-text'>Price per token</span>
+            <span className='font-semibold'>${pricePerToken}</span>
+          </div>
+          <div className='flex justify-between items-center py-2'>
+            <span className='text-settley-text'>Number of tokens</span>
+            <span className='font-semibold'>
+              {unitsValue > 0 ? formatAmount(unitsValue) : '-'}
+            </span>
+          </div>
+          <div className='flex justify-between items-center py-2 border-t border-medium-grey pt-2'>
+            <span className='font-medium text-navy'>Total</span>
+            <span className='font-bold text-2xl text-navy'>
+              {unitsValue > 0 ? formatAmount(totalCost, '$') : '$ 0'}
+            </span>
+          </div>
+        </div>
 
         <div className='flex items-center gap-5'>
           <Button
-            className='py-3 px-10'
+            className='py-3 text-center px-2 w-full'
             variant='outline'
             onClick={props.handleCloseModal}
           >
@@ -98,16 +142,14 @@ export default function BuyPropertyModal({
           <Button
             type='submit'
             isLoading={isLoading}
-            disabled={!isValid}
-            className='py-3 px-10'
+            disabled={!isValid || !dirty}
+            className='py-3 text-center px-2 w-full'
           >
-            Buy Tokens
+            Buy for {unitsValue > 0 ? formatAmount(totalCost, '$') : '$ 0'}
           </Button>
         </div>
         {isLoading && (
-          <p className='text-red-400 text-sm my-2'>
-            Buying property tokens could take some time, please hold on
-          </p>
+          <p className='text-red-400 text-sm my-2'>One Minute⏰.</p>
         )}
       </form>
     </Modal>
