@@ -6,6 +6,7 @@ import { IoMdClose } from 'react-icons/io';
 import { VscAccount } from 'react-icons/vsc';
 
 import { authenticatedNavLinks, unauthentiatedNavLinks } from '.';
+import LogoutDropdown from './LogoutDropdown';
 import IconButton from '../buttons/IconButton';
 import SettleyLogo from '../SettleyLogo';
 
@@ -56,13 +57,16 @@ export default function MobileMenu({ close }: Props) {
         </div>
         <div className='bg-medium-grey h-[0.5px] w-full' />
         {isLoggedIn && (
-          <Link
-            className='text-white bg-navy rounded-[6px] py-2 px-8 flex gap-2 font-semibold items-center font-craftwork'
-            href='/dashboard'
-          >
-            <VscAccount />
-            Dashboard
-          </Link>
+          <>
+            <LogoutDropdown isMobileScreen />
+            <Link
+              className='text-white bg-navy rounded-full py-3 px-8 flex gap-2 font-medium items-center font-inter justify-center w-full'
+              href='/dashboard'
+            >
+              <VscAccount className='text-lg' />
+              Dashboard
+            </Link>
+          </>
         )}
         {!isLoggedIn && (
           <Link
