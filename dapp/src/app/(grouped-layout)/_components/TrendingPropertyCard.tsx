@@ -4,41 +4,43 @@ import Link from 'next/link';
 type Props = {
   image: string;
   caption: string;
-  propertyId: string;
-  tag?: string;
-  terms?: string;
+  location?: string;
+  propertyId?: string;
 };
 
 export default function TrendingPropertyCard({
   image,
   caption,
+  location,
   propertyId,
-  tag = 'Asset Opportunity',
-  terms = 'Configurable collateral, pricing, repayment, and enforcement terms.',
-}: Props) {
+}: // tag = 'Asset Opportunity',
+// terms = 'Configurable collateral, pricing, repayment, and enforcement terms.',
+Props) {
   return (
     <Link
-      href={`/listing/${propertyId}`}
-      className='w-full flex flex-col gap-5'
+      href={propertyId ? `/listing/${propertyId}` : '/listings'}
+      className='w-full flex flex-col gap-5 rounded-[8px] border border-[#D6D3D1] bg-white p-3'
     >
-      <div className='relative'>
-        <Image
-          src={image}
-          alt={caption}
-          width={304}
-          height={171}
-          quality={100}
-          className='w-full h-[297px] object-cover'
-          unoptimized
-          loading='lazy'
-        />
-        <span className='absolute left-4 top-4 bg-white text-navy rounded-[4px] px-3 py-2 text-xs font-medium uppercase tracking-[0.08em]'>
-          {tag}
-        </span>
-      </div>
-      <div className='flex flex-col gap-2'>
-        <p className='text-black font-medium'>{caption}</p>
-        <p className='text-[#44403C]'>{terms}</p>
+      <Image
+        src={image}
+        alt={caption}
+        width={304}
+        height={171}
+        quality={75}
+        sizes='(min-width: 1024px) 31vw, (min-width: 640px) 50vw, 100vw'
+        className='w-full h-[297px] object-cover'
+      />
+      <div className='flex flex-col gap-2 px-1 pb-2'>
+        <div className='flex items-start justify-between gap-3'>
+          <p className='text-lg font-medium text-black'>{caption}</p>
+          <span className='rounded-full border border-[#D6D3D1] px-3 py-1 text-xs text-dark-grey'>
+            Open
+          </span>
+        </div>
+        {location && <p className='text-sm text-dark-grey'>{location}</p>}
+        <p className='text-sm text-dark-grey'>
+          Ownership terms available on the property page.
+        </p>
       </div>
     </Link>
   );

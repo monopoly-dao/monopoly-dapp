@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const whitepaperHref =
   '/papers/settley-conditional-liquidity-infrastructure.pdf';
 const architectureHref =
-  'https://github.com/monopoly-dao/monopoly-dapp/blob/codex/scf-stellar-architecture/docs/settley-stellar-technical-architecture.md';
+  'https://github.com/monopoly-dao/monopoly-dapp/blob/main/docs/settley-stellar-technical-architecture.md';
 
 const mechanisms = [
   {

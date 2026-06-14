@@ -38,26 +38,29 @@ export default function HowItWorks() {
     >
       <span id='how-it-works' className='sr-only' />
       <div className='flex flex-col gap-6 lg:w-1/2'>
-        <h2 className='font-medium text-3xl sm:text-5xl'>
-          How Settley works
-        </h2>
-        <p className='w-full lg:w-4/5 text-[#44403C]'>
-          Start with a property. Settley helps turn it into tokens, then gives
-          people simple ways to participate: buy tokens, lend against them, or
-          raise capital from the property.
-        </p>
-        <div className='grid grid-cols-1 gap-4'>
-          {steps.map((step, index) => (
-            <div key={step.title} className='flex gap-4'>
-              <div className='h-9 w-9 shrink-0 rounded-full bg-navy text-white flex items-center justify-center font-medium'>
-                {index + 1}
-              </div>
-              <div>
-                <p className='font-medium text-black'>{step.title}</p>
-                <p className='text-[#44403C]'>{step.copy}</p>
-              </div>
-            </div>
-          ))}
+        <h2 className='font-medium text-3xl sm:text-5xl'>How Settley works</h2>
+        <div className='w-full lg:w-4/5 flex flex-col gap-5'>
+          <div>
+            <p className='font-semibold'>1. List or browse</p>
+            <p className='text-dark-grey'>
+              Owners list a property and set raise terms. Buyers browse
+              opportunities with clear ownership terms attached.
+            </p>
+          </div>
+          <div>
+            <p className='font-semibold'>2. Structure and verify</p>
+            <p className='text-dark-grey'>
+              Settley handles the legal structure and ownership records for
+              every property before it goes live.
+            </p>
+          </div>
+          <div>
+            <p className='font-semibold'>3. Own, lend, or raise</p>
+            <p className='text-dark-grey'>
+              Buyers receive a documented ownership stake. Lenders fund
+              property-backed positions. Owners access capital without selling.
+            </p>
+          </div>
         </div>
         <Button
           onClick={() => router.push('/listings')}
@@ -78,6 +81,8 @@ export default function HowItWorks() {
         alt='own a property'
         width={591}
         height={548}
+        quality={80}
+        sizes='(min-width: 1280px) 591px, (min-width: 1024px) 500px, 100vw'
         className='w-full lg:w-[500px] xl:w-[591px] h-auto object-cover'
       />
     </div>

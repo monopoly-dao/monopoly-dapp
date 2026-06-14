@@ -13,37 +13,38 @@ export const DELETE_METHOD = 'DELETE';
 
 export const faqs = [
   {
+    question: 'Is Settley legally safe?',
+    answer:
+      'Every property is legally structured before it goes live. Ownership terms, documents, and participant records are prepared so buyers, owners, and lenders understand what they are entering before they commit.',
+  },
+  {
     question: 'What is Settley?',
     answer:
-      'Settley is infrastructure for tokenized real assets, starting with real estate. It helps assets become easier to own, finance, and settle onchain.',
+      'Settley helps people own a share of property, fund property-backed opportunities, or raise capital from property without forcing a whole-asset sale.',
   },
   {
     question: 'How does Settley work?',
     answer:
-      'An eligible asset goes through checks, legal documentation, and onchain ownership structuring. For the first use case, that means property owners can raise against real estate while investors can buy ownership or lend against the asset tokens.',
+      'Owners list a property and set terms. Settley structures the ownership records. Buyers can secure a documented ownership stake, and lenders can fund property-backed positions where available.',
   },
   {
-    question: 'Can I unlock liquidity without selling the whole asset?',
+    question: 'How is ownership documented?',
     answer:
-      'That is the goal. Asset owners can request controlled liquidity against eligible tokenized ownership while keeping the wider asset structure intact, subject to compliance, valuation, and risk checks.',
+      'Ownership is tied to the legal structure and records prepared for each property. The property page explains what the ownership stake represents before a buyer participates.',
   },
   {
-    question: 'How does an asset-specific lending vault work?',
+    question: 'Can owners raise capital without selling the whole asset?',
     answer:
-      'A vault is created for a specific tokenized asset. The owner requests liquidity, proposes a rate and repayment date, and pledges ownership tokens as collateral. Eligible lenders can fund the request in stablecoins if they accept the terms.',
+      'Yes. Owners can set raise terms and make part of the property available to buyers or lenders while keeping the rest of the asset intact.',
   },
   {
-    question: 'What happens if a borrower does not repay?',
+    question: 'What is the minimum investment?',
     answer:
-      'If repayment fails, pledged tokens enter a collateral enforcement path for compliant lenders. Live enforcement depends on the legal wrapper, transfer restrictions, and jurisdiction-specific requirements.',
-  },
-  {
-    question: 'Can investors buy ownership as well as fund vaults?',
-    answer:
-      'Yes. Buyers can own part of an asset. Lenders can provide stablecoins for a loan and accept tokenized ownership as collateral. Today the clearest example is real estate, but the infrastructure is not limited to property.',
+      'Minimums can vary by property, structure, and jurisdiction. Each property page should show the participation terms before you make a decision.',
   },
   {
     question: 'How does Settley ensure compliance with legal regulations?',
-    answer: `Settley uses eligibility checks, KYC where required, jurisdiction-aware access rules, and legal documentation around each asset. Private compliance documents stay offchain while ownership and transaction events can be tracked transparently.`,
+    answer:
+      'Settley uses eligibility checks, identity verification where required, jurisdiction-aware access rules, and documented ownership records. Private compliance documents stay protected and are not shown publicly.',
   },
 ];

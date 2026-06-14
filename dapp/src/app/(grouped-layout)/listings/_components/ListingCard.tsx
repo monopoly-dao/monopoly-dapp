@@ -41,9 +41,9 @@ export default function ListingCard({ property, wishlist }: Props) {
           alt={name}
           width={300}
           height={220}
-          quality={100}
+          quality={75}
+          sizes='(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw'
           className='w-full h-[220px] object-cover'
-          unoptimized
           loading='lazy'
         />
 

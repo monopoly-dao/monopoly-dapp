@@ -7,7 +7,10 @@ type Props = {
 
 export default function SettleyLogo({ colour }: Props) {
   return (
-    <Link href='/'>
+    <Link
+      href='/'
+      className={colour === 'new' ? 'block w-[132px] overflow-hidden' : ''}
+    >
       {colour === 'dark' && (
         <Image
           src='/svg/Logo DARK.svg'

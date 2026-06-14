@@ -10,7 +10,8 @@ export default function RealEstateCard() {
           alt='tokenized property'
           width={300}
           height={200}
-          quality={100}
+          quality={80}
+          sizes='(min-width: 1024px) 33vw, 100vw'
           className='w-full h-[200px] object-cover rounded-[10px]'
         />
       </div>

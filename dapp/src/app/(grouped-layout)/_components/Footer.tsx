@@ -8,10 +8,12 @@ import FooterColumnLinks from './FooterColumnLinks';
 
 const aboutLinks = [
   { label: 'How it works', href: '/#how-it-works' },
-  { label: 'Assets', href: '/listings' },
+  { label: 'Browse Properties', href: '/listings' },
+  { label: 'Protocol Paper', href: '/protocol' },
   {
-    label: 'Protocol Paper',
-    href: '/protocol',
+    label: 'Developers',
+    href: 'https://settley.gitbook.io/settley',
+    openInNewTab: true,
   },
 ];
 
@@ -33,7 +35,7 @@ const followLinks = [
   },
   {
     label: 'Discord',
-    href: 'https://discord.gg/x54J7un2 ',
+    href: 'https://discord.gg/x54J7un2',
     icon: FaDiscord,
     openInNewTab: true,
   },
@@ -51,6 +53,11 @@ export default function Footer() {
       <div className='grid grid-cols-2 lg:grid-cols-5 gap-10 justify-between mb-11 sm:mb-20'>
         <div className='col-span-2 lg:col-span-3'>
           <SubscriptionForm />
+          <p className='mt-5 max-w-[620px] text-sm text-dark-grey'>
+            Currently serving property owners and investors where supported by
+            the applicable property structure, eligibility checks, and local
+            rules.
+          </p>
         </div>
         <div className='lg:col-span-1 justify-self-start lg:justify-self-center'>
           <FooterColumnLinks title='About' links={aboutLinks} />

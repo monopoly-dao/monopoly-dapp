@@ -8,39 +8,21 @@ import { useGetPropertiesQuery } from '@/api/properties';
 
 import TrendingPropertyCard from './TrendingPropertyCard';
 
-const fallbackOpportunities = [
+const fallbackProperties = [
   {
-    _id: 'asset-lisbon-loft',
-    propertyDetails: {
-      name: 'Lisbon Loft Apartments',
-      photos: [{ url: '/images/interior1.png' }],
-    },
-    opportunity: {
-      tag: 'Ownership Access',
-      terms: 'Buy tokens tied to this property opportunity.',
-    },
+    image: '/images/mykonos-2.jpg',
+    caption: 'Coastal Villa',
+    location: 'Mykonos, Greece',
   },
   {
-    _id: 'asset-montenegro-lodge',
-    propertyDetails: {
-      name: 'Montenegro Mountain Lodge',
-      photos: [{ url: '/images/Montenegro.png' }],
-    },
-    opportunity: {
-      tag: 'Property Loan',
-      terms: 'Fund a loan backed by pledged property tokens.',
-    },
+    image: '/images/apartment buildings.jpg',
+    caption: 'Urban Apartments',
+    location: 'Dubai, UAE',
   },
   {
-    _id: 'asset-vienna-vault',
-    propertyDetails: {
-      name: 'Vienna Imperial Residence',
-      photos: [{ url: '/images/apartment.png' }],
-    },
-    opportunity: {
-      tag: 'Owner Borrowing',
-      terms: 'Raise from the property with configurable loan terms.',
-    },
+    image: '/images/Monaco.png',
+    caption: 'City Residence',
+    location: 'Monaco',
   },
 ];
 
@@ -54,18 +36,17 @@ export default function TrendingProperties() {
     page: 1,
   });
 
-  const apiProperties = propertiesResponse?.data ?? [];
-  const shouldUseFallback = isError || apiProperties.length === 0;
-  const properties = shouldUseFallback ? fallbackOpportunities : apiProperties;
+  const properties = propertiesResponse?.data;
+  const hasProperties = Boolean(properties?.length);
 
   return (
     <div className='flex flex-col gap-6 sm:gap-12 bg-white py-12 sm:py-20 lg:py-28 px-[5%] lg:px-[7%]'>
-      <div id='opportunities' className='flex justify-between items-start'>
+      <div className='flex justify-between items-start'>
         <div>
-          <h2 className='text-3xl sm:text-4xl'>Ways to participate</h2>
-          <p className='mt-5 max-w-2xl text-[#44403C]'>
-            Buy property tokens, fund a property-backed loan, or bring a
-            property to market.
+          <h2 className='text-3xl sm:text-4xl'>Properties on Settley</h2>
+          <p className='mt-4 max-w-[620px] text-dark-grey'>
+            Browse properties with documented ownership terms, raise details,
+            and clear status before you commit.
           </p>
         </div>
         <Link
@@ -78,33 +59,26 @@ export default function TrendingProperties() {
       </div>
 
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-5'>
-        <ListingCardLoader
-          isLoading={isLoading && !shouldUseFallback}
-          cardNumber={3}
-        />
+        <ListingCardLoader isLoading={isLoading} cardNumber={3} />
         {properties?.map((property) => (
-          <div
-            id={
-              'opportunity' in property &&
-              property.opportunity.tag === 'Property Loan'
-                ? 'lending-path'
-                : undefined
-            }
+          <TrendingPropertyCard
             key={property._id}
-          >
-            <TrendingPropertyCard
-              image={property.propertyDetails.photos[0].url}
-              caption={property.propertyDetails.name}
-              propertyId={property._id}
-              tag={
-                'opportunity' in property ? property.opportunity.tag : undefined
-              }
-              terms={
-                'opportunity' in property ? property.opportunity.terms : undefined
-              }
-            />
-          </div>
+            image={property.propertyDetails.photos[0].url}
+            caption={property.propertyDetails.name}
+            location={[
+              property.propertyDetails.stateOrProvince,
+              property.propertyDetails.country,
+            ]
+              .filter(Boolean)
+              .join(', ')}
+            propertyId={property._id}
+          />
         ))}
+        {!isLoading &&
+          !hasProperties &&
+          fallbackProperties.map((property) => (
+            <TrendingPropertyCard key={property.caption} {...property} />
+          ))}
       </div>
     </div>
   );
