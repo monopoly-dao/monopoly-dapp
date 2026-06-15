@@ -1,7 +1,7 @@
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import * as nearAPI from 'near-api-js';
-import { ConnectConfig } from 'near-api-js';
+// import * as nearAPI from 'near-api-js';
+// import { ConnectConfig } from 'near-api-js';
 import Image from 'next/image';
 import profile from 'public/assets/profile.png';
 import React, { MouseEvent, useEffect, useState } from 'react';
@@ -23,7 +23,7 @@ export default function Header({
   const imageSize = 40;
   const { photo } = signInDetails;
   //   console.log('PHOTO', photo);
-  const { keyStores, connect, WalletConnection } = nearAPI;
+  // const { keyStores, connect, WalletConnection } = nearAPI;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (e: MouseEvent<HTMLElement>) => {
@@ -33,37 +33,37 @@ export default function Header({
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const myKeyStore = new keyStores.BrowserLocalStorageKeyStore();
-  const connectionConfig: ConnectConfig = {
+  // const myKeyStore = new keyStores.BrowserLocalStorageKeyStore();
+  const connectionConfig = {
     networkId: 'testnet',
-    keyStore: myKeyStore,
+    // keyStore: myKeyStore,
     nodeUrl: 'https://rpc.testnet.near.org',
     walletUrl: 'https://wallet.testnet.near.org',
     helperUrl: 'https://helper.testnet.near.org',
     headers: {},
   };
 
-  const nearWalletConnection = async () =>
-    await connect(connectionConfig).then((nearConnection) => {
-      const walletConnection = new WalletConnection(nearConnection, null);
-      return walletConnection;
-    });
+  const nearWalletConnection = async () => undefined;
+  // await connect(connectionConfig).then((nearConnection) => {
+  //   const walletConnection = new WalletConnection(nearConnection, null);
+  //   return walletConnection;
+  // });
 
   const [isWalletSignedIn, setIsWalletSignedIn] = useState<boolean>(false);
 
   const SignInToNear = async () => {
     const conn = await nearWalletConnection();
     if (!isWalletSignedIn) {
-      conn.requestSignIn('monopolydao.testnet', 'MonopolyDAO');
+      // conn.requestSignIn('monopolydao.testnet', 'MonopolyDAO');
       isWalletActive();
     }
     isWalletActive();
-    return conn.signOut();
+    // return conn.signOut();
   };
 
   const isWalletActive = async () => {
     const conn = await nearWalletConnection();
-    conn.isSignedIn() ? setIsWalletSignedIn(true) : setIsWalletSignedIn(false);
+    // conn.isSignedIn() ? setIsWalletSignedIn(true) : setIsWalletSignedIn(false);
   };
 
   useEffect(() => {
