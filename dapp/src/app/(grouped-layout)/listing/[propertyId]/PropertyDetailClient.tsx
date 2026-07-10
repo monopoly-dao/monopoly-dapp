@@ -2,24 +2,17 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useSession } from 'next-auth/react';
 import { FaUmbrellaBeach } from 'react-icons/fa6';
 import { MdPool } from 'react-icons/md';
 
-import useDisclosure from '@/hooks/useDisclosure';
-
-import Button from '@/components/buttons/Button';
 import LoadingText from '@/components/LoadingText';
 import Tooltip from '@/components/Tooltip';
 
-import { useGetWalletStatsQuery } from '@/api/profile';
 import { useGetPropertyQuery } from '@/api/properties';
 import { Property } from '@/api/properties/propertiesApiTypes';
-import authenticatedFuncWrapper from '@/utils/authenticatedFuncWrapper';
-import { handleErrors } from '@/utils/error';
 import { formatAmount } from '@/utils/utils';
 
-import BuyPropertyModal from '../_components/BuyPropertyModal';
+import PropertyActionPanel from './_components/PropertyActionPanel';
 import ListingImage from '../_components/ListingImage';
 import YouMightAlsoLike from '../_components/YouMightAlsoLike';
 
@@ -37,18 +30,7 @@ export default function PropertyDetailClient({
     // initialData: initialData
   });
 
-  const session = useSession();
-  const isLoggedIn = session.data;
-  const userFirebaseId = session.data?.userFirebaseId ?? '';
-  const { isOpen: isBuyOpen, open: openBuy, close: closeBuy } = useDisclosure();
-
-  const { data: walletStatsResponse } = useGetWalletStatsQuery(userFirebaseId, {
-    skip: !isLoggedIn,
-  });
-  const walletStats = walletStatsResponse?.data;
-  const balance = walletStats?.walletBalance ?? 0;
-
-  if (error) handleErrors(error);
+  if (error) throw new Error('Failed to load property');
 
   const displayProperty = property || initialData;
 
@@ -200,57 +182,19 @@ export default function PropertyDetailClient({
               </div>
             </div>
           </div>
-          <div className='flex flex-col gap-2 w-full sm:w-2/5 lg:w-1/4'>
-            <p className='text-3xl '>$1/token</p>
-            <div className=' text-sm'>
-              {formatAmount(property?.propertyDetails.unitsLeft)} tokens left.{' '}
-              <LoadingText
-                isLoading={isLoading}
-                className='w-10'
-                value={property?.propertyDetails.owners.length}
-              />{' '}
-              token holders
-            </div>
-            {/* <div className='flex items-center gap-4'>
-              <Button
-                variant='outline'
-                leftIcon={FaRegBookmark}
-                className='py-2 px-5 bg-transparent text-navy border-navy'
-              >
-                Share
-              </Button>
-              <Button
-                variant='outline'
-                leftIcon={CiShare2}
-                className='py-2 px-5 bg-transparent text-navy border-navy'
-              >
-                Share
-              </Button>
-            </div> */}
-            <Button
-              variant='ghost'
-              onClick={() => {
-                authenticatedFuncWrapper(openBuy, session.status);
-              }}
-              className='max-w-[258px] py-4 w-full bg-navy text-white border-navy'
-            >
-              Buy Property Tokens
-            </Button>
+          <div className='w-full sm:w-2/5 lg:w-1/4'>
+            <PropertyActionPanel
+              propertyId={displayProperty?._id ?? ''}
+              propertyName={displayProperty?.propertyDetails.name}
+              propertySymbol={displayProperty?.propertyDetails.symbol}
+              tokensLeft={displayProperty?.propertyDetails.unitsLeft}
+              pricePerToken={1}
+            />
           </div>
         </div>
 
         <YouMightAlsoLike />
       </div>
-
-      <BuyPropertyModal
-        isOpen={isBuyOpen}
-        handleOpenModal={openBuy}
-        handleCloseModal={closeBuy}
-        propertyId={displayProperty?._id as string}
-        userFirebaseId={userFirebaseId}
-        balance={balance}
-        pricePerToken={1}
-      />
     </div>
   );
 }

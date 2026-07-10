@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { PiHouseLine } from 'react-icons/pi';
 import { PiCubeFill } from 'react-icons/pi';
@@ -10,10 +11,14 @@ import { useGetWalletStatsQuery } from '@/api/profile';
 
 import AssetsSection from './_components/AssetsSection';
 import DashboardCard from './_components/DashboardCard';
+import VaultActivitySection from './_components/VaultActivitySection';
+
+type HoldingTab = 'tokens' | 'vault';
 
 export default function Page() {
   const session = useSession();
   const userFirebaseId = session.data?.userFirebaseId ?? '';
+  const [activeTab, setActiveTab] = useState<HoldingTab>('tokens');
 
   const { data: walletStatsResponse, isLoading } =
     useGetWalletStatsQuery(userFirebaseId);
@@ -81,12 +86,34 @@ export default function Page() {
       </div>
 
       <div className='mt-20'>
-        <AssetsSection userFirebaseId={userFirebaseId} />
-      </div>
+        <div className='flex border-b border-[#D6D3D1] mb-6'>
+          <button
+            type='button'
+            onClick={() => setActiveTab('tokens')}
+            className={`px-6 py-3 text-sm font-medium transition-colors ${
+              activeTab === 'tokens'
+                ? 'border-b-2 border-navy text-navy'
+                : 'text-[#57534E] hover:text-navy'
+            }`}
+          >
+            Token Holdings
+          </button>
+          <button
+            type='button'
+            onClick={() => setActiveTab('vault')}
+            className={`px-6 py-3 text-sm font-medium transition-colors ${
+              activeTab === 'vault'
+                ? 'border-b-2 border-navy text-navy'
+                : 'text-[#57534E] hover:text-navy'
+            }`}
+          >
+            Vault Activity
+          </button>
+        </div>
 
-      {/* <div className='mt-20'>
-        <TransactionsSection />
-      </div> */}
+        {activeTab === 'tokens' && <AssetsSection userFirebaseId={userFirebaseId} />}
+        {activeTab === 'vault' && <VaultActivitySection userFirebaseId={userFirebaseId} />}
+      </div>
     </div>
   );
 }
