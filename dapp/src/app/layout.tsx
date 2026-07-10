@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   manifest: `/favicon/site.webmanifest`,
   openGraph: {
     url: siteConfig.url,
-    title: siteConfig.title,
+    title: `${siteConfig.title} | Buy a Share in Property. Raise Without Selling.`,
     description: siteConfig.description,
     siteName: siteConfig.title,
     images: [`${siteConfig.url}/images/og.png`],
@@ -42,7 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: siteConfig.title,
+    title: `${siteConfig.title} | Buy a Share in Property. Raise Without Selling.`,
+    site: '@settley',
     description: siteConfig.description,
     images: [`${siteConfig.url}/images/og.png`],
     creator: '@mubaraq__',
@@ -267,11 +268,13 @@ export default async function RootLayout({
           `}
         </Script>
         <Script
+          defer
           id='structured-data'
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
         <Script
+          defer
           id='breadcrumb-data'
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

@@ -3,6 +3,7 @@ const nextConfig = {
   eslint: {
     dirs: ['src'],
   },
+  optimizeFonts: true,
   reactStrictMode: true,
   images: {
     unoptimized: true,

@@ -95,6 +95,8 @@ export default function Page() {
           height={595}
           quality={82}
           priority
+          rel='preload'
+          fetchPriority='high'
           sizes='100vw'
           className='w-full h-[250px] sm:h-[400px] lg:h-[595px] object-cover'
         />
