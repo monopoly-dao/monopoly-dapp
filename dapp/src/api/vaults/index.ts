@@ -7,6 +7,12 @@ import {
   RequestLoanPayload,
   LendPayload,
   RepayPayload,
+  NavResponse,
+  Distribution,
+  WindDownState,
+  LoanIntentsResponse,
+  AssetSubmission,
+  CreateSubmissionPayload,
 } from './vaultsApiTypes';
 import { INetworkSuccessResponse } from '../../@types/appTypes';
 
@@ -17,8 +23,14 @@ const vaultsApiConstants = {
   Repay: '/loans/:loanId/repay',
   Get_Amount_Due: '/loans/:loanId/amount-due',
   Cancel_Borrow_Intent: '/loans/:loanId/borrow-intent',
+  Cancel_Lend_Intent: '/loans/:loanId/lend-intent',
   Get_User_Loans: '/loans/user/:address',
   Get_Loan_Intents: '/assets/:assetToken/loan-intents',
+  Get_Nav: '/assets/:assetToken/nav',
+  Get_Distributions: '/assets/:assetToken/distributions',
+  Get_WindDown: '/assets/:assetToken/winddown',
+  Create_Submission: '/submissions',
+  Get_User_Submissions: '/submissions/user/:userId',
 };
 
 // Mock data
@@ -80,6 +92,83 @@ const mockAmountDue: AmountDueResponse = {
   amountDue: '53000',
   source: 'calculated',
 };
+
+// Mock NAV
+const mockNav: NavResponse = {
+  assetToken: '0xCollateralToken',
+  value: '284000000000000000000000', // 284,000 in 1e18
+  publishedAt: Math.floor(Date.now() / 1000) - 10800, // 3h ago
+  valid: true,
+};
+
+// Mock distributions
+const mockDistributions: Distribution[] = [
+  {
+    id: 'dist_01',
+    assetToken: '0xCollateralToken',
+    amount: '1240.00',
+    paymentToken: 'USDC',
+    timestamp: '2025-06-12T00:00:00Z',
+  },
+  {
+    id: 'dist_02',
+    assetToken: '0xCollateralToken',
+    amount: '1190.00',
+    paymentToken: 'USDC',
+    timestamp: '2025-05-12T00:00:00Z',
+  },
+];
+
+// Mock wind-down state
+const mockWindDown: WindDownState = {
+  active: false,
+};
+
+// Mock loan intents (from subgraph)
+const mockLoanIntents: LoanIntentsResponse = {
+  borrowIntents: [
+    {
+      id: '4',
+      borrower: '0xborrower',
+      assetToken: '0xCollateralToken',
+      paymentToken: '0xUSDC',
+      collateralAmount: '35000',
+      minLTVBps: '6000',
+      maxRateBps: '1200',
+      maxLiqPrice: '100000000',
+      duration: '180',
+      status: 'OPEN',
+    },
+  ],
+  lendIntents: [
+    {
+      id: '2',
+      lender: '0xlender',
+      assetToken: '0xCollateralToken',
+      paymentToken: '0xUSDC',
+      maxPrincipal: '30000000000',
+      ltvBps: '6500',
+      rateBps: '1000',
+      liqPrice: '100000000',
+      status: 'OPEN',
+    },
+  ],
+};
+
+// Mock submissions
+const mockSubmissions: AssetSubmission[] = [
+  {
+    id: 'sub_01',
+    type: 'DEBT_VAULT',
+    streetAddress: '14 Riverside Court',
+    city: 'Austin',
+    stateOrProvince: 'TX',
+    country: 'USA',
+    postcode: '78701',
+    status: 'PENDING',
+    createdAt: '2025-06-01T00:00:00Z',
+  },
+];
 
 const vaultsApi = globalApi.injectEndpoints({
   overrideExisting: true,
@@ -188,13 +277,88 @@ const vaultsApi = globalApi.injectEndpoints({
       }),
     }),
 
-    getLoanIntents: build.query<INetworkSuccessResponse<Loan[]>, string>({
+    getLoanIntents: build.query<INetworkSuccessResponse<LoanIntentsResponse>, string>({
       query: (assetToken) => ({
         url: vaultsApiConstants.Get_Loan_Intents.replace(':assetToken', assetToken),
         method: 'GET',
       }),
-      transformResponse: (): INetworkSuccessResponse<Loan[]> => ({
-        data: mockVault.loans,
+      transformResponse: (): INetworkSuccessResponse<LoanIntentsResponse> => ({
+        data: mockLoanIntents,
+        message: 'Success',
+        status: 200,
+      }),
+    }),
+
+    getNav: build.query<INetworkSuccessResponse<NavResponse>, string>({
+      query: (assetToken) => ({
+        url: vaultsApiConstants.Get_Nav.replace(':assetToken', assetToken),
+        method: 'GET',
+      }),
+      transformResponse: (): INetworkSuccessResponse<NavResponse> => ({
+        data: mockNav,
+        message: 'Success',
+        status: 200,
+      }),
+    }),
+
+    getDistributions: build.query<INetworkSuccessResponse<Distribution[]>, string>({
+      query: (assetToken) => ({
+        url: vaultsApiConstants.Get_Distributions.replace(':assetToken', assetToken),
+        method: 'GET',
+      }),
+      transformResponse: (): INetworkSuccessResponse<Distribution[]> => ({
+        data: mockDistributions,
+        message: 'Success',
+        status: 200,
+      }),
+    }),
+
+    getWindDown: build.query<INetworkSuccessResponse<WindDownState | null>, string>({
+      query: (assetToken) => ({
+        url: vaultsApiConstants.Get_WindDown.replace(':assetToken', assetToken),
+        method: 'GET',
+      }),
+      transformResponse: (): INetworkSuccessResponse<WindDownState | null> => ({
+        data: mockWindDown,
+        message: 'Success',
+        status: 200,
+      }),
+    }),
+
+    cancelLendIntent: build.mutation<INetworkSuccessResponse<void>, string>({
+      query: (loanId) => ({
+        url: vaultsApiConstants.Cancel_Lend_Intent.replace(':loanId', loanId),
+        method: 'DELETE',
+      }),
+      transformResponse: (): INetworkSuccessResponse<void> => ({
+        data: undefined,
+        message: 'Lend intent cancelled',
+        status: 200,
+      }),
+      invalidatesTags: ['Vault'],
+    }),
+
+    createSubmission: build.mutation<INetworkSuccessResponse<AssetSubmission>, CreateSubmissionPayload>({
+      query: (payload) => ({
+        url: vaultsApiConstants.Create_Submission,
+        method: 'POST',
+        data: payload,
+      }),
+      transformResponse: (): INetworkSuccessResponse<AssetSubmission> => ({
+        data: mockSubmissions[0],
+        message: 'Submission created',
+        status: 200,
+      }),
+      invalidatesTags: ['Vault'],
+    }),
+
+    getUserSubmissions: build.query<INetworkSuccessResponse<AssetSubmission[]>, string>({
+      query: (userId) => ({
+        url: vaultsApiConstants.Get_User_Submissions.replace(':userId', userId),
+        method: 'GET',
+      }),
+      transformResponse: (): INetworkSuccessResponse<AssetSubmission[]> => ({
+        data: mockSubmissions,
         message: 'Success',
         status: 200,
       }),
@@ -209,7 +373,13 @@ export const {
   useRepayMutation,
   useGetAmountDueQuery,
   useCancelBorrowIntentMutation,
+  useCancelLendIntentMutation,
   useGetUserLoansQuery,
   useGetUserLendPositionsQuery,
   useGetLoanIntentsQuery,
+  useGetNavQuery,
+  useGetDistributionsQuery,
+  useGetWindDownQuery,
+  useCreateSubmissionMutation,
+  useGetUserSubmissionsQuery,
 } = vaultsApi;

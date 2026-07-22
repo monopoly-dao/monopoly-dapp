@@ -56,6 +56,14 @@ export const authenticatedNavLinks = [
     label: 'Browse Properties',
     route: '/listings',
   },
+  // {
+  //   label: 'Submit Property',
+  //   route: '/submit',
+  // },
+  // {
+  //   label: 'My Submissions',
+  //   route: '/dashboard/submissions',
+  // },
   {
     label: 'Protocol',
     route: '/protocol',

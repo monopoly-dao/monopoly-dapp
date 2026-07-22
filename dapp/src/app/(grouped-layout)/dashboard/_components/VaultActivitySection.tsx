@@ -8,6 +8,9 @@ import TableContainer from '@/components/table';
 import { Loan, LoanStatus, LendPosition } from '@/api/vaults/vaultsApiTypes';
 import { useGetUserLoansQuery, useGetUserLendPositionsQuery } from '@/api/vaults';
 import { formatAmount } from '@/utils/utils';
+import useDisclosure from '@/hooks/useDisclosure';
+import RepayLoanModal from '@/components/modals/RepayLoanModal';
+import CancelIntentModal from '@/components/modals/CancelIntentModal';
 import DashboardEmptyState from './DashboardEmptyState';
 
 function getStatusClasses(status: LoanStatus) {
@@ -21,56 +24,113 @@ function getStatusClasses(status: LoanStatus) {
     case 'REPAID':
       return 'bg-[#F0FDF4] text-[#14532D]';
     case 'OVERDUE':
-    case 'DEFAULTED':
       return 'bg-[#FEE2E2] text-[#991B1B]';
+    case 'DEFAULTED':
+      return 'bg-[#FEE2E2] text-[#7F1D1D]';
+    case 'CANCELLED':
+      return 'bg-[#F5F5F4] text-[#78716C]';
     default:
       return 'bg-cream text-[#57534E] border border-[#D6D3D1]';
   }
 }
 
 function BorrowerLoanRow({ loan }: { loan: Loan }) {
-  return (
-    <tr>
-      <td className='px-5 border-b border-medium-grey py-3 font-inter'>
+  const { isOpen: isRepayOpen, open: openRepay, close: closeRepay } = useDisclosure();
+  const { isOpen: isCancelOpen, open: openCancel, close: closeCancel } = useDisclosure();
+
+  const showRepay = loan.status === 'ACTIVE' || loan.status === 'OVERDUE';
+  const showCancel = loan.status === 'REQUESTED';
+  const showView = loan.status === 'REPAID' || loan.status === 'CANCELLED';
+
+  const actionButton = () => {
+    if (showRepay) {
+      return (
+        <button
+          onClick={openRepay}
+          className='text-navy hover:underline text-sm font-medium'
+        >
+          Repay
+        </button>
+      );
+    }
+    if (showCancel) {
+      return (
+        <button
+          onClick={openCancel}
+          className='text-navy hover:underline text-sm font-medium'
+        >
+          Cancel
+        </button>
+      );
+    }
+    if (showView) {
+      return (
         <Link
-          href={`/listing/${loan.propertyName?.toLowerCase().replace(/\s+/g, '-')}`}
-          className='font-medium text-navy hover:underline'
+          href={`/dashboard/loans/${loan.id}`}
+          className='text-navy hover:underline text-sm font-medium'
         >
-          {loan.propertyName}
+          View
         </Link>
-      </td>
-      <td className='px-5 border-b border-medium-grey py-3 font-inter text-center'>
-        ${formatAmount(loan.requestedAmount)}
-      </td>
-      <td className='px-5 border-b border-medium-grey py-3 font-inter'>
-        <span
-          className={`inline-block px-2 py-1 text-xs font-medium rounded-[4px] ${getStatusClasses(loan.status)}`}
-        >
-          {loan.status}
-        </span>
-      </td>
-      <td className='px-5 border-b border-medium-grey py-3 font-inter text-center'>
-        {loan.repaymentDueDate ? new Date(loan.repaymentDueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '-'}
-      </td>
-      <td className='px-5 border-b border-medium-grey py-3 font-inter text-right'>
-        {loan.status === 'ACTIVE' && (
+      );
+    }
+    return '-';
+  };
+
+  return (
+    <>
+      <tr>
+        <td className='px-5 border-b border-medium-grey py-3 font-inter'>
           <Link
-            href={`/dashboard/loans/${loan.id}`}
-            className='text-navy hover:underline text-sm font-medium'
+            href={`/listing/${(loan.propertyName ?? 'unknown').toLowerCase().replace(/\s+/g, '-')}`}
+            className='font-medium text-navy hover:underline'
           >
-            Repay
+            {loan.propertyName}
           </Link>
-        )}
-        {loan.status === 'REQUESTED' && (
-          <Link
-            href={`/dashboard/loans/${loan.id}`}
-            className='text-navy hover:underline text-sm font-medium'
+        </td>
+        <td className='px-5 border-b border-medium-grey py-3 font-inter text-center'>
+          ${formatAmount(loan.requestedAmount)}
+        </td>
+        <td className='px-5 border-b border-medium-grey py-3 font-inter'>
+          <span
+            className={`inline-block px-2 py-1 text-xs font-medium rounded-[4px] ${getStatusClasses(
+              loan.status
+            )}`}
           >
-            View
-          </Link>
-        )}
-      </td>
-    </tr>
+            {loan.status}
+          </span>
+        </td>
+        <td className='px-5 border-b border-medium-grey py-3 font-inter text-center'>
+          {loan.repaymentDueDate
+            ? new Date(loan.repaymentDueDate).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+              })
+            : '-'}
+        </td>
+        <td className='px-5 border-b border-medium-grey py-3 font-inter text-right'>
+          {actionButton()}
+        </td>
+      </tr>
+      {showRepay && (
+        <RepayLoanModal
+          isOpen={isRepayOpen}
+          handleCloseModal={closeRepay}
+          handleOpenModal={openRepay}
+          loanId={loan.id}
+          amountDue='53200.00'
+          propertyName={loan.propertyName}
+        />
+      )}
+      {showCancel && (
+        <CancelIntentModal
+          isOpen={isCancelOpen}
+          handleCloseModal={closeCancel}
+          handleOpenModal={openCancel}
+          loanId={loan.id}
+          intentType='borrow'
+        />
+      )}
+    </>
   );
 }
 
@@ -90,13 +150,20 @@ function LenderPositionRow({ loan }: { loan: LendPosition }) {
       </td>
       <td className='px-5 border-b border-medium-grey py-3 font-inter'>
         <span
-          className={`inline-block px-2 py-1 text-xs font-medium rounded-[4px] ${getStatusClasses(loan.status ?? 'REQUESTED')}`}
+          className={`inline-block px-2 py-1 text-xs font-medium rounded-[4px] ${getStatusClasses(
+            loan.status ?? 'REQUESTED'
+          )}`}
         >
           {loan.status}
         </span>
       </td>
       <td className='px-5 border-b border-medium-grey py-3 font-inter text-center'>
-        {loan.repaymentDueDate ? new Date(loan.repaymentDueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '-'}
+        {loan.repaymentDueDate
+          ? new Date(loan.repaymentDueDate).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+            })
+          : '-'}
       </td>
       <td className='px-5 border-b border-medium-grey py-3 font-inter text-right'>
         <Link
@@ -163,7 +230,7 @@ export default function VaultActivitySection({ userFirebaseId }: Props) {
           {!hasLoans && !isLoadingLoans && (
             <DashboardEmptyState
               title='No loan requests'
-              body='When you request a loan against your property tokens, they will appear here.'
+              body="You haven't requested any property-backed loans yet. Browse properties to find one with an active vault."
               primaryLabel='Browse Properties'
               primaryHref='/listings'
             />
@@ -172,7 +239,7 @@ export default function VaultActivitySection({ userFirebaseId }: Props) {
             <TableContainer
               tableHeadClass='last:text-right [&:nth-child(2)]:text-center [&:nth-child(3)]:text-center [&:nth-child(4)]:text-center'
               isLoading={isLoadingLoans}
-              headers={['Property', 'Amount', 'Status', 'Due', 'Action']}
+              headers={['Property', 'Amount', 'Status', 'Due Date', 'Action']}
             >
               {borrowerLoans.map((loan) => (
                 <BorrowerLoanRow key={loan.id} loan={loan} />
@@ -187,7 +254,7 @@ export default function VaultActivitySection({ userFirebaseId }: Props) {
           {!hasPositions && !isLoadingPositions && (
             <DashboardEmptyState
               title='No lend positions'
-              body='When you fund loans, your positions will appear here.'
+              body="You haven't funded any loans yet. Find a property with open loan requests and review the collateral and terms."
               primaryLabel='Browse Properties'
               primaryHref='/listings'
             />
@@ -196,7 +263,7 @@ export default function VaultActivitySection({ userFirebaseId }: Props) {
             <TableContainer
               tableHeadClass='last:text-right [&:nth-child(2)]:text-center [&:nth-child(3)]:text-center [&:nth-child(4)]:text-center'
               isLoading={isLoadingPositions}
-              headers={['Property', 'Funded', 'Status', 'Due', 'Action']}
+              headers={['Property', 'Amount Funded', 'Rate', 'Status', 'Due Date', 'Action']}
             >
               {lenderPositions.map((position) => (
                 <LenderPositionRow key={position.id} loan={position} />

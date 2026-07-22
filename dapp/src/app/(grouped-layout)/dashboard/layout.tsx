@@ -5,6 +5,7 @@ import ActiveLink from '@/components/links/ActiveLink';
 
 const profileLinks = [
   { route: '', label: 'Dashboard', index: true },
+  { route: 'submissions', label: 'My Submissions', index: true },
   { route: 'transactions', label: 'Activity', index: false },
   { route: 'settings', label: 'Account Settings', index: false },
   { route: 'bookmarks', label: 'Bookmarked Assets', index: false },

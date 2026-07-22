@@ -7,7 +7,7 @@ import Button from '@/components/buttons/Button';
 import { Input } from '@/components/input';
 import LoadingText from '@/components/LoadingText';
 
-import { useRequestLoanMutation } from '@/api/vaults';
+import { useRequestLoanMutation, useGetVaultQuery } from '@/api/vaults';
 import { formatAmount } from '@/utils/utils';
 
 const mockOwnership = { tokenBalance: 12000, totalSupply: 100000 };
@@ -64,10 +64,17 @@ type Props = {
 };
 
 export default function BorrowTab({ propertyId }: Props) {
-  const [requestLoan, { isLoading }] = useRequestLoanMutation();
+  const { data: vaultResponse, isLoading: isLoadingVault } = useGetVaultQuery(propertyId);
+  const vault = vaultResponse?.data;
+
+  const [requestLoan, { isLoading: isLoadingLoan }] = useRequestLoanMutation();
 
   const tokenPrice = 1;
   const maxTokensToPledge = mockOwnership.tokenBalance;
+  const isLoading = isLoadingVault || isLoadingLoan;
+
+  // LTV guard - use vault's maxLtvRatio if available (multiply by 100 for percentage)
+  const maxLtv = vault ? vault.maxLtvRatio * 100 : 60;
 
   const formik = useFormik({
     initialValues: {
@@ -108,9 +115,23 @@ export default function BorrowTab({ propertyId }: Props) {
   const { values, handleSubmit, isValid, dirty } = formik;
 
   const collateralValue = values.tokensToPledge * tokenPrice;
-  const ltv = values.loanAmount > 0 ? (values.loanAmount / collateralValue) * 100 : 0;
+  const ltv = values.loanAmount > 0 && collateralValue > 0 ? (values.loanAmount / collateralValue) * 100 : 0;
+  const isLtvExceeded = ltv > maxLtv;
+
   const interest = values.loanAmount * (values.interestRate / 100) * (values.termMonths / 12);
   const totalRepayable = values.loanAmount + interest;
+
+  // If no vault exists, show informational state
+  if (!isLoadingVault && !vault) {
+    return (
+      <div className='rounded-[8px] border border-[#D6D3D1] bg-cream/30 p-6'>
+        <p className='text-sm text-[#57534E]'>
+          No lending vault on this property yet. Vaults are opened by Settley admin
+          when a property is eligible for property-backed lending.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
@@ -118,7 +139,7 @@ export default function BorrowTab({ propertyId }: Props) {
         <p className='text-sm text-[#57534E] mb-2'>
           Your token balance: <strong>{formatAmount(mockOwnership.tokenBalance)} tokens</strong>
         </p>
-        <p className='text-sm text-[#57534E] mb-4'>Max LTV: 60%</p>
+        <p className='text-sm text-[#57534E] mb-4'>Max LTV: {maxLtv}%</p>
       </div>
 
       <SliderControl
@@ -168,7 +189,15 @@ export default function BorrowTab({ propertyId }: Props) {
         </select>
       </label>
 
-      {(values.tokensToPledge > 0 || values.loanAmount > 0) && (
+      {isLtvExceeded && (
+        <div className='rounded-[8px] border border-[#FEE2E2] bg-[#FEF2F2] p-4'>
+          <p className='text-sm font-medium text-[#991B1B]'>
+            LTV exceeds maximum allowed ({maxLtv}%)
+          </p>
+        </div>
+      )}
+
+      {(values.tokensToPledge > 0 || values.loanAmount > 0) && !isLtvExceeded && (
         <div className='rounded-[8px] border border-[#D6D3D1] bg-cream/50 p-4'>
           <p className='text-sm font-medium text-[#1C1917] mb-3'>Loan preview</p>
           <div className='flex flex-col gap-2 text-sm'>
@@ -193,7 +222,7 @@ export default function BorrowTab({ propertyId }: Props) {
       <Button
         type='submit'
         isLoading={isLoading}
-        disabled={!isValid || !dirty}
+        disabled={!isValid || !dirty || isLtvExceeded}
         className='py-3 w-full bg-navy text-white'
       >
         Request Loan

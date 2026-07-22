@@ -15,6 +15,8 @@ import { formatAmount } from '@/utils/utils';
 import PropertyActionPanel from './_components/PropertyActionPanel';
 import ListingImage from '../_components/ListingImage';
 import YouMightAlsoLike from '../_components/YouMightAlsoLike';
+import NavBadge from './_components/NavBadge';
+import DistributionsSection from './_components/DistributionsSection';
 
 export default function PropertyDetailClient({
   initialData,
@@ -182,7 +184,8 @@ export default function PropertyDetailClient({
               </div>
             </div>
           </div>
-          <div className='w-full sm:w-2/5 lg:w-1/4'>
+          <div className='w-full sm:w-2/5 lg:w-1/4 flex flex-col gap-4'>
+            <NavBadge assetToken={displayProperty?.contractAddress} />
             <PropertyActionPanel
               propertyId={displayProperty?._id ?? ''}
               propertyName={displayProperty?.propertyDetails.name}
@@ -193,6 +196,7 @@ export default function PropertyDetailClient({
           </div>
         </div>
 
+        <DistributionsSection assetToken={displayProperty?.contractAddress} />
         <YouMightAlsoLike />
       </div>
     </div>
