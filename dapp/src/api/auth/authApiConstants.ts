@@ -1,5 +1,5 @@
 export enum AuthEndpoints {
-  Login = '/login',
-  Signup = '/signup',
-  ResetPassword = '/reset-password/:email',
+  Login = '/auth/login',
+  Signup = '/auth/signup',
+  ResetPassword = '/auth/reset-password/:email',
 }

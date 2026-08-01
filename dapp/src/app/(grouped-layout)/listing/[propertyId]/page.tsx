@@ -39,8 +39,7 @@ Promise<Metadata> {
     };
   }
 
-  const { name, description, country, stateOrProvince, photos } =
-    property.propertyDetails;
+  const { name, description, country, stateOrProvince, photos } = property;
   const location = `${stateOrProvince}, ${country}`;
 
   return {
@@ -65,6 +64,8 @@ Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const property = await getProperty(params.propertyId);
 
+  console.log({ property });
+
   if (!property) {
     return <PropertyDetailClient />;
   }
@@ -72,13 +73,13 @@ export default async function Page({ params }: Props) {
   const propertySchema = {
     '@context': 'https://schema.org',
     '@type': 'RealEstateListing',
-    name: property.propertyDetails.name,
-    description: property.propertyDetails.description,
-    image: property.propertyDetails.photos.map((p) => p.url),
+    name: property.name,
+    description: property.description,
+    image: property.photos.map((p) => p.url),
     address: {
       '@type': 'PostalAddress',
-      addressLocality: property.propertyDetails.stateOrProvince,
-      addressCountry: property.propertyDetails.country,
+      addressLocality: property.stateOrProvince,
+      addressCountry: property.country,
     },
     offers: {
       '@type': 'Offer',

@@ -46,7 +46,7 @@ export default function LoginSignupResetLayout({
           </div> */}
 
           <section className='flex flex-col flex-1 py-[24px] h-full overflow-y-auto justify-center items-center'>
-            <div className='md:hidden w-full flex justify-between items-center mb-[20px] md:px-[64px] px-[16px]'>
+            <div className='md:hidden w-full flex justify-between items-center mb-[20px] xl:px-[64px] px-[16px]'>
               <SettleyLogo colour='no-beta' />
               <Link
                 href='/signup'
@@ -80,7 +80,7 @@ export default function LoginSignupResetLayout({
               <div className='absolute inset-0 bg-gradient-to-t from-[#f8f9ff] to-transparent z-[5]' />
             </div>
 
-            <section className='md:px-[64px] px-[16px] hidden md:block'>
+            <section className='xl:px-[64px] md:px-[32px] px-[16px] hidden md:block'>
               {children}
             </section>
 

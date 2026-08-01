@@ -26,10 +26,10 @@ export default function YouMightAlsoLike() {
         <ListingCardLoader isLoading={isLoading} cardNumber={3} />
         {properties?.map((property) => (
           <TrendingPropertyCard
-            key={property._id}
-            image={property.propertyDetails.photos[0].url}
-            caption={`${property.propertyDetails.stateOrProvince}, ${property.propertyDetails.country}`}
-            propertyId={property._id}
+            key={property.id}
+            image={property.photos[0].url}
+            caption={`${property.stateOrProvince}, ${property.country}`}
+            propertyId={property.id}
           />
         ))}
       </div>

@@ -14,12 +14,15 @@ import {
   GLOBAL_API_REDUCER_PATH,
 } from '../constants/appConstants';
 
-// TODO: convert hardcoded base urls to env;
-export const AUTH_BASE_URL = 'https://settley-auth.fly.dev';
-export const BASE_URL = 'https://settley.fly.dev';
-// 'http://localhost:8000';
-// 'https://settley.fly.dev';
-// https://settley-auth.fly.dev
+// Base URLs configurable via environment variables
+export const AUTH_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+export const BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+
+// For local development: use mock token if no session token available
+const isDev = process.env.NODE_ENV === 'development';
+const MOCK_DEV_TOKEN = 'mock-dev-token';
 
 // initialize an empty api service that we'll inject endpoints into later as needed
 axios.defaults.timeout = AXIOS_TIMEOUT_TIME;
@@ -46,7 +49,7 @@ const axiosBaseQuery =
 
     try {
       session = await getSession();
-      const token = session && session.token;
+      const token = session?.token;
 
       const result = await axios({
         url: url,

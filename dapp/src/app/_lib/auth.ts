@@ -5,7 +5,6 @@ import GoogleProvider from 'next-auth/providers/google';
 import TwitterProvider from 'next-auth/providers/twitter';
 import 'firebase/firestore';
 
-import { INetworkSuccessResponse } from '../../@types/appTypes';
 import { AUTH_BASE_URL, BASE_URL } from '../../api';
 import { AuthEndpoints } from '../../api/auth/authApiConstants';
 import logger from '../../utils/logger';
@@ -32,12 +31,13 @@ export const authOptions: NextAuthOptions = {
             email: credentials?.email as string,
             password: credentials?.password as string,
           };
-          const user = await axios.post<INetworkSuccessResponse<User>>(
+          const response = await axios.post(
             `${AUTH_BASE_URL}${AuthEndpoints.Login}`,
             data
           );
+          const user = response.data.data.data as User;
 
-          return user.data.data;
+          return user;
         } catch (error) {
           if (error instanceof AxiosError) {
             if (
@@ -51,6 +51,18 @@ export const authOptions: NextAuthOptions = {
               }
               logger(error.response.data);
               throw new Error(error.response.data);
+            }
+
+            if (
+              error.response?.data &&
+              typeof error.response.data === 'object' &&
+              'message' in error.response.data &&
+              error.response.data.message &&
+              typeof error.response.data.message === 'string'
+            ) {
+              const errorMsg = error.response.data.message;
+              logger(errorMsg);
+              throw new Error(errorMsg);
             }
           }
         }
@@ -202,11 +214,10 @@ export const authOptions: NextAuthOptions = {
       // google sign in handler
       if (!('userFirebaseId' in token.data)) {
         try {
-          const r = await axios.post(`${AUTH_BASE_URL}/google-signin`, {
+          const r = await axios.post(`${AUTH_BASE_URL}/auth/google-signin`, {
             email: token.email,
           });
-
-          const result = r.data as {
+          const result = r.data.data.data as {
             token: string;
             userFirebaseId: string;
             email: string;

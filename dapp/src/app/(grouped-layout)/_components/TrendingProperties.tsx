@@ -62,16 +62,13 @@ export default function TrendingProperties() {
         <ListingCardLoader isLoading={isLoading} cardNumber={3} />
         {properties?.map((property) => (
           <TrendingPropertyCard
-            key={property._id}
-            image={property.propertyDetails.photos[0].url}
-            caption={property.propertyDetails.name}
-            location={[
-              property.propertyDetails.stateOrProvince,
-              property.propertyDetails.country,
-            ]
+            key={property.id}
+            image={property.photos[0].url}
+            caption={property.name}
+            location={[property.stateOrProvince, property.country]
               .filter(Boolean)
               .join(', ')}
-            propertyId={property._id}
+            propertyId={property.id}
           />
         ))}
         {!isLoading &&

@@ -11,16 +11,14 @@ import ListingCard from '../../listings/_components/ListingCard';
 
 export default function Page() {
   const session = useSession();
+  const isLoggedIn = session.status === 'authenticated';
 
-  const userFirebaseId = session.data?.userFirebaseId ?? '';
-  const { data, isLoading } = useGetWishlistQuery(userFirebaseId);
+  const { data, isLoading } = useGetWishlistQuery(undefined, { skip: !isLoggedIn });
 
-  const { data: wishlistResponse } = useGetWishlistQuery(userFirebaseId ?? '');
-
-  const wishlist = wishlistResponse?.data?.wishlist;
+  const wishlist = data?.data?.wishlist;
   const wishlistPropertyIds = wishlist?.map((item) => item._id);
 
-  const wishlistProperties = data?.data.wishlist;
+  const wishlistProperties = data?.data?.wishlist;
   const hasBookmarks = !!wishlistProperties?.length;
 
   return (

@@ -40,7 +40,12 @@ export default function Input({
           <div
             className={cn(
               'focus-within:border-black focus-within:ring-1 focus-within:ring-black rounded-full relative flex w-full h-[56px] flex-row items-center border border-[#C6C6CD] bg-white transition-all duration-300 ease-linear',
-              [touched && error && 'bg-[red]/5 border-[red] focus-within:border-[red] focus-within:ring-[red]'],
+              [
+                touched &&
+                  error &&
+                  error !== 'ignore' &&
+                  'bg-[red]/5 border-[red] focus-within:border-[red] focus-within:ring-[red]',
+              ],
               [containerClassName && containerClassName]
             )}
           >
@@ -50,7 +55,7 @@ export default function Input({
                 className={cn(
                   'absolute left-6 top-0 -translate-y-1/2 px-2 text-xs font-normal text-[#8E8E93] transition-all font-inter pointer-events-none select-none z-10',
                   labelBg,
-                  [touched && error && 'text-[red]'],
+                  [touched && error && error !== 'ignore' && 'text-[red]'],
                   [labelClassName && labelClassName]
                 )}
               >
@@ -89,7 +94,12 @@ export default function Input({
           <div
             className={cn(
               'focus-within:border-black focus-within:ring-1 focus-within:ring-black rounded-full relative flex w-full h-[56px] flex-row items-center border border-[#C6C6CD] bg-white transition-all duration-300 ease-linear',
-              [touched && error && 'bg-[red]/5 border-[red] focus-within:border-[red] focus-within:ring-[red]'],
+              [
+                touched &&
+                  error &&
+                  error !== 'ignore' &&
+                  'bg-[red]/5 border-[red] focus-within:border-[red] focus-within:ring-[red]',
+              ],
               [containerClassName && containerClassName]
             )}
           >
@@ -99,7 +109,7 @@ export default function Input({
                 className={cn(
                   'absolute left-6 top-0 -translate-y-1/2 px-2 text-xs font-normal text-[#8E8E93] transition-all font-inter pointer-events-none select-none z-10',
                   labelBg,
-                  [touched && error && 'text-[red]'],
+                  [touched && error && error !== 'ignore' && 'text-[red]'],
                   [labelClassName && labelClassName]
                 )}
               >

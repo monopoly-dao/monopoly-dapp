@@ -5,7 +5,11 @@ import {
   INetworkSuccessResponse,
   PaginatedSuccessResponse,
 } from '../../@types/appTypes';
-import { GET_METHOD, POST_METHOD } from '../../constants/appConstants';
+import {
+  DELETE_METHOD,
+  GET_METHOD,
+  POST_METHOD,
+} from '../../constants/appConstants';
 
 const propertiesApi = globalApi.injectEndpoints({
   overrideExisting: true,
@@ -22,7 +26,7 @@ const propertiesApi = globalApi.injectEndpoints({
       providesTags: ['Properties'],
     }),
 
-    getProperty: build.query<Property, string>({
+    getProperty: build.query<INetworkSuccessResponse<Property>, string>({
       query: (payload) => ({
         url: PropertiesEndpoints.Get_Property.replace(':propertyId', payload),
         method: GET_METHOD,
@@ -30,47 +34,35 @@ const propertiesApi = globalApi.injectEndpoints({
       providesTags: (_r, _e, arg) => [{ type: 'Properties', id: arg }],
     }),
 
-    getWishlist: build.query<INetworkSuccessResponse<Wishlist>, string>({
-      query: (payload) => ({
-        url: PropertiesEndpoints.Get_Wishlist.replace(
-          ':userFirebaseId',
-          payload
-        ),
+    getWishlist: build.query<INetworkSuccessResponse<Wishlist>, void>({
+      query: () => ({
+        url: PropertiesEndpoints.Get_Wishlist,
         method: GET_METHOD,
       }),
       providesTags: ['Wishlist'],
     }),
 
-    addToWishlist: build.mutation<
-      INetworkSuccessResponse<Wishlist>,
-      { propertyId: string; userFirebaseId: string }
-    >({
-      query: (payload) => ({
+    addToWishlist: build.mutation<INetworkSuccessResponse<Wishlist>, string>({
+      query: (propertyId) => ({
         url: PropertiesEndpoints.Add_Property_To_Wishlist.replace(
           ':propertyId',
-          payload.propertyId
+          propertyId
         ),
         method: POST_METHOD,
-        data: {
-          userFirebaseId: payload.userFirebaseId,
-        },
       }),
       invalidatesTags: ['Wishlist'],
     }),
 
     removeFromWishlist: build.mutation<
       INetworkSuccessResponse<Wishlist>,
-      { propertyId: string; userFirebaseId: string }
+      string
     >({
-      query: (payload) => ({
+      query: (propertyId) => ({
         url: PropertiesEndpoints.Remove_Property_From_Wishlist.replace(
           ':propertyId',
-          payload.propertyId
+          propertyId
         ),
-        method: POST_METHOD,
-        data: {
-          userFirebaseId: payload.userFirebaseId,
-        },
+        method: DELETE_METHOD,
       }),
       invalidatesTags: ['Wishlist'],
     }),

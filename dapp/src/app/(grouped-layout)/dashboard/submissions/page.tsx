@@ -23,10 +23,11 @@ function getStatusClasses(status: AssetSubmission['status']) {
 
 export default function SubmissionsPage() {
   const session = useSession();
-  const userFirebaseId = session.data?.userFirebaseId ?? '';
+  const isLoggedIn = session.status === 'authenticated';
 
   const { data: submissionsResponse, isLoading } = useGetUserSubmissionsQuery(
-    userFirebaseId || 'mock_user'
+    undefined,
+    { skip: !isLoggedIn }
   );
   const submissions = submissionsResponse?.data ?? [];
 

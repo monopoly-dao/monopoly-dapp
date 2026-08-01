@@ -41,7 +41,6 @@ export default function ArticleComments({
   const { data: session, status } = useSession();
   const router = useRouter();
   const isLoggedIn = status === 'authenticated';
-  const userFirebaseId = session?.userFirebaseId || ';';
   const [addComment, { isLoading: isAddingComment }] =
     useAddArticleCommentMutation();
   const [deleteComment, { isLoading: isDeletingComment }] =
@@ -50,9 +49,10 @@ export default function ArticleComments({
     null
   );
 
-  const { data: profileData } = useGetUserDetailsQuery(userFirebaseId, {
-    skip: !isLoggedIn,
-  });
+  const { data: profileData } = useGetUserDetailsQuery(
+    undefined,
+    { skip: !isLoggedIn }
+  );
   const userDetails = profileData?.data;
 
   function redirectToLogin() {
@@ -74,7 +74,6 @@ export default function ArticleComments({
         await addComment({
           slug,
           content: values.content,
-          userFirebaseId,
           author: userDetails?.firstName
             ? `${userDetails?.firstName} ${userDetails?.lastName}`
             : '',
@@ -98,7 +97,6 @@ export default function ArticleComments({
       await deleteComment({
         slug,
         commentId,
-        userFirebaseId,
       }).unwrap();
 
       toast.success('Comment deleted successfully!');

@@ -23,12 +23,8 @@ export default function Page() {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get('page')) || 1;
 
-  const session = useSession();
-  const userFirebaseId = session.data?.userFirebaseId ?? '';
-
   const { data: userTransactionsResponse, isLoading } =
     useGetUserTransactionsQuery({
-      userFirebaseId,
       page,
       limit: 10,
     });

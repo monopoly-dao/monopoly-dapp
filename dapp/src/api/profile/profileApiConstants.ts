@@ -1,7 +1,7 @@
 export enum ProfileEndpoints {
-  Get_Profile_Details = '/profile/:userFirebaseId',
-  Update_Profile = '/profile/:userFirebaseId',
-  Get_Wallet_Stats = '/profile/walletStats/:userFirebaseId',
-  Get_Holdings = '/profile/holdings/:userFirebaseId',
-  Get_Transactions = '/transactions/:userFirebaseId',
+  Get_Profile_Details = '/users/profile',
+  Update_Profile = '/users/profile',
+  Get_Wallet_Stats = '/users/profile',
+  Get_Holdings = '/users/holdings',
+  Get_Transactions = '/users/transactions',
 }

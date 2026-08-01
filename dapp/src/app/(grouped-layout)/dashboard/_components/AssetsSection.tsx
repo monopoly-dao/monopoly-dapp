@@ -9,16 +9,11 @@ import DashboardEmptyState from './DashboardEmptyState';
 
 const headers = ['Token', 'Tokens', 'USD Value'];
 
-type Props = {
-  userFirebaseId: string;
-};
-
-export default function AssetsSection({ userFirebaseId }: Props) {
+export default function AssetsSection() {
   const searchParams = useSearchParams();
   const page = Number(searchParams.get('page')) || 1;
 
   const { data: userAssetsResponse, isLoading } = useGetUserAssetsQuery({
-    userFirebaseId,
     page,
     limit: 10,
   });

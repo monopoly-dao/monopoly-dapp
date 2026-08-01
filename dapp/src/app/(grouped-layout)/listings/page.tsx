@@ -29,7 +29,6 @@ import PropertiesFilter from './_components/PropertiesFIlter';
 export default function Page() {
   const session = useSession();
   const isLoggedIn = session.data;
-  const userFirebaseId = session.data?.userFirebaseId ?? '';
 
   const searchParams = useSearchParams();
   const page = Number(searchParams.get('page')) || 1;
@@ -43,7 +42,7 @@ export default function Page() {
   });
   const properties = propertiesResponse?.data;
 
-  const { data: wishlistResponse } = useGetWishlistQuery(userFirebaseId ?? '', {
+  const { data: wishlistResponse } = useGetWishlistQuery(undefined, {
     skip: !isLoggedIn,
   });
   const wishlist = wishlistResponse?.data?.wishlist;

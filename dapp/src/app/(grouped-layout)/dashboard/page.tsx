@@ -17,11 +17,9 @@ type HoldingTab = 'tokens' | 'vault';
 
 export default function Page() {
   const session = useSession();
-  const userFirebaseId = session.data?.userFirebaseId ?? '';
   const [activeTab, setActiveTab] = useState<HoldingTab>('tokens');
 
-  const { data: walletStatsResponse, isLoading } =
-    useGetWalletStatsQuery(userFirebaseId);
+  const { data: walletStatsResponse, isLoading } = useGetWalletStatsQuery();
   const walletStats = walletStatsResponse?.data;
 
   return (
@@ -111,8 +109,8 @@ export default function Page() {
           </button>
         </div>
 
-        {activeTab === 'tokens' && <AssetsSection userFirebaseId={userFirebaseId} />}
-        {activeTab === 'vault' && <VaultActivitySection userFirebaseId={userFirebaseId} />}
+        {activeTab === 'tokens' && <AssetsSection />}
+        {activeTab === 'vault' && <VaultActivitySection />}
       </div>
     </div>
   );

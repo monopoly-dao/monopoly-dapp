@@ -17,13 +17,10 @@ const profileApi = globalApi.injectEndpoints({
   endpoints: (build) => ({
     getUserDetails: build.query<
       INetworkSuccessResponse<UserDetailsResponse>,
-      string
+      void
     >({
-      query: (payload) => ({
-        url: ProfileEndpoints.Get_Profile_Details.replace(
-          ':userFirebaseId',
-          payload
-        ),
+      query: () => ({
+        url: ProfileEndpoints.Get_Profile_Details,
         method: GET_METHOD,
       }),
       providesTags: ['Profile'],
@@ -31,28 +28,22 @@ const profileApi = globalApi.injectEndpoints({
 
     updateUserDetails: build.mutation<
       INetworkSuccessResponse<UserDetailsResponse>,
-      { userFirebaseId: string; data: FormData }
+      FormData
     >({
-      query: (payload) => ({
-        url: ProfileEndpoints.Update_Profile.replace(
-          ':userFirebaseId',
-          payload.userFirebaseId
-        ),
+      query: (data) => ({
+        url: ProfileEndpoints.Update_Profile,
         method: PUT_METHOD,
-        data: payload.data,
+        data,
       }),
       invalidatesTags: ['Profile'],
     }),
 
     getWalletStats: build.query<
       INetworkSuccessResponse<WalletStatsResponse>,
-      string
+      void
     >({
-      query: (payload) => ({
-        url: ProfileEndpoints.Get_Wallet_Stats.replace(
-          ':userFirebaseId',
-          payload
-        ),
+      query: () => ({
+        url: ProfileEndpoints.Get_Wallet_Stats,
         method: GET_METHOD,
       }),
       providesTags: ['WalletStats'],
@@ -60,13 +51,10 @@ const profileApi = globalApi.injectEndpoints({
 
     getUserAssets: build.query<
       PaginatedSuccessResponse<UserAssetsResponse[]>,
-      { page: number; limit: number; userFirebaseId: string }
+      { page: number; limit: number }
     >({
       query: (payload) => ({
-        url: ProfileEndpoints.Get_Holdings.replace(
-          ':userFirebaseId',
-          payload.userFirebaseId
-        ),
+        url: ProfileEndpoints.Get_Holdings,
         method: GET_METHOD,
         params: {
           page: payload.page,
@@ -78,13 +66,10 @@ const profileApi = globalApi.injectEndpoints({
 
     getUserTransactions: build.query<
       PaginatedSuccessResponse<TransactionResponse[]>,
-      { page: number; limit: number; userFirebaseId: string }
+      { page: number; limit: number }
     >({
       query: (payload) => ({
-        url: ProfileEndpoints.Get_Transactions.replace(
-          ':userFirebaseId',
-          payload.userFirebaseId
-        ),
+        url: ProfileEndpoints.Get_Transactions,
         method: GET_METHOD,
         params: {
           page: payload.page,

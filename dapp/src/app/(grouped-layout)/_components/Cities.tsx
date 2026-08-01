@@ -10,28 +10,22 @@ import TrendingPropertyCard from './TrendingPropertyCard';
 
 const fallbackMarkets = [
   {
-    _id: 'market-portugal',
-    propertyDetails: {
-      stateOrProvince: 'Lisbon',
-      country: 'Portugal',
-      photos: [{ url: '/images/landing-banner.png' }],
-    },
+    id: 'market-portugal',
+    stateOrProvince: 'Lisbon',
+    country: 'Portugal',
+    photos: [{ url: '/images/landing-banner.png' }],
   },
   {
-    _id: 'market-montenegro',
-    propertyDetails: {
-      stateOrProvince: 'Bay of Kotor',
-      country: 'Montenegro',
-      photos: [{ url: '/images/own a property.png' }],
-    },
+    id: 'market-montenegro',
+    stateOrProvince: 'Bay of Kotor',
+    country: 'Montenegro',
+    photos: [{ url: '/images/own a property.png' }],
   },
   {
-    _id: 'market-uae',
-    propertyDetails: {
-      stateOrProvince: 'Dubai',
-      country: 'United Arab Emirates',
-      photos: [{ url: '/images/apartment.png' }],
-    },
+    id: 'market-uae',
+    stateOrProvince: 'Dubai',
+    country: 'United Arab Emirates',
+    photos: [{ url: '/images/apartment.png' }],
   },
 ];
 
@@ -75,10 +69,10 @@ export default function Cities() {
         />
         {properties?.map((property) => (
           <TrendingPropertyCard
-            key={property._id}
-            image={property.propertyDetails.photos[0].url}
-            caption={`${property.propertyDetails.stateOrProvince}, ${property.propertyDetails.country}`}
-            propertyId={property._id}
+            key={property.id}
+            image={property.photos[0].url}
+            caption={`${property.stateOrProvince}, ${property.country}`}
+            propertyId={property.id}
           />
         ))}
       </div>

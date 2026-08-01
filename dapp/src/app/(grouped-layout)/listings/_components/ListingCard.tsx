@@ -13,29 +13,27 @@ type Props = {
 
 export default function ListingCard({ property, wishlist }: Props) {
   const {
-    propertyDetails: {
-      name,
-      symbol,
-      stateOrProvince,
-      country,
-      bed,
-      bath,
-      squareFt,
-      unitsLeft,
-      photos,
-    },
+    name,
+    symbol,
+    stateOrProvince,
+    country,
+    bed,
+    bath,
+    squareFt,
+    unitsAvailable,
+    photos,
   } = property;
 
   return (
     <div className='w-full min-h-[426px] relative bg-white shadow-2xl'>
       <div onClick={(e) => e.stopPropagation()}>
         <WishlistButton
-          propertyId={property._id}
-          propertyName={property?.propertyDetails.name ?? ''}
-          isFavourite={wishlist?.includes(property._id) ?? false}
+          propertyId={property.id}
+          propertyName={property?.name ?? ''}
+          isFavourite={wishlist?.includes(property.id) ?? false}
         />
       </div>
-      <Link href={`/listing/${property._id}`}>
+      <Link href={`/listing/${property.id}`}>
         <Image
           src={photos[0].url}
           alt={name}
@@ -78,7 +76,7 @@ export default function ListingCard({ property, wishlist }: Props) {
               <p>/token</p>
             </div>
             <p className='text-navy/40'>
-              {formatAmount(unitsLeft)} tokens left
+              {formatAmount(unitsAvailable)} tokens left
             </p>
           </div>
         </div>

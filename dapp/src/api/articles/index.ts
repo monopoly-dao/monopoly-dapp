@@ -27,7 +27,6 @@ const articleApi = globalApi.injectEndpoints({
       {
         slug: string;
         content: string;
-        userFirebaseId: string;
         author: string;
       }
     >({
@@ -36,7 +35,6 @@ const articleApi = globalApi.injectEndpoints({
         method: 'POST',
         data: {
           content: params.content,
-          userFirebaseId: params.userFirebaseId,
           author: params.author,
         },
       }),
@@ -45,7 +43,7 @@ const articleApi = globalApi.injectEndpoints({
 
     deleteArticleComment: build.mutation<
       PaginatedSuccessResponse<ArticleResponse[]>,
-      { slug: string; commentId: string; userFirebaseId: string }
+      { slug: string; commentId: string }
     >({
       query: (params) => ({
         url: ArticlesEndpoints.DeleteArticleComment.replace(
@@ -53,7 +51,6 @@ const articleApi = globalApi.injectEndpoints({
           params.slug
         ).replace(':commentId', params.commentId),
         method: 'DELETE',
-        params: { userFirebaseId: params.userFirebaseId },
       }),
       invalidatesTags: ['Articles'],
     }),

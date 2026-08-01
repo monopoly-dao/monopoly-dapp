@@ -59,10 +59,7 @@ export default function UpdateProfileForm({
       formData.set('username', values.username);
 
       try {
-        await updateUser({
-          data: formData,
-          userFirebaseId: session.data?.userFirebaseId ?? '',
-        }).unwrap();
+        await updateUser(formData).unwrap();
 
         toast.success('Data successfuly updatd');
         setProfileToView();

@@ -12,11 +12,11 @@ import { useGetPropertyQuery } from '@/api/properties';
 import { Property } from '@/api/properties/propertiesApiTypes';
 import { formatAmount } from '@/utils/utils';
 
+import DistributionsSection from './_components/DistributionsSection';
+import NavBadge from './_components/NavBadge';
 import PropertyActionPanel from './_components/PropertyActionPanel';
 import ListingImage from '../_components/ListingImage';
 import YouMightAlsoLike from '../_components/YouMightAlsoLike';
-import NavBadge from './_components/NavBadge';
-import DistributionsSection from './_components/DistributionsSection';
 
 export default function PropertyDetailClient({
   initialData,
@@ -25,7 +25,7 @@ export default function PropertyDetailClient({
 }) {
   const { propertyId } = useParams();
   const {
-    data: property,
+    data: propertyRes,
     error,
     isLoading,
   } = useGetPropertyQuery(propertyId as string, {
@@ -34,7 +34,10 @@ export default function PropertyDetailClient({
 
   if (error) throw new Error('Failed to load property');
 
+  const property = propertyRes?.data;
   const displayProperty = property || initialData;
+
+  console.log({ displayProperty, initialData });
 
   return (
     <div>
@@ -48,26 +51,26 @@ export default function PropertyDetailClient({
         <div className='grid mt-8 grid-cols-3 grid-rows-3 gap-4 h-[500px] sm:h-[800px]'>
           <div className='col-span-3 row-span-2 rounded-2xl overflow-hidden'>
             <ListingImage
-              src={displayProperty?.propertyDetails.photos[0].url ?? ''}
-              alt={displayProperty?.propertyDetails.name ?? ''}
+              src={displayProperty?.photos?.[0].url ?? ''}
+              alt={displayProperty?.name ?? ''}
             />
           </div>
           <div className='col-span-1 row-span-1 rounded-2xl overflow-hidden'>
             <ListingImage
-              src={displayProperty?.propertyDetails.photos[1].url ?? ''}
-              alt={displayProperty?.propertyDetails.name ?? ''}
+              src={displayProperty?.photos?.[1].url ?? ''}
+              alt={displayProperty?.name ?? ''}
             />
           </div>
           <div className='col-span-1 row-span-1 rounded-2xl overflow-hidden'>
             <ListingImage
-              src={displayProperty?.propertyDetails.photos[2].url ?? ''}
-              alt={displayProperty?.propertyDetails.name ?? ''}
+              src={displayProperty?.photos?.[2].url ?? ''}
+              alt={displayProperty?.name ?? ''}
             />
           </div>
           <div className='col-span-1 row-span-1 rounded-2xl overflow-hidden'>
             <ListingImage
-              src={displayProperty?.propertyDetails.photos[3].url ?? ''}
-              alt={displayProperty?.propertyDetails.name ?? ''}
+              src={displayProperty?.photos?.[3].url ?? ''}
+              alt={displayProperty?.name ?? ''}
             />
           </div>
         </div>
@@ -76,10 +79,7 @@ export default function PropertyDetailClient({
           <div className='w-full sm:w-3/5 flex flex-col gap-7'>
             <div>
               <p className='text-3xl font-medium'>
-                <LoadingText
-                  isLoading={isLoading}
-                  value={property?.propertyDetails.name}
-                />
+                <LoadingText isLoading={isLoading} value={property?.name} />
               </p>
               <div className='flex items-center gap-4 mt-2 text-navy'>
                 <div className='flex items-center gap-1'>
@@ -87,7 +87,7 @@ export default function PropertyDetailClient({
                     <LoadingText
                       isLoading={isLoading}
                       className='w-10'
-                      value={property?.propertyDetails.bed}
+                      value={property?.bed}
                     />{' '}
                     Beds
                   </p>
@@ -97,7 +97,7 @@ export default function PropertyDetailClient({
                     <LoadingText
                       isLoading={isLoading}
                       className='w-10'
-                      value={property?.propertyDetails.bath}
+                      value={property?.bath}
                     />{' '}
                     Baths
                   </p>
@@ -107,7 +107,7 @@ export default function PropertyDetailClient({
                     <LoadingText
                       isLoading={isLoading}
                       className='w-10'
-                      value={formatAmount(property?.propertyDetails.squareFt)}
+                      value={formatAmount(property?.squareFt)}
                     />{' '}
                     sqft
                   </p>
@@ -117,7 +117,7 @@ export default function PropertyDetailClient({
                 <LoadingText
                   isLoading={isLoading}
                   className='w-full h-[80px]'
-                  value={property?.propertyDetails.description}
+                  value={property?.description}
                 />
               </p>
             </div>
@@ -129,7 +129,7 @@ export default function PropertyDetailClient({
                 <LoadingText
                   isLoading={isLoading}
                   className='w-10'
-                  value={property?.propertyDetails.symbol}
+                  value={property?.symbol}
                 />
               </p>
             </div>
@@ -141,7 +141,7 @@ export default function PropertyDetailClient({
               </p>
               <Link
                 className='underline w-fit text-settley-text hover:text-navy transition-colors font-medium border-b border-settley-text'
-                href={`/deed/${displayProperty?._id}`}
+                href={`/deed/${displayProperty?.id}`}
                 target='_blank'
               >
                 View Title Deed
@@ -187,10 +187,10 @@ export default function PropertyDetailClient({
           <div className='w-full sm:w-2/5 lg:w-1/4 flex flex-col gap-4'>
             <NavBadge assetToken={displayProperty?.contractAddress} />
             <PropertyActionPanel
-              propertyId={displayProperty?._id ?? ''}
-              propertyName={displayProperty?.propertyDetails.name}
-              propertySymbol={displayProperty?.propertyDetails.symbol}
-              tokensLeft={displayProperty?.propertyDetails.unitsLeft}
+              propertyId={displayProperty?.id ?? ''}
+              propertyName={displayProperty?.name}
+              propertySymbol={displayProperty?.symbol}
+              tokensLeft={displayProperty?.unitsAvailable}
               pricePerToken={1}
             />
           </div>

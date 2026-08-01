@@ -14,10 +14,9 @@ export default function Page() {
   >('view');
 
   const session = useSession();
-  const userFirebaseId = session.data?.userFirebaseId ?? '';
   // const email = session.data?.email ?? '';
 
-  const { data } = useGetUserDetailsQuery(userFirebaseId);
+  const { data } = useGetUserDetailsQuery();
   const userDetails = data?.data;
 
   const initialValuesFromDb = {

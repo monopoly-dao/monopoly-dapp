@@ -177,17 +177,11 @@ function LenderPositionRow({ loan }: { loan: LendPosition }) {
   );
 }
 
-type Props = {
-  userFirebaseId: string;
-};
-
-export default function VaultActivitySection({ userFirebaseId }: Props) {
+export default function VaultActivitySection(): JSX.Element {
   const [activeTab, setActiveTab] = useState<'borrower' | 'lender'>('borrower');
 
-  const effectiveUserFirebaseId = userFirebaseId || 'mock_user';
-
-  const { data: borrowerLoansResponse, isLoading: isLoadingLoans } = useGetUserLoansQuery(effectiveUserFirebaseId);
-  const { data: lenderPositionsResponse, isLoading: isLoadingPositions } = useGetUserLendPositionsQuery(effectiveUserFirebaseId);
+  const { data: borrowerLoansResponse, isLoading: isLoadingLoans } = useGetUserLoansQuery();
+  const { data: lenderPositionsResponse, isLoading: isLoadingPositions } = useGetUserLendPositionsQuery();
 
   const borrowerLoans = borrowerLoansResponse?.data ?? [];
   const lenderPositions = lenderPositionsResponse?.data ?? [];

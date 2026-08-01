@@ -24,13 +24,12 @@ const vaultsApiConstants = {
   Get_Amount_Due: '/loans/:loanId/amount-due',
   Cancel_Borrow_Intent: '/loans/:loanId/borrow-intent',
   Cancel_Lend_Intent: '/loans/:loanId/lend-intent',
-  Get_User_Loans: '/loans/user/:address',
   Get_Loan_Intents: '/assets/:assetToken/loan-intents',
   Get_Nav: '/assets/:assetToken/nav',
   Get_Distributions: '/assets/:assetToken/distributions',
   Get_WindDown: '/assets/:assetToken/winddown',
   Create_Submission: '/submissions',
-  Get_User_Submissions: '/submissions/user/:userId',
+  Get_User_Submissions: '/submissions',
 };
 
 // Mock data
@@ -178,11 +177,6 @@ const vaultsApi = globalApi.injectEndpoints({
         url: vaultsApiConstants.Get_Vault.replace(':propertyId', propertyId),
         method: 'GET',
       }),
-      transformResponse: (): INetworkSuccessResponse<Vault> => ({
-        data: mockVault,
-        message: 'Success',
-        status: 200,
-      }),
       providesTags: ['Vault'],
     }),
 
@@ -191,11 +185,6 @@ const vaultsApi = globalApi.injectEndpoints({
         url: vaultsApiConstants.Request_Loan.replace(':vaultId', vaultId),
         method: 'POST',
         data: payload,
-      }),
-      transformResponse: (): INetworkSuccessResponse<Loan> => ({
-        data: mockVault.loans[0],
-        message: 'Loan request created',
-        status: 200,
       }),
       invalidatesTags: ['Vault'],
     }),
@@ -206,11 +195,6 @@ const vaultsApi = globalApi.injectEndpoints({
         method: 'POST',
         data: payload,
       }),
-      transformResponse: (): INetworkSuccessResponse<Loan> => ({
-        data: mockVault.loans[0],
-        message: 'Loan funded',
-        status: 200,
-      }),
       invalidatesTags: ['Vault'],
     }),
 
@@ -219,11 +203,6 @@ const vaultsApi = globalApi.injectEndpoints({
         url: vaultsApiConstants.Repay.replace(':loanId', loanId),
         method: 'POST',
         data: payload,
-      }),
-      transformResponse: (): INetworkSuccessResponse<void> => ({
-        data: undefined,
-        message: 'Repayment successful',
-        status: 200,
       }),
       invalidatesTags: ['Vault'],
     }),
@@ -245,35 +224,20 @@ const vaultsApi = globalApi.injectEndpoints({
         url: vaultsApiConstants.Cancel_Borrow_Intent.replace(':loanId', loanId),
         method: 'DELETE',
       }),
-      transformResponse: (): INetworkSuccessResponse<void> => ({
-        data: undefined,
-        message: 'Borrow intent cancelled',
-        status: 200,
-      }),
       invalidatesTags: ['Vault'],
     }),
 
-    getUserLoans: build.query<INetworkSuccessResponse<Loan[]>, string>({
-      query: (address) => ({
-        url: vaultsApiConstants.Get_User_Loans.replace(':address', address),
+    getUserLoans: build.query<INetworkSuccessResponse<Loan[]>, void>({
+      query: () => ({
+        url: '/loans/user',
         method: 'GET',
-      }),
-      transformResponse: (): INetworkSuccessResponse<Loan[]> => ({
-        data: mockLoans,
-        message: 'Success',
-        status: 200,
       }),
     }),
 
-    getUserLendPositions: build.query<INetworkSuccessResponse<LendPosition[]>, string>({
-      query: (address) => ({
-        url: vaultsApiConstants.Get_User_Loans.replace(':address', address),
+    getUserLendPositions: build.query<INetworkSuccessResponse<LendPosition[]>, void>({
+      query: () => ({
+        url: '/loans/user/lend-positions',
         method: 'GET',
-      }),
-      transformResponse: (): INetworkSuccessResponse<LendPosition[]> => ({
-        data: mockLendPositions,
-        message: 'Success',
-        status: 200,
       }),
     }),
 
@@ -282,22 +246,12 @@ const vaultsApi = globalApi.injectEndpoints({
         url: vaultsApiConstants.Get_Loan_Intents.replace(':assetToken', assetToken),
         method: 'GET',
       }),
-      transformResponse: (): INetworkSuccessResponse<LoanIntentsResponse> => ({
-        data: mockLoanIntents,
-        message: 'Success',
-        status: 200,
-      }),
     }),
 
     getNav: build.query<INetworkSuccessResponse<NavResponse>, string>({
       query: (assetToken) => ({
         url: vaultsApiConstants.Get_Nav.replace(':assetToken', assetToken),
         method: 'GET',
-      }),
-      transformResponse: (): INetworkSuccessResponse<NavResponse> => ({
-        data: mockNav,
-        message: 'Success',
-        status: 200,
       }),
     }),
 
@@ -306,11 +260,6 @@ const vaultsApi = globalApi.injectEndpoints({
         url: vaultsApiConstants.Get_Distributions.replace(':assetToken', assetToken),
         method: 'GET',
       }),
-      transformResponse: (): INetworkSuccessResponse<Distribution[]> => ({
-        data: mockDistributions,
-        message: 'Success',
-        status: 200,
-      }),
     }),
 
     getWindDown: build.query<INetworkSuccessResponse<WindDownState | null>, string>({
@@ -318,22 +267,12 @@ const vaultsApi = globalApi.injectEndpoints({
         url: vaultsApiConstants.Get_WindDown.replace(':assetToken', assetToken),
         method: 'GET',
       }),
-      transformResponse: (): INetworkSuccessResponse<WindDownState | null> => ({
-        data: mockWindDown,
-        message: 'Success',
-        status: 200,
-      }),
     }),
 
     cancelLendIntent: build.mutation<INetworkSuccessResponse<void>, string>({
       query: (loanId) => ({
         url: vaultsApiConstants.Cancel_Lend_Intent.replace(':loanId', loanId),
         method: 'DELETE',
-      }),
-      transformResponse: (): INetworkSuccessResponse<void> => ({
-        data: undefined,
-        message: 'Lend intent cancelled',
-        status: 200,
       }),
       invalidatesTags: ['Vault'],
     }),
@@ -344,23 +283,13 @@ const vaultsApi = globalApi.injectEndpoints({
         method: 'POST',
         data: payload,
       }),
-      transformResponse: (): INetworkSuccessResponse<AssetSubmission> => ({
-        data: mockSubmissions[0],
-        message: 'Submission created',
-        status: 200,
-      }),
       invalidatesTags: ['Vault'],
     }),
 
-    getUserSubmissions: build.query<INetworkSuccessResponse<AssetSubmission[]>, string>({
-      query: (userId) => ({
-        url: vaultsApiConstants.Get_User_Submissions.replace(':userId', userId),
+    getUserSubmissions: build.query<INetworkSuccessResponse<AssetSubmission[]>, void>({
+      query: () => ({
+        url: vaultsApiConstants.Get_User_Submissions,
         method: 'GET',
-      }),
-      transformResponse: (): INetworkSuccessResponse<AssetSubmission[]> => ({
-        data: mockSubmissions,
-        message: 'Success',
-        status: 200,
       }),
     }),
   }),

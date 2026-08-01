@@ -76,14 +76,9 @@ const Navbar = () => {
   const navLinks = isLoggedIn ? authenticatedNavLinks : unauthentiatedNavLinks;
   const pathname = usePathname();
 
-  const userFirebaseId = session.data?.userFirebaseId ?? '';
-
-  const { data: userResponse, isLoading } = useGetUserDetailsQuery(
-    userFirebaseId,
-    {
-      skip: !isLoggedIn,
-    }
-  );
+  const { data: userResponse, isLoading } = useGetUserDetailsQuery(undefined, {
+    skip: !isLoggedIn,
+  });
   const userDetails = userResponse?.data.userDetails;
   const isProfileComplete =
     userDetails?.username &&
