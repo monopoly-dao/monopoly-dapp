@@ -2,11 +2,14 @@
 
 import { useSession } from 'next-auth/react';
 
-import Button from '@/components/buttons/Button';
 import useDisclosure from '@/hooks/useDisclosure';
 
-import { formatAmount } from '@/utils/utils';
+import Button from '@/components/buttons/Button';
+
+import { useGetWalletStatsQuery } from '@/api/profile';
 import authenticatedFuncWrapper from '@/utils/authenticatedFuncWrapper';
+import { formatAmount } from '@/utils/utils';
+
 import BuyPropertyModal from '../../_components/BuyPropertyModal';
 
 type Props = {
@@ -27,13 +30,16 @@ export default function BuyTab({
   const session = useSession();
   const { isOpen: isBuyOpen, open: openBuy, close: closeBuy } = useDisclosure();
 
+  const userFirebaseId = session.data?.userFirebaseId ?? '';
+
+  const { data: walletStatsResponse } = useGetWalletStatsQuery(userFirebaseId);
+  const walletStats = walletStatsResponse?.data;
+
   return (
     <>
       <div className='flex flex-col gap-3'>
         <p className='text-3xl'>$1/token</p>
-        <div className='text-sm'>
-          {formatAmount(tokensLeft)} tokens left.
-        </div>
+        <div className='text-sm'>{formatAmount(tokensLeft)} tokens left.</div>
         <Button
           variant='ghost'
           onClick={() => {
@@ -55,6 +61,7 @@ export default function BuyTab({
         propertyName={propertyName}
         propertySymbol={propertySymbol}
         tokensLeft={tokensLeft}
+        balance={walletStats?.walletBalance ?? 0}
       />
     </>
   );
